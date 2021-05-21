@@ -15,7 +15,7 @@ module "acme-s3" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "2.2.0"
 
-  bucket = "${var.bucketname}-${random_string.random.id}"
+  bucket        = "${var.bucketname}-${random_string.random.id}"
   acl           = "public-read"
   force_destroy = true
   policy        = <<-EOT
