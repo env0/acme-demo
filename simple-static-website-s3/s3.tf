@@ -6,16 +6,11 @@ resource "random_string" "random" {
   number  = true
 }
 
-variable "bucketname" {
-  type    = string
-  default = "env0-acme-bucket"
-}
-
 module "acme-s3" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "2.2.0"
 
-  bucket = "${var.bucketname}-${random_string.random.id}"
+  bucket        = "${var.bucketname}-${random_string.random.id}"
   acl           = "public-read"
   force_destroy = true
   policy        = <<-EOT
@@ -45,4 +40,5 @@ module "s3-bucket_object" {
   file_source  = "index.html"
   bucket       = module.acme-s3.s3_bucket_id
   key          = "index.html"
+  etag         = "${filemd5("index.html")}"
 }
