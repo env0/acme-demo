@@ -4,5 +4,9 @@ deploy:
   steps:
     terraformInit:
       before:
-        - echo Replacing !!!USER!!! with $USER in index.html
+        - echo "Replacing !!!USER!!! with $USER in index.html"
         - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
+    terraformPlan:
+      after:
+        - echo "Infracost Usage Estimate"
+        - infracost diff -p .tf-plan --usage-file infracost-usage.yml
