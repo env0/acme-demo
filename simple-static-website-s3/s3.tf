@@ -6,11 +6,6 @@ resource "random_string" "random" {
   number  = true
 }
 
-variable "bucketname" {
-  type    = string
-  default = "env0-acme-bucket"
-}
-
 module "acme-s3" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "2.2.0"
