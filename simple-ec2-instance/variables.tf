@@ -4,11 +4,11 @@ variable "name" {
 }
 
 variable "instance_count" {
-    type = number
-    default = 3
+  type    = number
+  default = 3
 }
 
 variable "instance_type" {
-    type = string
-    default = "t3.micro"
+  type    = string
+  default = "t3.micro"
 }
