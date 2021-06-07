@@ -12,3 +12,7 @@ variable "instance_type" {
   type    = string
   default = "t3a.micro"
 }
+
+variable "ssh_cidr_block" {
+  default = "0.0.0.0/0"
+}
