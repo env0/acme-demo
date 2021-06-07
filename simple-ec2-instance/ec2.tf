@@ -1,27 +1,26 @@
+module "acme-ec2" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "~> 2.0"
 
-
-module "ec2_cluster" {
-  source                 = "terraform-aws-modules/ec2-instance/aws"
-  version                = "~> 2.0"
-
-  name                   = variable.name
-  instance_count         = variable.instance_count
+  name           = var.name
+  instance_count = var.instance_count
 
   ami                    = data.aws_ami.ubuntu.id
-  instance_type          = variable.instance_type
+  instance_type          = var.instance_type
   key_name               = "AWay"
   vpc_security_group_ids = [module.web_server_sg.security_group_id]
+  subnet_ids             = data.aws_subnet_ids.default.ids
 
   associate_public_ip_address = true
 
-  user_data =<<EOF
-  #!/bin/bash
-  apt-get -y update
-  apt-get -y install nginx
-  export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
-  echo "Welcome to env0, this is: $PUBLIC_IPV4" > /usr/share/nginx/html/index.html
-  EOF
-  
+  user_data = <<EOF
+#!/bin/bash
+sudo apt-get -y update
+sudo apt-get -y install nginx
+export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
+sudo echo "Welcome to env0, this is: $PUBLIC_IPV4" > /usr/share/nginx/html/index.html
+EOF
+
   tags = {
     Terraform   = "true"
     Environment = "dev"
@@ -43,7 +42,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
 
   owners = ["099720109477"]
@@ -51,4 +50,8 @@ data "aws_ami" "ubuntu" {
 
 data "aws_vpc" "default" {
   default = true
+}
+
+data "aws_subnet_ids" "default" {
+  vpc_id = data.aws_vpc.default.id
 }
