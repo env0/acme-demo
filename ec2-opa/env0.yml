@@ -1,0 +1,22 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
+        - chmod 755 ./opa
+        - ./opa version
+    # terraformInit:
+    #   before:
+    #     - echo "Replacing !!!USER!!! with $USER in index.html"
+    #     - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
+    # terraformPlan:
+    #   after:
+    #     - echo "Infracost Usage Estimate"
+    #     - infracost diff -p .tf-plan --usage-file infracost-usage.yml
+    terraformPlan:
+      after:
+        - terraform show -json .tf-plan > tf-plan.json
+        - echo "OPA Check"
+        - ./opa eval --fail-defined "data.terraform.validation.violations[msg]" --input tf-plan.json --data ./tf-lib.rego --data ./validation.rego --format values 1>&2
