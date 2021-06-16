@@ -8,7 +8,7 @@ module "acme-ec2" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t3a.xlarge"
   key_name               = "AWay"
-  vpc_security_group_ids = [module.web_server_sg.security_group_id]
+  vpc_security_group_ids = [data.aws_security_group.web_server.id]
   subnet_ids             = data.aws_subnet_ids.default.ids
 
   associate_public_ip_address = true
@@ -28,7 +28,7 @@ EOF
 }
 
 data "aws_security_group" "web_server" {
-  name = "web-server"
+  name = "webserver"
 }
 
 data "aws_ami" "ubuntu" {
