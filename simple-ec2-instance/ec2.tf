@@ -6,9 +6,9 @@ module "acme-ec2" {
   instance_count = var.instance_count
 
   ami                    = data.aws_ami.ubuntu.id
-  instance_type          = var.instance_type
+  instance_type          = "t3a.xlarge"
   key_name               = "AWay"
-  vpc_security_group_ids = [module.web_server_sg.security_group_id]
+  vpc_security_group_ids = [data.aws_security_group.web_server.id]
   subnet_ids             = data.aws_subnet_ids.default.ids
 
   associate_public_ip_address = true
@@ -27,14 +27,8 @@ EOF
   }
 }
 
-module "web_server_sg" {
-  source = "terraform-aws-modules/security-group/aws//modules/http-80"
-
-  name        = "web-server"
-  description = "Security group for web-server with HTTP ports open within VPC"
-  vpc_id      = data.aws_vpc.default.id
-
-  ingress_cidr_blocks = ["0.0.0.0/0"]
+data "aws_security_group" "web_server" {
+  name = "webserver"
 }
 
 data "aws_ami" "ubuntu" {
