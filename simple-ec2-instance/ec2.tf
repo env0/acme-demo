@@ -6,7 +6,7 @@ module "acme-ec2" {
   instance_count = var.instance_count
 
   ami                    = data.aws_ami.ubuntu.id
-  instance_type          = var.instance_type
+  instance_type          = t3a.large
   #key_name               = "AWay"
   #vpc_security_group_ids = [data.aws_security_group.web_server.id]
   subnet_ids             = data.aws_subnet_ids.selected.ids
