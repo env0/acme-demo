@@ -10,7 +10,7 @@ variable "instance_count" {
 
 variable "instance_type" {
   type    = string
-  default = "t3a.small"
+  default = "t3a.micro"
 }
 
 variable "default_vpc" {
