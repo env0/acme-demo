@@ -7,29 +7,29 @@ module "acme-ec2" {
 
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
-  key_name               = "AWay"
-  vpc_security_group_ids = [data.aws_security_group.web_server.id]
-  subnet_ids             = data.aws_subnet_ids.default.ids
+  #key_name               = "AWay"
+  #vpc_security_group_ids = [data.aws_security_group.web_server.id]
+  subnet_ids             = data.aws_subnet_ids.selected.ids
 
-  associate_public_ip_address = true
+  associate_public_ip_address = false
 
-  user_data = <<EOF
-#!/bin/bash
-sudo apt-get -y update
-sudo apt-get -y install nginx
-export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
-sudo echo "Welcome to env0, this is: $PUBLIC_IPV4" > /usr/share/nginx/html/index.html
-EOF
+#   user_data = <<EOF
+# #!/bin/bash
+# sudo apt-get -y update
+# sudo apt-get -y install nginx
+# export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
+# sudo echo "Welcome to env0, this is: $PUBLIC_IPV4" > /usr/share/nginx/html/index.html
+# EOF
 
   tags = {
     Terraform   = "true"
-    Environment = "dev"
+    Owner       = "acme demo org"
   }
 }
 
-data "aws_security_group" "web_server" {
-  name = "webserver"
-}
+# data "aws_security_group" "web_server" {
+#   name = "webserver"
+# }
 
 data "aws_ami" "ubuntu" {
   most_recent = true
@@ -42,10 +42,10 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"]
 }
 
-data "aws_vpc" "default" {
-  default = true
+data "aws_vpc" "selected" {
+  id = var.vpc_id
 }
 
-data "aws_subnet_ids" "default" {
-  vpc_id = data.aws_vpc.default.id
+data "aws_subnet_ids" "selected" {
+  vpc_id = data.aws_vpc.selected.id
 }
