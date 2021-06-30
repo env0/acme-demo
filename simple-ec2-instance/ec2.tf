@@ -13,17 +13,17 @@ module "acme-ec2" {
 
   associate_public_ip_address = false
 
-  user_data = <<EOF
-#!/bin/bash
-sudo apt-get -y update
-sudo apt-get -y install nginx
-export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
-sudo echo "Welcome to env0, this is: $PUBLIC_IPV4" > /usr/share/nginx/html/index.html
-EOF
+#   user_data = <<EOF
+# #!/bin/bash
+# sudo apt-get -y update
+# sudo apt-get -y install nginx
+# export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
+# sudo echo "Welcome to env0, this is: $PUBLIC_IPV4" > /usr/share/nginx/html/index.html
+# EOF
 
   tags = {
     Terraform   = "true"
-    Environment = "dev"
+    Owner       = "acme demo org"
   }
 }
 
