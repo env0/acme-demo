@@ -4,9 +4,9 @@ deploy:
   steps:
     setupVariables:
       after:
-        - aws cloudformation deploy --stack-name test-cf-vpc --template-file vpc.yaml --region us-west-2
+        - aws cloudformation deploy --stack-name test-cf-vpc --template-file vpc.yaml
 destroy:
   steps:
     setupVariables:
       after:
-        - aws cloudformation delete-stack --stack-name test-cf-vpc --region us-west-2​
+        - aws cloudformation delete-stack --stack-name test-cf-vpc
