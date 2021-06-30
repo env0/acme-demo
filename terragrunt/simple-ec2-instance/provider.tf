@@ -6,9 +6,9 @@ terraform {
       version = "3.41.0"
     }
   }
+  backend "s3" {} 
 }
 
-backend "s3" {}
 
 provider "aws" {
   region = "us-west-2"
