@@ -9,4 +9,4 @@ destroy:
   steps:
     setupVariables:
       after:
-        - AWS_REGION="us-west-2" aws cloudformation delete-stack --stack-name test-cf-vpc
+        - aws cloudformation delete-stack --stack-name test-cf-vpc --region us-west-2
