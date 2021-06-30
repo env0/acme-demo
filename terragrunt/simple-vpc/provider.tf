@@ -7,10 +7,7 @@ terraform {
     }
   }
 
-  backend "s3" {
-    key    = "simple-vpc"
-    region = "us-west-2"
-  }
+  backend "s3" {}
 }
 
 provider "aws" {
