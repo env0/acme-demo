@@ -4,7 +4,7 @@ deploy:
   steps:
     setupVariables:
       after:
-        - AWS_REGION="us-west-2" aws cloudformation deploy --stack-name test-cf-vpc --template-file vpc.yaml
+        - aws cloudformation deploy --stack-name test-cf-vpc --template-file vpc.yaml --region us-west-2
 destroy:
   steps:
     setupVariables:
