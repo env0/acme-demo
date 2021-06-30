@@ -23,6 +23,7 @@ module "acme-ec2" {
 
   tags = {
     Terraform   = "true"
+    Group       = "Core Engineering"
     Owner       = "acme demo org"
   }
 }
