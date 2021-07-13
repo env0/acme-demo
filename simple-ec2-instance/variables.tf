@@ -13,10 +13,11 @@ variable "instance_type" {
   default = "t3a.micro"
 }
 
-variable "default_vpc" {
-  type    = bool
-  default = true
-}
 variable "vpc_id" {
   type = string
+}
+
+variable "ebs_size" {
+  type    = number
+  default = 1
 }
