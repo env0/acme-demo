@@ -42,7 +42,7 @@ resource "aws_volume_attachment" "volume_attachment" {
 resource "aws_ebs_volume" "ebs" {
   count = var.instance_count
 
-  availability_zone = module.ec2.availability_zone[count.index]
+  availability_zone = module.acme-ec2.availability_zone[count.index]
   size              = var.ebs_size
 }
 
