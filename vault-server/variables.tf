@@ -5,7 +5,7 @@ variable "name" {
 
 variable "instance_count" {
   type    = number
-  default = 2
+  default = 1
 }
 
 variable "instance_type" {
@@ -13,10 +13,6 @@ variable "instance_type" {
   default = "t3a.micro"
 }
 
-variable "default_vpc" {
-  type    = bool
-  default = true
-}
 variable "vpc_id" {
   type = string
 }
