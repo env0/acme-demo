@@ -12,13 +12,12 @@ module "ec2" {
   subnet_ids             = data.aws_subnet_ids.selected.ids
   associate_public_ip_address = true
 
-#   user_data = <<EOF
-# #!/bin/bash
-# sudo apt-get -y update
-# sudo apt-get -y install nginx
-# export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
-# sudo echo "Welcome to env0, this is: $PUBLIC_IPV4" > /usr/share/nginx/html/index.html
-# EOF
+  user_data = <<EOF
+#!/bin/bash
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install vault
+EOF
 
   tags = {
     Terraform   = "true"
@@ -54,7 +53,7 @@ resource "aws_security_group" "vault_sg" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
-  
+
 }
 
 data "aws_ami" "ubuntu" {
