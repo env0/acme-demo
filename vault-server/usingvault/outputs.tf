@@ -1,3 +1,3 @@
-output "vault not-so-secret" {
+output "vault-not-so-secret" {
   value = data.vault_generic_secret.foo
 }
