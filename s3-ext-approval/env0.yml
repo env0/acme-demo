@@ -14,5 +14,5 @@ deploy:
     terraformPlan:
       after:
         - echo "Request external approval"
-        - terraform show -json .tfplan > tf-plan.json
+        - terraform show -json .tf-plan > tf-plan.json
         - curl --location --request POST "$ZAP_HOOK" --form "deployment=\"$ENV0_DEPLOYMENT_LOG_ID\"" --form "plan=\"(cat tf-plan.json)\""
