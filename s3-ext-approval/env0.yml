@@ -12,8 +12,8 @@ deploy:
         - echo "Replacing !!!USER!!! with $USER in index.html"
         - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
     terraformPlan:
-      after:
-        - echo "Request external approval"
-        - terraform show -json .tf-plan > tf-plan.json
-        - curl --location --request POST "$ZAP_HOOK" --form "deployment=\"$ENV0_DEPLOYMENT_LOG_ID\"" --form "plan=\"$(cat tf-plan.json)\""
-        - echo "To approve, visit https://tables.zapier.com/approval/inbox/id/3784"
+      after: |
+        echo "Request external approval"
+        terraform show -json .tf-plan > tf-plan.json
+        curl --location --header "Content-Type: application/json" --request POST "$ZAP_HOOK" --form "deployment=\"$ENV0_DEPLOYMENT_LOG_ID\"" -d @tf-plan.json 
+        echo "To approve, visit https://tables.zapier.com/approval/inbox/id/3784"
