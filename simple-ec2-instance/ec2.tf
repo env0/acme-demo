@@ -7,6 +7,7 @@ module "acme-ec2" {
 
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3a.medium"
+  
   #key_name               = "AWay"
   #vpc_security_group_ids = [data.aws_security_group.web_server.id]
   subnet_ids = data.aws_subnet_ids.selected.ids
