@@ -24,6 +24,7 @@ EOF
   tags = {
     Terraform   = "true"
     Environment = "dev"
+    Test        = "sept 20"
   }
 }
 
