@@ -11,18 +11,14 @@ terraform {
   }
 }
 
-provider "local" {
-  # Configuration options
-}
-
 provider "random" {
   # Configuration options
 }
 
-resource "local_file" "randomstring" {
-    content     = random_string.random.result
-    filename = "/tmp/49f45071-9ea0-41fb-a36b-768f703a79c9/randomstring.txt"
-}
+# resource "local_file" "randomstring" {
+#     content     = random_string.random.result
+#     filename = "/tmp/49f45071-9ea0-41fb-a36b-768f703a79c9/randomstring.txt"
+# }
 
 variable "refresh_date" {
   type = string
