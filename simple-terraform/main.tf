@@ -21,7 +21,7 @@ provider "random" {
 
 resource "local_file" "randomstring" {
     content     = random_string.random.result
-    filename = "/tmp/${ENV0_ENVIRONMENT_ID}/randomstring.txt"
+    filename = "/tmp/$(ENV0_ENVIRONMENT_ID)/randomstring.txt"
 }
 
 variable "refresh_date" {
