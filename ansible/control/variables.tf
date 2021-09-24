@@ -3,11 +3,6 @@ variable "name" {
   default = "env0-ansible"
 }
 
-variable "instance_count" {
-  type    = number
-  default = 1
-}
-
 variable "instance_type" {
   type    = string
   default = "t3a.small"
