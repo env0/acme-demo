@@ -12,7 +12,7 @@ module "ansible-control" {
   vpc_security_group_ids = [module.security-group.security_group_id]
   subnet_ids = data.aws_subnet_ids.selected.ids
 
-  associate_public_ip_address = false
+  associate_public_ip_address = true
 
   user_data = <<EOF
 #!/bin/bash
