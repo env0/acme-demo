@@ -20,6 +20,8 @@ sudo apt-get -y install software-properties-common
 sudo apt-add-repository ppa:ansible/ansible
 sudo apt-get -y update
 sudo apt-get -y install ansible
+sudo apt-get -y install python3-argcomplete
+sudo activate-global-python-argcomplete3
 EOF
 
   tags = {
