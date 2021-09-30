@@ -1,0 +1,9 @@
+version: 1
+
+deploy:
+  onSuccess:
+    - echo "Deployment success - Add to hosts"
+
+destroy:
+  onSuccess:
+    - echo "Destroy success - Remove from hosts"
