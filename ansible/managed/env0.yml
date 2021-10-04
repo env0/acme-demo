@@ -4,7 +4,7 @@ deploy:
   steps:
     terraformInit:
       after:
-      - terraform import aws_key_pair.key_pair ansible-control
+      - terraform import module.key_pair.aws_key_pair ansible-control
   onSuccess:
     - echo "Deployment success - Add to hosts"
 
