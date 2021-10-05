@@ -1,0 +1,8 @@
+# aws_ec2.yml plugin config
+# https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_ec2_inventory.html#notes
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-west-2
+filters:
+  # All instances with their `Environment` tag set to `dev`
+  tag:Ansible: dev
