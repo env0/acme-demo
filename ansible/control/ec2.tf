@@ -19,9 +19,14 @@ sudo apt-get -y update
 sudo apt-get -y install software-properties-common 
 sudo apt-add-repository ppa:ansible/ansible
 sudo apt-get -y update
+sudo apt-get -y install unzip
 sudo apt-get -y install ansible
 sudo apt-get -y install python3-argcomplete
 sudo activate-global-python-argcomplete3
+sudo ansible-galaxy collection install amazon.aws
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
 EOF
 
   tags = {

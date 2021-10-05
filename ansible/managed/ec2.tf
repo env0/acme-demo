@@ -16,7 +16,7 @@ module "ansible-managed" {
   tags = {
     Terraform = "true"
     Owner     = "acme demo org"
-    Ansible   = "demo"
+    Ansible   = "dev"
   }
 }
 
