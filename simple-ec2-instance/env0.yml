@@ -1,0 +1,13 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - curl -L https://github.com/terraform-linters/tflint/releases/download/v0.32.1/tflint_linux_amd64.zip -o tflint.zip && unzip tflint.zip -d /opt && rm tflint.zip
+        - tflint --version
+        - tflint --init
+
+    terraformInit:
+      before:
+        - tflint
