@@ -10,4 +10,4 @@ deploy:
 
     terraformInit:
       after:
-        - tflint
+        - tflint 1>&2
