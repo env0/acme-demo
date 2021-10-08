@@ -10,4 +10,4 @@ deploy:
 
     terraformInit:
       after:
-        - tflint 1>&2
+        - tflint 1>&2  # 1>%2 redirect stdout to stderr https://tldp.org/LDP/abs/html/io-redirection.html
