@@ -63,7 +63,7 @@ if [[ -z $ENV0_ORGANIZATION_ID ]]; then
 fi
 
 ## DEFAULTS
-ENV0_WORKSPACE="default"
+ENV0_WORKSPACE_NAME="default"
 
 ## INPUT CHECKING
 while [ "$#" -gt 0 ]; do
@@ -192,7 +192,7 @@ curl --request POST \
   --data "{
   \"name\": \"$ENV0_ENVIRONMENT_NAME\",
   \"projectId\": \"$ENV0_PROJECT_ID\",
-  \"workspaceName\": \"$ENV0_WORKSPACE\",
+  \"workspaceName\": \"$ENV0_WORKSPACE_NAME\",
   \"requiresApproval\": true,
   \"ttl\": {
     \"type\": \"INFINITE\",
