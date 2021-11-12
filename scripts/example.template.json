@@ -1,0 +1,79 @@
+/// example JSON response for Template (with generic VCS, and using GitHubApp)
+[
+    {
+        "repository": "git@github.com:env0/acme-demo.git",
+        "projectId": "ROOT",
+        "path": "simple-terraform",
+        "revision": "main",
+        "authorId": "google-oauth2|110563071352660869820",
+        "createdAt": "2021-11-09T21:06:38.531Z",
+        "isBitbucketServer": false,
+        "name": "random with generic vcs",
+        "retry": {},
+        "sshKeys": [
+            {
+                "name": "test gh private key",
+                "id": "d3d5da57-74ef-47bd-a5bd-11916a3dd33e"
+            }
+        ],
+        "isGitLab": false,
+        "organizationId": "bde19c6d-d0dc-4b11-a951-8f43fe49db92",
+        "updatedAt": "2021-11-09T21:06:38.531Z",
+        "terraformVersion": "0.15.1",
+        "isGitLabEnterprise": false,
+        "id": "8915adc0-1908-48b7-b514-89b8dbb1ef20",
+        "type": "terraform",
+        "projectIds": [
+            "6de20c9c-e5a2-49a3-aee5-00c03204ec3a"
+        ],
+        "author": {
+            "created_at": "2021-03-25T19:59:28.357Z",
+            "email": "andrew.way@env0.com",
+            "family_name": "Way",
+            "given_name": "Andrew",
+            "name": "Andrew Way",
+            "picture": "https://lh3.googleusercontent.com/a-/AOh14GgY-uV9hgMdAj-qGc02mMo4VRIqPTAIbhXCgshp=s96-c",
+            "user_id": "google-oauth2|110563071352660869820",
+            "last_login": "2021-11-09T20:30:04.603Z",
+            "app_metadata": {}
+        }
+    },
+    {
+        "repository": "https://github.com/env0/acme-demo",  
+        "projectId": "ROOT",
+        "path": "terraform-prereqs",
+        "revision": "main",
+        "authorId": "google-oauth2|110563071352660869820",
+        "createdAt": "2021-06-29T16:50:53.918Z",
+        "githubInstallationId": 11551359,
+        "isBitbucketServer": false,
+        "name": "tf-s3-backend",
+        "retry": {},
+        "sshKeys": [],
+        "isGitLab": false,
+        "organizationId": "bde19c6d-d0dc-4b11-a951-8f43fe49db92",
+        "updatedAt": "2021-06-29T16:53:03.473Z",
+        "terraformVersion": "RESOLVE_FROM_TERRAFORM_CODE",
+        "id": "88db9f79-191b-4745-af07-b0fe94ecf2be",
+        "description": "Terraform S3 Backend for various accounts and environments.",
+        "type": "terraform",
+        "projectIds": [
+            "1a433171-217e-4f58-9b4e-308d4d77902f",
+            "5e5b3cce-0417-42b6-a8a5-eb938d2054db",
+            "7320dd7a-4822-426c-84b5-62ddd8be0799",
+            "ce92cccf-1b95-482c-9a69-59071905f622",
+            "edba559d-ae7f-467d-a2f8-1b5a54709ead"
+        ],
+        "author": {
+            "created_at": "2021-03-25T19:59:28.357Z",
+            "email": "andrew.way@env0.com",
+            "family_name": "Way",
+            "given_name": "Andrew",
+            "name": "Andrew Way",
+            "picture": "https://lh3.googleusercontent.com/a-/AOh14GgY-uV9hgMdAj-qGc02mMo4VRIqPTAIbhXCgshp=s96-c",
+            "user_id": "google-oauth2|110563071352660869820",
+            "last_login": "2021-11-09T20:30:04.603Z",
+            "app_metadata": {}
+        }
+    }
+]
