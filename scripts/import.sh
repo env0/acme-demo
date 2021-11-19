@@ -187,7 +187,7 @@ echo "this is the template id $ENV0_TEMPLATE_ID"
 ### Create Environment from Template
 curl --request POST \
   --url https://api.env0.com/environments \
-  --header 'Authorization: Basic Zmhwb2gwcGdfbmw2bHB1cTpIUjhkWnluVExJSGh0UHczdnhZZWxpeExhVzNodGJWQQ==' \
+  --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
   --header 'Content-Type: application/json' \
   --data "{
   \"name\": \"$ENV0_ENVIRONMENT_NAME\",
