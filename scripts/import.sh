@@ -33,6 +33,11 @@
 #  --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
 #  --header 'Content-Type: application/json'
 
+### run .setup.sh if it exists (which contains the ENV0 secrets)
+if [[ -e .setup.sh ]]; then
+  source .setup.sh
+fi
+
 print_help () {
   set +x
   echo "Usage: import.sh"
@@ -198,14 +203,21 @@ curl --request POST \
     \"type\": \"INFINITE\",
     \"value\": \"string\"
   },
-  \"configurationChanges\": {
+  \"configurationChanges\": [{
     \"name\": \"refresh_date\",
-    \"value\": \"11/11/2021\",
+    \"value\": \"$(date +"%D %T")\",
     \"scope\": \"ENVIRONMENT\",
     \"type\": 1,
     \"description\": \"refresh date is used to reset the random var\",
     \"isSensitive\": false
-  },
+  },{
+    \"name\": \"test_variable\",
+    \"value\": \"$(date +"%c")\",
+    \"scope\": \"ENVIRONMENT\",
+    \"type\": 1,
+    \"description\": \"adding additional variable through payload\",
+    \"isSensitive\": false
+  }],
   \"deployRequest\": {
     \"blueprintId\": \"$ENV0_TEMPLATE_ID\",
     \"ttl\": {
