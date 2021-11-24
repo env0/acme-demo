@@ -24,7 +24,7 @@ curl --request POST \
   \"configurationChanges\": [{
     \"name\": \"refresh_date\",
     \"value\": \"$(date +"%D %T")\",
-    \"scope\": \"ENVIRONMENT\",
+    \"scope\": \"DEPLOYMENT\",
     \"type\": 1,
     \"description\": \"refresh date is used to reset the random var\",
     \"isSensitive\": false

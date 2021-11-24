@@ -25,5 +25,5 @@ curl --request POST \
     \"description\": \"copy of refresh date\",
     \"isSensitive\": false
   }],
-  \"userRequiresApproval\": false 
+  \"userRequiresApproval\": true 
 }"
