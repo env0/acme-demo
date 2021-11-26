@@ -7,7 +7,7 @@ ENV0_TEMPLATE_ID=e63914f0-ee09-4a68-8ee7-86d9618d46c3
 
 curl --request POST \
   --url https://api.env0.com/environments/$ENV0_ENVIRONMENT_ID/deployments \
-  --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
+  --user $ENV0_API_KEY:$ENV0_API_SECRET \
   --header 'Content-Type: application/json' \
   --data "{
   \"configurationChanges\": [{

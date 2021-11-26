@@ -10,17 +10,17 @@ set -e
 ## GET ALL DEPLOYMENTS FOR ENV0_ENVIRONMENT_ID
 # curl --request GET \
 #   --url https://api.env0.com/environments/$ENV0_ENVIRONMENT_ID/deployments \
-#   --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
+#   --user $ENV0_API_KEY:$ENV0_API_SECRET \
 #   --header 'Content-Type: application/json' | jq -rC .
 
 ## GET LATEST DEPLOYMENT ID
 ENV0_DEPLOYMENT_LOG_ID=$(curl --request GET \
   --url https://api.env0.com/environments/$ENV0_ENVIRONMENT_ID/deployments \
-  --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
+  --user $ENV0_API_KEY:$ENV0_API_SECRET \
   --header 'Content-Type: application/json' | jq -r '.[0].id')
 
 ## GET DEPLOYMENT
 curl --request GET \
   --url https://api.env0.com/environments/deployments/$ENV0_DEPLOYMENT_LOG_ID \
-  --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
+  --user $ENV0_API_KEY:$ENV0_API_SECRET \
   --header 'Content-Type: application/json' | jq -rC .

@@ -10,13 +10,13 @@ set -e
 ## GET ALL DEPLOYMENTS FOR ENV0_ENVIRONMENT_ID
 # curl --request GET \
 #   --url https://api.env0.com/environments/$ENV0_ENVIRONMENT_ID/deployments \
-#   --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
+#   --user $ENV0_API_KEY:$ENV0_API_SECRET \
 #   --header 'Content-Type: application/json' | jq -rC .
 
 ## GET LATEST DEPLOYMENT ID
 ENV0_DEPLOYMENT_LOG_ID=$(curl --request GET \
   --url https://api.env0.com/environments/$ENV0_ENVIRONMENT_ID/deployments \
-  --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
+  --user $ENV0_API_KEY:$ENV0_API_SECRET \
   --header 'Content-Type: application/json' | jq -r '.[0].id')
 
 ## GET DEPLOYMENT TF LOG
@@ -24,5 +24,5 @@ ENV0_DEPLOYMENT_LOG_ID=$(curl --request GET \
 ## tf:apply
 curl --request GET \
   --url https://api.env0.com/deployments/$ENV0_DEPLOYMENT_LOG_ID/steps/tf:plan/log \
-  --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
+  --user $ENV0_API_KEY:$ENV0_API_SECRET \
   --header 'Content-Type: application/json' | jq -rC .

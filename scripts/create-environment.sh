@@ -11,7 +11,7 @@ fi
 
 curl --request POST \
   --url https://api.env0.com/environments \
-  --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
+  --user $ENV0_API_KEY:$ENV0_API_SECRET \
   --header 'Content-Type: application/json' \
   --data "{
   \"name\": \"$1\",

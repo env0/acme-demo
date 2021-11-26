@@ -22,7 +22,7 @@
 # PRE-REQS - these env vars need to be predefined
 # Relies on JQ
 # ENV0_API_KEY
-# ENV0_SECRET_KEY
+# ENV0_API_SECRET
 # ENV0_ORGANIZATION_ID
 
 ### TO UNDERSTAND THE TEMPLATE REQUIREMENTS - IT'S EASIEST TO CREATE A 
@@ -30,7 +30,7 @@
 ### 
 #  curl --request GET \
 #  --url https://api.env0.com/blueprints/4e62aafe-0327-4c93-8068-4a6976b97b46 \
-#  --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
+#  --user $ENV0_API_KEY:$ENV0_API_SECRET \
 #  --header 'Content-Type: application/json'
 
 ### run .setup.sh if it exists (which contains the ENV0 secrets)
@@ -57,8 +57,8 @@ else
   echo "Using ENV0_API_KEY: ${ENV0_API_KEY}"
 fi
 
-if [[ -z $ENV0_SECRET_KEY ]]; then
-  echo "Please set ENV0_SECRET_KEY"  
+if [[ -z $ENV0_API_SECRET ]]; then
+  echo "Please set ENV0_API_SECRET"  
   exit 1
 fi
 
@@ -165,7 +165,7 @@ echo "using workspace: $ENV0_WORKSPACE_NAME"
 ### Create Template
 ENV0_TEMPLATE_ID=$(curl --request POST \
   --url https://api.env0.com/blueprints \
-  --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
+  --user $ENV0_API_KEY:$ENV0_API_SECRET \
   --header 'Content-Type: application/json' \
   --data "{
   \"organizationId\": \"${ENV0_ORGANIZATION_ID}\",
@@ -192,7 +192,7 @@ echo "this is the template id $ENV0_TEMPLATE_ID"
 ### Create Environment from Template
 curl --request POST \
   --url https://api.env0.com/environments \
-  --user $ENV0_API_KEY:$ENV0_SECRET_KEY \
+  --user $ENV0_API_KEY:$ENV0_API_SECRET \
   --header 'Content-Type: application/json' \
   --data "{
   \"name\": \"$ENV0_ENVIRONMENT_NAME\",
