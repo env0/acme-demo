@@ -6,7 +6,7 @@ module "acme-ec2" {
   instance_count = var.instance_count
 
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3a.small"
+  instance_type = var.instance_type
 
 
   #key_name               = "AWay"
