@@ -10,7 +10,7 @@ terraform {
 provider "env0" {
 }
 
-resource "env0_aws_credentials" "dev" {
+resource "env0_aws_credentials" "credential" {
   name        = var.name
   arn         = var.arn
   external_id = var.external_id
@@ -29,4 +29,12 @@ variable external_id {
     type = string
     sensitive = true
     description = "External ID associated with ARN"
+}
+
+output name {
+    env0_aws_credentials.credential.name
+}
+
+output id {
+    env0_aws_credentials.credential.id
 }

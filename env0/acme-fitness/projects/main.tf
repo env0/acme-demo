@@ -18,27 +18,37 @@ module "project" {
     dev0 = {
       name        = "Team A - Dev"
       description = "Team A's Dev Instance (managed by !env0 Master , env0 Project)"
+      policy      = local.dev_policy
     }
-    dev1 = {
-      name        = "Team B - Dev"
-      description = "Team B's Dev Instance (managed by !env0 Master , env0 Project)"
+    prod0 = {
+      name        = "Team A - Prod"
+      description = "Team A's Prod Instance (managed by !env0 Master , env0 Project)"
+      policy      = local.prod_policy
     }
     dev2 = {
-      name        = "Team C - Prod"
+      name        = "Team C - Dev"
       description = "Team C's Dev Instance (managed by !env0 Master , env0 Project)"
     }
   }
-
-  policy = {
-    disable_destroy_environments  = false
-    include_cost_estimation       = true
-    number_of_environments        = "3"
-    number_of_environments_total  = "10"
-    requires_approval_default     = false
-    skip_apply_when_plan_is_empty = true
-    skip_redundant_deployments    = true
-    continuous_deployment_default = true
-    run_pull_request_plan_default = false
-  }
 }
 
+variable "projects" {
+  type = map(
+    object({
+      name        = string
+      description = string
+      policy = object({
+        continuous_deployment_default = optional(bool)
+        disable_destroy_environments  = bool
+        include_cost_estimation       = bool
+        number_of_environments        = string
+        number_of_environments_total  = string
+        requires_approval_default     = bool
+        run_pull_request_plan_default = bool
+        skip_apply_when_plan_is_empty = bool
+        skip_redundant_deployments    = bool
+      })
+    })
+  )
+  description = "map of object with names and descriptions e.g. {dev0={name=\"dev\",description=\"this is my dev project\",policy=local.devpolicy}}"
+}
