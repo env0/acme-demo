@@ -12,7 +12,7 @@ provider "env0" {
 
 module "project" {
   source  = "api.env0.com/c89e9161-8350-44a5-81cf-9eb26605e195/project/env0"
-  version = "0.0.2"
+  version = "0.1.1"
 
   projects = var.projects
 }
