@@ -1,4 +1,13 @@
 terraform {
+  required_providers {
+    env0 = {
+      source  = "env0/env0"
+      version = "0.0.20"
+    }
+  }
+}
+
+provider "env0" {
 }
 
 module "project" {
