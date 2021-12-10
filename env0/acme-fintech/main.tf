@@ -2,8 +2,8 @@ terraform {
 }
 
 module "project" {
-  source  = "api.env0.com/bde19c6d-d0dc-4b11-a951-8f43fe49db92/project/env0"
-  version = "v0.0.1"
+  source = "api.env0.com/bde19c6d-d0dc-4b11-a951-8f43fe49db92/project/env0"
+  version = "v0.0.2"
 
   projects = {
     dev0 = {
