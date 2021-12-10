@@ -11,25 +11,10 @@ provider "env0" {
 }
 
 module "project" {
-  source = "api.env0.com/c89e9161-8350-44a5-81cf-9eb26605e195/project/env0"
+  source  = "api.env0.com/c89e9161-8350-44a5-81cf-9eb26605e195/project/env0"
   version = "0.0.2"
 
-  projects = {
-    dev0 = {
-      name        = "Team A - Dev"
-      description = "Team A's Dev Instance (managed by !env0 Master , env0 Project)"
-      policy      = local.dev_policy
-    }
-    prod0 = {
-      name        = "Team A - Prod"
-      description = "Team A's Prod Instance (managed by !env0 Master , env0 Project)"
-      policy      = local.prod_policy
-    }
-    dev2 = {
-      name        = "Team C - Dev"
-      description = "Team C's Dev Instance (managed by !env0 Master , env0 Project)"
-    }
-  }
+  projects = var.projects
 }
 
 variable "projects" {
@@ -37,8 +22,9 @@ variable "projects" {
     object({
       name        = string
       description = string
+      credential  = string
       policy = object({
-        continuous_deployment_default = optional(bool)
+        continuous_deployment_default = bool
         disable_destroy_environments  = bool
         include_cost_estimation       = bool
         number_of_environments        = string
