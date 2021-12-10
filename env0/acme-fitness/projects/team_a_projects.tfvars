@@ -1,3 +1,18 @@
+projects = {
+  dev0 = {
+    name        = "Arnold's Dev Team"
+    description = "T2000 is back for more exciting Infrastructure as Code work"
+    credential  = "DevOps Advocate account"
+    policy      = dev_policy
+  },
+  prod0 = {
+    name        = "Arnold's Prod Team"
+    description = "T2000 is back for more exciting Infrastructure as Code work"
+    credential  = "Prod Demo Account"
+    policy      = prod_policy
+  }
+}
+
 dev_policy = {
   disable_destroy_environments  = false
   include_cost_estimation       = true
@@ -22,18 +37,3 @@ prod_policy = {
   run_pull_request_plan_default = true
 }
 
-projects = {
-  dev0 = {
-    name        = "Arnold's Dev Team"
-    description = "T2000 is back for more exciting Infrastructure as Code work"
-    credential  = "DevOps Advocate account"
-    policy      = dev_policy
-  }
-
-  prod0 = {
-    name        = "Arnold's Prod Team"
-    description = "T2000 is back for more exciting Infrastructure as Code work"
-    credential  = "Prod Demo Account"
-    policy      = prod_policy
-  }
-}
