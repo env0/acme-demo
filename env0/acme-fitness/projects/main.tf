@@ -17,15 +17,15 @@ module "project" {
   projects = {
     dev0 = {
       name        = "Team A - Dev"
-      description = "Team A's Dev Instance"
+      description = "Team A's Dev Instance (managed by !env0 Master , env0 Project)"
     }
     dev1 = {
       name        = "Team B - Dev"
-      description = "Team B's Dev Instance"
+      description = "Team B's Dev Instance (managed by !env0 Master , env0 Project)"
     }
     dev2 = {
       name        = "Team C - Prod"
-      description = "Team C's Dev Instance"
+      description = "Team C's Dev Instance (managed by !env0 Master , env0 Project)"
     }
   }
 
