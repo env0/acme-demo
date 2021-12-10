@@ -38,3 +38,9 @@ variable "projects" {
   )
   description = "map of object with names and descriptions e.g. {dev0={name=\"dev\",description=\"this is my dev project\",policy=local.devpolicy}}"
 }
+
+output "project" {
+  value = {
+    for k,v in var.projects : k => [v.name, v.description, v.credential ]
+  }
+}
