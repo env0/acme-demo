@@ -19,6 +19,7 @@ module "project" {
       description = "Team C's Dev Instance"
     }
   }
+
   policy = {
     disable_destroy_environments  = false
     include_cost_estimation       = true
@@ -31,5 +32,4 @@ module "project" {
     run_pull_request_plan_default = false
   }
 }
-
 
