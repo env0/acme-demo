@@ -32,9 +32,9 @@ variable external_id {
 }
 
 output name {
-    env0_aws_credentials.credential.name
+    value = env0_aws_credentials.credential.name
 }
 
 output id {
-    env0_aws_credentials.credential.id
+    value = env0_aws_credentials.credential.id
 }
