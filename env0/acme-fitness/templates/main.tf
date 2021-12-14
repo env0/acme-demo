@@ -8,9 +8,9 @@ terraform {
 }
 
 module "template" {
-#   source = "api.env0.com/c89e9161-8350-44a5-81cf-9eb26605e195/template/env0"
-#   version = "~> 0.0.1"
-  source = "git@github.com:env0/terraform-env0-template.git"
+  source = "api.env0.com/c89e9161-8350-44a5-81cf-9eb26605e195/template/env0"
+  version = "~> 0.0.6"
+#   source = "git@github.com:env0/terraform-env0-template.git"
 
   templates = var.templates
 }
