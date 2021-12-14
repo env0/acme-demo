@@ -7,9 +7,6 @@ terraform {
   }
 }
 
-provider "env0" {
-}
-
 module "template" {
 #   source = "api.env0.com/c89e9161-8350-44a5-81cf-9eb26605e195/template/env0"
 #   version = "~> 0.0.1"
