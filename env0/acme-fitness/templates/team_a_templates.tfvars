@@ -10,7 +10,7 @@ templates = {
         github_installation_id = 11551359,
         ssh_keys = []
     },
-    frontend_layer = { 
+    frontend2_layer = { 
         name = "ALPHA frontend layer v2", 
         description = "Frontend Layer V2 for ACME FITNESS, managed by TF", 
         repository = "https://github.com/env0/acme-demo",
