@@ -1,0 +1,7 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - aws s3 cp s3://acme-fitness-tf-provider/terraform-provider-env0 ~/.terraform.d/plugins/terraform.env0.com/local/env0/7.7.7/linux_amd64

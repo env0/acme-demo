@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     env0 = {
-      version = "6.6.6"
+      version = "7.7.7"
       source  = "terraform.env0.com/local/env0"
     }
   }
@@ -13,7 +13,6 @@ data "env0_project" "myproject" {
 
 variable "project_name" {
   type    = string
-  default = "Greenfield - Dev"
 }
 
 data "env0_template" "mytemplate" {
@@ -22,7 +21,6 @@ data "env0_template" "mytemplate" {
 
 variable "template_name" {
   type    = string
-  default = "prod-my-randomstring"
 }
 
 resource "env0_environment" "random_environment" {
