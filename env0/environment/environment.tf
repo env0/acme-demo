@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     env0 = {
-      version = "7.7.7"
+      version = "6.6.6"
       source  = "terraform.env0.com/local/env0"
     }
   }

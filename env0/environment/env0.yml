@@ -4,7 +4,7 @@ deploy:
   steps:
     setupVariables:
       after:
-        - mkdir -p ~/.terraform.d/plugins/terraform.env0.com/local/env0/7.7.7/linux_amd64
-        - curl -L -o ~/.terraform.d/plugins/terraform.env0.com/local/env0/7.7.7/linux_amd64/terraform-provider-env0 https://acme-fitness-tf-provider.s3.us-west-2.amazonaws.com/terraform-provider-env0 
-        - chmod +xr ~/.terraform.d/plugins/terraform.env0.com/local/env0/7.7.7/linux_amd64/terraform-provider-env0
+        - mkdir -p ~/.terraform.d/plugins/terraform.env0.com/local/env0/6.6.6/linux_amd64
+        - curl -L -o ~/.terraform.d/plugins/terraform.env0.com/local/env0/6.6.6/linux_amd64/terraform-provider-env0 https://acme-fitness-tf-provider.s3.us-west-2.amazonaws.com/terraform-provider-env0 
+        - chmod +xr ~/.terraform.d/plugins/terraform.env0.com/local/env0/6.6.6/linux_amd64/terraform-provider-env0
         
