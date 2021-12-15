@@ -1,6 +1,6 @@
 projects = {
   dev = {
-    name        = "Arnold's Developers"
+    name        = "1.Dev"
     description = "This T-800 is back for more exciting Infrastructure as Code work"
     credential  = "devops_advocate_account"
     policy = {
@@ -16,7 +16,7 @@ projects = {
     }
   },
   stg = {
-    name        = "Arnold's Staging"
+    name        = "2.Stg"
     description = "He's getting ready to deploy!"
     credential  = "Prod Demo Account"
     policy = {
@@ -32,7 +32,7 @@ projects = {
     }
   }
   prod = {
-    name        = "Arnold's Production"
+    name        = "3.Prod"
     description = "We're in production!"
     credential  = "Prod Demo Account"
     policy = {

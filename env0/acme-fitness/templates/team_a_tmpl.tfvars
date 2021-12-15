@@ -6,7 +6,7 @@ templates = {
         path = "simple-terraform",
         revision = "main",
         terraform_version = "1.1.0",
-        projects = ["Arnold's Developers", "Arnold's Staging", "Arnold's Production"],
+        projects = ["1.Dev", "2.Stg", "3.Prod"],
         github_installation_id = 11551359,
         ssh_keys = []
     },
@@ -17,7 +17,7 @@ templates = {
         path = "simple-terraform",
         revision = "main",
         terraform_version = "1.1.0",
-        projects = ["Arnold's Developers", "Arnold's Staging", "Arnold's Production"],
+        projects = ["1.Dev", "2.Stg", "3.Prod"],
         github_installation_id = 11551359,
         ssh_keys = []
     },
@@ -39,7 +39,7 @@ templates = {
         path = "simple-terraform",
         revision = "main",
         terraform_version = "1.1.0",
-        projects = ["Arnold's Staging", "Arnold's Production"],
+        projects = ["2.Stg", "3.Prod"],
         github_installation_id = 11551359,
         ssh_keys = []
     }
