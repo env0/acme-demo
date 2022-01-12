@@ -8,6 +8,8 @@
 .terraofrm.lock.*
 .terraform.lock.hcl
 
+.terraformrc
+
 # Crash log files
 crash.log
 
