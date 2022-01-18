@@ -16,4 +16,4 @@ deploy:
         - echo "Request external approval"
         - terraform show -json .tf-plan > tf-plan.json
         - curl --location --header "Content-Type:application/json" --request POST "$ZAP_HOOK" -d "{\"deployment\":\"$ENV0_DEPLOYMENT_LOG_ID\"}"
-        - echo "To approve, visit https://tables.zapier.com/approval/inbox/id/3784"
+        - echo "To approve, visit https://tables.zapier.com/approval/inbox/id/3785"
