@@ -1,0 +1,11 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - pip install checkov
+    terraformPlan:
+      after:
+        - terraform show -json .tf-plan > tf-plan.json
+        - checkov -f tf-plan.json
