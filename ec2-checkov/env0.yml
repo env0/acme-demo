@@ -4,8 +4,8 @@ deploy:
   steps:
     setupVariables:
       after:
-        - pip install checkov
+        - pip3 install checkov
     terraformPlan:
       after:
-        - terraform show -json .tf-plan > tf-plan.json
+        - terraform show -json .tf-plan | jq '.' > tf-plan.json
         - checkov -f tf-plan.json
