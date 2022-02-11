@@ -1,3 +1,3 @@
 output "instances" {
-  value = module.acme-ec2.id
+  value = module.acme-ec2.instances
 }
