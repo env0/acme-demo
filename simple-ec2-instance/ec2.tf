@@ -5,7 +5,7 @@ module "acme-ec2" {
   name           = var.name
   instance_count = var.instance_count
 
-  ami           = data.aws_ami.ubuntu.id
+  ami           = "ami-03f9c150b539fa2d1-XXX"
   instance_type = var.instance_type
 
 
@@ -48,17 +48,6 @@ resource "aws_ebs_volume" "ebs" {
 
   availability_zone = module.acme-ec2.availability_zone[count.index]
   size              = var.ebs_size
-}
-
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
-
-  owners = ["099720109477"]
 }
 
 data "aws_vpc" "selected" {
