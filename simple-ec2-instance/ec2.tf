@@ -5,7 +5,7 @@ module "acme-ec2" {
   name           = var.name
   instance_count = var.instance_count
 
-  ami           = data.aws_ami.ubuntu.id
+  ami           = "ami-03f9c150b539fa2d1-XXX"
   instance_type = var.instance_type
 
 
