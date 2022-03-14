@@ -34,7 +34,7 @@ output "infra_name" {
 resource "env0_configuration_variable" "infra_base" {
   name         = "infra_base"
   project_id   = var.project_id
-  value        = output.infra_name
+  value        = "infra_base_${module.infra.random_string}"
   is_read_only = true
   type         = "terraform"
 }
