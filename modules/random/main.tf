@@ -19,7 +19,7 @@ variable "length" {
 
 resource "random_string" "random" {
   keepers = {
-    refresh_date = var.refresh_date
+    refresh_token = var.refresh_token
   }
   length  = var.length
   upper   = true
