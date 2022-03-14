@@ -11,7 +11,7 @@ variable "infra_base" {
 module "infra" {
   source        = "../../modules/random"
   length        = var.length
-  refresh_token = var.depends_on
+  refresh_token = var.infra_base
 }
 
 output "depends_on" {
