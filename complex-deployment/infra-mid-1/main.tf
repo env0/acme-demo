@@ -14,7 +14,6 @@ variable "length" {
 
 variable "infra_base" {
   type    = string
-  default = "0"
 }
 
 variable "project_id" {
