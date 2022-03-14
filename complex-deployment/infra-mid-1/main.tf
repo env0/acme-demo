@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    env0 = {
+      source = "env0/env0"
+      version = ">= 0.2.28"
+    }
+  }
+}
+
 variable "length" {
   type    = number
   default = 5
