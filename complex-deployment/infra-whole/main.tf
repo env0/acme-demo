@@ -27,9 +27,6 @@ resource "env0_environment" "infra-base" {
 }
 
 resource "env0_environment" "infra-mid" {
-  depends_on                 = [
-    env0_environment.infra_base
-  ]
   name                       = "infra-mid-${var.name}"
   project_id                 = data.env0_project.project.id
   template_id                = "8c86ee3e-c42d-4f7b-b7be-8513f20fcc65"
