@@ -35,7 +35,7 @@ output "infra_name" {
   value = "infra_mid_${module.infra.random_string}"
 }
 
-resource "env0_configuration_variable" "infra_base" {
+resource "env0_configuration_variable" "infra_mid" {
   name         = "infra_mid"
   project_id   = var.project_id
   value        = "infra_mid_${module.infra.random_string}"
