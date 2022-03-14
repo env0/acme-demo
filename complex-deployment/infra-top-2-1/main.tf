@@ -3,7 +3,7 @@ variable "length" {
   default = 5
 }
 
-variable "depends_on" {
+variable "infra_mid" {
   type    = string
   default = "0"
 }
@@ -15,7 +15,7 @@ module "infra" {
 }
 
 output "depends_on" {
-  value = var.depends_on
+  value = var.infra_mid
 }
 
 output "infra_name" {
