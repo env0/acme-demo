@@ -29,12 +29,12 @@ module "acme-ec2" {
 
 resource "aws_volume_attachment" "volume_attachment" {
   device_name = "/dev/sdh"
-  volume_id   = aws_ebs_volume.ebs[count.index].id
-  instance_id = module.acme-ec2.id[count.index]
+  volume_id   = aws_ebs_volume.ebs.id
+  instance_id = module.acme-ec2.id
 }
 
 resource "aws_ebs_volume" "ebs" {
-  availability_zone = module.acme-ec2.availability_zone[count.index]
+  availability_zone = module.acme-ec2.availability_zone
   size              = var.ebs_size
 }
 
