@@ -3,14 +3,9 @@ variable "name" {
   default = "env0-acme-ec2"
 }
 
-variable "instance_count" {
-  type    = number
-  default = 2
-}
-
 variable "instance_type" {
   type    = string
-  default = "t3a.large"
+  default = "t3a.small"
 }
 
 variable "vpc_id" {
@@ -19,5 +14,5 @@ variable "vpc_id" {
 
 variable "ebs_size" {
   type    = number
-  default = 1
+  default = 10
 }
