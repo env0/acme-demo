@@ -77,6 +77,8 @@ module "minecraft_sg" {
       cidr_blocks = "0.0.0.0/0"
     }
   ]
+
+  egress_cidr_blocks = ["0.0.0.0/0"]
 }
 
 // resource "aws_volume_attachment" "this" {
