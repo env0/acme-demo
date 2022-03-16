@@ -21,6 +21,7 @@ module "ec2" {
 #!/bin/bash
 sudo apt-get -y update
 sudo apt-get -y install openjdk-17-jre-headless
+wget https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar
 java -Xms1G -Xmx1G -jar server.jar --nogui
 EOF
 
@@ -78,7 +79,7 @@ module "minecraft_sg" {
     }
   ]
 
-  egress_cidr_blocks = ["0.0.0.0/0"]
+  egress_cidr_blocks = []
 }
 
 // resource "aws_volume_attachment" "this" {
