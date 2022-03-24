@@ -16,8 +16,8 @@ variable "name" {
 }
 
 variable "force_destroy" {
-  type = boolean
-  default = false
+  type    = bool
+  default = "false"
 }
 
 data "env0_project" "project" {
