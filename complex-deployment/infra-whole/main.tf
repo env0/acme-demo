@@ -15,6 +15,11 @@ variable "name" {
   type = string
 }
 
+variable "force_destroy" {
+  type = boolean
+  default = false
+}
+
 data "env0_project" "project" {
   name = var.project
 }
@@ -24,6 +29,7 @@ resource "env0_environment" "infra-base" {
   project_id                 = data.env0_project.project.id
   template_id                = "84727784-587b-4e58-83ea-b0e2f9c872bd"
   approve_plan_automatically = true
+  force_destroy              = var.force_destroy
 }
 
 resource "env0_environment" "infra-mid" {
@@ -31,6 +37,7 @@ resource "env0_environment" "infra-mid" {
   project_id                 = data.env0_project.project.id
   template_id                = "8c86ee3e-c42d-4f7b-b7be-8513f20fcc65"
   approve_plan_automatically = true
+  force_destroy              = var.force_destroy
 }
 
 resource "env0_environment" "infra-top" {
@@ -38,6 +45,7 @@ resource "env0_environment" "infra-top" {
   project_id                 = data.env0_project.project.id
   template_id                = "5cfcb877-bdf2-402f-a5fc-343d2e1a8f8e"
   approve_plan_automatically = true
+  force_destroy              = var.force_destroy
 }
 
 resource "env0_workflow_triggers" "base-mid" {
