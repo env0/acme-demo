@@ -3,7 +3,6 @@ module "acme-ec2" {
   version = "~> 2.0"
 
   name           = var.name
-  instance_count = var.instance_count
 
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
@@ -36,17 +35,14 @@ module "acme-ec2" {
 # }
 
 resource "aws_volume_attachment" "volume_attachment" {
-  count = var.instance_count
 
   device_name = "/dev/sdh"
-  volume_id   = aws_ebs_volume.ebs[count.index].id
-  instance_id = module.acme-ec2.id[count.index]
+  volume_id   = aws_ebs_volume.ebs.id
+  instance_id = module.acme-ec2.id
 }
 
 resource "aws_ebs_volume" "ebs" {
-  count = var.instance_count
-
-  availability_zone = module.acme-ec2.availability_zone[count.index]
+  availability_zone = module.acme-ec2.availability_zone
   size              = var.ebs_size
 }
 
