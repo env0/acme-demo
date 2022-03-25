@@ -42,7 +42,7 @@ resource "aws_volume_attachment" "volume_attachment" {
 }
 
 resource "aws_ebs_volume" "ebs" {
-  availability_zone = module.acme-ec2.availability_zone
+  availability_zone = module.acme-ec2.availability_zone[1]
   size              = var.ebs_size
 }
 
