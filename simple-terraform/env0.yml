@@ -8,3 +8,4 @@ deploy:
     terraformPlan:
       before:
         - ls -la
+        - cat env0.auto.tfvars
