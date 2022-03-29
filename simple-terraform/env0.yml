@@ -5,3 +5,6 @@ deploy:
     terraformInit:
       before:
         - ssh -V
+    terraformPlan:
+      before:
+        - ls -la
