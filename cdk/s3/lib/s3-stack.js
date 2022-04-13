@@ -1,7 +1,7 @@
 const cdk = require('aws-cdk-lib');
 const s3 = require('aws-cdk-lib/aws-s3');
 
-class HelloCdkStack extends cdk.Stack {
+class S3Stack extends cdk.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
@@ -11,4 +11,4 @@ class HelloCdkStack extends cdk.Stack {
   }
 }
 
-module.exports = { HelloCdkStack }
+module.exports = { S3Stack }
