@@ -1,0 +1,15 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - cdk init app --language javascript
+        - cdk ls
+        - cdk synth
+
+destroy:
+  steps:
+    setupVariables:
+      after:
+        - # destroy CDK
