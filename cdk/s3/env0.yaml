@@ -10,9 +10,15 @@ deploy:
         - ls
         - cdk ls
         - cdk synth
+    terraformPlan:
+      before: 
+        - cdk diff
+    terraformApply:
+      after:
+        - cdk deploy
 
 destroy:
   steps:
-    setupVariables:
+    terraformApply:
       after:
-        - # destroy CDK
+        - cdk destroy
