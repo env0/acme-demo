@@ -5,6 +5,9 @@ deploy:
     setupVariables:
       after:
         - sudo npm install -g aws-cdk
+        - npm install
+        - pwd
+        - ls
         - cdk ls
         - cdk synth
 
