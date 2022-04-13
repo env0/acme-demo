@@ -6,10 +6,9 @@ deploy:
       after:
         - sudo npm install -g aws-cdk
         - npm install
-        - pwd
-        - ls
         - cdk ls
         - cdk synth
+        - cdk bootstrap aws://244172364962/us-west-2
     terraformPlan:
       before: 
         - cdk diff
