@@ -4,6 +4,7 @@ deploy:
   steps:
     setupVariables:
       after:
+        - npm install -g aws-cdk
         - cdk init app --language javascript
         - cdk ls
         - cdk synth
