@@ -19,6 +19,6 @@ deploy:
 
 destroy:
   steps:
-    terraformApply:
+    terraformDestroy:
       after:
         - cdk destroy
