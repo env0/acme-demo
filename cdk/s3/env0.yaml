@@ -14,7 +14,7 @@ deploy:
         - cdk diff
     terraformApply:
       after:
-        - cdk deploy
+        - cdk deploy --verbose
 
 destroy:
   steps:
