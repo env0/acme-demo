@@ -8,7 +8,7 @@ deploy:
         - npm install
         - cdk ls
         - cdk synth
-        - cdk bootstrap aws://244172364962/us-west-2
+        - cdk bootstrap --trust=244172364962 --cloudformation-execution-policies=arn:aws:iam::aws:policy/AdministratorAccess --verbose
     terraformPlan:
       before: 
         - cdk diff
