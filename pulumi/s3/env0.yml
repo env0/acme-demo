@@ -5,7 +5,11 @@ deploy:
     setupVariables:
       after:
         - npm i
-    terraformInit:
+    pulumiLogin:
+      before:
+        - pulumi config set --path aws:assumeRole.roleArn $ENV0_AWS_ROLE_ARN
+        - pulumi config set --path aws:assumeRole.externalId $ENV0_AWS_ROLE_EXTERNAL_ID
+    pulumiPreview:
       before:
         - echo "Replacing !!!USER!!! with $USER in index.html"
         - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
