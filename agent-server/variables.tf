@@ -1,6 +1,6 @@
 variable "name" {
   type    = string
-  default = "env0-acme-ec2"
+  default = "env0-agent-server"
 }
 
 variable "instance_type" {

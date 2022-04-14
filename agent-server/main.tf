@@ -12,17 +12,14 @@ module "ec2" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.instance_type
   availability_zone           = local.availability_zone
-  subnet_id                   = element(tolist(data.aws_subnet_ids.selected.ids), 0)
-  vpc_security_group_ids      = [module.minecraft_sg.security_group_id]
+  subnet_id                   = element(tolist(data.aws_subnets.selected.ids), 0)
+  vpc_security_group_ids      = [module.security_group.security_group_id]
   associate_public_ip_address = true
   key_name                    = "away"
 
   user_data = <<EOF
 #!/bin/bash
 sudo apt-get -y update
-sudo apt-get -y install openjdk-17-jre-headless
-wget https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar
-java -Xms1G -Xmx1G -jar server.jar --nogui
 EOF
 
   tags = {
@@ -47,11 +44,19 @@ data "aws_vpc" "selected" {
   id = var.vpc_id
 }
 
-data "aws_subnet_ids" "selected" {
-  vpc_id = data.aws_vpc.selected.id
+data "aws_subnets" "selected" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.selected.id]
+  }
+
+  filter {
+    name   = "availability-zone"
+    values = [local.availability_zone]
+  }
 }
 
-module "agent_sg" {
+module "security_group" {
   source = "terraform-aws-modules/security-group/aws"
 
   name        = "SSH"
@@ -61,7 +66,7 @@ module "agent_sg" {
   ingress_cidr_blocks = ["0.0.0.0/0"]
   ingress_rules       = ["ssh-tcp"]
 
-  egress_cidr_blocks = []
+  egress_rules = ["ssh-tcp"]
 }
 
 resource "aws_volume_attachment" "this" {
