@@ -2,6 +2,9 @@ version: 1
 
 deploy:
   steps:
+    setupVariables:
+      after:
+        - npm i
     terraformInit:
       before:
         - echo "Replacing !!!USER!!! with $USER in index.html"
