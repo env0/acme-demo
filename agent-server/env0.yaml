@@ -15,9 +15,9 @@ deploy:
   onSuccess:
     - |
       if [[ $EC2_STATE == "start" ]]; then 
-        aws ec2 start-instances --instance-ids $(terraform output instance_id) --region us-west-2
+        aws ec2 start-instances --instance-ids $(terraform output -json | jq -r .instance_id.value) --region us-west-2
       else
-        aws ec2 stop-instances --instance-ids $(terraform output instance_id) --region us-west-2
+        aws ec2 stop-instances --instance-ids $(terraform output -json | jq -r .instance_id.value) --region us-west-2
       fi
 #  onFailure:
 #    - type: string
