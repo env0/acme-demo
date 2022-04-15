@@ -1,0 +1,24 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - echo "hello world"
+    # terraformInit:
+    #   before:
+    terraformPlan:
+      after:
+        - terraform show -json .tf-plan > tf-plan.json
+        - echo "OPA Check" 1>&2
+#  onCompletion:
+#    - type: string
+  onSuccess:
+    - |
+      if [[ $EC2_STATE == "start" ]]; then 
+        aws ec2 start-instances --instance-ids $(terraform output instance_id) --region us-west-2
+      else
+        aws ec2 stop-instances --instance-ids $(terraform output instance_id) --region us-west-2
+      fi
+#  onFailure:
+#    - type: string
