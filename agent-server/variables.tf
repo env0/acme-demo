@@ -5,7 +5,7 @@ variable "name" {
 
 variable "instance_type" {
   type    = string
-  default = "t3a.small"
+  default = "t3a.xlarge"
 }
 
 variable "vpc_id" {
@@ -14,5 +14,5 @@ variable "vpc_id" {
 
 variable "ebs_size" {
   type    = number
-  default = 50
+  default = 100
 }

@@ -16,11 +16,17 @@ module "ec2" {
   vpc_security_group_ids      = [module.security_group.security_group_id]
   associate_public_ip_address = true
   key_name                    = "away"
+  root_block_device = [
+    {
+      encrypted   = true
+      volume_size = 50
+    },
+  ]
 
   user_data = <<EOF
-#!/bin/bash
-sudo apt-get -y update
-EOF
+    #!/bin/bash
+    sudo apt-get -y update
+    EOF
 
   tags = {
     Terraform = "true"
@@ -54,6 +60,11 @@ data "aws_subnets" "selected" {
     name   = "availability-zone"
     values = [local.availability_zone]
   }
+
+  filter {
+    name   = "tag:Name"
+    values = ["*public*"]
+  }
 }
 
 module "security_group" {
@@ -66,16 +77,34 @@ module "security_group" {
   ingress_cidr_blocks = ["0.0.0.0/0"]
   ingress_rules       = ["ssh-tcp"]
 
-  egress_rules = ["ssh-tcp"]
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 30880
+      to_port     = 30880
+      protocol    = "tcp"
+      description = "KOTS"
+      cidr_blocks = "0.0.0.0/0"
+    },
+  ]
+
+  egress_with_cidr_blocks = [
+    {
+      from_port   = 0
+      to_port     = 65535
+      protocol    = "tcp"
+      description = "All Outbound"
+      cidr_blocks = "0.0.0.0/0"
+    },
+  ]
 }
 
-resource "aws_volume_attachment" "this" {
-  device_name = "/dev/sdh"
-  volume_id   = aws_ebs_volume.this.id
-  instance_id = module.ec2.id
-}
+// resource "aws_volume_attachment" "this" {
+//   device_name = "/dev/sdh"
+//   volume_id   = aws_ebs_volume.this.id
+//   instance_id = module.ec2.id
+// }
 
-resource "aws_ebs_volume" "this" {
-  availability_zone = local.availability_zone
-  size              = var.ebs_size
-}
+// resource "aws_ebs_volume" "this" {
+//   availability_zone = local.availability_zone
+//   size              = var.ebs_size
+// }
