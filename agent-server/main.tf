@@ -19,7 +19,7 @@ module "ec2" {
   root_block_device = [
     {
       encrypted   = true
-      volume_size = 50
+      volume_size = var.ebs_size
     },
   ]
 
@@ -83,6 +83,13 @@ module "security_group" {
       to_port     = 30880
       protocol    = "tcp"
       description = "KOTS"
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 6443
+      to_port     = 6443
+      protocol    = "tcp"
+      description = "K8s"
       cidr_blocks = "0.0.0.0/0"
     },
   ]
