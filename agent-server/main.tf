@@ -26,6 +26,10 @@ module "ec2" {
   user_data = <<EOF
     #!/bin/bash
     sudo apt-get -y update
+    # kots 
+    curl https://kurl.sh/dbf7043 | sudo bash
+    # install helm
+    curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
     EOF
 
   tags = {
