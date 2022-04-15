@@ -7,10 +7,9 @@ deploy:
         - echo "hello world"
     # terraformInit:
     #   before:
-    terraformPlan:
-      after:
-        - terraform show -json .tf-plan > tf-plan.json
-        - echo "OPA Check" 1>&2
+    # terraformPlan:
+    #   after:
+    #     - terraform show -json .tf-plan > tf-plan.json
 #  onCompletion:
 #    - type: string
   onSuccess:
