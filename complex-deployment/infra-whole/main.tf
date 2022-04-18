@@ -36,7 +36,7 @@ resource "env0_environment" "infra-base" {
 resource "env0_environment" "infra-mid" {
   name                       = "infra-mid-${var.name}"
   project_id                 = data.env0_project.project.id
-  template_id                = "8c86ee3e-c42d-4f7b-b7be"-8513f20fcc65"
+  template_id                = "8c86ee3e-c42d-4f7b-b7be-8513f20fcc65"
   approve_plan_automatically = true
   force_destroy              = var.force_destroy
   wait_for                   = "FULLY_DEPLOYED"
