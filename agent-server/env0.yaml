@@ -4,7 +4,11 @@ deploy:
   steps:
     setupVariables:
       after:
-        - echo "hello world"
+        - |
+          if [[ $(terraform output -json | jq -r .instance_id.value) != "" && $EC2_STATE == "start" ]]; then 
+            aws ec2 start-instances --instance-ids $(terraform output -json | jq -r .instance_id.value) --region us-west-2
+            sleep 10
+          fi
     # terraformInit:
     #   before:
     # terraformPlan:
@@ -14,9 +18,7 @@ deploy:
 #    - type: string
   onSuccess:
     - |
-      if [[ $EC2_STATE == "start" ]]; then 
-        aws ec2 start-instances --instance-ids $(terraform output -json | jq -r .instance_id.value) --region us-west-2
-      else
+      if [[ $EC2_STATE != "start" ]]; then 
         aws ec2 stop-instances --instance-ids $(terraform output -json | jq -r .instance_id.value) --region us-west-2
       fi
 #  onFailure:
