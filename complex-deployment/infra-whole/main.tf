@@ -28,6 +28,7 @@ resource "env0_environment" "infra-base" {
   name                       = "infra-base-${var.name}"
   project_id                 = data.env0_project.project.id
   template_id                = "84727784-587b-4e58-83ea-b0e2f9c872bd"
+  revision                   = "main"
   approve_plan_automatically = true
   force_destroy              = var.force_destroy
   wait_for                   = "FULLY_DEPLOYED"
@@ -37,6 +38,7 @@ resource "env0_environment" "infra-mid" {
   name                       = "infra-mid-${var.name}"
   project_id                 = data.env0_project.project.id
   template_id                = "8c86ee3e-c42d-4f7b-b7be-8513f20fcc65"
+  revision                   = "main"
   approve_plan_automatically = true
   force_destroy              = var.force_destroy
   wait_for                   = "FULLY_DEPLOYED"
@@ -47,6 +49,7 @@ resource "env0_environment" "infra-top" {
   name                       = "infra-top-${var.name}"
   project_id                 = data.env0_project.project.id
   template_id                = "5cfcb877-bdf2-402f-a5fc-343d2e1a8f8e"
+  revision                   = "main"
   approve_plan_automatically = true
   force_destroy              = var.force_destroy
   depends_on                 = [env0_environment.infra-mid]
