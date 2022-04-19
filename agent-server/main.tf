@@ -26,10 +26,11 @@ module "ec2" {
   user_data = <<EOF
 #!/bin/bash
 sudo apt-get -y update
+sudo apt-get install jq -y
 # k3s only
 curl https://kurl.sh/dbf7043 | sudo bash
-# install helm
-curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | sudo bash
+# get installscript
+curl https://raw.githubusercontent.com/env0/acme-demo/agent-server/agent-server/scripts/agentInstall.sh > /home/ubuntu/agentInstall.sh
 EOF
 
   tags = {

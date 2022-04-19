@@ -8,7 +8,7 @@ deploy:
       before:
       after:
         - |
-          if [[ $(terraform output -json | jq -r .instance_id.value) != "" && $EC2_STATE == "start" ]]; then 
+          if [[ $(terraform output -json | jq -r .instance_id.value) != "null" && $EC2_STATE == "start" ]]; then 
             aws ec2 start-instances --instance-ids $(terraform output -json | jq -r .instance_id.value) --region us-west-2
             sleep 10
           fi
