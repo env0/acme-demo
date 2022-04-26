@@ -8,6 +8,11 @@ const bucket = new aws.s3.Bucket("my-bucket", {
   website: {
       indexDocument: "index.html",
   },
+  tags: {
+      Environment: "Dev",
+      Name: "My bucket",
+      Date: "2022-APR-26",
+  },
 });
 
 const bucketObject = new aws.s3.BucketObject("index.html", {
