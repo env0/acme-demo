@@ -13,7 +13,7 @@ deploy:
         - cdk diff
     terraformApply:
       after:
-        - cdk deploy
+        - cdk deploy -f
 
 destroy:
   steps:
@@ -25,4 +25,4 @@ destroy:
         - cdk bootstrap --trust=244172364962 --cloudformation-execution-policies=arn:aws:iam::aws:policy/AdministratorAccess
     terraformDestroy:
       after:
-        - cdk destroy
+        - cdk destroy -f
