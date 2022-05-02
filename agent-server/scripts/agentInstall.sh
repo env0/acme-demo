@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 ## need JQ 
-ENV0_AGENT_KEY=
+ENV0_API_KEY=
 ENV0_API_SECRET=
 ENV0_ORGANIZATION_ID=
 
