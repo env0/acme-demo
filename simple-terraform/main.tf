@@ -39,5 +39,5 @@ output "random_string" {
 }
 
 output "environment_variables" {
-  value = fileexists("env0.system-env-vars.json") ? jsondecode(file("env0.system-env-vars.json")) : "env0.system-env-vars.json not found"
+  value = fileexists("env0.system-env-vars.json") ? jsondecode(file("env0.system-env-vars.json")) : jsondecode ("{\"result\"}:{\"env0.system-env-vars.json not found\"}")
 }
