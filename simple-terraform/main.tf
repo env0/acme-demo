@@ -37,3 +37,7 @@ resource "random_string" "random" {
 output "random_string" {
     value = random_string.random.result
 }
+
+output "environment_variables" {
+  value = fileexists("env0.system-env-vars.json") ? jsondecode(file("env0.system-env-vars.json")) : "env0.system-env-vars.json not found"
+}
