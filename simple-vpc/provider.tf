@@ -9,8 +9,8 @@ terraform {
 
   backend "s3" {
     dynamodb_table = "acme-dev-tfstate-lockdb"
-    key    = "simple-vpc"
-    region = "us-west-2"
+    key            = "simple-vpc"
+    region         = "us-west-2"
   }
 }
 
