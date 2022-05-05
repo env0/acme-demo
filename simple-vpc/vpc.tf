@@ -1,6 +1,6 @@
 locals {
   environment_vars = fileexists("env0.system-env-vars.json") ? jsondecode(file("env0.system-env-vars.json")) : jsondecode("{\"result\"}:{\"env0.system-env-vars.json not found\"}")
-  project_id       = environment_vars["ENV0_PROJECT_ID"]
+  project_id       = local.environment_vars["ENV0_PROJECT_ID"]
 }
 
 module "acme-vpc" {
