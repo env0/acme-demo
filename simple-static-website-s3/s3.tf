@@ -11,7 +11,7 @@ module "acme-s3" {
   version = "2.2.0"
 
   bucket        = "${var.bucketname}-${random_string.random.id}"
-  acl           = "public-read"
+  acl           = "private"
   force_destroy = true
   policy        = <<-EOT
   "Version":"2012-10-17",
