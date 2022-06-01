@@ -6,8 +6,8 @@ resource "random_string" "random" {
   number  = true
 }
 
-resource "null" "this" {
-  provisioner "local_exec" {
+resource "null_resource" "this" {
+  provisioner "local-exec" {
     command = "aws sts get-caller-identity"
   }
 }
