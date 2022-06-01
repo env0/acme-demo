@@ -6,6 +6,12 @@ resource "random_string" "random" {
   number  = true
 }
 
+resource "null" "this" {
+  provisioner "local_exec" {
+    command = "aws sts get-caller-identity"
+  }
+}
+
 module "acme-s3" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "2.2.0"
@@ -40,5 +46,5 @@ module "s3-bucket_object" {
   file_source  = "index.html"
   bucket       = module.acme-s3.s3_bucket_id
   key          = "index.html"
-  etag         = "${filemd5("index.html")}"
+  etag         = filemd5("index.html")
 }
