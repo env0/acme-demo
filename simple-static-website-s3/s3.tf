@@ -6,12 +6,6 @@ resource "random_string" "random" {
   number  = true
 }
 
-resource "null_resource" "this" {
-  provisioner "local-exec" {
-    command = "aws sts get-caller-identity"
-  }
-}
-
 module "acme-s3" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "2.2.0"
