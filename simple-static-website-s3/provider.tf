@@ -10,13 +10,13 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket         = "env0-acme-tfstate"
-    dynamodb_table = "env0-acme-tfstate-lock"
-    key            = "acme-demo-s3"
-    region         = "us-west-2"
-    role_arn       = "arn:aws:iam::326535729404:role/env0-acme-assume-role"
-  }
+  # backend "s3" {
+  #   bucket         = "env0-acme-tfstate"
+  #   dynamodb_table = "env0-acme-tfstate-lock"
+  #   key            = "acme-demo-s3"
+  #   region         = "us-west-2"
+  #   role_arn       = "arn:aws:iam::326535729404:role/env0-acme-assume-role"
+  # }
 }
 
 provider "aws" {
