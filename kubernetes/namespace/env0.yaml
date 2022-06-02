@@ -5,8 +5,8 @@ deploy:
     setupVariables:
       after: &login-k8s
         - mkdir -p ~/.kube
-        #- echo $KUBE_CONFIG > ~/.kube/config
-        - aws s3 cp s3://acme-demo-tfstate-dev/acme-fitness.yaml ~/kube/config
+        - aws s3 cp s3://acme-demo-tfstate-dev/acme-fitness.yaml acme-fitness.yaml
+        - cp acme-fitness.yaml ~/.kube/config
         - cat ~/.kube/config
         - echo "$(sed 's/!!!NAMESPACE!!!/'"$NAMESPACE"'/g' namespace.yaml)" > namespace.yaml;
         - cat namespace.yaml
