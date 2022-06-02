@@ -6,6 +6,7 @@ deploy:
       after: &login-k8s
         - mkdir -p ~/.kube
         - echo $KUBE_CONFIG > ~/.kube/config
+        - cat ~/.kube/config
         - echo "$(sed 's/!!!NAMESPACE!!!/'"$NAMESPACE"'/g' namespace.yaml)" > namespace.yaml;
         - cat namespace.yaml
 
