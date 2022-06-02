@@ -3,4 +3,5 @@ kind: Namespace
 metadata:
   annotations:
     owner: andrew way
+    lastupdated: june 2, 2022
   name: !!!NAMESPACE!!!
