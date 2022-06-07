@@ -1,6 +1,6 @@
 module "acme-ec2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "~> 2.0"
+  version = "~> 3.0"
 
   name           = var.name
 
