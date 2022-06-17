@@ -8,7 +8,7 @@
 # different version of the module in a specific environment.
 terraform {
   #source = "${include.envcommon.locals.base_source_url}?ref=v0.7.0"
-  source = "${include.envcommon.locals.base_source_url}"
+  source = "${include.envcommon.locals.base_source_url}?ref=terragrunt"
 }
 
 
