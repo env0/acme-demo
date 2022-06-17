@@ -12,7 +12,7 @@ terraform {
     key            = "acme-demo-s3"
     region         = "us-west-2"
     role_arn       = "arn:aws:iam::326535729404:role/env0-acme-assume-role"
-    //external_id    = "value"
+    //external_id    = "value"  # use ENV0_TERRAFORM_BACKEND_CONFIG=external_id=[external_id_value]
   }
 }
 
