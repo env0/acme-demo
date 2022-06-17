@@ -1,0 +1,20 @@
+{
+  "name": "s3",
+  "version": "0.1.0",
+  "bin": {
+    "s3": "bin/s3.js"
+  },
+  "scripts": {
+    "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
+    "cdk": "cdk",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "aws-cdk": "2.20.0",
+    "jest": "^26.4.2"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.20.0",
+    "constructs": "^10.0.0"
+  }
+}

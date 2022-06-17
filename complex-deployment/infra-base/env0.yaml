@@ -1,0 +1,18 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - echo "TF_VAR_project_id=$ENV0_PROJECT_ID" >> $ENV0_ENV
+    terraformPlan:
+      before:
+        - echo $TF_VAR_project_id
+destroy:
+  steps:
+    setupVariables:
+      after:
+        - echo "TF_VAR_project_id=$ENV0_PROJECT_ID" >> $ENV0_ENV
+    terraformPlan:
+      before:
+        - echo $TF_VAR_project_id

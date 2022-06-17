@@ -1,0 +1,28 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - sudo npm install -g aws-cdk
+        - npm install
+        - cdk ls
+        - cdk bootstrap --trust=244172364962 --cloudformation-execution-policies=arn:aws:iam::aws:policy/AdministratorAccess
+    terraformPlan:
+      before: 
+        - cdk diff
+    terraformApply:
+      after:
+        - cdk deploy -f
+
+destroy:
+  steps:
+    setupVariables:
+      after:
+        - sudo npm install -g aws-cdk
+        - npm install
+        - cdk ls
+        - cdk bootstrap --trust=244172364962 --cloudformation-execution-policies=arn:aws:iam::aws:policy/AdministratorAccess
+    terraformDestroy:
+      after:
+        - cdk destroy -f
