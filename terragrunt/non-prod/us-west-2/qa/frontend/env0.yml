@@ -7,6 +7,7 @@ deploy:
         - pwd
         - ls -la
         - sudo apk add tree
+        - cd .terragrunt-cache
         - tree
         - export
         - echo "Replacing !!!USER!!! with $USER in index.html"
