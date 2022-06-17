@@ -6,6 +6,7 @@ deploy:
       before:
         - pwd
         - ls -la
+        - tree
         - export
         - echo "Replacing !!!USER!!! with $USER in index.html"
         - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
