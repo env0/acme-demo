@@ -1,8 +1,16 @@
+# terraform {
+#   required_providers {
+#     env0 = {
+#       version = "6.6.6"
+#       source  = "terraform.env0.com/local/env0"
+#     }
+#   }
+# }
 terraform {
   required_providers {
     env0 = {
-      version = "6.6.6"
-      source  = "terraform.env0.com/local/env0"
+      source = "env0/env0"
+      version = ">= 1.0.5"
     }
   }
 }
