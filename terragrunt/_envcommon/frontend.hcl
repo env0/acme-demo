@@ -39,5 +39,5 @@ locals {
 # environments.
 # ---------------------------------------------------------------------------------------------------------------------
 inputs = {
-  bucketname = "acme-frontend_${local.env}"
+  bucketname = "acme-frontend-${local.env}"
 }
