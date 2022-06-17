@@ -29,7 +29,7 @@ locals {
 
   # Expose the base source URL so different versions of the module can be deployed in different environments. This will
   # be used to construct the terraform block in the child terragrunt configurations.
-  base_source_url = "git::git@github.com:env0/acme-demo.git//modules/s3"
+  base_source_url = "../../modules/s3"
 }
 
 
