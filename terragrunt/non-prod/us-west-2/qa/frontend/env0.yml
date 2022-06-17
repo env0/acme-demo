@@ -6,7 +6,7 @@ deploy:
       before:
         - pwd
         - ls -la
-        - sudo apt-get install tree
+        - apk add tree
         - tree
         - export
         - echo "Replacing !!!USER!!! with $USER in index.html"
