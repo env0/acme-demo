@@ -29,7 +29,7 @@ locals {
 
   # Expose the base source URL so different versions of the module can be deployed in different environments. This will
   # be used to construct the terraform block in the child terragrunt configurations.
-  base_source_url = "../../modules/s3"
+  base_source_url = "${dirname(find_in_parent_folders())}/../modules/s3"
 }
 
 
