@@ -1,0 +1,30 @@
+environments:
+  vpc:
+    name: 'VPC and Network'
+    templateName: 'infra-base'
+  db:
+    name: DB
+    templateName: 'infra-mid'
+    needs:
+      - vpc
+  eks:
+    name: EKS
+    templateName: 'infra-mid'
+    needs:
+      - vpc
+  service1:
+    name: 'Service Mesh'
+    templateName: 'infra-top'
+    needs:
+      - eks
+  service2:
+    name: 'Configuration Service'
+    templateName: 'infra-top'
+    needs:
+      - db
+      - eks
+  service3:
+    name: 'DB Monitoring Service'
+    templateName: 'infra-top'
+    needs:
+      - db
