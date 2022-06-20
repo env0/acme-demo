@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     env0 = {
-      source = "env0/env0"
+      source  = "env0/env0"
       version = ">= 0.2.28"
     }
   }
@@ -13,11 +13,16 @@ variable "length" {
 }
 
 variable "infra_base" {
-  type    = string
+  type = string
 }
 
 variable "project_id" {
   type = string
+}
+
+variable "env_name" {
+  type    = string
+  default = ""
 }
 
 module "infra" {
@@ -31,13 +36,13 @@ output "depends_on" {
 }
 
 output "infra_name" {
-  value = "infra_mid_${module.infra.random_string}"
+  value = "${var.env_name}_${module.infra.random_string}"
 }
 
 resource "env0_configuration_variable" "infra_mid" {
-  name         = "infra_mid"
+  name         = var.env_name
   project_id   = var.project_id
-  value        = "infra_mid_${module.infra.random_string}"
+  value        = "${var.env_name}_${module.infra.random_string}"
   is_read_only = true
   type         = "terraform"
 }

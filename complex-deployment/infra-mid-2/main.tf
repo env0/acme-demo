@@ -8,6 +8,11 @@ variable "infra_base" {
   default = "0"
 }
 
+variable "env_name" {
+  type    = string
+  default = ""
+}
+
 module "infra" {
   source        = "../../modules/random"
   length        = var.length
@@ -19,5 +24,5 @@ output "depends_on" {
 }
 
 output "infra_name" {
-  value = "infra_mid_${module.infra.random_string}"
+  value = "${var.env_name}_${module.infra.random_string}"
 }
