@@ -21,6 +21,11 @@ variable "project_id" {
   type = string
 }
 
+variable "deployment_key"{
+  type = string
+  default = "000"
+}
+
 module "infra" {
   source        = "../../modules/random"
   length        = var.length
@@ -32,7 +37,7 @@ output "infra_name" {
 }
 
 resource "env0_configuration_variable" "infra_base" {
-  name         = "infra_base"
+  name         = "${var.deployment_key}_infra_base"
   project_id   = var.project_id
   value        = "infra_base_${module.infra.random_string}"
   is_read_only = true
