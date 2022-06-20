@@ -6,7 +6,6 @@ variable "length" {
 module "infra" {
   source        = "../../modules/random"
   length        = var.length
-  refresh_token = var.infra_mid
 }
 
 output "infra_name" {
