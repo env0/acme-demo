@@ -9,7 +9,5 @@ deploy:
       before:
         - echo $TF_VAR_project_id
         - export
-        - cat env0.auto.tf
-        - cat env0.yml
 destroy:
   steps: *setup
