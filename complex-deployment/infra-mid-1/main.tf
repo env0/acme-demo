@@ -46,7 +46,8 @@ data "env0_configuration_variable" "infra_base" {
 }
 
 output "depends_on" {
-  value = data.env0_configuration_variable.infra_base.value
+  value     = data.env0_configuration_variable.infra_base.value
+  sensitive = true
 }
 
 output "infra_name" {
