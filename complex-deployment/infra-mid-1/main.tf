@@ -21,15 +21,15 @@ variable "env_name" {
   default = ""
 }
 
-variable "deployment_key"{
-  type = string
+variable "deployment_key" {
+  type    = string
   default = "000"
 }
 
 module "infra" {
   source        = "../../modules/random"
   length        = var.length
-  refresh_token = var.infra_base
+  refresh_token = "${var.deployment_key}_${var.env_name}"
 }
 
 resource "env0_configuration_variable" "infra_mid" {
@@ -42,7 +42,7 @@ resource "env0_configuration_variable" "infra_mid" {
 
 data "env0_configuration_variable" "infra_base" {
   project_id = var.project_id
-  name = "${var.deployment_key}_infra_base"
+  name       = "${var.deployment_key}_infra_base"
 }
 
 output "depends_on" {
