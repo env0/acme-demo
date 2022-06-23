@@ -1,30 +1,30 @@
 environments:
   vpc:
     name: 'VPC and Network'
-    templateName: 'infra-base'
+    templateName: 'cw-vpc'
   db:
     name: DB
-    templateName: 'infra-mid'
+    templateName: 'cw-db-pulumi'
     needs:
       - vpc
   eks:
     name: EKS
-    templateName: 'infra-mid'
+    templateName: 'cw-eks'
     needs:
       - vpc
   service1:
     name: 'Service Mesh'
-    templateName: 'infra-top'
+    templateName: 'cw-svc'
     needs:
       - eks
   service2:
     name: 'Configuration Service'
-    templateName: 'infra-top'
+    templateName: 'cw-svc'
     needs:
       - db
       - eks
   service3:
     name: 'DB Monitoring Service'
-    templateName: 'infra-top'
+    templateName: 'cw-svc'
     needs:
       - db
