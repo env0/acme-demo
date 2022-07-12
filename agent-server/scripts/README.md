@@ -4,6 +4,9 @@ The following scripts installs env0's k8s agent, into an (Ubuntu) VM running K3s
 ## HowTo
 Copy the following scripts in this folder and manifest (pvc.yaml)
 
+(If you don't already have kubernetes installed, and helm)
+0. curl -sfL https://raw.githubusercontent.com/env0/acme-demo/main/agent-server/scripts/prereq.sh | sh -
+
 1. Modify setup.sh to include your ENV0 ORG_ID and ENV0 API KEY and SECRET.
 The setup.sh file will be used by the agentInstall.sh and agentUpdate.sh to download the latest values.yaml and install the latest available helm chart.
 
