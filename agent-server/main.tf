@@ -28,9 +28,9 @@ module "ec2" {
 sudo apt-get -y update
 sudo apt-get install jq -y
 # k3s only
-curl https://kurl.sh/dbf7043 | sudo bash
+# curl https://kurl.sh/dbf7043 | sudo bash
 # get installscript
-curl https://raw.githubusercontent.com/env0/acme-demo/agent-server/agent-server/scripts/agentInstall.sh > /home/ubuntu/agentInstall.sh
+curl -sfL -o /home/ubuntu/prereq.sh https://raw.githubusercontent.com/env0/acme-demo/main/agent-server/scripts/prereq.sh
 EOF
 
   tags = {
