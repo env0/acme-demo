@@ -16,6 +16,7 @@ module "ec2" {
   vpc_security_group_ids      = [module.security_group.security_group_id]
   associate_public_ip_address = true
   key_name                    = "away"
+  iam_instance_profile        = "Acme-Fitness-EC2-Agent"
   root_block_device = [
     {
       encrypted   = true
