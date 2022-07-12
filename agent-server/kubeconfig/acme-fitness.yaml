@@ -1,3 +1,11 @@
+# example kubeconfig 
+# kubectl create serviceaccount env0-remote
+# kubectl create clusterrolebinding env0-remote --serviceaccount=default:env0-remote --clusterrole=cluster-admin
+
+# kubectl config view --raw >> kubeconfig
+# kubectl get serviceaccount env0-remote -oyaml
+# kubectl get secret ^ -oyaml
+
 apiVersion: v1
 clusters:
 - cluster:
