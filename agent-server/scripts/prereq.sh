@@ -16,8 +16,8 @@ echo 'alias k=kubectl' >>$HOME/.bashrc
 echo 'complete -o default -F __start_kubectl k' >>$HOME/.bashrc
 
 # download relevant files
-mkdir $INSTALL/scripts
-mkdir $INSTALL/scripts/manifests
+# mkdir -p $INSTALL/scripts
+mkdir -p $INSTALL/scripts/manifests
 curl -sfL -o $INSTALL/scripts/agentInstall.sh https://raw.githubusercontent.com/env0/acme-demo/main/agent-server/scripts/agentInstall.sh
 curl -sfL -o $INSTALL/scripts/agentUpdate.sh https://raw.githubusercontent.com/env0/acme-demo/main/agent-server/scripts/agentUpdate.sh
 #curl -sfL -o scripts/setup.sh https://raw.githubusercontent.com/env0/acme-demo/main/agent-server/scripts/setup.sh

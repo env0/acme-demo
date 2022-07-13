@@ -33,7 +33,7 @@ sudo apt-get install jq awscli -y
 # get installscript
 INSTALL=/opt/env0
 HOME=/home/ubuntu
-mkdir -p $INSTALL
+mkdir -p $INSTALL/scripts
 
 #Copy API KEY from SecretsManager
 APIKEY=$(aws secretsmanager get-secret-value --region us-west-2 --secret-id acme-fitness/env0/apikey | jq -r '.SecretString' | jq -r '.ENV0_API_KEY')
@@ -46,10 +46,10 @@ echo "INSTALL=$INSTALL" >> $INSTALL/scripts/setup.sh
 echo "HOME=$HOME" >> $INSTALL/scripts/setup.sh
 
 #Download main installer
-curl -sfL -o $INSTALL/prereq.sh https://raw.githubusercontent.com/env0/acme-demo/main/agent-server/scripts/prereq.sh
-sudo chmod 750 $INSTALL/prereq.sh
+curl -sfL -o $INSTALL/scripts/prereq.sh https://raw.githubusercontent.com/env0/acme-demo/main/agent-server/scripts/prereq.sh
+sudo chmod 750 $INSTALL/scripts/prereq.sh
 cd $INSTALL
-$INSTALL/prereq.sh
+$INSTALL/scripts/prereq.sh
 $INSTALL/scripts/agentInstall.sh
 sudo chown -R ubuntu $INSTALL
 sudo chgrp -R ubuntu $INSTALL
