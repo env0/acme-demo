@@ -48,9 +48,9 @@ echo "HOME=$HOME" >> $INSTALL/scripts/setup.sh
 #Download main installer
 curl -sfL -o $INSTALL/scripts/prereq.sh https://raw.githubusercontent.com/env0/acme-demo/main/agent-server/scripts/prereq.sh
 sudo chmod 750 $INSTALL/scripts/prereq.sh
-cd $INSTALL
-$INSTALL/scripts/prereq.sh
-$INSTALL/scripts/agentInstall.sh
+cd $INSTALL/scripts/
+./prereq.sh
+./agentInstall.sh
 sudo chown -R ubuntu $INSTALL
 sudo chgrp -R ubuntu $INSTALL
 EOF
