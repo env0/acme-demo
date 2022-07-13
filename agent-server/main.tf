@@ -27,11 +27,19 @@ module "ec2" {
   user_data = <<EOF
 #!/bin/bash
 sudo apt-get -y update
-sudo apt-get install jq -y
+sudo apt-get install jq awscli -y
 # k3s only
 # curl https://kurl.sh/dbf7043 | sudo bash
 # get installscript
 curl -sfL -o /home/ubuntu/prereq.sh https://raw.githubusercontent.com/env0/acme-demo/main/agent-server/scripts/prereq.sh
+sudo chmod 750 /home/ubuntu/prereq.sh
+/home/ubuntu/prereq.sh
+APIKEY=aws secretsmanager get-secret-value --region us-west-2 --secret-id acme-fitness/env0/apikey | jq -r '.SecretString' | jq -r '.ENV0_API_KEY' 
+APISECRET=aws secretsmanager get-secret-value --region us-west-2 --secret-id acme-fitness/env0/apikey | jq -r '.SecretString' | jq -r '.ENV0_API_SECRET'
+echo "ENV0_API_KEY=$APIKEY" > /home/ubuntu/scripts/setup.sh
+echo "ENV0_API_SECRET=$APISECRET" >> /home/ubuntu/scripts/setup.sh
+echo "ENV0_ORGANIZATION_ID=${var.ENV0_ORGANIZATION_ID}" >> /home/ubuntu/scripts/setup.sh
+/home/ubuntu/scripts/agentInstall.sh
 EOF
 
   tags = {

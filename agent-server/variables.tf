@@ -16,3 +16,7 @@ variable "ebs_size" {
   type    = number
   default = 100
 }
+
+variable "ENV0_ORGANIZATION_ID" {
+  type = string
+}

@@ -22,6 +22,8 @@ helm repo add env0 https://env0.github.io/self-hosted
 helm repo update
 helm install --create-namespace env0-agent env0/env0-agent --namespace env0-agent -f ~/values.yaml -f ~/customer-values.yaml --set storageClassName=local-path --kubeconfig=/etc/rancher/k3s/k3s.yaml
 
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+
 kubectl delete pvc env0-state-volume-claim -n env0-agent
 kubectl apply -f manifests/pvc.yaml
 
