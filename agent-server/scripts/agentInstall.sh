@@ -2,8 +2,6 @@
 
 source setup.sh
 
-sudo chmod 666 $KUBECONFIG
-
 if [[ (type jq) -ne 0 ]]; then
   echo "jq not found, installing jq"
   sudo apt-get install jq -y
