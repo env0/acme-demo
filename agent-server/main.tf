@@ -31,17 +31,28 @@ sudo apt-get install jq awscli -y
 # k3s only
 # curl https://kurl.sh/dbf7043 | sudo bash
 # get installscript
-curl -sfL -o /home/ubuntu/prereq.sh https://raw.githubusercontent.com/env0/acme-demo/main/agent-server/scripts/prereq.sh
-sudo chown ubuntu /home/ubuntu/prereq.sh
-sudo chmod 750 /home/ubuntu/prereq.sh
-/home/ubuntu/prereq.sh
+INSTALL=/opt/env0
+HOME=/home/ubuntu
+mkdir -p $INSTALL
+
+#Copy API KEY from SecretsManager
 APIKEY=$(aws secretsmanager get-secret-value --region us-west-2 --secret-id acme-fitness/env0/apikey | jq -r '.SecretString' | jq -r '.ENV0_API_KEY')
 APISECRET=$(aws secretsmanager get-secret-value --region us-west-2 --secret-id acme-fitness/env0/apikey | jq -r '.SecretString' | jq -r '.ENV0_API_SECRET')
-mkdir -p /home/ubuntu/scripts
-echo "ENV0_API_KEY=$APIKEY" > /home/ubuntu/scripts/setup.sh
-echo "ENV0_API_SECRET=$APISECRET" >> /home/ubuntu/scripts/setup.sh
-echo "ENV0_ORGANIZATION_ID=${var.ENV0_ORGANIZATION_ID}" >> /home/ubuntu/scripts/setup.sh
-/home/ubuntu/scripts/agentInstall.sh
+mkdir -p $INSTALL/scripts
+echo "ENV0_API_KEY=$APIKEY" > $INSTALL/scripts/setup.sh
+echo "ENV0_API_SECRET=$APISECRET" >> $INSTALL/scripts/setup.sh
+echo "ENV0_ORGANIZATION_ID=${var.ENV0_ORGANIZATION_ID}" >> $INSTALL/scripts/setup.sh
+echo "INSTALL=$INSTALL" >> $INSTALL/scripts/setup.sh
+echo "HOME=$HOME" >> $INSTALL/scripts/setup.sh
+
+#Download main installer
+curl -sfL -o $INSTALL/prereq.sh https://raw.githubusercontent.com/env0/acme-demo/main/agent-server/scripts/prereq.sh
+sudo chmod 750 $INSTALL/prereq.sh
+cd $INSTALL
+$INSTALL/prereq.sh
+$INSTALL/scripts/agentInstall.sh
+sudo chown -R ubuntu $INSTALL
+sudo chgrp -R ubuntu $INSTALL
 EOF
 
   tags = {

@@ -1,24 +1,28 @@
 #!/bin/bash 
+source ./setup.sh
 
-source setup.sh
-
-if [[ (type jq) -ne 0 ]]; then
-  echo "jq not found, installing jq"
-  sudo apt-get install jq -y
-fi
+mkdir -p $INSTALL
+# if [[ (type jq) -ne 0 ]]; then
+#   echo "jq not found, installing jq"
+#   sudo apt-get install jq -y
+# fi
 
 ## need JQ 
 ## curl for list of agents, take the first one (default) 
 ENV0_AGENT_KEY=$(curl -u $ENV0_API_KEY:$ENV0_API_SECRET https://api.env0.com/agents?organizationId=$ENV0_ORGANIZATION_ID | jq -r .[0].agentKey)
 
+touch $INSTALL/values.yaml
+touch $INSTALL/customer-values.yaml
+
 # Download values file
-curl -u $ENV0_API_KEY:$ENV0_API_SECRET https://api.env0.com/agents/$ENV0_AGENT_KEY/values > values.yaml
+curl -u $ENV0_API_KEY:$ENV0_API_SECRET https://api.env0.com/agents/$ENV0_AGENT_KEY/values > $INSTALL/values.yaml
 
 # Helm install with values.yaml
+
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | sudo bash
 helm repo add env0 https://env0.github.io/self-hosted
 helm repo update
-helm install --create-namespace env0-agent env0/env0-agent --namespace env0-agent -f ~/values.yaml -f ~/customer-values.yaml --set storageClassName=local-path --kubeconfig=/etc/rancher/k3s/k3s.yaml
+helm install --create-namespace env0-agent env0/env0-agent --namespace env0-agent -f $INSTALL/values.yaml -f $INSTALL/customer-values.yaml --set storageClassName=local-path --kubeconfig=/etc/rancher/k3s/k3s.yaml
 
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
