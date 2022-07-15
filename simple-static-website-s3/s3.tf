@@ -11,7 +11,7 @@ module "acme-s3" {
   version = "2.2.0"
 
   bucket        = "${var.bucketname}-${random_string.random.id}"
-  acl           = "private"
+  acl           = "public"
   force_destroy = true
   policy        = <<-EOT
   "Version":"2012-10-17",
@@ -35,7 +35,7 @@ module "s3-bucket_object" {
   source  = "terraform-aws-modules/s3-bucket/aws//modules/object"
   version = "2.2.0"
 
-  acl          = "private"
+  acl          = "public"
   content_type = "text/html"
   file_source  = "index.html"
   bucket       = module.acme-s3.s3_bucket_id
