@@ -1,0 +1,13 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - echo "Replacing !!!USER!!! with $USER in index.html"
+        - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
+    cfOutput:
+      after:
+        - echo "MY_BUCKET_NAME=$(awsv2 cloudformation describe-stacks --stack-name $ENV0_WORKSPACE_NAME | jq -r '.Stacks[0].Outputs[0].OutputValue')" >> $ENV0_ENV
+        - aws s3 cp index.html s3://$MY_BUCKET_NAME/index.html
+        - aws s3api put-object-acl --bucket $MY_BUCKET_NAME --key index.html --acl public-read
