@@ -33,7 +33,7 @@
   "Parameters" : {
      "Comment" : {
        "Description" : "Tag comment",
-       "Type" : "String"
+       "Type" : "String",
        "Default" : ""
      }
   }
