@@ -10,4 +10,4 @@ deploy:
     cfDeploy:
       after:
         - awsv2 cloudformation describe-stacks --stack-name $ENV0_WORKSPACE_NAME | jq -r '.Stacks[0].Outputs[0].OutputValue'
-        - aws s3 cp index.html s3://$(awsv2 cloudformation describe-stacks --stack-name $ENV0_WORKSPACE_NAME | jq -r '.Stacks[0].Outputs[0].OutputValue')/index.html
+        #- aws s3 cp index.html s3://$(awsv2 cloudformation describe-stacks --stack-name $ENV0_WORKSPACE_NAME | jq -r '.Stacks[0].Outputs[0].OutputValue')/index.html
