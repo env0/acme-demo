@@ -10,7 +10,11 @@
         "AccessControl" : "PublicRead",
         "WebsiteConfiguration" : {
           "IndexDocument" : "index.html"
-         }
+         },
+        "Tags" : {
+          "Owner" : "Andrew Way",
+          "Comment" : { "Ref" : "Comment"}
+        }
       },
     }
   },
@@ -24,5 +28,13 @@
       "Value" : { "Ref" : "S3Bucket"},
       "Description" : "Name of S3 bucket to hold website content"
     }
+  }
+
+  "Parameters" : {
+     "Comment" : {
+       "Description" : "Tag comment",
+       "Type" : "String"
+       "Default" : ""
+     }
   }
 }
