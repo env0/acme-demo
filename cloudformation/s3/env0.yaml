@@ -1,0 +1,13 @@
+version:
+  type: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - echo "Replacing !!!USER!!! with $USER in index.html"
+        - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
+    cfDeploy:
+      after:
+        - awsv2 cloudformation describe-stacks --stack-name $ENV0_WORKSPACE_NAME | jq -r '.Stacks[0].Outputs[0].OutputValue'
+        - aws s3 cp index.html s3://$(awsv2 cloudformation describe-stacks --stack-name $ENV0_WORKSPACE_NAME | jq -r '.Stacks[0].Outputs[0].OutputValue')/index.html
