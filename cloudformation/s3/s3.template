@@ -9,10 +9,10 @@
         "WebsiteConfiguration": {
           "IndexDocument": "index.html"
         },
-        "Tags": {
+        "Tags": [
           "Owner": "Andrew Way",
           "Comment": { "Ref": "Comment" }
-        }
+        ]
       }
     }
   },
