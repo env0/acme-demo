@@ -9,8 +9,7 @@
       "Properties" : {
         "AccessControl" : "PublicRead",
         "WebsiteConfiguration" : {
-          "IndexDocument" : "index.html",
-          "ErrorDocument" : "error.html"
+          "IndexDocument" : "index.html"
          }
       },
     }
