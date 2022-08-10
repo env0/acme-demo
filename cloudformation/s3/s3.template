@@ -10,7 +10,7 @@
           "IndexDocument": "index.html"
         },
         "Tags": [
-          { "Key" : "Owner", "Value" : "Andrew Way" },
+          { "Key" : "Owner", "Value" : "Simple Update" },
           { "Key" : "Comment", "Value" : { "Ref": "Comment" }}
         ]
       }
