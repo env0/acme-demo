@@ -3,19 +3,9 @@ variable "length" {
   default = 5
 }
 
-variable "infra_mid" {
-  type    = string
-  default = "0"
-}
-
 module "infra" {
   source        = "../../modules/random"
   length        = var.length
-  refresh_token = var.infra_mid
-}
-
-output "depends_on" {
-  value = var.infra_mid
 }
 
 output "infra_name" {

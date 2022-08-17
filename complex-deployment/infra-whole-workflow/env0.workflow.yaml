@@ -1,0 +1,30 @@
+environments:
+  vpc:
+    name: 'VPC and Network'
+    templateName: 'cw-vpc'
+  db:
+    name: DB
+    templateName: 'cw-db-pulumi'
+    needs:
+      - vpc
+  eks:
+    name: EKS
+    templateName: 'cw-eks'
+    needs:
+      - vpc
+  service1:
+    name: 'Service Mesh'
+    templateName: 'cw-svc'
+    needs:
+      - eks
+  service2:
+    name: 'Configuration Service'
+    templateName: 'cw-svc'
+    needs:
+      - db
+      - eks
+  service3:
+    name: 'DB Monitoring Service'
+    templateName: 'cw-svc'
+    needs:
+      - db
