@@ -120,20 +120,6 @@ ENVS_JSON=$(curl --request GET \
 # echo $ENVS > envs.json
 # ENVS=$(cat envs.json)
 
-echo "Cleaning up $ENV0_ORGANIZATION_ID..." > $ENV0_ORGANIZATION_ID.log
-
-WAITING=($(echo $ENVS_JSON | jq -rc '.[] | (select(.status=="WAITING_FOR_USER")) | .latestDeploymentLogId'))
-
-echo "Detected ${#WAITING[@]} Deployments Waiting for User" >> $ENV0_ORGANIZATION_ID.log
-
-for deployid in ${WAITING[@]}; do
-  echo -e "\ncancelling $deployid" >> $ENV0_ORGANIZATION_ID.log
-  curl --request PUT \
-    --url https://api.env0.com/environments/deployments/${deployid}/cancel \
-    --user $ENV0_API_KEY:$ENV0_API_SECRET \
-    --header 'Content-Type: application/json' >> $ENV0_ORGANIZATION_ID.log
-done
-
 # ENVS=($(curl --request GET \
 #   --url "https://api.env0.com/environments?organizationId=$ENV0_ORGANIZATION_ID" \
 #   --user $ENV0_API_KEY:$ENV0_API_SECRET \
@@ -202,6 +188,21 @@ for ENV in ${ENVS[@]}; do
     --user $ENV0_API_KEY:$ENV0_API_SECRET \
     --silent \
     --header 'Content-Type: application/json' >> $ENV0_ORGANIZATION_ID.log 2>&1
+done
+
+## CANCEL ALL WAITING_FOR_USER DEPLOYMENTS
+echo "Cleaning up $ENV0_ORGANIZATION_ID..." > $ENV0_ORGANIZATION_ID.log
+
+WAITING=($(echo $ENVS_JSON | jq -rc '.[] | (select(.status=="WAITING_FOR_USER")) | .latestDeploymentLogId'))
+
+echo "Detected ${#WAITING[@]} Deployments Waiting for User" >> $ENV0_ORGANIZATION_ID.log
+
+for deployid in ${WAITING[@]}; do
+  echo -e "\ncancelling $deployid" >> $ENV0_ORGANIZATION_ID.log
+  curl --request PUT \
+    --url https://api.env0.com/environments/deployments/${deployid}/cancel \
+    --user $ENV0_API_KEY:$ENV0_API_SECRET \
+    --header 'Content-Type: application/json' >> $ENV0_ORGANIZATION_ID.log
 done
 
 ## delete all notification targets
