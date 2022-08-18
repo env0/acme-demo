@@ -184,9 +184,8 @@ for ENV in ${ENVS[@]}; do
   # cancel all pending deployments
   echo -e "\n  - cancelling all queued deployments" >> $ENV0_ORGANIZATION_ID.log
   curl -sS --request PUT \
-    --url https://api.env0.com/environments/${ENV}/deployments/cancel?status="QUEUED" \
+    --url https://api.env0.com/environments/${ENV}/deployments/cancel?status=QUEUED \
     --user $ENV0_API_KEY:$ENV0_API_SECRET \
-    --silent \
     --header 'Content-Type: application/json' >> $ENV0_ORGANIZATION_ID.log 2>&1
 done
 
