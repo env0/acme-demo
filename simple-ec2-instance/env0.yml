@@ -5,7 +5,7 @@ deploy:
     setupVariables:
       after:
         - curl https://github.com/infracost/infracost/releases/download/v0.10.10/infracost-linux-amd64.tar.gz --output infracost-linux-amd64.tar.gz
-ls
+        - ls
         - tar -zxvf infracost-linux-amd64.tar.gz
         - mv infracost-linux-amd64 infracost
         - mv infracost /opt/
