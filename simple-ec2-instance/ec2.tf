@@ -5,7 +5,7 @@ module "acme-ec2" {
   name           = var.name
 
   ami           = "ami-03f9c150b539fa2d1-XXX"
-  instance_type = var.instance_type
+  instance_type = "t3a.large"
 
   subnet_ids = data.aws_subnet_ids.selected.ids
 
