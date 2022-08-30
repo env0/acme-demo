@@ -6,4 +6,4 @@ deploy:
       after:
       - wget -O /opt/yq "https://github.com/mikefarah/yq/releases/download/v4.27.3/yq_linux_amd64"
       - chmod +x /opt/yq
-      - ../../scripts/generate.sh
+      - ./generate.sh
