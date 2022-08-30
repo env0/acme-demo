@@ -4,5 +4,5 @@ deploy:
   steps:
     setupVariables:
       after:
-      - wget -O /usr/local/bin/yaml "https://github.com/mikefarah/yq/releases/download/v4.27.3/yq_linux_amd64"
+      - sudo pip install yq
       - ../../generate.sh
