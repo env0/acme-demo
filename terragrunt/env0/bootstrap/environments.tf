@@ -9,7 +9,7 @@ data "env0_project" "default_project" {
 resource "env0_environment" "example" {
   for_each                         = var.environments
   name                             = each.key
-  project_id                       = data.env0_project.default_project[each.key].id # we can make this more dynamic in the future based on folder structure
+  project_id                       = data.env0_project.default_project[each.key].id
   run_plan_on_pull_requests        = true
   auto_deploy_on_path_changes_only = true
   deploy_on_push                   = true
