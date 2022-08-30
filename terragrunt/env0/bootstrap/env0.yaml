@@ -5,4 +5,4 @@ deploy:
     setupVariables:
       after:
       - sudo pip install yq
-      - ../../generate.sh
+      - ../../scripts/generate.sh
