@@ -45,7 +45,6 @@ remote_state {
     key            = "${join("/", [get_env("ENV0_ENVIRONMENT_ID"), path_relative_to_include()])}/terraform.tfstate"
     region         = "us-west-2"
     role_arn       = "arn:aws:iam::326535729404:role/env0-acme-assume-role"
-    external_id    = get_env("BACKEND_EXTERNAL_ID")
   }
   generate = {
     path      = "backend.tf"
