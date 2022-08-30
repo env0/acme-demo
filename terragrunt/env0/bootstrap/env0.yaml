@@ -4,6 +4,6 @@ deploy:
   steps:
     setupVariables:
       after:
-      - wget -O ../../scripts/yq "https://github.com/mikefarah/yq/releases/download/v4.27.3/yq_linux_amd64"
-      - chmod +x ../../scripts/yq
+      - wget -O /opt/yq "https://github.com/mikefarah/yq/releases/download/v4.27.3/yq_linux_amd64"
+      - chmod +x /opt/yq
       - ../../scripts/generate.sh
