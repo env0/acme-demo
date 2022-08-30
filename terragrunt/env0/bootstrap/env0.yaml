@@ -1,0 +1,10 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+      - echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+      - sudo apk update
+      - sudo apk add yq --no-cache
+      - ../../generate.sh
