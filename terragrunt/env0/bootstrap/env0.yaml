@@ -4,7 +4,5 @@ deploy:
   steps:
     setupVariables:
       after:
-      - echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-      - sudo apk update
-      - sudo apk add yq --no-cache
+      - wget -O /usr/local/bin/yaml "https://github.com/mikefarah/yq/releases/download/v4.27.3/yq_linux_amd64"
       - ../../generate.sh
