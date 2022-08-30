@@ -1,6 +1,9 @@
 data "env0_project" "default_project" {
   for_each     = var.environments
   name         = each.value.project
+  depends_on = [
+    env0_project.this
+  ]
 }
 
 resource "env0_environment" "example" {
