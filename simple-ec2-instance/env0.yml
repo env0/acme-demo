@@ -7,9 +7,6 @@ deploy:
         - curl -fsSL https://github.com/infracost/infracost/releases/download/v0.10.11/infracost-linux-amd64.tar.gz --output infracost-linux-amd64.tar.gz
         - ls
         - tar -zxvf infracost-linux-amd64.tar.gz
-        - mv infracost-linux-amd64 infracost
-        - mv infracost /opt/
-        - ls /opt
         - infracost --version
         
         
