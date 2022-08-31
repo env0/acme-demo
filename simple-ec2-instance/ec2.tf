@@ -4,8 +4,8 @@ module "acme-ec2" {
 
   name           = var.name
 
-  ami           = "ami-03f9c150b539fa2d1-XXX"
-  instance_type = "t3a.large"
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
 
   subnet_ids = data.aws_subnet_ids.selected.ids
 
@@ -17,6 +17,17 @@ module "acme-ec2" {
     Test        = "new tag"
     Demo        = "Aug 11"
   }
+}
+
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
+
+  owners = ["099720109477"]
 }
 
 data "aws_vpc" "selected" {
