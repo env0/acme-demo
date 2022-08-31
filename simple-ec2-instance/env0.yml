@@ -11,3 +11,4 @@ deploy:
         - mv infracost /opt/
         - ls /opt
         - infracost --version
+        
