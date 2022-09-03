@@ -5,3 +5,4 @@ deploy:
     setupVariables:
       after:
         - infracost --version
+
