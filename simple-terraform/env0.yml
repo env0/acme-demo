@@ -8,7 +8,3 @@ deploy:
     terraformPlan:
       before:
         - ls -la
-        - cat env0.auto.tfvars.json
-        - cat env0.configurations.json
-        - cat env0.env-vars.json
-        - cat env0.system-env-vars.json
