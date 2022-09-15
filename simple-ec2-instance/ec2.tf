@@ -18,6 +18,9 @@ module "acme-ec2" {
     Demo        = "Sept 14"
   }
 }
+  
+resource "null" "temp" {
+}
 
 data "aws_ami" "ubuntu" {
   most_recent = true
