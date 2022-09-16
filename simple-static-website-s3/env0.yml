@@ -13,8 +13,10 @@ deploy:
         - aws sts get-caller-identity
         - echo "Replacing !!!USER!!! with $USER in index.html"
         - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
-    # terraformPlan:
-    #   after:
+    terraformPlan:
+      before:
+        - /opt/terratag -tags="{\"env0_workspace_name\":\"$ENV0_WORKSPACE_NAME\",\"org_name\":\"$ORG_NAME\"}" -rename=false
+
     #     - echo "Infracost Usage Estimate"
     #     - infracost diff -p .tf-plan --usage-file infracost-usage.yml
     # terraformPlan:
