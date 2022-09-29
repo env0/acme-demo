@@ -1,0 +1,19 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - ./oidc_login.sh
+    # terraformInit:
+    #   before:
+    terraformPlan:
+      after:
+        - terraform show -json .tf-plan > tf-plan.json
+        - echo "OPA Check" 1>&2
+#  onCompletion:
+#    - type: string
+#  onSuccess:
+#    - type: string
+#  onFailure:
+#    - type: string
