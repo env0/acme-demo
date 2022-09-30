@@ -4,7 +4,8 @@ deploy:
   steps:
     setupVariables:
       after:
-        - ./oidc_login.sh
+        # - ./oidc_login.sh
+        - echo "ARM_OIDC_TOKEN=$ENV0_OIDC_TOKEN" >> $ENV0_ENV
     # terraformInit:
     #   before:
     terraformPlan:
