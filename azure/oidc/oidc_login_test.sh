@@ -2,6 +2,7 @@
 
 # Calls Microsoft OAUTH2 endpoint to retrieve token 
 # Must configure federated identity client: see https://docs.env0.com/docs/oidc-integrations for more information
+# This was used to test the OIDC connection- and is not required by TF or env0. 
 
 #$ARM_TENANT_ID 
 #$ARM_CLIENT_ID 
