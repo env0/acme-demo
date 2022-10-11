@@ -47,7 +47,7 @@ provider "helm" {
 }
 
 module "env0-agent-eks" {
-  source = "git@github.com:env0/k8s-modules.git//aws"
+  source = "git@github.com:env0/k8s-modules.git//aws?ref=feat/dynamicazs"
   region = var.region
   cluster_name = var.cluster-name
 }
