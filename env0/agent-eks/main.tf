@@ -1,23 +1,20 @@
-module "env0-agent-eks" {
-  source = "git@github.com:env0/k8s-modules.git//aws"
-  region = var.region
-  cluster_name = var.cluster-name
+terraform {
+  required_providers {
+    kubectl = {
+      source = "gavinbunney/kubectl"
+      version = "1.14.0"
+    }
+  }
 }
 
-variable "region" {
-  type = string
-  default = "us-east-1"
-}
-
-variable "cluster-name" {
-  type = string
-  default = "env0 agent eks"
+provider "kubectl" {
 }
 
 // providers.tf
 provider "aws" {
   region = var.region
 }
+
 
 data "aws_eks_cluster" "cluster" {
   name = module.env0-agent-eks.cluster_id
@@ -51,3 +48,20 @@ provider "helm" {
     }
   }
 }
+
+module "env0-agent-eks" {
+  source = "git@github.com:env0/k8s-modules.git//aws"
+  region = var.region
+  cluster_name = var.cluster-name
+}
+
+variable "region" {
+  type = string
+  default = "us-east-1"
+}
+
+variable "cluster-name" {
+  type = string
+  default = "env0 agent eks"
+}
+
