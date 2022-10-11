@@ -50,12 +50,6 @@ provider "helm" {
   }
 }
 
-module "env0-agent-eks" {
-  source = "git@github.com:env0/k8s-modules.git//aws?ref=feat/dynamicazs"
-  region = var.region
-  cluster_name = var.cluster-name
-}
-
 variable "region" {
   type = string
   default = "us-east-1"
@@ -64,9 +58,14 @@ variable "region" {
 variable "cluster-name" {
   type = string
   default = "env0 agent eks"
+}
+
+module "env0-agent-eks" {
+  source = "git@github.com:env0/k8s-modules.git//aws?ref=feat/dynamicazs"
+  region = var.region
+  cluster_name = var.cluster-name
 
   // us-west-2 only has four AZs so reduce subnets to 4
   private_subnets = ["172.16.0.0/21", "172.16.16.0/21", "172.16.32.0/21", "172.16.48.0/21"]
   public_subnets  = ["172.16.8.0/22", "172.16.24.0/22", "172.16.40.0/22", "172.16.56.0/22"]
 }
-
