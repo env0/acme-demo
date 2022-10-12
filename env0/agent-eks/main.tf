@@ -82,7 +82,6 @@ module "env0-agent-eks" {
   source = "git@github.com:env0/k8s-modules.git//aws?ref=feat/dynamicazs"
   region = var.region
   cluster_name = var.cluster-name
-  manage_aws_auth = false
 
   // us-west-2 only has four AZs so reduce subnets to 4
   private_subnets = ["172.16.0.0/21", "172.16.16.0/21", "172.16.32.0/21", "172.16.48.0/21"]
