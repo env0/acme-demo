@@ -6,8 +6,7 @@ terraform {
     }
   }
 
-  # scenario 1b use env0's remote backend. 
-
+  # scenario 2 - using "s3" backend
   backend "s3" {
     bucket         = "env0-acme-tfstate"
     dynamodb_table = "env0-acme-tfstate-lock"
