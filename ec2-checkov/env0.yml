@@ -8,4 +8,4 @@ deploy:
     terraformPlan:
       after:
         - terraform show -json .tf-plan | jq '.' > tf-plan.json
-        - checkov -f tf-plan.json --quiet
+        - checkov -f tf-plan.json --quiet --soft-fail
