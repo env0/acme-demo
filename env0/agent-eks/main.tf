@@ -26,11 +26,11 @@ provider "aws" {
 
 
 data "aws_eks_cluster" "cluster" {
-  name = module.env0-agent-eks.cluster_name
+  name = var.cluster-name
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = module.env0-agent-eks.cluster_name
+  name = var.cluster-name
 }
 
 provider "kubernetes" {
