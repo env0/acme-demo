@@ -17,6 +17,15 @@ terraform {
       version = "~>2.7.0"
     }
   }
+
+  backend "remote" {
+    hostname = "backend.api.env0.com"
+    organization = "bde19c6d-d0dc-4b11-a951-8f43fe49db92.1a433171-217e-4f58-9b4e-308d4d77902f"
+
+    workspaces {
+      name = "acme-fitness-eks"
+    }
+  }
 }
 
 // providers.tf
@@ -26,11 +35,11 @@ provider "aws" {
 
 
 data "aws_eks_cluster" "cluster" {
-  name = module.env0-agent-eks.cluster_name
+  name = var.cluster_exists ? var.cluster_name : module.env0-agent-eks.cluster_id
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = module.env0-agent-eks.cluster_name
+  name = var.cluster_exists ? var.cluster_name : module.env0-agent-eks.cluster_id
 }
 
 provider "kubernetes" {
@@ -71,18 +80,23 @@ provider "helm" {
 
 variable "region" {
   type = string
-  default = "us-east-1"
+  default = "us-west-2"
 }
 
-variable "cluster-name" {
+variable "cluster_name" {
   type = string
-  default = "env0 agent eks"
+  default = "acme-fitness-cluster"
+}
+
+variable "cluster_exists" {
+  type = bool
+  default = true
 }
 
 module "env0-agent-eks" {
   source = "git@github.com:env0/k8s-modules.git//aws?ref=feat/dynamicazs"
   region = var.region
-  cluster_name = var.cluster-name
+  cluster_name = var.cluster_name
 
   // us-west-2 only has four AZs so reduce subnets to 4
   private_subnets = ["172.16.0.0/21", "172.16.16.0/21", "172.16.32.0/21", "172.16.48.0/21"]
