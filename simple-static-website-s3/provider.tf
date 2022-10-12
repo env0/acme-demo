@@ -7,13 +7,15 @@ terraform {
   }
 
   # scenario 1b use env0's remote backend. 
-  backend "remote" {
-    hostname = "backend.api.env0.com"
-    organization = "bde19c6d-d0dc-4b11-a951-8f43fe49db92.d80c9a87-2794-4f04-94fd-3fc675444072"
 
-    workspaces {
-      name = "static-website-dev1"
-    }
+  backend "s3" {
+    bucket         = "env0-acme-tfstate"
+    dynamodb_table = "env0-acme-tfstate-lock"
+    key            = "acme-demo-s3"
+    region         = "us-west-2"
+    # the role is being assumed from the deployer role - so you will need to configure assume role chaining
+    role_arn       = "arn:aws:iam::326535729404:role/env0-acme-assume-role" 
+    # external_id    = "value"  # (optional) use ENV0_TERRAFORM_BACKEND_CONFIG=external_id=[external_id_value]
   }
 }
 
