@@ -25,4 +25,3 @@ variable "public_subnets" {
   description = "List of public subnets inside the VPC"
   default     = ["172.16.8.0/22", "172.16.24.0/22", "172.16.40.0/22", "172.16.56.0/22", "172.16.72.0/22"]
 }
-
