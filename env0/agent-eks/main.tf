@@ -98,6 +98,13 @@ module "env0-agent-eks" {
   region = var.region
   cluster_name = var.cluster_name
 
+  map_roles = [{"rolearn" = "arn:aws:iam::326535729404:role/env0-acme-assume-role",
+                "groups" = ["system:masters"],
+                "username"= "env0 deployer"},
+               {"rolearn" = "arn:aws:sts::326535729404:assumed-role/AWSReservedSSO_AdministratorAccess_6e013e7aceaa4447",
+                "groups" = ["system:masters"],
+                "username"= "env0 employee"}]
+
   // us-west-2 only has four AZs so reduce subnets to 4
   private_subnets = ["172.16.0.0/21", "172.16.16.0/21", "172.16.32.0/21", "172.16.48.0/21"]
   public_subnets  = ["172.16.8.0/22", "172.16.24.0/22", "172.16.40.0/22", "172.16.56.0/22"]
