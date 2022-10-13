@@ -14,7 +14,7 @@ terraform {
     }
     helm = {
       source  = "hashicorp/helm"
-      version = "~>2.7.0"
+      version = "~>2.4.0"
     }
   }
 
@@ -35,11 +35,11 @@ provider "aws" {
 
 
 data "aws_eks_cluster" "cluster" {
-  name = var.cluster_exists ? var.cluster_name : module.env0-agent-eks.cluster_id
+  name = var.cluster_name
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = var.cluster_exists ? var.cluster_name : module.env0-agent-eks.cluster_id
+  name = var.cluster_name
 }
 
 provider "kubernetes" {
