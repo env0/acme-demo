@@ -94,7 +94,7 @@ variable "cluster_exists" {
 }
 
 module "env0-agent-eks" {
-  source = "git@github.com:env0/k8s-modules.git//aws?ref=feat/dynamicazs"
+  source = "git@github.com:env0/k8s-modules.git//eks"
   region = var.region
   cluster_name = var.cluster_name
 
