@@ -1,16 +1,17 @@
+data "aws_vpc" "this" {
+  tags = {
+    Name = "vpc-${var.cluster_name}"
+  }
+}
+
 data "aws_subnet_ids" "private" {
-  vpc_id = var.vpc_id
+  vpc_id = data.aws_vpc.this.id
 
   tags = {
     tier = "private"
   }
 }
 
-data "aws_vpc" "this" {
-  tags = {
-    Name = "vpc-${var.cluster_name}"
-  }
-}
 
 module "eks" {
   source        = "git@github.com:env0/k8s-modules.git//aws/eks"
