@@ -4,15 +4,6 @@ data "aws_vpc" "this" {
   }
 }
 
-data "aws_subnet_ids" "private" {
-  vpc_id = data.aws_vpc.this.id
-
-  tags = {
-    tier = "private"
-  }
-}
-
-
 module "eks" {
   source        = "git@github.com:env0/k8s-modules.git//aws/eks"
   vpc_id        = data.aws_vpc.this.id
