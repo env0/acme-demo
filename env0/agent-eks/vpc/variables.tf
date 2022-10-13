@@ -10,7 +10,7 @@ variable "cluster_name" {
 
 variable "cidr" {
   type        = string
-  description = "The CIDR block for the VPC. Default value is a valid CIDR, but not acceptable by AWS and should be overridden"
+  description = "The CIDR block for the VPC."
   default     = "172.16.0.0/16"
 }
 
