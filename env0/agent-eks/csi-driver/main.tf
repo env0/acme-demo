@@ -10,6 +10,6 @@ module "csi_driver" {
   source = "git@github.com:env0/k8s-modules.git//aws/csi-driver"
 
   efs_id         = data.aws_efs_file_system.this.file_system_id
-  reclaim_policy = var.reclaim_policy
+  reclaim_policy = "Retain"
   cluster_name   = var.cluster_name
 }
