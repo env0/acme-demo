@@ -11,4 +11,10 @@ module "eks" {
   map_roles     = var.map_roles
   min_capacity  = var.min_capacity
   instance_type = var.instance_type
+
+  lifecycle {
+    ignore_changes = [
+      module.eks.module.eks.local_file.kubeconfig[0]
+    ]
+  }
 }
