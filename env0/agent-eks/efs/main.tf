@@ -13,7 +13,7 @@ data "aws_subnet_ids" "private" {
 }
 
 module "efs" {
-  source        = "git@github.com:env0/k8s-modules.git//aws/efs"
+  source       = "git@github.com:env0/k8s-modules.git//aws/efs"
   region       = var.region
   vpc_id       = data.aws_vpc.this.id
   cluster_name = var.cluster_name
