@@ -8,7 +8,7 @@ variable "cluster_name" {
 }
 
 variable "localrun" {
-  type = bool
+  type    = bool
   default = false
 }
 

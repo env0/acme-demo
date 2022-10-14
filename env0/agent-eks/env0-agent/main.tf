@@ -20,7 +20,7 @@ resource "helm_release" "agent" {
   repository       = "https://env0.github.io/self-hosted"
   timeout          = 600
   values = [
-    yamlencode(file(values.yaml))
+    file("values.yaml")
   ]
 
   set {
@@ -34,7 +34,7 @@ resource "helm_release" "agent" {
   }
 
   set {
-    name = "jobHistoryLimitSuccess"
+    name  = "jobHistoryLimitSuccess"
     value = var.jobHistoryLimitSuccess
   }
 
