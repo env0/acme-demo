@@ -1,16 +1,11 @@
 variable "region" {
   type    = string
-  default = "us-east-1"
+  default = "us-west-2"
 }
 
 variable "cluster_name" {
-  type = string
-  default = ""
-}
-
-variable "localrun" {
-  type    = bool
-  default = false
+  type    = string
+  default = "acme-fitness-cluster"
 }
 
 variable "dockerImage" {

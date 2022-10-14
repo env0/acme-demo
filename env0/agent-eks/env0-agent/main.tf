@@ -15,7 +15,7 @@ resource "helm_release" "agent" {
     file("values.yaml")
   ]
 
-  set {
+  set_sensitive {
     name  = "infracostApiKeyEncoded"
     value = var.infracostApiKeyEncoded
   }
@@ -29,8 +29,4 @@ resource "helm_release" "agent" {
     name  = "jobHistoryLimitSuccess"
     value = var.jobHistoryLimitSuccess
   }
-
-  depends_on = [
-    null_resource.agent_values
-  ]
 }
