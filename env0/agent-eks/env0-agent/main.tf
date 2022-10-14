@@ -4,14 +4,6 @@ data "aws_vpc" "this" {
   }
 }
 
-resource "null_resource" "agent_values" {
-  count = var.localrun ? 1 : 0
-
-  provisioner "local-exec" {
-    command = "./download-values.sh"
-  }
-}
-
 resource "helm_release" "agent" {
   name             = "env0-agent"
   namespace        = "env0-agent"

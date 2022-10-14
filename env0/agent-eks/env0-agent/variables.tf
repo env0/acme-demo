@@ -5,6 +5,7 @@ variable "region" {
 
 variable "cluster_name" {
   type = string
+  default = ""
 }
 
 variable "localrun" {
