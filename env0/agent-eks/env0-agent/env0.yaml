@@ -3,7 +3,8 @@ version: 1
 deploy:
   steps:
     setupVariables:
-      after: |
+      after:
+        - |
         echo $ENV0_API_KEY
         echo $ENV0_API_SECRET
         curl -u $ENV0_API_KEY:$ENV0_API_SECRET https://api.env0.com/agents?organizationId=$ENV0_AGENT_ORGANIZATION_ID
