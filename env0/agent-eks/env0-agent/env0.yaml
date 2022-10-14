@@ -3,5 +3,10 @@ version: 1
 deploy:
   steps:
     setupVariables:
-      after:
-        - ./download-values.sh
+      after: |
+        echo $ENV0_API_KEY
+        echo $ENV0_API_SECRET
+        curl -u $ENV0_API_KEY:$ENV0_API_SECRET https://api.env0.com/agents?organizationId=$ENV0_AGENT_ORGANIZATION_ID
+        ENV0_AGENT_KEY=$(curl -u $ENV0_API_KEY:$ENV0_API_SECRET https://api.env0.com/agents?organizationId=$ENV0_AGENT_ORGANIZATION_ID | jq -r .[0].agentKey)
+        curl -u $ENV0_API_KEY:$ENV0_API_SECRET https://api.env0.com/agents/$ENV0_AGENT_KEY/values > values.yaml
+        cat values.yaml
