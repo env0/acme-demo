@@ -28,6 +28,16 @@ resource "helm_release" "agent" {
     value = var.infracostApiKeyEncoded
   }
 
+  set {
+    name  = "jobHistoryLimitFailure"
+    value = var.jobHistoryLimitFailure
+  }
+
+  set {
+    name = "jobHistoryLimitSuccess"
+    value = var.jobHistoryLimitSuccess
+  }
+
   depends_on = [
     null_resource.agent_values
   ]
