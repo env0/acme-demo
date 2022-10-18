@@ -14,7 +14,7 @@ The idea of this exercise is to show how to utilize env0 (SaaS) to deploy the ag
 3. In env0 UI add your Customer Values as Terraform Variables - Mark the sensitive ones as needed.
   a.  e.g. infracostApiKeyEncoded (note: encoded means the key should be base64 encoded*)
 4. Create an API key in the Target Organization. 
-5. Add ENV0_API_KEY / ENV0_API_SECRET / ENV0_TARGET_ORGANIZATION_ID in the Environment's Environment Variable :)
+5. Add ENV0_API_KEY / ENV0_API_SECRET / ENV0_AGENT_ORGANIZATION_ID in the Environment's Environment Variable :)
 
 * encoding values with base64 - in order to avoid any issues with newlines and extra white spaces, always trim whitespaces before encoding and use `-n` flag for `echo`.  e.g. `export MY_CREDENTIAL=echo -n "$USER:$PAT" | base64`
 
