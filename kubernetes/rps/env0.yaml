@@ -6,8 +6,7 @@ deploy:
       after: &login-k8s
         - mkdir -p ~/.kube
         - aws eks update-kubeconfig --name $CLUSTER_NAME --region us-west-2  
-        - cat namespace.yaml
-        - sed 's/!!!USER!!!/'"$USER"'/g' configmap.yml)
+        - sed "s/#USER/$USER/g" configmap.yml > configmap.yml
         - kubectl config set-context --current --namespace=$NAMESPACE
 
 destroy:
