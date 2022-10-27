@@ -11,7 +11,7 @@ const bucket = new aws.s3.Bucket("my-bucket", {
   tags: {
       Environment: "Dev",
       Name: "My bucket",
-      Date: "2022-MAY-05",
+      Date: "2022-OCT-27",
   },
 });
 
