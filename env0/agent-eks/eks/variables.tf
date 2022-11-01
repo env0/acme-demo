@@ -30,6 +30,14 @@ variable "min_capacity" {
   default     = 2
 }
 
-variable "instance_type" {
+#variable "instance_type" {
+#  default = "t3a.2xlarge" # 8vCPUs 32GB
+#}
+
+variable "blue_instance_type" {
   default = "t3a.2xlarge" # 8vCPUs 32GB
+}
+
+variable "green_instance_type" {
+  default = "" # 8vCPUs 32GB
 }
