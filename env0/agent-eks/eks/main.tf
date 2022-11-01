@@ -5,11 +5,13 @@ data "aws_vpc" "this" {
 }
 
 module "eks" {
-  source           = "git@github.com:env0/k8s-modules.git//aws/eks?ref=feat/kubeconfig-option"
+  source           = "git@github.com:env0/k8s-modules.git//aws/eks?ref=eks-node-groups"
   vpc_id           = data.aws_vpc.this.id
   cluster_name     = var.cluster_name
   map_roles        = var.map_roles
   min_capacity     = var.min_capacity
   instance_type    = var.instance_type
-  write_kubeconfig = false
+  #write_kubeconfig = false
+  blue_instance_type  = "t3a.2xlarge"
+  green_instance_type = ""
 }
