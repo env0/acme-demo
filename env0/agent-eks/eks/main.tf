@@ -11,7 +11,14 @@ module "eks" {
   map_roles    = var.map_roles
   min_capacity = var.min_capacity
   #instance_type       = var.instance_type
-  write_kubeconfig    = false
-  blue_instance_type  = var.blue_instance_type
-  green_instance_type = var.green_instance_type
+  #write_kubeconfig    = false
+  blue_group   = {
+      min_size     = 1
+      max_size     = 10
+      desired_size = 1
+
+      instance_types = ["t3.large"]
+      capacity_type  = "SPOT"
+    }
+  green_group   = {}
 }
