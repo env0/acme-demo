@@ -9,7 +9,7 @@ module "eks" {
   vpc_id       = data.aws_vpc.this.id
   cluster_name = var.cluster_name
   map_roles    = var.map_roles
-  min_capacity = var.min_capacity
+  #min_capacity = var.min_capacity
   #instance_type       = var.instance_type
   #write_kubeconfig    = false
   blue_group   = {
@@ -17,7 +17,7 @@ module "eks" {
       max_size     = 10
       desired_size = 1
 
-      instance_types = ["t3.large"]
+      instance_types = ["t3a.2xlarge"]
       capacity_type  = "SPOT"
     }
   green_group   = {}
