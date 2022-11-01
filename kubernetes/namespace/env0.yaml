@@ -1,0 +1,17 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after: &login-k8s
+        - mkdir -p ~/.kube
+        - aws eks update-kubeconfig --name $CLUSTER_NAME --region us-west-2  
+        #- cp acme-fitness.yaml ~/.kube/config
+        - cat ~/.kube/config
+        - echo "$(sed 's/!!!NAMESPACE!!!/'"$NAMESPACE"'/g' namespace.yaml)" > namespace.yaml;
+        - cat namespace.yaml
+
+destroy:
+  steps:
+    setupVariables:
+      after: *login-k8s
