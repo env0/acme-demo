@@ -3,4 +3,11 @@ kind: Namespace
 metadata:
   annotations:
     owner: andrew way
-  name: !!!NAMESPACE!!!
+  name: !!!NAMESPACE!!!  
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    owner: andrew way
+  name: !!!NAMESPACE!!!2
