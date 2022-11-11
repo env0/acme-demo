@@ -1,0 +1,8 @@
+version: 1
+
+deploy:
+  steps:
+    terraformPlan:
+      after:
+        - terraform show -json .tf-plan > tf-plan.json
+        - ./checkfordeletion.sh
