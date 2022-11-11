@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "remote" {
-    hostname = "backend.api.env0.com"
+    hostname     = "backend.api.env0.com"
     organization = "dd42a409-5396-4ea5-85fe-934cc60fa04b"
 
     workspaces {

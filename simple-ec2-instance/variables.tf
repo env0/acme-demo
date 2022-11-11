@@ -16,3 +16,8 @@ variable "ebs_size" {
   type    = number
   default = 10
 }
+
+variable "instance_count" {
+  type    = number
+  default = 1
+}

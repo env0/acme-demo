@@ -5,4 +5,5 @@ deploy:
     terraformPlan:
       after:
         - terraform show -json .tf-plan > tf-plan.json
+        - cat tf-plan.json | jq '.resource_changes [] | select ( .change.actions[] | contains ("delete") )'
         - ./checkfordeletion.sh

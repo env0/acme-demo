@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-deleted_resources=$(cat tf-plan.json | jq '.resource_changes [] | select ( .change.actions[] | contains ("delete") ) | .address'n)
+deleted_resources=$(cat tf-plan.json | jq '.resource_changes [] | select ( .change.actions[] | contains ("delete") ) | .address')
 
 if [[ -n $deleted_resources ]]; then
   echo ENV0_REQUIRES_APPROVAL=true >> $ENV0_ENV
