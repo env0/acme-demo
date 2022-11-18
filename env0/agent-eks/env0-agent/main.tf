@@ -11,6 +11,7 @@ resource "helm_release" "agent" {
   create_namespace = true
   repository       = "https://env0.github.io/self-hosted"
   timeout          = 600
+  reuse_values     = var.reuse_values
   values = [
     file("values.yaml")
   ]

@@ -18,6 +18,11 @@ variable "agentImagePullSecret" {
   default = ""
 }
 
+variable "reuse_values" {
+  type    = bool
+  default = false
+}
+
 variable "infracostApiKeyEncoded" {
   type        = string
   sensitive   = true
