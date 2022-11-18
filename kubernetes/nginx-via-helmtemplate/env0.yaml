@@ -8,7 +8,7 @@ deploy:
   steps:
     setupVariables:
       after:
-        - awsv2 eks update-kubeconfig --name $CLUSTER_NAME --region us-west-2  
+        - aws eks update-kubeconfig --name $CLUSTER_NAME --region us-west-2  
         - wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz
         - tar -zxvf helm-v3.10.2-linux-amd64.tar.gz
         - ./linux-amd64/helm repo add bitnami https://charts.bitnami.com/bitnami 
