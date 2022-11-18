@@ -9,7 +9,7 @@ deploy:
     setupVariables:
       after:
         - aws eks update-kubeconfig --name $CLUSTER_NAME --region us-west-2  
-        - wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz
+        - if [[ ! -e helm-v3.10.2-linux-amd64.tar.gz ]]; then; wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz; fi
         - tar -zxvf helm-v3.10.2-linux-amd64.tar.gz
         - ./linux-amd64/helm repo add bitnami https://charts.bitnami.com/bitnami 
         - ./linux-amd64/helm template $NAME $CHART $FLAGS > nginx.yaml
