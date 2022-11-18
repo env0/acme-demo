@@ -8,5 +8,6 @@ deploy:
   steps:
     setupVariables:
       after:
+        - aws eks update-kubeconfig --name $CLUSTER_NAME --region us-west-2  
         - helm repo add nginx-stable https://helm.nginx.com/stable
         - helm template $NAME $CHART $FLAGS
