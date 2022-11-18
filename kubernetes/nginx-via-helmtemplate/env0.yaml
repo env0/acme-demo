@@ -1,0 +1,12 @@
+# this file requires the following variables:
+# $NAME: the name of the helm release
+# $CHART: the name of the helm chart
+# $FLAGS: options for running the template command e.g. `-set key=value`
+version: 1
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - helm repo add nginx-stable https://helm.nginx.com/stable
+        - helm template $NAME $CHART $FLAGS
