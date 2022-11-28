@@ -7,7 +7,7 @@ deploy:
         - sudo npm install -g aws-cdk
         - npm install
         - cdk ls
-        - cdk synth -o ./
+        - cdk synth > cf.template
         # - cdk bootstrap --trust=244172364962 --cloudformation-execution-policies=arn:aws:iam::aws:policy/AdministratorAccess
     # terraformPlan:
     #   before: 
