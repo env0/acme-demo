@@ -7,23 +7,8 @@ deploy:
         - sudo npm install -g aws-cdk
         - npm install
         - cdk ls
-        - cdk synth > cf.template
-        # - cdk bootstrap --trust=244172364962 --cloudformation-execution-policies=arn:aws:iam::aws:policy/AdministratorAccess
-    # terraformPlan:
-    #   before: 
-    #     - cdk diff
-    # terraformApply:
-    #   after:
-    #     - cdk deploy -f
+        - cdk synth > cf.template  # make sure your env0 CF template points to "cf.template"
 
 destroy:
   steps:
     setupVariables: *cf
-    #   after:
-    #     - sudo npm install -g aws-cdk
-    #     - npm install
-    #     - cdk ls
-    #     - cdk bootstrap --trust=244172364962 --cloudformation-execution-policies=arn:aws:iam::aws:policy/AdministratorAccess
-    # terraformDestroy:
-    #   after:
-    #     - cdk destroy -f
