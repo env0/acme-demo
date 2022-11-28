@@ -1,12 +1,27 @@
-# Welcome to your CDK JavaScript project
+# env0 CDK example
 
-This is a blank project for JavaScript development with CDK.
+this uses the CDK command line to generate a CF template.
+So, in env0, we are actually creating a CF stack.
+The basic gist is:
+1. install cdk
+2. cdk synth 
+3. run as CF stack
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app. The build step is not required when using JavaScript.
+```yaml
+version: 1
 
-## Useful commands
+deploy:
+  steps:
+    setupVariables: 
+      after:
+        - sudo npm install -g aws-cdk
+        - npm install
+        - cdk ls
+        - cdk synth > cf.template  # make sure your env0 CF template points to "cf.template"  
+```
 
-* `npm run test`         perform the jest unit tests
-* `cdk deploy`           deploy this stack to your default AWS account/region
-* `cdk diff`             compare deployed stack with current state
-* `cdk synth`            emits the synthesized CloudFormation template
+In env0, when creating the CF stack, make sure you specify the template name as: "cf.template", since we are saving the template to that filename.  
+
+** Note: **
+This example requires CAPABILTIES_IAM
+In env0 you must specify the capabilty by adding an environment variable: `ENV0_CF_CLI_ARGS_deploy=--capabilities CAPABILITY_NAMED_IAM`
