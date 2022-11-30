@@ -2,7 +2,7 @@ module "acme-ec2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 2.0"
 
-  name           = var.name
+  name = var.name
 
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
@@ -12,10 +12,10 @@ module "acme-ec2" {
   associate_public_ip_address = true
 
   tags = {
-    Terraform   = "true"
-    Owner       = "acme demo org"
-    Test        = "new tag"
-    Demo        = "Nov 28"
+    Terraform = "true"
+    Owner     = "acme demo org"
+    Test      = "new tag"
+    Demo      = "Nov 28"
   }
 }
 

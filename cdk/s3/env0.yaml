@@ -7,7 +7,7 @@ deploy:
         - sudo npm install -g aws-cdk
         - npm install
         - cdk ls
-        - cdk synth > cf.template  # make sure your env0 CF template points to "cf.template"
+        - cdk synth > cf.template  # make sure your env0 CF template points to "cf.template"  
 
 destroy:
   steps:
