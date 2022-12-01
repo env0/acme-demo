@@ -4,6 +4,7 @@ deploy:
   steps:
     setupVariables:
       after:
+        - if pip3 show checkov; then echo "checkov found"; fi
         - pip3 install checkov
     terraformPlan:
       after:
