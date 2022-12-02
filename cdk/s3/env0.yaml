@@ -4,10 +4,10 @@ deploy:
   steps:
     setupVariables: &cf
       after:
-        - sudo npm install -g aws-cdk
+        - npm install aws-cdk
         - npm install
-        - cdk ls
-        - cdk synth > cf.template  # make sure your env0 CF template points to "cf.template"  
+        - npx aws-cdk ls
+        - npx aws-cdk synth > cf.template  # make sure your env0 CF template points to "cf.template"  
 
 destroy:
   steps:
