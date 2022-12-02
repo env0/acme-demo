@@ -6,7 +6,10 @@ class S3Stack extends cdk.Stack {
     super(scope, id, props);
 
     new s3.Bucket(this, 'env0-cdk-MyFirstBucket', {
-      versioned: true
+      versioned: true,
+      tags: [{key: 'environment', value: 'dev'},
+             {key: 'purpose', value: 'demo cdk'}
+            ]
     });
   }
 }
