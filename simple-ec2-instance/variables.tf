@@ -16,7 +16,3 @@ variable "ebs_size" {
   type    = number
   default = 10
 }
-
-variable "demotag" {
-  type = string
-}
