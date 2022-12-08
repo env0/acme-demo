@@ -2,11 +2,9 @@ version: 1
 
 deploy:
   steps:
-    # setupVariables:
-    #   after:
-    #     - curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
-    #     - chmod 755 ./opa
-    #     - ./opa version
+    setupVariables:
+      after:
+        - verifyDeployerToken.sh 
     terraformInit:
       before:
         - pwd
