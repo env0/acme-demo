@@ -4,7 +4,7 @@ deploy:
   steps:
     setupVariables:
       after:
-        - verifyDeployerToken.sh 
+        - ./verifyDeployerToken.sh 
     terraformInit:
       before:
         - pwd
