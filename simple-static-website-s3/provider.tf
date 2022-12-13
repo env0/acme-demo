@@ -9,8 +9,8 @@ terraform {
 
 provider "aws" {
   region = "ap-southeast-3"
-  
-  endpoints {
-    sts = "https://sts.ap-southeast-3.amazonaws.com"
-  }
+  skipregionvalidation = true
+  # endpoints {
+  #   sts = "https://sts.ap-southeast-3.amazonaws.com"
+  # }
 }
