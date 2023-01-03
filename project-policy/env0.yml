@@ -3,7 +3,7 @@ deploy:
   steps:
     terraformPlan:
       before:
-        - name: Shnitzel
+        - name: Checkov
           use: https://github.com/env0/env0-checkov-plugin.git@1.0.0
           inputs:
             directory: .
