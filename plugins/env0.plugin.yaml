@@ -1,0 +1,8 @@
+name: echoer
+inputs:
+  text:
+    description: the text to echo
+    required: true
+run:
+  exec: |
+    echo ${inputs.text}
