@@ -16,7 +16,9 @@ deploy:
     terraformPlan:
       before:
         - /opt/terratag -tags="{\"env0_workspace_name\":\"$ENV0_WORKSPACE_NAME\",\"org_name\":\"$ORG_NAME\"}" -rename=false
-
+    terraformOutput:
+      after:
+        - aws sts get-caller-identity
     #     - echo "Infracost Usage Estimate"
     #     - infracost diff -p .tf-plan --usage-file infracost-usage.yml
     # terraformPlan:
