@@ -1,0 +1,16 @@
+version: 1
+
+deploy:
+  steps:
+    setupVariables: &cf
+      after: 
+        - |
+          sudo npm install -g cdktf-cli@latest
+          npm install
+          cdktf list
+          cdktf synth
+          cp cdktf.out/stacks/s3/* .
+
+destroy:
+  steps:
+    setupVariables: *cf
