@@ -15,7 +15,7 @@ class MyStack extends TerraformStack {
     });
 
     new S3Bucket(this, "mybucket", {
-      bucket: "cdktf-demo",
+      bucketPrefix: "cdktf-demo",
     });
   }
 }
