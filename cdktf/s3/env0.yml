@@ -3,7 +3,7 @@ version: 1
 deploy:
   steps:
     setupVariables: &cf
-      after: |
+      after: |-
         sudo npm install -g cdktf-cli@latest
         npm install
         cdktf list
