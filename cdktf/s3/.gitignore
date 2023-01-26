@@ -9,4 +9,3 @@ cdktf.log
 tsconfig.tsbuildinfo
 !jest.config.js
 !setup.js
-template/stacks/s3/*.json

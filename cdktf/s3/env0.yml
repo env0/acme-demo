@@ -3,11 +3,12 @@ version: 1
 deploy:
   steps:
     setupVariables: &cf
-      after:
-        - sudo npm install -g cdktf-cli@latest
-        - npm install
-        - cdktf list
-        - cdktf synth -o template # make sure your env0 CF template points to "cf.template"  
+      after: |
+        sudo npm install -g cdktf-cli@latest
+        npm install
+        cdktf list
+        cdktf synth
+        cp cdktf.out/stacks/s3/* .
 
 destroy:
   steps:
