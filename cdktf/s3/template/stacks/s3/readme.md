@@ -1,0 +1,2 @@
+This folder needs to exist for env0 to properly configure the "working directory" to run the tf code from.
+The contents of this folder gets generated from the env0.yml call to `cdktf synth -o template`
