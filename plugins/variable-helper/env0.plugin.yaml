@@ -1,9 +1,6 @@
 name: Variable Helper
 icon: https://assets-global.website-files.com/5ceab5395d0f478e169de7c0/5fdf4acfdb893538adabd1ab_Code%20automation%402x.png
 inputs:
-  # ENVIRONMENT_ID_KEY:
-  #   description: Override the Key used to store the Environment ID; default is 'SOURCE_ENV0_ENVIRONMENT_ID'
-  #   required: false
 run:
   exec: |
     $ENV0_PLUGIN_PATH/fetchVariables.sh
