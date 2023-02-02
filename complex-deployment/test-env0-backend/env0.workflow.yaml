@@ -1,0 +1,11 @@
+environments:
+  vpc:
+    name: 'VPC and Network'
+    templateName: 'cw-vpc'
+    revision: test-workflow-env0backend
+  svc:
+    name: svc
+    templateName: 'cw-svc'
+    revision: test-workflow-env0backend
+    needs:
+      - vpc

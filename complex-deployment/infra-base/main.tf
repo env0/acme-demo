@@ -5,6 +5,15 @@ terraform {
       version = ">= 0.2.28"
     }
   }
+
+  backend "remote" {
+    hostname = "backend.api.env0.com"
+    organization = "bde19c6d-d0dc-4b11-a951-8f43fe49db92.d80c9a87-2794-4f04-94fd-3fc675444072"
+
+    workspaces {
+      name = "d80c9a87-2794-4f04-94fd-3fc675444072-vpc"
+    }
+  }
 }
 
 variable "length" {
@@ -17,15 +26,6 @@ variable "refresh_token" {
   default = "0"
 }
 
-variable "project_id" {
-  type = string
-}
-
-variable "deployment_key"{
-  type = string
-  default = "000"
-}
-
 module "infra" {
   source        = "../../modules/random"
   length        = var.length
@@ -34,12 +34,4 @@ module "infra" {
 
 output "infra_name" {
   value = "infra_base_${module.infra.random_string}"
-}
-
-resource "env0_configuration_variable" "infra_base" {
-  name         = "${var.deployment_key}_infra_base"
-  project_id   = var.project_id
-  value        = "infra_base_${module.infra.random_string}"
-  is_read_only = true
-  type         = "terraform"
 }
