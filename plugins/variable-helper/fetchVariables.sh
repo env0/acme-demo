@@ -38,7 +38,7 @@ for ((i = 0; i < LENGTH; i++)); do
 
 
     # fetch logs from environment
-    curl --request GET \
+    curl -s --request GET \
      --url https://api.env0.com/environments/$SOURCE_ENV0_ENVIRONMENT_ID \
      --header 'accept: application/json' \
      -u $ENV0_API_KEY:$ENV0_API_SECRET \
@@ -46,9 +46,12 @@ for ((i = 0; i < LENGTH; i++)); do
 
     # fetch value from environment 
     SOURCE_OUTPUT_VALUE=$(jq ".latestDeploymentLog.output.$SOURCE_OUTPUT_NAME.value" $SOURCE_ENV0_ENVIRONMENT_ID.json)
-    echo $SOURCE_OUTPUT_VALUE
+    #echo $SOURCE_OUTPUT_VALUE
     
     # store value in .auto.tfvars
     echo "${KEYS[i]}=$SOURCE_OUTPUT_VALUE" >> $TFVAR_FILENAME
+    
+    # show updated values
+    cat $TFVAR_FILENAME
   fi
 done
