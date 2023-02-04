@@ -1,11 +1,12 @@
-variable "root_folder" {
-  type        = string
-  description = "The folder to check for any changes"
-}
+# variable "root_folder" {
+#   type        = string
+#   description = "The folder to check for any changes"
+# }
 
 variable "repository" {
   type        = string
   description = "repo setting for all environments"
+  default     = "https://github.com/env0/acme-demo"
 }
 
 
@@ -14,9 +15,11 @@ variable "repository" {
 variable "environments" {
   type = map(
     object({
-      project_id  = string
-      path        = string
+      project_id = string
+      path       = string
       //force_destroy = bool
     })
   )
+
+  default = {}
 }

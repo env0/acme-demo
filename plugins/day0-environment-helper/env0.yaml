@@ -7,4 +7,3 @@ deploy:
         - name: Scan for Folder Changes
           run: |
             ./day0helper.sh
-          env: []
