@@ -10,6 +10,7 @@ resource "env0_environment" "dynamic_environment" {
     path                   = each.value.path
     type                   = "terraform"
     github_installation_id = 11551359
+    revision               = each.value.revision
   }
 }
 
