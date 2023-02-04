@@ -1,4 +1,4 @@
-resource "env0_environment" "example_with_hcl_configuration" {
+resource "env0_environment" "dynamic_environment" {
   for_each   = local.environments
   name       = each.key
   project_id = each.value.project_id
@@ -16,8 +16,10 @@ resource "env0_environment" "example_with_hcl_configuration" {
 locals {
   environments = {
     dev-svc = {
-      project_id = "7ded3097-2e6d-47af-81f3-00ee6b841e6d"
-      path       = "dynamic-environments/dev-svc"
+      project_id        = "7ded3097-2e6d-47af-81f3-00ee6b841e6d"
+      path              = "dynamic-environments/dev-svc"
+      revision          = "plugin-create-env"
+      is_remote_backend = true
     }
   }
 }

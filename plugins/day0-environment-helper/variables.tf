@@ -17,6 +17,7 @@ variable "environments" {
     object({
       project_id = string
       path       = string
+      revision   = string
       //force_destroy = bool
     })
   )
