@@ -6,11 +6,14 @@ resource "env0_environment" "dynamic_environment" {
   force_destroy = true
 
   without_template_settings {
-    repository             = var.repository
-    path                   = each.value.path
-    type                   = "terraform"
-    github_installation_id = 11551359
-    revision               = each.value.revision
+    repository                       = var.repository
+    path                             = each.value.path
+    type                             = "terraform"
+    github_installation_id           = 11551359
+    revision                         = each.value.revision
+    auto_deploy_on_path_changes_only = true
+    deploy_on_push                   = true
+    run_plan_on_pull_requests        = true
   }
 }
 
