@@ -25,5 +25,11 @@ locals {
       revision          = "plugin-create-env"
       is_remote_backend = true
     }
+    dev-svc2 = {
+      project_id        = "7ded3097-2e6d-47af-81f3-00ee6b841e6d"
+      path              = "dynamic-environments/dev-svc2"
+      revision          = "plugin-create-env"
+      is_remote_backend = true
+    }
   }
 }
