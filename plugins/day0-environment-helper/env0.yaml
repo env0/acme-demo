@@ -7,7 +7,4 @@ deploy:
         - name: Scan for Folder Changes
           run: |
             ./day0helper.sh
-            # echo "Scanning... $($TF_VAR_root_folder)"
-            # ls -la $ENV0_ROOT_DIR/$TF_VAR_root_folder
           env: []
-            # TF_VAR_root_folder: "dynamic-environments"
