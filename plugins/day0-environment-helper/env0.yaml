@@ -4,21 +4,9 @@ deploy:
   steps:
     setupVariables:
       after:
-        - echo "hello world"
-        - name: My Custom Step
+        - name: Scan for Folder Changes
           run: |
-            echo "$MY_STRING"
+            echo "Scanning... $ROOT_FOLDER"
+            ls -la $ROOT_FOLDER
           env:
-            MY_STRING: "Hello V2 Custom Flow"
-    # terraformInit:
-    #   before:
-    # terraformPlan:
-    #   after:
-    #     - terraform show -json .tf-plan > tf-plan.json
-    #     - echo "OPA Check" 1>&2
-#  onCompletion:
-#    - type: string
-#  onSuccess:
-#    - type: string
-#  onFailure:
-#    - type: string
+            ROOT_FOLDER: "dynamic-environments"
