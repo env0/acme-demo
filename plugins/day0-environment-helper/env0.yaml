@@ -6,7 +6,9 @@ deploy:
       after:
         - name: Scan for Folder Changes
           run: |
-            echo "Scanning... $ROOT_FOLDER"
-            ls -la $ROOT_FOLDER
+            echo "Scanning... $($TF_VAR_root_folder)"
+            ls -la $TF_VAR_root_folder
+            echo "test"
+            ls -la $ENV0_ROOT_DIR/dynamic-environments
           env:
-            ROOT_FOLDER: "$ENV0_ROOT_DIR/dynamic-environments"
+            TF_VAR_root_folder: "$ENV0_ROOT_DIR/dynamic-environments"
