@@ -14,7 +14,8 @@
 DEBUG=1
 
 if [[ $DEBUG ]]; then
-  SOURCE_DIRECTORY=../../dynamic-environments
+  ENV0_ROOT_DIR="../.."
+  SOURCE_DIRECTORY="dynamic-environments"
   SOURCE_FILENAME=main.tf
 fi
 
@@ -25,12 +26,55 @@ fi
 
 echo "scanning $SOURCE_DIRECTORY for $SOURCE_FILENAME"
 
-MAIN_LIST=($(find $SOURCE_DIRECTORY -iname "$SOURCE_FILENAME"))
+MAIN_LIST=($(find $ENV0_ROOT_DIR/$SOURCE_DIRECTORY -iname "$SOURCE_FILENAME"))
 
 echo "Results:"
 echo ${MAIN_LIST[@]}
 
+project_name=$SOURCE_DIRECTORY     # we'll use the SOURCE_DIRECTORY
+revision=$ENV0_DEPLOYMENT_REVISION # or $ENV0_PR_SOURCE_BRANCH
+#path=""                            # we calculate based on where the main.tf resides
+#key=""                             # name of the environment, for now same as the $path
+
+if [[ -e temp.json ]]; then
+  rm temp.json
+fi
+
 # split and populate
+for workspace in ${MAIN_LIST[@]}; do
+  # reference: https://wiki.bash-hackers.org/syntax/pe#substring_removal
+  subpath=${workspace##*"$ENV0_ROOT_DIR/"}
+  echo "A:$subpath"
+  path=${subpath%"/$SOURCE_FILENAME"}
+  echo "C:$path"
 
-# create tfvars for tfprovider
+  jq -n --arg key "$path" --arg path "$path" --arg project_name "$project_name" --arg revision "$revision" '{ ($key):[{"project_name": $project_name, "path": $path, "revision": $revision}]}' >> temp.json
+done
 
+jq -s '{"environments":.}' temp.json > environments.auto.tfvars.json
+
+
+# goal
+
+# {
+#   "environments": [
+#     {
+#       "dev-svc": [
+#         {
+#           "path": "dynamic-environments/dev-svc",
+#           "project_id": "ccba5035-0b8d-4989-8a7a-f20b93801074",
+#           "project_name": "ccba5035-0b8d-4989-8a7a-f20b93801074",
+#           "revision": "ccba5035-0b8d-4989-8a7a-f20b93801074"
+#         }
+#       ],
+#       "dev-svc2": [
+#         {
+#           "path": "dynamic-environments/dev-svc2",
+#           "project_id": "ccba5035-0b8d-4989-8a7a-f20b93801074",
+#           "project_name": "ccba5035-0b8d-4989-8a7a-f20b93801074",
+#           "revision": "ccba5035-0b8d-4989-8a7a-f20b93801074"
+#         }
+#       ]
+#     }
+#   ]
+# }

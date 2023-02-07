@@ -35,14 +35,12 @@ locals {
       project_name      = local.project_name
       path              = "dynamic-environments/dev-svc"
       revision          = local.revision
-      is_remote_backend = true
     }
     dev-svc2 = {
       project_id        = local.project_id
       project_name      = local.project_name
       path              = "dynamic-environments/dev-svc2"
       revision          = local.revision
-      is_remote_backend = true
     }
   }
 }

@@ -15,7 +15,7 @@ variable "repository" {
 variable "environments" {
   type = map(
     object({
-      project_id = string
+      project_name = string
       path       = string
       revision   = string
       //force_destroy = bool
