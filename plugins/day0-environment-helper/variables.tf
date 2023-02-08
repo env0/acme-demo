@@ -16,8 +16,8 @@ variable "environments" {
   type = map(
     object({
       project_name = string
-      path       = string
-      revision   = string
+      path         = string
+      revision     = string
       //force_destroy = bool
     })
   )
