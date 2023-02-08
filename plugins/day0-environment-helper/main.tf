@@ -24,6 +24,8 @@ resource "env0_environment" "dynamic_environment" {
     revision               = each.value.revision
   }
 
+  // ignoring template settings mainly because revision is changing
+  // with each PR - so ignore it after the first deployment.
   lifecycle {
     ignore_changes = [
       without_template_settings
