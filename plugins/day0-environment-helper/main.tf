@@ -15,6 +15,7 @@ resource "env0_environment" "dynamic_environment" {
   deploy_on_push                   = true
   run_plan_on_pull_requests        = true
   is_remote_backend                = true
+  approve_plan_automatically       = false
 
   without_template_settings {
     repository             = var.repository
