@@ -11,16 +11,15 @@
 # SOURCE_DIRECTORY - the starting directory to scan for main.tf
 # SOURCE_FILENAME - the filename to search for e.g. 'main.tf'
 
-DEBUG=1
+#DEBUG=1
+SOURCE_DIRECTORY="dynamic-environments"
+SOURCE_FILENAME=main.tf
 
 if [[ $DEBUG ]]; then
   ENV0_ROOT_DIR="../.."
-  SOURCE_DIRECTORY="dynamic-environments"
-  SOURCE_FILENAME=main.tf
 fi
 
 ### SETTINGS
-
 
 # create a list of main.tf
 
@@ -45,9 +44,8 @@ echo "environments = {" > envs.auto.tfvars
 for workspace in ${MAIN_LIST[@]}; do
   # reference: https://wiki.bash-hackers.org/syntax/pe#substring_removal
   subpath=${workspace##*"$ENV0_ROOT_DIR/"}
-  echo "A:$subpath"
   path=${subpath%"/$SOURCE_FILENAME"}
-  echo "C:$path"
+  echo "detected environment path:$path"
 
   echo "\"$path\" = {" >> envs.auto.tfvars
   echo " project_name = \"$project_name\"" >> envs.auto.tfvars
