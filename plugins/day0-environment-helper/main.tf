@@ -1,5 +1,5 @@
 data "env0_project" "project" {
-  for_each = local.environments
+  for_each = var.environments
   name     = each.value.project_name
 }
 
