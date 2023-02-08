@@ -5,4 +5,4 @@ deploy:
     setupVariables:
       after:
         - name: Scan for Folder Changes
-          run: echo "Hello" #./day0helper.sh
+          run: ./day0helper.sh
