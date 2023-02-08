@@ -4,7 +4,7 @@ data "env0_project" "project" {
 }
 
 resource "env0_environment" "dynamic_environment" {
-  for_each   = local.environments
+  for_each   = var.environments
   name       = each.key
   project_id = data.env0_project.project[each.key].id
   workspace  = "dynamic-environment-${each.key}"
