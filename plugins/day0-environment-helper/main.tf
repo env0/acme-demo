@@ -7,7 +7,7 @@ resource "env0_environment" "dynamic_environment" {
   for_each   = var.environments
   name       = each.key
   project_id = data.env0_project.project[each.key].id
-  workspace  = "dynamic-environment-${each.key}"
+  workspace  = "dynamic-environment-${replace(each.key, "/", "-")}"
 
   //force_destroy = each.value.force_destroy
   force_destroy                    = true
