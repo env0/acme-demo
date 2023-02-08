@@ -23,6 +23,14 @@ resource "env0_environment" "dynamic_environment" {
     github_installation_id = 11551359
     revision               = each.value.revision
   }
+
+  lifecycle {
+    ignore_changes = [
+      without_template_settings {
+        revision
+      }
+    ]
+  }
 }
 
 locals {
