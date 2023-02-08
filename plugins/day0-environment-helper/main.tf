@@ -24,11 +24,11 @@ resource "env0_environment" "dynamic_environment" {
     revision               = each.value.revision
   }
 
-  # lifecycle {
-  #   ignore_changes = [
-  #     without_template_settings.revision
-  #   ]
-  # }
+  lifecycle {
+    ignore_changes = [
+      without_template_settings
+    ]
+  }
 }
 
 locals {
