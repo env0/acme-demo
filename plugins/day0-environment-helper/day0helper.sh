@@ -40,6 +40,7 @@ if [[ -e temp.json ]]; then
   rm temp.json
 fi
 
+echo "environments = {" > envs.auto.tfvars
 # split and populate
 for workspace in ${MAIN_LIST[@]}; do
   # reference: https://wiki.bash-hackers.org/syntax/pe#substring_removal
@@ -48,10 +49,16 @@ for workspace in ${MAIN_LIST[@]}; do
   path=${subpath%"/$SOURCE_FILENAME"}
   echo "C:$path"
 
-  jq -n --arg key "$path" --arg path "$path" --arg project_name "$project_name" --arg revision "$revision" '{ ($key):[{"project_name": $project_name, "path": $path, "revision": $revision}]}' >> temp.json
+  echo "\"$path\" = {" >> envs.auto.tfvars
+  echo " project_name = \"$project_name\"" >> envs.auto.tfvars
+  echo " path = \"$path\"" >> envs.auto.tfvars
+  echo " revision = \"$revision\"" >> envs.auto.tfvars
+  echo "}" >> envs.auto.tfvars
+  #jq -n --arg key "$path" --arg path "$path" --arg project_name "$project_name" --arg revision "$revision" '{ ($key):[{"project_name": $project_name, "path": $path, "revision": $revision}]}' >> temp.json
 done
+echo "}" >> envs.auto.tfvars
 
-jq -s '{"environments":.}' temp.json > environments.auto.tfvars.json
+#jq -s '{"environments":.}' temp.json > environments.auto.tfvars.json
 
 
 # goal

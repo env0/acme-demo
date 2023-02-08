@@ -31,16 +31,16 @@ locals {
   project_name = "dynamic-environments"
   environments = {
     dev-svc = {
-      project_id        = local.project_id
-      project_name      = local.project_name
-      path              = "dynamic-environments/dev-svc"
-      revision          = local.revision
+      project_id   = local.project_id
+      project_name = local.project_name
+      path         = "dynamic-environments/dev-svc"
+      revision     = local.revision
     }
     dev-svc2 = {
-      project_id        = local.project_id
-      project_name      = local.project_name
-      path              = "dynamic-environments/dev-svc2"
-      revision          = local.revision
+      project_id   = local.project_id
+      project_name = local.project_name
+      path         = "dynamic-environments/dev-svc2"
+      revision     = local.revision
     }
   }
 }
