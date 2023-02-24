@@ -87,4 +87,4 @@ for ((i = 0; i < LENGTH; i++)); do
   fi
 done
 
-cat $ENV0_ENV
+echo $ENV0_ENV
