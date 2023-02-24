@@ -63,7 +63,6 @@ KEYS=($(jq -rc 'keys | .[]' env0.env-vars.json))
 VALUES=($(jq -c '.[]' env0.env-vars.json))
 LENGTH=$(jq 'length' env0.env-vars.json)
 
-echo $LENGTH
 # write to ENV0_ENV
 # for each variable in env0.env-vars.json 
 for ((i = 0; i < LENGTH; i++)); do
@@ -92,7 +91,3 @@ for ((i = 0; i < LENGTH; i++)); do
     echo "${KEYS[i]}=$SOURCE_OUTPUT_VALUE" >> $ENV0_ENV
   fi
 done
-
-# cat $ENV0_ENV
-# echo $ENV0_ENV
-# env
