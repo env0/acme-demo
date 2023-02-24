@@ -5,3 +5,6 @@ deploy:
     setupVariables:
       after:
         - ./importVariables.sh
+    terraformInit:
+      before:
+        - env
