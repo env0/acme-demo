@@ -83,6 +83,7 @@ for ((i = 0; i < LENGTH; i++)); do
 
     # fetch value from environment 
     SOURCE_OUTPUT_VALUE=$(jq ".[] | select(.name==\"$SOURCE_OUTPUT_NAME\") | .value" $SOURCE_ENV0_ENVIRONMENT_ID.env.json)
+    echo "${KEYS[i]}=$SOURCE_OUTPUT_VALUE"
     echo "${KEYS[i]}=$SOURCE_OUTPUT_VALUE" >> $ENV0_ENV
   fi
 done
