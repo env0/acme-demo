@@ -82,7 +82,7 @@ for ((i = 0; i < LENGTH; i++)); do
     fi
 
     # fetch value from environment 
-    SOURCE_OUTPUT_VALUE=$(jq -rc".[] | select(.name==\"$SOURCE_OUTPUT_NAME\") | .value" $SOURCE_ENV0_ENVIRONMENT_ID.env.json)
+    SOURCE_OUTPUT_VALUE=$(jq -r ".[] | select(.name==\"$SOURCE_OUTPUT_NAME\") | .value" $SOURCE_ENV0_ENVIRONMENT_ID.env.json)
     echo "${KEYS[i]}=$SOURCE_OUTPUT_VALUE"
     # unset ${KEYS[i]}
     echo "${KEYS[i]}=$SOURCE_OUTPUT_VALUE" >> $ENV0_ENV
