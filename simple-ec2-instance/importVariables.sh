@@ -78,7 +78,7 @@ for ((i = 0; i < LENGTH; i++)); do
 
     # fetch logs from environment
     if [[ ! -e $SOURCE_ENV0_ENVIRONMENT_ID.env.json ]]; then
-      curl --request GET \
+      curl -s --request GET \
         --url "https://api.env0.com/configuration?organizationId=$ENV0_ORGANIZATION_ID&environmentId=$SOURCE_ENV0_ENVIRONMENT_ID" \
         --header 'accept: application/json' \
         -u $ENV0_API_KEY:$ENV0_API_SECRET \
