@@ -1,4 +1,4 @@
-# Day 0 Environemnt Helper
+# Day 0 Environment Helper
 
 This is a demonstration of how to setup env0 to automatically scan a folder for changes, and using the env0 TF provider to create the env0 environment resource per folder.
 
@@ -13,6 +13,8 @@ In my example, I set the variables with the following values:
 The script will use `find` to look for `main.tf` in the `dynamic-environments` folder.
 
 My git repo is structured like so:
+
+```
 .
 ├── README.md
 ├── dynamic-environments
@@ -28,7 +30,7 @@ My git repo is structured like so:
     ├── outputs.tf
     ├── provider.tf
     └── variables.tf
-
+```
 ## Adding a new env0 environment
 Simply create a PR that adds a new folder to the dynamic-environments folder with at least a main.tf.  The script will detect the folder and create an env0 Environment based on that main.tf
 
