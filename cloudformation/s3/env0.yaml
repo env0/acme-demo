@@ -10,6 +10,7 @@ deploy:
         - sed -i 's/!!!REPLACEME/'"$USER"'/g' test.json
         - cat test.json
         - echo "ENV0_CF_PARAM_Comment=KMAC" >> $ENV0_ENV
+        - cat env0CfParameters.json
     cfOutput:
       after:
         - echo "MY_BUCKET_NAME=$(awsv2 cloudformation describe-stacks --stack-name $ENV0_WORKSPACE_NAME | jq -r '.Stacks[0].Outputs[0].OutputValue')" >> $ENV0_ENV
