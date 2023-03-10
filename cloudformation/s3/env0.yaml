@@ -6,9 +6,9 @@ deploy:
       after:
         - echo "Replacing !!!USER!!! with $USER in index.html"
         - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
-        - cat $ENV0_CF_PARAMETERS_FILE
-        - sed -i 's/!!!REPLACEME/'"$USER"'/g' $ENV0_CF_PARAMETERS_FILE
-        - cat $ENV0_CF_PARAMETERS_FILE 
+        - cat test.json
+        - sed -i 's/!!!REPLACEME/'"$USER"'/g' test.json
+        - cat test.json
     cfOutput:
       after:
         - echo "MY_BUCKET_NAME=$(awsv2 cloudformation describe-stacks --stack-name $ENV0_WORKSPACE_NAME | jq -r '.Stacks[0].Outputs[0].OutputValue')" >> $ENV0_ENV
