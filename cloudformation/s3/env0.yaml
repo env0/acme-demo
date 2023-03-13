@@ -11,3 +11,10 @@ deploy:
         - echo "MY_BUCKET_NAME=$(awsv2 cloudformation describe-stacks --stack-name $ENV0_WORKSPACE_NAME | jq -r '.Stacks[0].Outputs[0].OutputValue')" >> $ENV0_ENV
         - aws s3 cp index.html s3://$MY_BUCKET_NAME/index.html
         - aws s3api put-object-acl --bucket $MY_BUCKET_NAME --key index.html --acl public-read
+destroy:
+  steps:
+    setupVariables:
+      after:
+        - if [ -z "$AWS_DEFAULT_REGION" ]; then echo "AWS_DEFAULT_REGION must be provided" 1>&2 && exit 1; fi
+        - echo emptying out the bucket before deleting the stack
+        - awsv2 s3 rm s3://$(aws cloudformation describe-stacks --output text --query "Stacks[].Outputs[?OutputKey=='BucketName'].OutputValue" --stack-name ${ENV0_WORKSPACE_NAME})/ --recursive
