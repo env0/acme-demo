@@ -9,7 +9,7 @@ deploy:
         - cat test.json
         - sed -i 's/REPLACEME/'"Arnold test"'/g' test.json
         - cat test.json
-        #- echo "ENV0_CF_PARAM_Comment=KMAC" >> $ENV0_ENV
+        - echo "ENV0_CF_PARAM_Comment=KMAC" >> $ENV0_ENV
         - cat env0CfParameters.json
     cfOutput:
       after:
