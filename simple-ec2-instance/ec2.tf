@@ -16,6 +16,7 @@ module "acme-ec2" {
     Owner     = "acme demo org"
     Test      = "new tag"
     Demo      = "Mar 29"
+    NewTag    = "10:38 AM"
   }
 }
 
