@@ -1,7 +1,9 @@
 version: 1
 
 deploy:
-  steps:
+  steps: &OIDC
     setupVariables:
       after:
         - echo "ARM_OIDC_TOKEN=$ENV0_OIDC_TOKEN" >> $ENV0_ENV
+destroy:
+  steps: *OIDC  # make sure we also set the token for destroys.
