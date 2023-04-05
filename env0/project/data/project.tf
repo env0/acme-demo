@@ -8,6 +8,7 @@ terraform {
 }
 
 provider "env0" {
+  organization_id = "bde19c6d-d0dc-4b11-a951-8f43fe49db92"
 }
 
 data "env0_project" "myproject" {
