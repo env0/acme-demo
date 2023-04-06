@@ -23,7 +23,7 @@ locals {
 # Generate an AWS provider block
 generate "provider" {
   path      = "provider.tf"
-  if_exists = "overwrite_terragrunt"
+  if_exists = "overwrite"
   contents  = <<EOF
 terraform {
   required_version = "~>1.3.0"
