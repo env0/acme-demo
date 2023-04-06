@@ -25,6 +25,9 @@ generate "provider" {
   path      = "provider.tf"
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
+terraform {
+  required_version = "~>1.3.0"
+}
 provider "aws" {
   region = "${local.aws_region}"
   # Only these AWS Account IDs may be operated on by this template
