@@ -14,6 +14,8 @@
 terraform {
   #source = "${local.base_source_url}?ref=v0.7.0"
   source = "${local.base_source_url}"
+
+  required_version = "~>1.3.0"
 }
 
 
