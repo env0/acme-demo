@@ -37,7 +37,7 @@ include "envcommon" {
 dependency "backend" {
   config_path = "../backend"
 
-  mock_outputs_allowed_terraform_commands = ["validate", "refresh", "init", "plan"]
+  mock_outputs_allowed_terraform_commands = ["validate", "refresh", "init", "plan", "workspace"]
 
   mock_outputs = {
     random_string = "my_random_string"
