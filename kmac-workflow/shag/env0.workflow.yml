@@ -1,0 +1,19 @@
+environments:
+  vpc:
+    name: "KMac SHAG - VPC"
+    templateName: "KMac SHAG - VPC"
+  eks:
+    name: "KMac SHAG - EKS"
+    templateName: "KMac SHAG - EKS"
+    needs: 
+      - vpc
+  efs:
+    name: "KMac SHAG - EFS"
+    templateName: "KMac SHAG - EFS"
+    needs:
+      - eks
+  csi-driver:
+    name: "KMac SHAG - CSI Driver"
+    templateName: "KMac SHAG - CSI Driver"
+    needs:
+      - efs
