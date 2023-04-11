@@ -7,3 +7,9 @@ environments:
     templateName: "KMac EKS"
     needs: 
       - vpc
+  rps-app:
+    name: "rps app"
+    templateName: "k8s - rps app"
+    needs:
+      - eks
+      
