@@ -1,0 +1,9 @@
+environments:
+  vpc:
+    name: "KMac VPC"
+    templateName: "KMac VPC"
+  eks:
+    name: "KMac EKS"
+    templateName: "KMac EKS"
+    needs: 
+      - vpc
