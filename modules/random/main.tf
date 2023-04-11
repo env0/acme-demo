@@ -22,7 +22,7 @@ resource "random_string" "random" {
     refresh_token = var.refresh_token
   }
   length  = var.length
-  upper   = true
+  upper   = false
   special = false
 }
 
