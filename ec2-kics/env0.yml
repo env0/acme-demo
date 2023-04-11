@@ -1,0 +1,19 @@
+version: 2
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - name: KiCS Install
+          run: | 
+            sudo apk add go
+            git clone <https://github.com/Checkmarx/kics.git>
+            cd kics; go build -o ./bin/kics cmd/console/main.go
+            cd kics; mv ./bin/kics /opt
+            kics version
+    terraformPlan:
+      after:
+        - name: KiCS Scan
+          run: |
+            terraform show -json .tf-plan > tfplan.json
+            kics scan -p tfplan.json
