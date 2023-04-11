@@ -7,7 +7,7 @@ deploy:
         - name: KiCS Install
           run: | 
             sudo apk add go
-            git clone <https://github.com/Checkmarx/kics.git>
+            git clone https://github.com/Checkmarx/kics.git
             cd kics; go build -o ./bin/kics cmd/console/main.go
             cd kics; mv ./bin/kics /opt
             kics version
