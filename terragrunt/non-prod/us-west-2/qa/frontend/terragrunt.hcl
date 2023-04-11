@@ -33,3 +33,17 @@ include "envcommon" {
 # ---------------------------------------------------------------------------------------------------------------------
 # We don't need to override any of the common parameters for this environment, so we don't specify any inputs.
 # ---------------------------------------------------------------------------------------------------------------------
+
+dependency "backend" {
+  config_path = "../backend"
+
+  mock_outputs_allowed_terraform_commands = ["validate", "refresh", "init", "plan"]
+
+  mock_outputs = {
+    random_string = "my_random_string"
+  }
+}
+
+inputs = {
+  bucketname = dependency.backend.outputs.random_string
+}
