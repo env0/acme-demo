@@ -12,6 +12,4 @@ deploy:
       after:
         - name: KiCS Scan
           run: |
-            export
-            terraform show -json .tf-plan > tfplan.json
-            ./kics scan -p "tfplan.json" --no-progress -q "assets/queries"
+            ./kics scan -p $ENV0_TF_PLAN_JSON --no-progress -q "assets/queries"
