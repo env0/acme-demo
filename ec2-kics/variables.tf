@@ -10,7 +10,7 @@ variable "instance_count" {
 
 variable "instance_type" {
   type    = string
-  default = "t3a.medium"
+  default = "t3a.large"
 }
 
 variable "ssh_cidr_block" {
