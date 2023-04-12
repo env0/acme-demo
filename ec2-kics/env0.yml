@@ -15,4 +15,5 @@ deploy:
         - name: KiCS Scan
           run: |
             terraform show -json .tf-plan > tfplan.json
+            ls -la
 #            kics scan -p "tfplan.json"

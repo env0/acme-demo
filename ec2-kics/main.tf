@@ -57,7 +57,7 @@ data "aws_subnet_ids" "default" {
 }
 
 resource "aws_security_group" "allow_ssh" {
-  name        = "my_security_group"
+  name        = "kics_security_group"
   description = "Allow SSH Trafic"
 
   ingress {
