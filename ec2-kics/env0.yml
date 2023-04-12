@@ -5,15 +5,19 @@ deploy:
       after:
         - name: KiCS Install
           run: | 
-            ls -la
-            # if [[ ! -e "kics" ]]; then 
+            aws s3 cp s3://acme-demo-tfstate-dev/binaries/kics /opt/kics
+            ls -la $ENV0_ROOT_DIR
+            if [[ ! -e "$ENV0_ROOT_DIR/kics-source" ]]; then 
+              cd $ENV0_ROOT_DIR; git clone https://github.com/Checkmarx/kics.git kics-source
+            fi
+            # 
             #   sudo apk add go
             #   git clone https://github.com/Checkmarx/kics.git kics-source
             #   cd kics-source; go build -o ../kics cmd/console/main.go
             #   cp kics /opt
             # fi
             #cp ./kics /opt
-            ./kics version
+            kics version
     terraformPlan:
       after:
         - name: KiCS Scan
