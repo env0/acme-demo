@@ -55,8 +55,14 @@ data "aws_subnet_ids" "default" {
   vpc_id = data.aws_vpc.default.id
 }
 
+resource "random_string" "random" {
+  length  = 5
+  upper   = false
+  special = false
+}
+
 resource "aws_security_group" "allow_ssh" {
-  name        = "my_security_group-spectral-demo"
+  name        = "my_security_group_${random_string.random.id}"
   description = "Allow SSH Trafic"
 
   ingress {
