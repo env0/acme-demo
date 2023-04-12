@@ -5,6 +5,7 @@ deploy:
       after:
         - name: KiCS Install
           run: | 
+            ls -la
             # if [[ ! -e "kics" ]]; then 
             #   sudo apk add go
             #   git clone https://github.com/Checkmarx/kics.git kics-source
