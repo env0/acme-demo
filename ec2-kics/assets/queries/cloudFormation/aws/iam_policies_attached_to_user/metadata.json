@@ -1,0 +1,11 @@
+{
+  "id": "edc95c10-7366-4f30-9b4b-f995c84eceb5",
+  "queryName": "IAM Policies Attached To User",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "IAM policies should be attached only to groups or roles",
+  "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html",
+  "platform": "CloudFormation",
+  "descriptionID": "c1857bae",
+  "cloudProvider": "aws"
+}

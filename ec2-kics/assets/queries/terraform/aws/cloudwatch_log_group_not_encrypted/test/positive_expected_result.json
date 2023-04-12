@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "CloudWatch Log Group Without KMS",
+    "severity": "MEDIUM",
+    "line": 1
+  }
+]
