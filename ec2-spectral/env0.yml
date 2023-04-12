@@ -7,4 +7,4 @@ deploy:
         - curl -L "https://get.spectralops.io/latest/x/sh?key=$SPECTRAL_KEY" | sh
     terraformPlan:
       after:
-        - SPECTRAL_DSN=https://$SPECTRAL_KEY@get.spectralops.io $HOME/.spectral/spectral scan  --include-tags base,audit,iac
+        - SPECTRAL_DSN=https://$SPECTRAL_KEY@get.spectralops.io $HOME/.spectral/spectral scan  --include-tags base,audit,iac --exclude-tags $EXCLUDE_TAGS
