@@ -57,7 +57,7 @@ data "aws_subnet_ids" "default" {
 }
 
 resource "aws_security_group" "allow_ssh" {
-  name        = "my_security_group"
+  name        = "my_security_group-spectral-demo"
   description = "Allow SSH Trafic"
 
   ingress {
