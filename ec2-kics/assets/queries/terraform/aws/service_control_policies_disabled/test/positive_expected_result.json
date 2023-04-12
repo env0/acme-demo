@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Service Control Policies Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive.tf"
+  }
+]

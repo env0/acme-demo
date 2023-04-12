@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "Memory Requests Not Defined",
+    "severity": "MEDIUM",
+    "line": 13,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Memory Requests Not Defined",
+    "severity": "MEDIUM",
+    "line": 25,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Memory Requests Not Defined",
+    "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Memory Requests Not Defined",
+    "severity": "MEDIUM",
+    "line": 59,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Memory Requests Not Defined",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive2.yaml"
+  }
+]

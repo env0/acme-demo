@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Redshift Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 9
+  },
+  {
+    "queryName": "Redshift Cluster Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 13
+  }
+]

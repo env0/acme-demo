@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Log Profile Incorrect Category",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "Log Profile Incorrect Category",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive2.json"
+  }
+]

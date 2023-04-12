@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "SNS Topic Publicity Has Allow and NotAction Simultaneously",
+    "severity": "MEDIUM",
+    "line": 12,
+    "filename": "positive2.tf"
+  }
+]

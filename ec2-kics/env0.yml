@@ -1,0 +1,15 @@
+version: 2
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - name: KiCS Install
+          run: | 
+            awsv2 s3 cp s3://acme-demo-tfstate-dev/binaries/kics kics --no-progress
+            chmod +x ./kics
+            ./kics version
+    terraformPlan:
+      after:
+        - name: KiCS Scan
+          run: |
+            ./kics scan -p $ENV0_TF_PLAN_JSON --no-progress -q "assets/queries"
