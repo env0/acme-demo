@@ -4,7 +4,7 @@ deploy:
   steps:
     setupVariables:
       after:
-        - curl -L 'https://get.spectralops.io/latest/x/sh?key=spu-a3fe6c1eb6c9495f94bd8c11000a9f6e' | sh
+        - curl -L "https://get.spectralops.io/latest/x/sh?key=$SPECTRAL_KEY" | sh
     terraformPlan:
       after:
-        - SPECTRAL_DSN=https://spu-a3fe6c1eb6c9495f94bd8c11000a9f6e@get.spectralops.io $HOME/.spectral/spectral scan  --include-tags base,audit,iac
+        - SPECTRAL_DSN=https://$SPECTRAL_KEY@get.spectralops.io $HOME/.spectral/spectral scan  --include-tags base,audit,iac
