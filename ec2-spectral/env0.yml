@@ -1,10 +1,10 @@
-version: 1
+version: 2
 
 deploy:
   steps:
-    setupVariables:
-      after:
-        - curl -L "https://get.spectralops.io/latest/x/sh?key=$SPECTRAL_KEY" | sh
     terraformPlan:
       after:
-        - SPECTRAL_DSN=https://$SPECTRAL_KEY@get.spectralops.io $HOME/.spectral/spectral scan  --include-tags iac --exclude-tags $EXCLUDE_TAGS
+        - name: Install Spectral CLI
+          run: curl -L "https://get.spectralops.io/latest/x/sh?key=$SPECTRAL_KEY" | sh
+        - name: Execute Spectral Scan
+          run: SPECTRAL_DSN=https://$SPECTRAL_KEY@get.spectralops.io $HOME/.spectral/spectral scan  --include-tags iac --exclude-tags $EXCLUDE_TAGS
