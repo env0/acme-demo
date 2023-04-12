@@ -16,4 +16,4 @@ deploy:
           run: |
             terraform show -json .tf-plan > tfplan.json
             ls -la
-            kics scan -p "tfplan.json" -q "/tmp/88a77674-7a2a-4445-8954-68e8d235ee3e/ec2-kics/kics/assets/queries"
+            kics scan -p "tfplan.json" --minimal-ui -q "/tmp/88a77674-7a2a-4445-8954-68e8d235ee3e/ec2-kics/kics/assets/queries"
