@@ -1,4 +1,5 @@
 version: 2
+
 deploy:
   steps:
     setupVariables:
@@ -15,4 +16,4 @@ deploy:
         - name: KiCS Scan
           run: |
             terraform show -json .tf-plan > tfplan.json
-            kics scan -p /.env0workdir/.tfplan.json 
+            kics scan -p "tfplan.json"
