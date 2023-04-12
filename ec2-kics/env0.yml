@@ -11,6 +11,7 @@ deploy:
               cd kics-source; go build -o ../kics cmd/console/main.go
               cp kics /opt
             fi
+            cp ./kics /opt
             kics version
     terraformPlan:
       after:
