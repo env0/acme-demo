@@ -38,16 +38,3 @@ locals {
 # These are the variables we have to pass in to use the module. This defines the parameters that are common across all
 # environments.
 # ---------------------------------------------------------------------------------------------------------------------
-dependency "backend" {
-  config_path = "../backend"
-
-  mock_outputs_allowed_terraform_commands = ["validate", "refresh", "init", "plan", "workspace"]
-
-  mock_outputs = {
-    random_string = "my_random_string"
-  }
-}
-
-inputs = {
-  bucketname = "acme-${dependency.backend.outputs.random_string}"
-}
