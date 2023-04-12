@@ -5,8 +5,8 @@ deploy:
       after:
         - name: KiCS Install
           run: | 
-            aws s3 cp s3://acme-demo-tfstate-dev/binaries/kics kics
-            # ls -la $ENV0_ROOT_DIR
+            awsv2 s3 cp s3://acme-demo-tfstate-dev/binaries/kics kics --no-progress
+            ls -la
             # if [[ ! -e "$ENV0_ROOT_DIR/kics-source" ]]; then 
             #   cd $ENV0_ROOT_DIR; git clone https://github.com/Checkmarx/kics.git kics-source
             # fi
@@ -25,4 +25,4 @@ deploy:
           run: |
             terraform show -json .tf-plan > tfplan.json
             ls -la
-            kics scan -p "tfplan.json" --no-progress -q "$ENV0_TEMPLATE_DIR/kics-source/assets/queries"
+            ./kics scan -p "tfplan.json" --no-progress -q "assets/queries"

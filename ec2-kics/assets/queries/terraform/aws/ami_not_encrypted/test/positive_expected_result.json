@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "AMI Not Encrypted",
+    "severity": "HIGH",
+    "line": 29,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "AMI Not Encrypted",
+    "severity": "HIGH",
+    "line": 25,
+    "fileName": "positive.tf"
+  },
+  {
+    "queryName": "AMI Not Encrypted",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive.tf"
+  }
+]

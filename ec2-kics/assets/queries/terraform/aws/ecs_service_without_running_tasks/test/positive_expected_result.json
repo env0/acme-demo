@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "ECS Service Without Running Tasks",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive.tf"
+  }
+]
