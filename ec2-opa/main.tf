@@ -7,7 +7,6 @@ module "acme-ec2" {
 
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
-  key_name               = "AWay"
   vpc_security_group_ids = [module.web_server_sg.security_group_id, aws_security_group.allow_ssh.id]
   subnet_ids             = data.aws_subnet_ids.default.ids
 
@@ -56,8 +55,14 @@ data "aws_subnet_ids" "default" {
   vpc_id = data.aws_vpc.default.id
 }
 
+resource "random_string" "random" {
+  length  = 5
+  upper   = false
+  special = false
+}
+
 resource "aws_security_group" "allow_ssh" {
-  name        = "my_security_group"
+  name        = "my_security_group_${random_string.random.id}"
   description = "Allow SSH Trafic"
 
   ingress {
