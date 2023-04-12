@@ -6,23 +6,12 @@ deploy:
         - name: KiCS Install
           run: | 
             awsv2 s3 cp s3://acme-demo-tfstate-dev/binaries/kics kics --no-progress
-            ls -la
-            # if [[ ! -e "$ENV0_ROOT_DIR/kics-source" ]]; then 
-            #   cd $ENV0_ROOT_DIR; git clone https://github.com/Checkmarx/kics.git kics-source
-            # fi
-            # 
-            #   sudo apk add go
-            #   git clone https://github.com/Checkmarx/kics.git kics-source
-            #   cd kics-source; go build -o ../kics cmd/console/main.go
-            #   cp kics /opt
-            # fi
-            #cp ./kics /opt
             chmod +x ./kics
             ./kics version
     terraformPlan:
       after:
         - name: KiCS Scan
           run: |
+            export
             terraform show -json .tf-plan > tfplan.json
-            ls -la
             ./kics scan -p "tfplan.json" --no-progress -q "assets/queries"
