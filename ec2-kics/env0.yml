@@ -5,18 +5,18 @@ deploy:
       after:
         - name: KiCS Install
           run: | 
-            if [[ ! -e "kics" ]]; then 
-              sudo apk add go
-              git clone https://github.com/Checkmarx/kics.git kics-source
-              cd kics-source; go build -o ../kics cmd/console/main.go
-              cp kics /opt
-            fi
-            cp ./kics /opt
-            kics version
+            # if [[ ! -e "kics" ]]; then 
+            #   sudo apk add go
+            #   git clone https://github.com/Checkmarx/kics.git kics-source
+            #   cd kics-source; go build -o ../kics cmd/console/main.go
+            #   cp kics /opt
+            # fi
+            #cp ./kics /opt
+            ./kics version
     terraformPlan:
       after:
         - name: KiCS Scan
           run: |
             terraform show -json .tf-plan > tfplan.json
             ls -la
-            kics scan -p "tfplan.json" --no-progress -q "/tmp/88a77674-7a2a-4445-8954-68e8d235ee3e/ec2-kics/kics/assets/queries"
+            kics scan -p "tfplan.json" --no-progress -q "$ENV0_TEMPLATE_DIR/kics-source/assets/queries"
