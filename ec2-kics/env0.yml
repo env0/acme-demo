@@ -5,10 +5,14 @@ deploy:
       after:
         - name: KiCS Install
           run: | 
-            sudo apk add go
-            git clone https://github.com/Checkmarx/kics.git
-            cd kics; go build -o ./bin/kics cmd/console/main.go
-            cd kics; mv ./bin/kics /opt
+            if [[ -e "kics" ]]; then 
+              sudo apk add go
+              git clone https://github.com/Checkmarx/kics.git
+              cd kics; go build -o ./bin/kics cmd/console/main.go
+              #cd kics; cp ./bin/kics /opt
+              cp kics/bin/kics .
+            fi
+            cp kics /opt
             kics version
     terraformPlan:
       after:
