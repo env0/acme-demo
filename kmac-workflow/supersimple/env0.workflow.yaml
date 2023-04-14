@@ -2,9 +2,11 @@ environments:
   vpc:
     name: "VPC"
     templateName: "Random String"
+    revision: kmac-workflow-easy
   eks:
     name: "EKS"
     templateName: "ACME S3 Bucket"
+    revision: kmac-workflow-easy
     needs: 
       - vpc
   # rps-app:
