@@ -14,6 +14,12 @@ environments:
     templateName: "Pulumi s3"
     needs:
       - vpc
+  service:
+    name: "Service"
+    templateName: "kmac-simple-remote-backend"
+    needs:
+      - db
+      - eks
   # rps-app:
   #   name: "rps app"
   #   templateName: "k8s - rps app"
