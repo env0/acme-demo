@@ -9,6 +9,11 @@ environments:
     revision: kmac-workflow-easy
     needs: 
       - vpc
+  db:
+    name: "DB"
+    templateName: "Pulumi s3"
+    needs:
+      -vpc
   # rps-app:
   #   name: "rps app"
   #   templateName: "k8s - rps app"
