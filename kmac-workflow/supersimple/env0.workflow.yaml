@@ -1,0 +1,15 @@
+environments:
+  vpc:
+    name: "VPC"
+    templateName: "Random String"
+  eks:
+    name: "EKS"
+    templateName: "ACME S3 Bucket"
+    needs: 
+      - vpc
+  # rps-app:
+  #   name: "rps app"
+  #   templateName: "k8s - rps app"
+  #   needs:
+  #     - eks
+      
