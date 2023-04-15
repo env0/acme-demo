@@ -42,3 +42,4 @@ module "s3-bucket_object" {
   key          = "index.html"
   etag         = filemd5("index.html")
 }
+
