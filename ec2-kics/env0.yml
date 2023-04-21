@@ -13,3 +13,20 @@ deploy:
         - name: KiCS Scan
           run: |
             ./kics scan -p $ENV0_TF_PLAN_JSON --no-progress -q "assets/queries"
+# compiling on the go version:
+# version: 2
+# deploy:
+#   steps:
+#     setupVariables:
+#       after:
+#         - name: Compile KiCS
+#           run: | 
+#             sudo apk add go
+#             git clone https://github.com/Checkmarx/kics.git
+#             cd kics; go build -o ./bin/kics cmd/console/main.go
+#             cd kics; mv ./bin/kics /opt
+#             kics version
+#     terraformPlan:
+#       after:
+#         - name: KiCS Scan
+#           run: kics scan -p $ENV0_TF_PLAN_JSON --no-progress -q "$ENV0_TEMPLATE_DIR/kics/assets/queries"
