@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "IAM Policies Attached To User",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "IAM Policies Attached To User",
+    "severity": "MEDIUM",
+    "line": 18,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "IAM Policies Attached To User",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive3.tf"
+  }
+]

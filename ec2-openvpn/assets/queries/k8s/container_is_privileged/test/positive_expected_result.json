@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "Container Is Privileged",
+    "severity": "HIGH",
+    "line": 10,
+		"fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Container Is Privileged",
+    "severity": "HIGH",
+    "line": 23,
+		"fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Container Is Privileged",
+    "severity": "HIGH",
+    "line": 21,
+		"fileName": "positive2.yaml"
+  }
+]

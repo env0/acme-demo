@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Memcached Disabled",
+    "severity": "MEDIUM",
+    "line": 5
+  }
+]
