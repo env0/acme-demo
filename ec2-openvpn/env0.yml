@@ -2,7 +2,7 @@ version: 1
 deploy:
   steps:
     terraformInit:
-      before:
+      after:
         - echo "Installing OpenVPN"
         - sudo apk update
         - sudo apk add openvpn btrfs-progs e2fsprogs e2fsprogs-extra ip6tables iptables openssl shadow-uidmap xfsprogs xz openrc kmod linux-vanilla
