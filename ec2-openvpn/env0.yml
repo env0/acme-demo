@@ -4,10 +4,10 @@ deploy:
     terraformInit:
       before:
         - echo "Installing OpenVPN"
-        - apk update
-        - apk add openvpn btrfs-progs e2fsprogs e2fsprogs-extra ip6tables iptables openssl shadow-uidmap xfsprogs xz openrc kmod linux-vanilla
-        - apk add --update coreutils
-        - apk info -vv | grep -e '^linux-vanilla' | awk '{print $1}' | xargs -I{} sh -c 'apk fetch --quiet --stdout {} | tar -xz -C /lib/modules'
+        - sudo apk update
+        - sudo apk add openvpn btrfs-progs e2fsprogs e2fsprogs-extra ip6tables iptables openssl shadow-uidmap xfsprogs xz openrc kmod linux-vanilla
+        - sudo apk add --update coreutils
+        - sudo apk info -vv | grep -e '^linux-vanilla' | awk '{print $1}' | xargs -I{} sh -c 'apk fetch --quiet --stdout {} | tar -xz -C /lib/modules'
         - modprobe tun
         - find /lib/modules/ -iname 'tun.ko.gz'
         - insmod /lib/modules/3.6.9-1-ARCH/kernel/drivers/net/tun.ko.gz
