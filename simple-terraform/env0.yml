@@ -5,6 +5,8 @@ deploy:
     terraformInit:
       before:
         - ssh -V
+        - sudo apk add --update --no-cache openvpn
+        - openvpn 
     terraformPlan:
       before:
         - ls -la
