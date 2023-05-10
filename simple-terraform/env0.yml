@@ -6,7 +6,7 @@ deploy:
       before:
         - ssh -V
         - sudo apk add --update --no-cache openvpn
-        - openvpn 
+        - openvpn --version
     terraformPlan:
       before:
         - ls -la
