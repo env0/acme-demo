@@ -9,6 +9,7 @@ module "acme-ec2" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [module.web_server_sg.security_group_id, aws_security_group.allow_ssh.id]
   subnet_ids             = data.aws_subnet_ids.default.ids
+  tag                    = "kmac-demo-515"
 
   associate_public_ip_address = true
 
