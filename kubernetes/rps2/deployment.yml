@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rps
+  template:
+    metadata:
+      labels:
+        app: rps
+    spec:
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: rps-config
+          image: 'index.docker.io/away168/rps:1.0.17'
+          name: rps
+          ports:
+            - containerPort: 80
