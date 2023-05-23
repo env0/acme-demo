@@ -12,44 +12,26 @@ variable "length" {
   default = 5
 }
 
-variable "project_id" {
-  type = string
-}
-
 variable "env_name" {
   type    = string
   default = ""
 }
 
-variable "deployment_key" {
+variable "vpc_id" {
   type    = string
-  default = "000"
+  default = ""
 }
 
 module "infra" {
   source        = "../../modules/random"
   length        = var.length
-  refresh_token = "${var.deployment_key}_${var.env_name}"
+  refresh_token = var.vpc_id
 }
-
-resource "env0_configuration_variable" "infra_mid" {
-  name         = "${var.deployment_key}_${var.env_name}"
-  project_id   = var.project_id
-  value        = "${var.env_name}_${module.infra.random_string}"
-  is_read_only = true
-  type         = "terraform"
+  
+output "cluster_name" {
+  value = "cluster-${var.vpc_id}"
 }
-
-data "env0_configuration_variable" "infra_base" {
-  project_id = var.project_id
-  name       = "${var.deployment_key}_infra_base"
-}
-
-output "depends_on" {
-  value     = data.env0_configuration_variable.infra_base.value
-  sensitive = true
-}
-
-output "infra_name" {
-  value = "${var.env_name}_${module.infra.random_string}"
+  
+output "vpc_id" {
+  value = var.vpc_id
 }
