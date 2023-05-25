@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storagePrefix": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "env0demo" // TODO: Fill in parameter value
         },
         "storageSKU": {
             "value": "Standard_LRS"
