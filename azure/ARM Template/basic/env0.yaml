@@ -23,6 +23,7 @@ deploy:
             az deployment group create --name $ENV0_ENVIRONMENT_ID --resource-group $AZURE_DEFAULTS_GROUP --template-file azuredeploy.json --parameters $ARM_PARAMETERS
       after:
         - name: ARM Deployment Wait
+          run: |
             az deployment group wait --name $ENV0_ENVIRONMENT_ID --resource-group $AZURE_DEFAULTS_GROUP --created
 destroy:
   steps:
