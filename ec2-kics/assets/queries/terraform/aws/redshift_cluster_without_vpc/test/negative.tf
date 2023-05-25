@@ -6,8 +6,8 @@ resource "aws_redshift_cluster" "negative1" {
   node_type          = "dc1.large"
   cluster_type       = "single-node"
   logging {
-      enable = true
-      bucket_name = "nameOfAnExistingS3Bucket"
+    enable      = true
+    bucket_name = "nameOfAnExistingS3Bucket"
   }
   vpc_security_group_ids = [
     aws_security_group.redshift.id

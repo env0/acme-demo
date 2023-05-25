@@ -24,10 +24,10 @@ module "vpc" {
 }
 
 data "aws_ec2_instance_type_offerings" "supported_azs" {
-    filter {
-      name   = "instance-type"
-      values = [var.instance_type]
-    }
+  filter {
+    name   = "instance-type"
+    values = [var.instance_type]
+  }
 
-    location_type = "availability-zone"
+  location_type = "availability-zone"
 }

@@ -36,7 +36,7 @@ resource "aws_eks_cluster" "negative3" {
   role_arn = aws_iam_role.example.arn
 
   vpc_config {
-    security_group_ids = [ "aws_security_group.used_sg.id" ]
+    security_group_ids = ["aws_security_group.used_sg.id"]
   }
 }
 

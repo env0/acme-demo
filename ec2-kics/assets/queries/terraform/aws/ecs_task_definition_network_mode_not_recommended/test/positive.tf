@@ -1,5 +1,5 @@
 resource "aws_ecs_task_definition" "positive1" {
-  family                = "service"
+  family       = "service"
   network_mode = "none"
 
   volume {

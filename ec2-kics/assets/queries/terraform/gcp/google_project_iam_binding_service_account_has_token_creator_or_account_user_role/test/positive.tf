@@ -11,7 +11,7 @@ resource "google_project_iam_binding" "positive1" {
 resource "google_project_iam_binding" "positive2" {
   project = "your-project-id"
   role    = "roles/iam.serviceAccountTokenCreator"
-  member = "serviceAccount:my-other-app@appspot.gserviceacccount.com"
+  member  = "serviceAccount:my-other-app@appspot.gserviceacccount.com"
 }
 
 resource "google_project_iam_binding" "positive3" {
@@ -27,5 +27,5 @@ resource "google_project_iam_binding" "positive3" {
 resource "google_project_iam_binding" "positive4" {
   project = "your-project-id"
   role    = "roles/iam.serviceAccountUser"
-  member = "serviceAccount:my-other-app@appspot.gserviceacccount.com"
+  member  = "serviceAccount:my-other-app@appspot.gserviceacccount.com"
 }

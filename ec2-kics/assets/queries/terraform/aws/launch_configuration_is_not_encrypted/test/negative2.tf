@@ -1,5 +1,5 @@
 module "asg" {
-  source = "terraform-aws-modules/autoscaling/aws"
+  source  = "terraform-aws-modules/autoscaling/aws"
   version = "1.0.4"
 
   # Launch configuration
@@ -17,9 +17,9 @@ module "asg" {
       delete_on_termination = true
       encrypted             = true
     }
- ]
+  ]
 
-  root_block_device = [ 
+  root_block_device = [
     {
       volume_size = "50"
       volume_type = "gp2"

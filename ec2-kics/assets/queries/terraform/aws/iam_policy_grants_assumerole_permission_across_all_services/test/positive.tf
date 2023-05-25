@@ -60,7 +60,7 @@ resource "aws_iam_policy_attachment" "positive4" {
 
 //  Create a instance profile for the role.
 resource "aws_iam_instance_profile" "positive5" {
-  name  = "${var.name_tag_prefix}-openshift-instance-profile"
+  name = "${var.name_tag_prefix}-openshift-instance-profile"
   role = "aws_iam_role.openshift-instance-role.name"
 }
 

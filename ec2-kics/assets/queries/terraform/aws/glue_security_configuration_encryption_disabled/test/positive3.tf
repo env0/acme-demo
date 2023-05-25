@@ -4,7 +4,7 @@ resource "aws_glue_security_configuration" "positive2" {
   encryption_configuration {
     cloudwatch_encryption {
       cloudwatch_encryption_mode = "SSE-KMS"
-      kms_key_arn = data.aws_kms_key.example.arn
+      kms_key_arn                = data.aws_kms_key.example.arn
     }
 
     job_bookmarks_encryption {

@@ -7,6 +7,6 @@ resource "azurerm_app_service" "positive1" {
   site_config {
     dotnet_framework_version = "v4.0"
     scm_type                 = "LocalGit"
-    min_tls_version = 1.1
+    min_tls_version          = 1.1
   }
 }

@@ -1,8 +1,8 @@
 resource "aws_lb" "test" {
-  name = "test"
+  name               = "test"
   load_balancer_type = "application"
-  subnets = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
-  internal = true
+  subnets            = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
+  internal           = true
 }
 
 resource "aws_security_group" "allow_tls" {

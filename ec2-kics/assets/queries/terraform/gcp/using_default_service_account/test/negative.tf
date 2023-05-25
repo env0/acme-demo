@@ -26,7 +26,7 @@ resource "google_compute_instance" "negative1" {
   }
 
   service_account {
-    email = "email@email.com"
+    email  = "email@email.com"
     scopes = ["userinfo-email", "compute-ro", "storage-ro"]
   }
 }

@@ -11,7 +11,7 @@ module "positive4" {
   wait_for_capacity_timeout = 0
   health_check_type         = "EC2"
   vpc_zone_identifier       = ["subnet-1235678", "subnet-87654321"]
-  load_balancers = []
+  load_balancers            = []
 
   initial_lifecycle_hooks = [
     {

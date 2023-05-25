@@ -21,8 +21,8 @@ variable "project_id" {
   type = string
 }
 
-variable "deployment_key"{
-  type = string
+variable "deployment_key" {
+  type    = string
   default = "000"
 }
 

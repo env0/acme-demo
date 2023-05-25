@@ -1,5 +1,5 @@
 resource "aws_ecs_task_definition" "negative1" {
-  family                = "service"
+  family       = "service"
   network_mode = "awsvpc"
 
   volume {

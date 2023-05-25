@@ -8,7 +8,7 @@ resource "aws_glue_security_configuration" "positive1" {
 
     job_bookmarks_encryption {
       job_bookmarks_encryption_mode = "CSE-KMS"
-      kms_key_arn = data.aws_kms_key.example.arn
+      kms_key_arn                   = data.aws_kms_key.example.arn
     }
 
     s3_encryption {

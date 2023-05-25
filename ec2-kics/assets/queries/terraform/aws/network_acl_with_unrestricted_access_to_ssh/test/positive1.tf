@@ -31,8 +31,8 @@ resource "aws_network_acl" "positive1" {
       rule_no    = 100
       action     = "allow"
       cidr_block = "0.0.0.0/0"
-      from_port   = 22
-      to_port     = 22
+      from_port  = 22
+      to_port    = 22
     }
   ]
 

@@ -4,6 +4,6 @@ resource "aws_globalaccelerator_accelerator" "positive3" {
   enabled         = true
 
   attributes {
-    flow_logs_enabled   = false
+    flow_logs_enabled = false
   }
 }

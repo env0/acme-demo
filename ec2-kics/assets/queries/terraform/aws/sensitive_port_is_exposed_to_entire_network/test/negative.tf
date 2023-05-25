@@ -68,7 +68,7 @@ resource "aws_security_group" "negative5" {
     from_port   = 25
     to_port     = 2500
     protocol    = "udp"
-    cidr_blocks = ["1.2.3.4/5","0.0.0.0/12"]
+    cidr_blocks = ["1.2.3.4/5", "0.0.0.0/12"]
   }
 }
 
@@ -83,6 +83,6 @@ resource "aws_security_group" "negative6" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["1.2.3.4/5","0.0.0.0/12"]
+    cidr_blocks = ["1.2.3.4/5", "0.0.0.0/12"]
   }
 }

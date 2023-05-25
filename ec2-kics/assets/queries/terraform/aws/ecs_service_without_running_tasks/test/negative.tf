@@ -21,7 +21,7 @@ resource "aws_ecs_service" "km_ecs_service" {
   network_configuration {
     assign_public_ip = true
     subnets          = var.private_subnet
-    security_groups  = [ var.elb_sg ]
+    security_groups  = [var.elb_sg]
   }
   tags = merge(var.default_tags, {
   })

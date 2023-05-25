@@ -3,11 +3,11 @@ provider "aws" {
 }
 
 resource "aws_lambda_function" "my-lambda" {
-  filename = "~/Downloads/lambda.json.zip"
+  filename      = "~/Downloads/lambda.json.zip"
   function_name = "my-lambda"
   role          = aws_iam_role.lambda-role.arn
   handler       = "lambda_function.lambda_handler"
-  runtime = "python3.8"
+  runtime       = "python3.8"
 }
 
 resource "aws_iam_role" "lambda-role" {
@@ -31,13 +31,13 @@ EOF
 }
 
 resource "aws_lambda_permission" "all" {
-  statement_id  = "AllowAllResources"
-  action        = "lambda:*"
-  function_name = aws_lambda_function.my-lambda.function_name
-  principal     = "s3.amazonaws.com"
-  source_arn    = "arn:aws:s3:::delete-me-us-east-1-permissions-tests"
+  statement_id   = "AllowAllResources"
+  action         = "lambda:*"
+  function_name  = aws_lambda_function.my-lambda.function_name
+  principal      = "s3.amazonaws.com"
+  source_arn     = "arn:aws:s3:::delete-me-us-east-1-permissions-tests"
   source_account = "111111111111"
-  qualifier     = aws_lambda_alias.my-lambda-alias.name
+  qualifier      = aws_lambda_alias.my-lambda-alias.name
 }
 
 

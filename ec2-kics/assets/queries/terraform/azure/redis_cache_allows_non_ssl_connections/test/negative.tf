@@ -19,7 +19,7 @@ resource "azurerm_redis_cache" "negative2" {
   capacity            = 2
   family              = "C"
   sku_name            = "Standard"
- 
+
   minimum_tls_version = "1.2"
 
   redis_configuration {

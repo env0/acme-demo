@@ -10,7 +10,7 @@ module "ec2_instance" {
   monitoring             = true
   vpc_security_group_ids = ["sg-12345678"]
   subnet_id              = "subnet-eddcdzz4"
-  user_data = file("scripts/first-boot-http.sh")
+  user_data              = file("scripts/first-boot-http.sh")
 
   tags = {
     Terraform   = "true"

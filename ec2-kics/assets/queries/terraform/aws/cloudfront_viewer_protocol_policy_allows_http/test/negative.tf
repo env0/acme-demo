@@ -39,6 +39,6 @@ resource "aws_cloudfront_distribution" "negative1" {
 
   viewer_certificate {
     cloudfront_default_certificate = false
-    minimum_protocol_version = "SSLv3"
+    minimum_protocol_version       = "SSLv3"
   }
 }

@@ -1,6 +1,6 @@
 resource "kubernetes_service" "example" {
   metadata {
-    name = "prometheus"
+    name      = "prometheus"
     namespace = "prometheus"
   }
   spec {
@@ -31,7 +31,7 @@ resource "kubernetes_stateful_set" "prometheus" {
       version                           = "v2.2.1"
     }
 
-    name = "prometheus"
+    name      = "prometheus"
     namespace = "prometheus"
   }
 

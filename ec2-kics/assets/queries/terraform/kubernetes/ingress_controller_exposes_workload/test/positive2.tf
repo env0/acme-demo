@@ -4,9 +4,9 @@ resource "kubernetes_service" "MyApp2" {
   }
   spec {
     port {
-      port = 80
+      port        = 80
       target_port = 8080
-      protocol = "TCP"
+      protocol    = "TCP"
     }
     type = "NodePort"
   }

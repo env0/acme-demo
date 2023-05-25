@@ -1,7 +1,7 @@
 resource "aws_transfer_ssh_key" "example" {
-	server_id = aws_transfer_server.example.id
-	user_name = aws_transfer_user.example.user_name
-	body      = <<EOT
+  server_id = aws_transfer_server.example.id
+  user_name = aws_transfer_user.example.user_name
+  body      = <<EOT
 -----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAaAAAABNlY2RzYS
 1zaGEyLW5pc3RwMjU2AAAACG5pc3RwMjU2AAAAQQTTD+Q+10oNWDzXxx9x2bOobcXAA4rd

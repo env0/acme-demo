@@ -5,7 +5,7 @@ resource "kubernetes_pod" "negative4" {
 
   spec {
 
-    container =  [
+    container = [
       {
         image = "nginx:1.7.9"
         name  = "example"

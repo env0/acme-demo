@@ -18,5 +18,5 @@ resource "aws_cloudfront_distribution" "negative1" {
     bucket          = "mylogs.s3.amazonaws.com"
     prefix          = "myprefix"
   }
-  
+
 }

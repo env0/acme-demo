@@ -1,18 +1,18 @@
 variable "env0_api_key" {
-  value = ""
+  value        = ""
   is_read_only = true
   is_sensitive = false
 }
 
 variable "env0_api_secret" {
-  value = ""
+  value        = ""
   is_read_only = true
   is_sensitive = true
 
 }
 
 variable "github_installation_id" {
-    value = ""
-    is_read_only = true
-    is_sensitive = true
+  value        = ""
+  is_read_only = true
+  is_sensitive = true
 }

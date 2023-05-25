@@ -6,19 +6,19 @@ resource "kubernetes_pod" "test2" {
   spec {
 
     volume = [
-     {
-       host_path = {
-         path = "/data"
-         type = "Directory"
-       }
-     }
-     ,
-     {
-       host_path = {
-         path = "/data"
-         type = "Directory"
-       }
-     }
+      {
+        host_path = {
+          path = "/data"
+          type = "Directory"
+        }
+      }
+      ,
+      {
+        host_path = {
+          path = "/data"
+          type = "Directory"
+        }
+      }
     ]
 
     container {

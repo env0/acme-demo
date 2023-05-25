@@ -1,5 +1,5 @@
-resource "alicloud_oss_bucket" "bucket-securetransport2"{
-        policy = <<POLICY
+resource "alicloud_oss_bucket" "bucket-securetransport2" {
+  policy = <<POLICY
 {
         "Version": "1",
         "Statement": 

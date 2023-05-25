@@ -1,6 +1,6 @@
 resource "alicloud_ros_stack" "neg2" {
-  stack_name        = "tf-testaccstack"
-  template_body     = <<EOF
+  stack_name       = "tf-testaccstack"
+  template_body    = <<EOF
     {
         "ROSTemplateFormatVersion": "2015-09-01"
     }

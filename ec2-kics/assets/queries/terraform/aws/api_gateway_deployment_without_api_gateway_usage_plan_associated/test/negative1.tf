@@ -1,6 +1,6 @@
 resource "aws_api_gateway_deployment" "negative1" {
-  rest_api_id   = "rest_api_1"
-  stage_name    = "development"
+  rest_api_id = "rest_api_1"
+  stage_name  = "development"
 }
 
 resource "aws_api_gateway_usage_plan" "negative2" {

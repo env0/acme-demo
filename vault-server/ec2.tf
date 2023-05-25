@@ -5,11 +5,11 @@ module "ec2" {
   name           = var.name
   instance_count = var.instance_count
 
-  ami                    = data.aws_ami.ubuntu.id
-  instance_type          = var.instance_type
-  key_name               = "AWay"
-  vpc_security_group_ids = [aws_security_group.vault_sg.id]
-  subnet_ids             = data.aws_subnet_ids.selected.ids
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = var.instance_type
+  key_name                    = "AWay"
+  vpc_security_group_ids      = [aws_security_group.vault_sg.id]
+  subnet_ids                  = data.aws_subnet_ids.selected.ids
   associate_public_ip_address = true
 
   user_data = <<EOF
@@ -20,8 +20,8 @@ sudo apt-get update && sudo apt-get install vault
 EOF
 
   tags = {
-    Terraform   = "true"
-    Owner       = "acme demo org"
+    Terraform = "true"
+    Owner     = "acme demo org"
   }
 }
 
@@ -31,19 +31,19 @@ resource "aws_security_group" "vault_sg" {
   vpc_id      = data.aws_vpc.selected.id
 
   ingress {
-    description      = "SSH from AnyIP"
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "SSH from AnyIP"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    description      = "Vault from AnyIP"
-    from_port        = 8200
-    to_port          = 8200
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "Vault from AnyIP"
+    from_port   = 8200
+    to_port     = 8200
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

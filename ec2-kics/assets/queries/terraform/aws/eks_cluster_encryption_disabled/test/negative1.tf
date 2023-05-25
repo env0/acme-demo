@@ -5,7 +5,7 @@ variable "cluster_name" {
 
 resource "aws_eks_cluster" "negative1" {
   depends_on = [aws_cloudwatch_log_group.example]
-  name                      = var.cluster_name
+  name       = var.cluster_name
 
   encryption_config {
     resources = ["secrets"]

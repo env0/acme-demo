@@ -8,7 +8,7 @@ resource "aws_ecr_repository" "foo2" {
 }
 
 resource "aws_ecr_repository" "foo3" {
-  name                 = "bar"
+  name = "bar"
 
   image_scanning_configuration {
     scan_on_push = true

@@ -16,6 +16,6 @@ resource "aws_api_gateway_method_settings" "positive2" {
   method_path = "${aws_api_gateway_resource.test.path_part}/${aws_api_gateway_method.test.http_method}"
 
   settings {
-    logging_level   = "INFO"
+    logging_level = "INFO"
   }
 }

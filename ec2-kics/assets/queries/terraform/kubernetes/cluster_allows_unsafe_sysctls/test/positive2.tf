@@ -8,7 +8,7 @@ resource "kubernetes_pod" "test" {
     security_context {
       sysctl = [
         {
-          name = "net.core.somaxconn"
+          name  = "net.core.somaxconn"
           value = "1024"
         }
       ]

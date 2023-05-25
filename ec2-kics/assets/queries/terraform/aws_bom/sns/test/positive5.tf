@@ -1,5 +1,5 @@
 resource "aws_sns_topic" "positive5" {
-   tags = {
+  tags = {
     Name = "SNS Topic"
   }
 

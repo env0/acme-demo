@@ -31,7 +31,7 @@ module "s3" {
   bucket = "${var.bucketname}-${random_string.random.id}"
   acl    = "private"
 }
-  
+
 output "s3_bucket_arn" {
   value = module.s3.s3_bucket_arn
 }

@@ -1,7 +1,7 @@
 resource "aws_iam_access_key" "positive2" {
   user    = "root"
   pgp_key = "keybase:some_person_that_exists"
-  status = "Active"
+  status  = "Active"
 }
 
 resource "aws_iam_user" "lb" {

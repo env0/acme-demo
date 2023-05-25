@@ -5,7 +5,7 @@ variable "web_type" {
 
 module "ebs_optimized" {
   source        = "terraform-aws-modules/ebs-optimized/aws"
-  version = "~> 2.0"
+  version       = "~> 2.0"
   instance_type = var.web_type
 }
 

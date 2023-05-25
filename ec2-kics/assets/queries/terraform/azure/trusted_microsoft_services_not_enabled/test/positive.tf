@@ -18,7 +18,7 @@ resource "azurerm_storage_account" "positive2" {
 
   network_rules {
     default_action             = "Deny"
-	bypass					   = ["None"]
+    bypass                     = ["None"]
     ip_rules                   = ["100.0.0.1"]
     virtual_network_subnet_ids = [azurerm_subnet.example.id]
   }

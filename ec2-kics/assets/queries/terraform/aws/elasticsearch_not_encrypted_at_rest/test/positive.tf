@@ -8,6 +8,6 @@ resource "aws_elasticsearch_domain" "positive2" {
   elasticsearch_version = "1.5"
 
   encrypt_at_rest {
-      enabled = false
+    enabled = false
   }
 }

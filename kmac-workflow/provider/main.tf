@@ -16,35 +16,35 @@ resource "env0_template" "kmac-shag-vpc" {
   description = "SHAG"
   repository  = "https://github.com/env0/acme-demo/"
   path        = "kmac-workflow/shag/vpc"
-    revision = "main"
+  revision    = "main"
 
   github_installation_id = var.github_installation_id
 }
 
 resource "env0_template" "kmac-shag-eks" {
-  name        = "KMac SHAG - EKS"
-  description = "SHAG"
-  repository  = "https://github.com/env0/acme-demo/"
-  path        = "kmac-workflow/shag/eks"
-    revision = "main"
+  name                   = "KMac SHAG - EKS"
+  description            = "SHAG"
+  repository             = "https://github.com/env0/acme-demo/"
+  path                   = "kmac-workflow/shag/eks"
+  revision               = "main"
   github_installation_id = var.github_installation_id
 }
 
 resource "env0_template" "kmac-shag-efs" {
-  name        = "KMac SHAG - EFS"
-  description = "SHAG"
-  repository  = "https://github.com/env0/acme-demo/"
-  path        = "kmac-workflow/shag/efs"
-    revision = "main"
+  name                   = "KMac SHAG - EFS"
+  description            = "SHAG"
+  repository             = "https://github.com/env0/acme-demo/"
+  path                   = "kmac-workflow/shag/efs"
+  revision               = "main"
   github_installation_id = var.github_installation_id
 }
 
 resource "env0_template" "kmac-shag-csidriver" {
-  name        = "KMac SHAG - CSI Driver"
-  description = "SHAG"
-  repository  = "https://github.com/env0/acme-demo/"
-  path        = "kmac-workflow/shag/csi-driver"
-    revision = "main"
+  name                   = "KMac SHAG - CSI Driver"
+  description            = "SHAG"
+  repository             = "https://github.com/env0/acme-demo/"
+  path                   = "kmac-workflow/shag/csi-driver"
+  revision               = "main"
   github_installation_id = var.github_installation_id
 }
 

@@ -4,7 +4,7 @@ resource "google_container_cluster" "positive1" {
   location           = "us-central1-a"
   initial_node_count = 3
   network_policy {
-      enabled = true
+    enabled = true
   }
 
   timeouts {
@@ -18,7 +18,7 @@ resource "google_container_cluster" "positive2" {
   location           = "us-central1-a"
   initial_node_count = 3
   network_policy {
-      enabled = true
+    enabled = true
   }
 
   timeouts {
@@ -43,7 +43,7 @@ resource "google_container_cluster" "positive4" {
   location           = "us-central1-a"
   initial_node_count = 3
   network_policy {
-      enabled = true
+    enabled = true
   }
   addons_config {
 
@@ -60,11 +60,11 @@ resource "google_container_cluster" "positive5" {
   location           = "us-central1-a"
   initial_node_count = 3
   network_policy {
-      enabled = false
+    enabled = false
   }
   addons_config {
     network_policy_config {
-        disabled = false
+      disabled = false
     }
   }
 
@@ -79,11 +79,11 @@ resource "google_container_cluster" "positive6" {
   location           = "us-central1-a"
   initial_node_count = 3
   network_policy {
-      enabled = true
+    enabled = true
   }
   addons_config {
     network_policy_config {
-        disabled = true
+      disabled = true
     }
   }
 

@@ -5,9 +5,9 @@ module "acme-ec2" {
   name           = var.name
   instance_count = var.instance_count
 
-  ami                    = data.aws_ami.ubuntu.id
-  instance_type          = var.instance_type
-#  key_name               = "AWay"
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+  #  key_name               = "AWay"
   vpc_security_group_ids = [module.web_server_sg.security_group_id, aws_security_group.allow_ssh.id]
   subnet_ids             = data.aws_subnet_ids.default.ids
 

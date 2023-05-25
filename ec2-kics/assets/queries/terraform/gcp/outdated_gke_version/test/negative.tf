@@ -65,5 +65,5 @@ resource "google_container_cluster" "negative3" {
   }
 
   min_master_version = "1.25"
-  node_version = "1.25"
+  node_version       = "1.25"
 }

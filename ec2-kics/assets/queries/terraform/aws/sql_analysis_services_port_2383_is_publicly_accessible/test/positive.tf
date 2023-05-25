@@ -24,7 +24,7 @@ resource "aws_security_group" "positive2" {
     cidr_blocks = ["0.1.0.0/0"]
   }
 
-   ingress {
+  ingress {
     description = "TLS from VPC"
     from_port   = 2350
     to_port     = 2384

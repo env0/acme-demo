@@ -6,9 +6,9 @@ resource "aws_security_group" "negative1" {
 resource "aws_security_group" "negative2" {
 
   ingress {
-    from_port   = 70
-    to_port     = 81
-    protocol    = "tcp"
+    from_port = 70
+    to_port   = 81
+    protocol  = "tcp"
   }
 }
 

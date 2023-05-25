@@ -6,6 +6,6 @@ resource "google_compute_project_metadata" "positive1" {
 
 resource "google_compute_project_metadata" "positive2" {
   metadata = {
-      foo  = "bar"
+    foo = "bar"
   }
 }

@@ -33,7 +33,7 @@ resource "azurerm_storage_account" "negative2" {
 resource "azurerm_storage_account_network_rules" "negative2" {
   resource_group_name  = azurerm_resource_group.example.name
   storage_account_name = azurerm_storage_account.negative2.name
-  storage_account_id = azurerm_storage_account.negative2.id
+  storage_account_id   = azurerm_storage_account.negative2.id
 
   default_action             = "Deny"
   ip_rules                   = ["127.0.0.1"]
@@ -44,7 +44,7 @@ resource "azurerm_storage_account_network_rules" "negative2" {
 resource "azurerm_storage_account_network_rules" "negative2b" {
   resource_group_name  = azurerm_resource_group.example.name
   storage_account_name = azurerm_storage_account.negative3.name
-  storage_account_id = azurerm_storage_account.negative3.id
+  storage_account_id   = azurerm_storage_account.negative3.id
 
   default_action             = "Deny"
   ip_rules                   = ["127.0.0.1"]

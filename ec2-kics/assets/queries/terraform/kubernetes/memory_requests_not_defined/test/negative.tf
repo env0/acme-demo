@@ -6,86 +6,86 @@ resource "kubernetes_pod" "negative1" {
 
   spec {
     container = [
-     {
-      image = "nginx:1.7.9"
-      name  = "example22"
+      {
+        image = "nginx:1.7.9"
+        name  = "example22"
 
-      resources = {
-            limits = {
-              cpu    = "0.5"
-              memory = "512Mi"
-            }
-            requests = {
-              cpu    = "250m"
-              memory = "50Mi"
-            }
-      }
-
-      env = {
-        name  = "environment"
-        value = "test"
-      }
-
-      port = {
-        container_port = 8080
-      }
-
-      liveness_probe = {
-        http_get = {
-          path = "/nginx_status"
-          port = 80
-
-          http_header = {
-            name  = "X-Custom-Header"
-            value = "Awesome"
+        resources = {
+          limits = {
+            cpu    = "0.5"
+            memory = "512Mi"
+          }
+          requests = {
+            cpu    = "250m"
+            memory = "50Mi"
           }
         }
 
-        initial_delay_seconds = 3
-        period_seconds        = 3
-      }
-     }
-     ,
-     {
-      image = "nginx:1.7.9"
-      name  = "example22222"
+        env = {
+          name  = "environment"
+          value = "test"
+        }
 
-      resources = {
-            limits = {
-              cpu    = "0.5"
-              memory = "512Mi"
+        port = {
+          container_port = 8080
+        }
+
+        liveness_probe = {
+          http_get = {
+            path = "/nginx_status"
+            port = 80
+
+            http_header = {
+              name  = "X-Custom-Header"
+              value = "Awesome"
             }
-            requests = {
-              cpu    = "250m"
-              memory = "50Mi"
-            }
+          }
+
+          initial_delay_seconds = 3
+          period_seconds        = 3
+        }
       }
+      ,
+      {
+        image = "nginx:1.7.9"
+        name  = "example22222"
 
-      env = {
-        name  = "environment"
-        value = "test"
-      }
-
-      port = {
-        container_port = 8080
-      }
-
-      liveness_probe = {
-        http_get = {
-          path = "/nginx_status"
-          port = 80
-
-          http_header = {
-            name  = "X-Custom-Header"
-            value = "Awesome"
+        resources = {
+          limits = {
+            cpu    = "0.5"
+            memory = "512Mi"
+          }
+          requests = {
+            cpu    = "250m"
+            memory = "50Mi"
           }
         }
 
-        initial_delay_seconds = 3
-        period_seconds        = 3
+        env = {
+          name  = "environment"
+          value = "test"
+        }
+
+        port = {
+          container_port = 8080
+        }
+
+        liveness_probe = {
+          http_get = {
+            path = "/nginx_status"
+            port = 80
+
+            http_header = {
+              name  = "X-Custom-Header"
+              value = "Awesome"
+            }
+          }
+
+          initial_delay_seconds = 3
+          period_seconds        = 3
+        }
       }
-     }
-   ]
+    ]
 
 
     dns_config {
@@ -118,15 +118,15 @@ resource "kubernetes_pod" "negative2" {
       image = "nginx:1.7.9"
       name  = "example"
 
-      resources  {
-            limits  {
-              cpu    = "0.5"
-              memory = "512Mi"
-            }
-            requests {
-              cpu    = "250m"
-              memory = "50Mi"
-            }
+      resources {
+        limits {
+          cpu    = "0.5"
+          memory = "512Mi"
+        }
+        requests {
+          cpu    = "250m"
+          memory = "50Mi"
+        }
       }
 
       env {

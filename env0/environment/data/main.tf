@@ -13,7 +13,7 @@ variable "name" {
 }
 
 data "env0_environment" "this" {
-  name       = var.name
+  name = var.name
   //project_id = "7320dd7a-4822-426c-84b5-62ddd8be0799"
 }
 

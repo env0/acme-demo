@@ -12,9 +12,9 @@ resource "aws_iam_policy" "positive2policy" {
         Action = [
           "lambda:InvokeFunction",
         ]
-        Effect   = "Allow"
+        Effect = "Allow"
         Resource = [
-            "arn:aws:lambda:*:*:function:positive2*:*"
+          "arn:aws:lambda:*:*:function:positive2*:*"
         ]
       },
     ]

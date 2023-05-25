@@ -35,7 +35,7 @@ module "s3-bucket_object" {
   source  = "terraform-aws-modules/s3-bucket/aws//modules/object"
   version = "2.2.0"
 
-  acl          = "public-read"  # https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl
+  acl          = "public-read" # https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl
   content_type = "text/html"
   file_source  = "index.html"
   bucket       = module.acme-s3.s3_bucket_id

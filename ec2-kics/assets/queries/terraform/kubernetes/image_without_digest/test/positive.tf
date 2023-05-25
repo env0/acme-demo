@@ -58,7 +58,7 @@ resource "kubernetes_pod" "positive2" {
 
   spec {
     container {
-      name  = "example"
+      name = "example"
 
       env {
         name  = "environment"
@@ -120,7 +120,7 @@ resource "kubernetes_pod" "positive3" {
           value = "test"
         }
 
-        port =  {
+        port = {
           container_port = 8080
         }
 

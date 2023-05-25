@@ -1,6 +1,6 @@
 resource "aws_api_gateway_deployment" "examplee" {
-  rest_api_id   = "some rest api id"
-  stage_name = "some name"
+  rest_api_id = "some rest api id"
+  stage_name  = "some name"
   tags {
     project = "ProjectName"
   }

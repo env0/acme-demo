@@ -1,7 +1,7 @@
 resource "aws_launch_configuration" "negative1" {
-  image_id      = data.aws_ami.ubuntu.id
-  instance_type = "m4.large"
-  spot_price    = "0.001"
+  image_id         = data.aws_ami.ubuntu.id
+  instance_type    = "m4.large"
+  spot_price       = "0.001"
   user_data_base64 = "c29tZUtleQ==" # someKey
 
   lifecycle {
@@ -10,7 +10,7 @@ resource "aws_launch_configuration" "negative1" {
 
   ebs_block_device {
     device_name = "/dev/xvda1"
-    encrypted = true
+    encrypted   = true
   }
 }
 

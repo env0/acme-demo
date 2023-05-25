@@ -36,8 +36,8 @@ resource "azurerm_frontdoor" "negative" {
   }
 
   frontend_endpoint {
-    name      = "exampleFrontendEndpoint1"
-    host_name = "example-FrontDoor.azurefd.net"
+    name                                    = "exampleFrontendEndpoint1"
+    host_name                               = "example-FrontDoor.azurefd.net"
     web_application_firewall_policy_link_id = "id"
   }
 }

@@ -3,7 +3,7 @@ resource "aws_instance" "positive1" {
 
   instance_type = "t2.micro"
 
-  subnet_id   = aws_subnet.my_subnet.id
+  subnet_id = aws_subnet.my_subnet.id
 
 }
 

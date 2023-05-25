@@ -1,5 +1,5 @@
 module "redis" {
-  source = "cloudposse/elasticache-redis/aws"
+  source  = "cloudposse/elasticache-redis/aws"
   version = "0.40.1"
 
   availability_zones         = var.availability_zones

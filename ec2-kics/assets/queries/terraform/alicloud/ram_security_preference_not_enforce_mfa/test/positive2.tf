@@ -11,5 +11,5 @@ resource "alicloud_ram_user" "user2" {
 resource "alicloud_ram_security_preference" "example2" {
   enable_save_mfa_ticket        = false
   allow_user_to_change_password = true
-  enforce_mfa_for_login = false
+  enforce_mfa_for_login         = false
 }

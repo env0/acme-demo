@@ -1,6 +1,6 @@
 resource "kubernetes_pod" "test" {
   metadata {
-    name = "terraform-example"
+    name      = "terraform-example"
     namespace = "kube"
   }
 
@@ -120,7 +120,7 @@ resource "kubernetes_pod" "test2" {
 
 resource "kubernetes_persistent_volume" "test3" {
   metadata {
-    name = "terraform-example3"
+    name      = "terraform-example3"
     namespace = "kube"
   }
 

@@ -6,71 +6,71 @@ resource "kubernetes_pod" "positive1" {
 
   spec {
     container = [
-     {
-      image = "tiller-image"
-      name  = "example22"
+      {
+        image = "tiller-image"
+        name  = "example22"
 
-      env = {
-        name  = "environment"
-        value = "test"
-      }
-
-      port = {
-        container_port = 8080
-      }
-
-      liveness_probe = {
-        http_get = {
-          path = "/nginx_status"
-          port = 80
-
-          http_header = {
-            name  = "X-Custom-Header"
-            value = "Awesome"
-          }
+        env = {
+          name  = "environment"
+          value = "test"
         }
 
-        initial_delay_seconds = 3
-        period_seconds        = 3
-      }
-     }
-     ,
-     {
-      image = "nginx:1.7.9"
-      name  = "example22222"
+        port = {
+          container_port = 8080
+        }
 
-      resources = {
-            requests = {
-              cpu    = "250m"
-              memory = "50Mi"
+        liveness_probe = {
+          http_get = {
+            path = "/nginx_status"
+            port = 80
+
+            http_header = {
+              name  = "X-Custom-Header"
+              value = "Awesome"
             }
+          }
+
+          initial_delay_seconds = 3
+          period_seconds        = 3
+        }
       }
+      ,
+      {
+        image = "nginx:1.7.9"
+        name  = "example22222"
 
-      env = {
-        name  = "environment"
-        value = "test"
-      }
-
-      port = {
-        container_port = 8080
-      }
-
-      liveness_probe = {
-        http_get = {
-          path = "/nginx_status"
-          port = 80
-
-          http_header = {
-            name  = "X-Custom-Header"
-            value = "Awesome"
+        resources = {
+          requests = {
+            cpu    = "250m"
+            memory = "50Mi"
           }
         }
 
-        initial_delay_seconds = 3
-        period_seconds        = 3
+        env = {
+          name  = "environment"
+          value = "test"
+        }
+
+        port = {
+          container_port = 8080
+        }
+
+        liveness_probe = {
+          http_get = {
+            path = "/nginx_status"
+            port = 80
+
+            http_header = {
+              name  = "X-Custom-Header"
+              value = "Awesome"
+            }
+          }
+
+          initial_delay_seconds = 3
+          period_seconds        = 3
+        }
       }
-     }
-   ]
+    ]
 
 
     dns_config {
@@ -104,10 +104,10 @@ resource "kubernetes_pod" "positive2" {
       name  = "example"
 
       resources {
-            limits {
-              cpu    = "0.5"
-              memory = "512Mi"
-            }
+        limits {
+          cpu    = "0.5"
+          memory = "512Mi"
+        }
       }
 
       env {

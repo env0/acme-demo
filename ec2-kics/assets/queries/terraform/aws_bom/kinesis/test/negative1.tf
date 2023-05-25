@@ -10,8 +10,8 @@ module "kinesis-stream" {
   enforce_consumer_deletion = false
   encryption_type           = "KMS"
   kms_key_id                = "alias/aws/kinesis"
-  tags                      = {
-      Name = "kinesis_stream_example"
+  tags = {
+    Name = "kinesis_stream_example"
   }
 
 }

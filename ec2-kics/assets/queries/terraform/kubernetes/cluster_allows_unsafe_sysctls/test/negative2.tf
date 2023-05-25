@@ -8,7 +8,7 @@ resource "kubernetes_pod" "test2" {
     security_context {
       sysctl = [
         {
-          name = "kernel.shm_rmid_forced"
+          name  = "kernel.shm_rmid_forced"
           value = "0"
         }
       ]

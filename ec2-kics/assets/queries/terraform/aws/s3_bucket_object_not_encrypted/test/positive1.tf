@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "examplebucket" {
 }
 
 resource "aws_s3_bucket_object" "examplebucket_object" {
-  key                    = "someobject"
-  bucket                 = aws_s3_bucket.examplebucket.id
-  source                 = "index.html"
+  key    = "someobject"
+  bucket = aws_s3_bucket.examplebucket.id
+  source = "index.html"
 }

@@ -6,19 +6,19 @@ resource "kubernetes_pod" "test" {
   spec {
 
     volume = [
-     {
-       host_path = {
-         path = "/var/run/docker.sock"
-         type = "Directory"
-       }
-     }
-     ,
-     {
-       host_path = {
-         path = "/var/run/docker.sock"
-         type = "Directory"
-       }
-     }
+      {
+        host_path = {
+          path = "/var/run/docker.sock"
+          type = "Directory"
+        }
+      }
+      ,
+      {
+        host_path = {
+          path = "/var/run/docker.sock"
+          type = "Directory"
+        }
+      }
     ]
 
     container {

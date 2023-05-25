@@ -8,10 +8,10 @@ resource "aws_iam_role_policy_attachment" "test_attach" {
 }
 
 resource "aws_iam_policy" "test_policy" {
-  name = "test_policy"
+  name        = "test_policy"
   description = "test policy"
-  path = "/"
-  policy = <<EOF
+  path        = "/"
+  policy      = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [

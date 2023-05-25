@@ -40,7 +40,7 @@ resource "kubernetes_deployment" "example3" {
                 topology_key = "failure-domain.beta.kubernetes.io/zone"
               }
             }
-         }
+          }
         }
 
         container {

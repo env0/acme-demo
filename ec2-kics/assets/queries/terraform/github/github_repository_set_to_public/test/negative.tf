@@ -5,7 +5,7 @@ resource "github_repository" "negative1" {
   private = true
 
   template {
-    owner = "github"
+    owner      = "github"
     repository = "terraform-module-template"
   }
 }

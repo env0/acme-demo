@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "4.2.0"
     }
   }
@@ -24,7 +24,7 @@ resource "aws_s3_bucket_versioning" "example2" {
   bucket = aws_s3_bucket.b0.id
 
   versioning_configuration {
-    status = "Enabled"
+    status     = "Enabled"
     mfa_delete = "Disabled"
   }
 }

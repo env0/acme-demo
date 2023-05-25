@@ -1,5 +1,5 @@
 output "cluster_name" {
-  value = "example"
+  value       = "example"
   description = ""
 }
 

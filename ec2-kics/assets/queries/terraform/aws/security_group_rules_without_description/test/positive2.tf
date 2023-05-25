@@ -1,4 +1,4 @@
-resource "aws_security_group" "positive2" { 
+resource "aws_security_group" "positive2" {
 
   name        = "${var.prefix}-external-http-https"
   description = "Allow main HTTP / HTTPS"

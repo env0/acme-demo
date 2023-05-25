@@ -20,9 +20,9 @@ resource "azurerm_windows_web_app" "example5" {
   location            = azurerm_service_plan.example.location
   service_plan_id     = azurerm_service_plan.example.id
 
-   site_config{
-    application_stack{
+  site_config {
+    application_stack {
       php_version = "v7.3"
-    }    
+    }
   }
 }

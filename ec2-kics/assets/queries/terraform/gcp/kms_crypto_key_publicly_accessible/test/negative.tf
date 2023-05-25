@@ -23,5 +23,5 @@ data "google_iam_policy" "negative" {
 
 resource "google_kms_crypto_key_iam_policy" "negative" {
   crypto_key_id = google_kms_crypto_key.negative.id
-  policy_data = data.google_iam_policy.negative.policy_data
+  policy_data   = data.google_iam_policy.negative.policy_data
 }

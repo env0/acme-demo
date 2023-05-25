@@ -21,7 +21,7 @@ resource "google_project_iam_audit_config" "positive2" {
   audit_log_config {
     log_type = "DATA_READ"
     exempted_members = [
-        "user:joebloggs@hashicorp.com"
+      "user:joebloggs@hashicorp.com"
     ]
   }
 }

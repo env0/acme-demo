@@ -4,11 +4,11 @@ module "ec2_instance" {
 
   name = "single-instance"
 
-  ami                    = "ami-ebd02392"
-  instance_type          = "t2.micro"
-  key_name               = "user1"
-  vpc_security_group_ids = ["sg-12345678"]
-  subnet_id              = "subnet-eddcdzz4"
+  ami                         = "ami-ebd02392"
+  instance_type               = "t2.micro"
+  key_name                    = "user1"
+  vpc_security_group_ids      = ["sg-12345678"]
+  subnet_id                   = "subnet-eddcdzz4"
   associate_public_ip_address = false
 
   tags = {

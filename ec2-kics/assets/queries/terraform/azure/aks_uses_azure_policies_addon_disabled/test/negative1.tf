@@ -6,11 +6,11 @@ resource "azurerm_kubernetes_cluster" "negative" {
 
   addon_profile {
 
-   azure_policy {
+    azure_policy {
 
-     enabled = true
+      enabled = true
 
-   }
- }
+    }
+  }
 }
 

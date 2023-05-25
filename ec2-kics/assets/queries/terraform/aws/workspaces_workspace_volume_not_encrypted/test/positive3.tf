@@ -3,7 +3,7 @@ resource "aws_workspaces_workspace" "example_3" {
   bundle_id    = data.aws_workspaces_bundle.value_windows_10.id
   user_name    = "john.doe"
 
-  volume_encryption_key          = "alias/aws/workspaces"
+  volume_encryption_key = "alias/aws/workspaces"
 
   workspace_properties {
     compute_type_name                         = "VALUE"

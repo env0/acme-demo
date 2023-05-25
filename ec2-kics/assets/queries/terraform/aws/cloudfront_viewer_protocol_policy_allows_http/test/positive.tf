@@ -39,7 +39,7 @@ resource "aws_cloudfront_distribution" "positive1" {
 
   viewer_certificate {
     cloudfront_default_certificate = false
-    minimum_protocol_version = "SSLv3"
+    minimum_protocol_version       = "SSLv3"
   }
 }
 
@@ -105,6 +105,6 @@ resource "aws_cloudfront_distribution" "positive2" {
 
   viewer_certificate {
     cloudfront_default_certificate = false
-    minimum_protocol_version = "SSLv3"
+    minimum_protocol_version       = "SSLv3"
   }
 }

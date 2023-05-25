@@ -36,7 +36,7 @@ module "asg" {
     }
     triggers = ["tag"]
   }
-  
+
   tag {
     key                 = "foo"
     value               = "bar"

@@ -3,7 +3,7 @@ resource "kubernetes_pod_security_policy" "example" {
     name = "terraform-example"
   }
   spec {
-    allowed_capabilities = ["NET_BIND_SERVICE"]
+    allowed_capabilities       = ["NET_BIND_SERVICE"]
     privileged                 = false
     allow_privilege_escalation = false
 

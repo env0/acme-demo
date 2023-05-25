@@ -17,7 +17,7 @@ resource "aws_mq_broker" "negative1" {
   }
 
   logs {
-      general = true
-      audit = true
+    general = true
+    audit   = true
   }
 }

@@ -57,7 +57,7 @@ resource "kubernetes_role" "role_name" {
     resources  = ["deployments"]
     verbs      = ["get", "list"]
   }
-   rule {
+  rule {
     api_groups = [""]
     resources  = ["secrets"]
     verbs      = ["*"]

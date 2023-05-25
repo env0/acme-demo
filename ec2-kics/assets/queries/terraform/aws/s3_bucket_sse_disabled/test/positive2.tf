@@ -20,9 +20,9 @@ resource "aws_s3_bucket" "positive1" {
     Environment = "Dev"
   }
 
-  server_side_encryption_configuration  {
-    rule  {
-      apply_server_side_encryption_by_default  {
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
         kms_master_key_id = "some-key"
         sse_algorithm     = "AES256"
       }

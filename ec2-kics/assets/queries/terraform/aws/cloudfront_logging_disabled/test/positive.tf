@@ -13,5 +13,5 @@ resource "aws_cloudfront_distribution" "positive1" {
   comment             = "Some comment"
   default_root_object = "index.html"
 
-  }
+}
   

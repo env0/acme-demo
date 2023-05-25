@@ -38,7 +38,7 @@ resource "google_sql_database_instance" "positive3" {
     tier = "db-f1-micro"
 
     ip_configuration {
-        ipv4_enabled = true
+      ipv4_enabled = true
     }
   }
 }

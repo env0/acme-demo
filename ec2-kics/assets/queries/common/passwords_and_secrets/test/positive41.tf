@@ -1,7 +1,7 @@
 resource "aws_transfer_ssh_key" "positive44" {
-	server_id = aws_transfer_server.example.id
-	user_name = aws_transfer_user.example.user_name
-	body      = <<EOT
+  server_id = aws_transfer_server.example.id
+  user_name = aws_transfer_user.example.user_name
+  body      = <<EOT
 -----BEGIN RSA PRIVATE KEY-----
 Proc-Type: 4,ENCRYPTED
 DEK-Info: DES-EDE3-CBC,XXXXXXXXXXXXXX

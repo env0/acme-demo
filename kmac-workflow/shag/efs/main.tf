@@ -1,11 +1,11 @@
 data "aws_vpc" "kmac-shag2" {
-    tags = {
-        Name = "vpc-kmac-shag2"
-    }
+  tags = {
+    Name = "vpc-kmac-shag2"
+  }
 }
 
 data "aws_eks_cluster" "cluster" {
-    name = "kmac-shag2"
+  name = "kmac-shag2"
 }
 
 
@@ -20,8 +20,8 @@ data "aws_subnet_ids" "private" {
 module "efs" {
   depends_on = [data.aws_eks_cluster.cluster]
 
-  source       = "cloudposse/efs/aws"
-  version      = "0.31.1"
+  source  = "cloudposse/efs/aws"
+  version = "0.31.1"
 
   region  = var.region
   vpc_id  = data.aws_vpc.kmac-shag2.id

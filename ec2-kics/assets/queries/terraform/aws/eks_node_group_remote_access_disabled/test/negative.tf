@@ -11,7 +11,7 @@ resource "aws_eks_node_group" "negative" {
   }
 
   remote_access {
-    ec2_ssh_key = "my-rsa-key"
+    ec2_ssh_key                = "my-rsa-key"
     source_security_groups_ids = "sg-213120ASNE"
   }
 

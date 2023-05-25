@@ -22,9 +22,9 @@ resource "aws_iam_user_policy" "test_inline_policy" {
 
 
 resource "aws_iam_policy_attachment" "test-attach" {
-  name       = "test-attachment"
-  users      = [aws_iam_user.cosmic.name]
-  roles      = [aws_iam_role.role.name]
-  groups     = [aws_iam_group.group.name]
+  name   = "test-attachment"
+  users  = [aws_iam_user.cosmic.name]
+  roles  = [aws_iam_role.role.name]
+  groups = [aws_iam_group.group.name]
 }
 

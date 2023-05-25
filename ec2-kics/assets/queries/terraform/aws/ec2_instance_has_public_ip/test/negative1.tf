@@ -15,9 +15,9 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami.ubuntu.id
   associate_public_ip_address = false
-  instance_type = "t3.micro"
+  instance_type               = "t3.micro"
 
   tags = {
     Name = "HelloWorld"

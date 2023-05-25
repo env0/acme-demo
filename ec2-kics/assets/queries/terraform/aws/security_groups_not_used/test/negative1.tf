@@ -26,9 +26,9 @@ resource "aws_security_group" "allow_tls" {
 }
 
 resource "aws_lb" "test" {
-  name = "test"
+  name               = "test"
   load_balancer_type = "application"
-  subnets = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
-  internal = true
-  security_groups = [aws_security_group.allow_tls.id]
+  subnets            = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
+  internal           = true
+  security_groups    = [aws_security_group.allow_tls.id]
 }

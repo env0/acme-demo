@@ -7,6 +7,6 @@ resource "aws_cloudformation_stack" "negative1" {
   }
 
 
-  notification_arns = ["a","b"]
+  notification_arns = ["a", "b"]
 
 }

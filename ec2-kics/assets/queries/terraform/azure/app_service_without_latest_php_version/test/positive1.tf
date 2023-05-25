@@ -5,7 +5,7 @@ resource "azurerm_app_service" "example4" {
   app_service_plan_id = azurerm_app_service_plan.example.id
 
   # SiteConfig block is optional before AzureRM version 3.0 
-  site_config { 
+  site_config {
     dotnet_framework_version = "v4.0"
     scm_type                 = "LocalGit"
     php_version              = "7.3"

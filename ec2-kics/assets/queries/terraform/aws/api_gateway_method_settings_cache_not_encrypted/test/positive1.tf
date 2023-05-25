@@ -34,9 +34,9 @@ resource "aws_api_gateway_method_settings" "path_specific" {
   method_path = "path1/GET"
 
   settings {
-    metrics_enabled = true
-    logging_level   = "INFO"
-    caching_enabled = true
+    metrics_enabled      = true
+    logging_level        = "INFO"
+    caching_enabled      = true
     cache_data_encrypted = false
   }
 }

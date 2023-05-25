@@ -1,10 +1,10 @@
 resource "aws_lambda_function" "negativefunction1" {
-  filename      = "lambda_function_payload.zip"
-  function_name = "lambda_function_name"
-  role          = aws_iam_role.negativerole1.arn
-  handler       = "exports.test"
+  filename         = "lambda_function_payload.zip"
+  function_name    = "lambda_function_name"
+  role             = aws_iam_role.negativerole1.arn
+  handler          = "exports.test"
   source_code_hash = filebase64sha256("lambda_function_payload.zip")
-  runtime = "nodejs12.x"
+  runtime          = "nodejs12.x"
 
   tags = {
     Name = "lambda"
@@ -18,12 +18,12 @@ resource "aws_lambda_function" "negativefunction1" {
 }
 
 resource "aws_lambda_function" "negativefunction2" {
-  filename      = "lambda_function_payload.zip"
-  function_name = "lambda_function_name"
-  role          = aws_iam_role.negativerole2.arn
-  handler       = "exports.test"
+  filename         = "lambda_function_payload.zip"
+  function_name    = "lambda_function_name"
+  role             = aws_iam_role.negativerole2.arn
+  handler          = "exports.test"
   source_code_hash = filebase64sha256("lambda_function_payload.zip")
-  runtime = "nodejs12.x"
+  runtime          = "nodejs12.x"
 
   tags = {
     Name = "lambda"
@@ -107,7 +107,7 @@ resource "aws_iam_role_policy" "negativeinlinepolicy1" {
 }
 
 resource "aws_iam_policy" "negativecustomermanagedpolicy1" {
-  name        = "negativecustomermanagedpolicy1"
+  name = "negativecustomermanagedpolicy1"
 
   policy = <<EOF
 {
@@ -126,7 +126,7 @@ EOF
 }
 
 resource "aws_iam_policy" "negativecustomermanagedpolicy2" {
-  name        = "negativecustomermanagedpolicy2"
+  name = "negativecustomermanagedpolicy2"
 
   policy = <<EOF
 {
@@ -151,7 +151,7 @@ resource "aws_iam_role_policy_attachment" "negativerolepolicyattachment1" {
 }
 
 resource "aws_iam_policy_attachment" "negativedirectpolicyattachment1" {
-  roles       = [aws_iam_role.negativerole1.name]
+  roles      = [aws_iam_role.negativerole1.name]
   policy_arn = aws_iam_policy.negativecustomermanagedpolicy2.arn
 }
 
@@ -162,6 +162,6 @@ resource "aws_iam_role_policy_attachment" "negativerolepolicyattachment2" {
 }
 
 resource "aws_iam_policy_attachment" "negativedirectpolicyattachment2" {
-  roles       = [aws_iam_role.negativerole2.name]
+  roles      = [aws_iam_role.negativerole2.name]
   policy_arn = "arn:aws:iam::policy/DenyAll"
 }

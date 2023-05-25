@@ -6,7 +6,7 @@ locals {
   s3_prefix_list_cidr_block = "3.218.183.128/25"
 }
 resource "aws_vpc" "main" {
-  cidr_block = "192.168.100.0/24"
+  cidr_block         = "192.168.100.0/24"
   enable_dns_support = true
 }
 
@@ -33,7 +33,7 @@ resource "aws_vpc_endpoint" "dynamodb-vpce-gw" {
 }
 
 resource "aws_network_acl" "allow-public-outbound-nacl" {
-  vpc_id = aws_vpc.main.id
+  vpc_id     = aws_vpc.main.id
   subnet_ids = [aws_subnet.private-subnet.id]
 
   egress {
@@ -81,10 +81,10 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "test" {
-  ami = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.allow-public-outbound-sg.id]
-  subnet_id = aws_subnet.private-subnet.id
+  subnet_id              = aws_subnet.private-subnet.id
 }
 
 resource "aws_dynamodb_table" "basic-dynamodb-table" {

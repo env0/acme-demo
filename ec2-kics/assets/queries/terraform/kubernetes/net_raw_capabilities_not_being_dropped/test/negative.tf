@@ -6,7 +6,7 @@ resource "kubernetes_pod" "negative3" {
 
   spec {
 
-    container =  [
+    container = [
       {
         image = "nginx:1.7.9"
         name  = "example"
@@ -109,9 +109,9 @@ resource "kubernetes_pod" "negative4" {
       name  = "example"
 
       security_context {
-          capabilities {
-            drop = ["ALL"]
-          }
+        capabilities {
+          drop = ["ALL"]
+        }
       }
 
       env {

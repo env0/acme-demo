@@ -1,6 +1,6 @@
 data "env0_project" "default_project" {
-  for_each     = var.environments
-  name         = each.value.project
+  for_each = var.environments
+  name     = each.value.project
   depends_on = [
     env0_project.this
   ]
@@ -15,7 +15,7 @@ resource "env0_environment" "example" {
   deploy_on_push                   = true
   auto_deploy_by_custom_glob       = "+((../*)|(../../*)/(**)" # listen to changes up one and two levels
   force_destroy                    = true
-  
+
   without_template_settings {
     github_installation_id = 11551359 # to get this value, you need to first build a template by hand and use the data provider
     path                   = each.value.path

@@ -1,5 +1,5 @@
 resource "aws_db_cluster_snapshot" "positive1" {
-  db_cluster_identifier          = aws_rds_cluster.example2.id 
+  db_cluster_identifier          = aws_rds_cluster.example2.id
   db_cluster_snapshot_identifier = "resourcetestsnapshot1234"
 }
 

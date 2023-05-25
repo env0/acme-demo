@@ -1,6 +1,6 @@
 resource "aws_efs_file_system" "positive2" {
   creation_token = "my-product"
-  encrypted = true
+  encrypted      = true
 
   tags = {
     Name = "MyProduct"

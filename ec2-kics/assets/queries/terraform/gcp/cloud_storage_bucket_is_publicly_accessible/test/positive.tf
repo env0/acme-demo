@@ -1,6 +1,6 @@
 resource "google_storage_bucket_iam_member" "positive1" {
   bucket = google_storage_bucket.default.name
-  role = "roles/storage.admin"
+  role   = "roles/storage.admin"
   member = "allUsers"
 
   condition {
@@ -12,7 +12,7 @@ resource "google_storage_bucket_iam_member" "positive1" {
 
 
 resource "google_storage_bucket_iam_member" "positive2" {
-  bucket = google_storage_bucket.default.name
-  role = "roles/storage.admin"
-  members = ["user:john@example.com","allAuthenticatedUsers"]
+  bucket  = google_storage_bucket.default.name
+  role    = "roles/storage.admin"
+  members = ["user:john@example.com", "allAuthenticatedUsers"]
 }

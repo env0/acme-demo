@@ -24,9 +24,9 @@ resource "aws_instance" "web2" {
 }
 
 resource "aws_instance" "web3" {
-  ami           = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami.ubuntu.id
   associate_public_ip_address = true
-  instance_type = "t3.micro"
+  instance_type               = "t3.micro"
 
   tags = {
     Name = "HelloWorld"

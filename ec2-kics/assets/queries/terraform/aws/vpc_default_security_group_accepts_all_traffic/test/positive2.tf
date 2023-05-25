@@ -7,10 +7,10 @@ resource "aws_default_security_group" "default3" {
 
   ingress = [
     {
-      protocol  = -1
-      self      = true
-      from_port = 0
-      to_port   = 0
+      protocol         = -1
+      self             = true
+      from_port        = 0
+      to_port          = 0
       ipv6_cidr_blocks = ["::/0"]
     }
   ]

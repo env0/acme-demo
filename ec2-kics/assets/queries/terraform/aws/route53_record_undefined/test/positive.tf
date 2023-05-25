@@ -6,6 +6,6 @@ resource "aws_route53_record" "example" {
   zone_id         = aws_route53_zone.example.zone_id
 
   records = [
-    
+
   ]
 }

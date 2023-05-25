@@ -38,7 +38,7 @@ resource "kubernetes_deployment" "example433" {
                 topology_key = "kubernetes.io/hostname"
               }
             }
-         }
+          }
         }
 
         container {

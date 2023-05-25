@@ -28,5 +28,5 @@ resource "aws_iam_user_login_profile" "positive7" {
   pgp_key = "keybase:some_person_that_exists"
 
   password_reset_required = false
-  password_length = 13
+  password_length         = 13
 }

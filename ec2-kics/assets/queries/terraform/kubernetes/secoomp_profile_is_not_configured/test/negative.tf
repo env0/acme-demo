@@ -3,7 +3,7 @@ resource "kubernetes_pod" "pod" {
     name = "terraform-example"
 
     annotations = {
-      seccomp.security.alpha.kubernetes.io/defaultProfileName = "runtime/default"
+      seccomp.security.alpha.kubernetes.io / defaultProfileName = "runtime/default"
     }
   }
 
@@ -73,7 +73,7 @@ resource "kubernetes_cron_job" "cron" {
         template {
           metadata {
             annotations = {
-              seccomp.security.alpha.kubernetes.io/defaultProfileName = "runtime/default"
+              seccomp.security.alpha.kubernetes.io / defaultProfileName = "runtime/default"
             }
           }
           spec {
@@ -112,7 +112,7 @@ resource "kubernetes_deployment" "deployment" {
           test = "MyExampleApp"
         }
         annotations = {
-          seccomp.security.alpha.kubernetes.io/defaultProfileName = "runtime/default"
+          seccomp.security.alpha.kubernetes.io / defaultProfileName = "runtime/default"
         }
       }
 

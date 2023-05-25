@@ -6,7 +6,7 @@ resource "aws_redshift_cluster" "positive1" {
   node_type          = "dc1.large"
   cluster_type       = "single-node"
   logging {
-      enable = true
-      bucket_name = "nameOfAnExistingS3Bucket"
+    enable      = true
+    bucket_name = "nameOfAnExistingS3Bucket"
   }
 }

@@ -18,6 +18,6 @@ resource "aws_s3_bucket_public_access_block" "positive2" {
 resource "aws_s3_bucket_public_access_block" "positive3" {
   bucket = aws_s3_bucket.example.id
 
-  block_public_acls   = true
-  ignore_public_acls  = false
+  block_public_acls  = true
+  ignore_public_acls = false
 }

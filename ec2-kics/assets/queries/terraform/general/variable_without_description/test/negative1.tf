@@ -1,7 +1,7 @@
 variable "cluster_name" {
-  default = "example"
+  default     = "example"
   description = "cluster name"
-  type    = string
+  type        = string
 }
 
 resource "aws_eks_cluster" "negative1" {

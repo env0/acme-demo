@@ -26,7 +26,7 @@ resource "google_compute_instance" "negative1" {
 
   metadata = {
     #... some other metadata
-    
+
     block-project-ssh-keys = "TRUE"
   }
 

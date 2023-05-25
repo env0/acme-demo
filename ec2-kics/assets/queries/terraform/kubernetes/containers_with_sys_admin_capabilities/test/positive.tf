@@ -6,76 +6,76 @@ resource "kubernetes_pod" "positive1" {
 
   spec {
     container = [
-     {
-      image = "nginx:1.7.9"
-      name  = "example22"
+      {
+        image = "nginx:1.7.9"
+        name  = "example22"
 
-      security_context = {
-        capabilities = {
-          add = ["SYS_ADMIN"]
-        }
-      }
-
-      env = {
-        name  = "environment"
-        value = "test"
-      }
-
-      port = {
-        container_port = 8080
-      }
-
-      liveness_probe = {
-        http_get = {
-          path = "/nginx_status"
-          port = 80
-
-          http_header = {
-            name  = "X-Custom-Header"
-            value = "Awesome"
+        security_context = {
+          capabilities = {
+            add = ["SYS_ADMIN"]
           }
         }
 
-        initial_delay_seconds = 3
-        period_seconds        = 3
-      }
-     }
-     ,
-     {
-      image = "nginx:1.7.9"
-      name  = "example22222"
+        env = {
+          name  = "environment"
+          value = "test"
+        }
 
-       security_context = {
-        capabilities = {
-          add = ["SYS_ADMIN"]
+        port = {
+          container_port = 8080
+        }
+
+        liveness_probe = {
+          http_get = {
+            path = "/nginx_status"
+            port = 80
+
+            http_header = {
+              name  = "X-Custom-Header"
+              value = "Awesome"
+            }
+          }
+
+          initial_delay_seconds = 3
+          period_seconds        = 3
         }
       }
+      ,
+      {
+        image = "nginx:1.7.9"
+        name  = "example22222"
 
-      env = {
-        name  = "environment"
-        value = "test"
-      }
-
-      port = {
-        container_port = 8080
-      }
-
-      liveness_probe = {
-        http_get = {
-          path = "/nginx_status"
-          port = 80
-
-          http_header = {
-            name  = "X-Custom-Header"
-            value = "Awesome"
+        security_context = {
+          capabilities = {
+            add = ["SYS_ADMIN"]
           }
         }
 
-        initial_delay_seconds = 3
-        period_seconds        = 3
+        env = {
+          name  = "environment"
+          value = "test"
+        }
+
+        port = {
+          container_port = 8080
+        }
+
+        liveness_probe = {
+          http_get = {
+            path = "/nginx_status"
+            port = 80
+
+            http_header = {
+              name  = "X-Custom-Header"
+              value = "Awesome"
+            }
+          }
+
+          initial_delay_seconds = 3
+          period_seconds        = 3
+        }
       }
-     }
-   ]
+    ]
 
 
     dns_config {

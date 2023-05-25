@@ -10,8 +10,8 @@ resource "azurerm_mariadb_server" "positive2" {
   storage_mb = 5120
   version    = "10.2"
 
-  auto_grow_enabled             = true
-  backup_retention_days         = 7
-  geo_redundant_backup_enabled  = false
-  ssl_enforcement_enabled       = true
+  auto_grow_enabled            = true
+  backup_retention_days        = 7
+  geo_redundant_backup_enabled = false
+  ssl_enforcement_enabled      = true
 }

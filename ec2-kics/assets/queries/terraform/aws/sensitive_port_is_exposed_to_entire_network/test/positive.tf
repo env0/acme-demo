@@ -68,7 +68,7 @@ resource "aws_security_group" "positive5" {
     from_port   = 445
     to_port     = 500
     protocol    = "udp"
-    cidr_blocks = ["1.1.1.1/1","0.0.0.0/0",  "2.2.3.4/12"]
+    cidr_blocks = ["1.1.1.1/1", "0.0.0.0/0", "2.2.3.4/12"]
   }
 }
 

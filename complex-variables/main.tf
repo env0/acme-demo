@@ -13,7 +13,7 @@ variable "mylist" {
 }
 
 variable "mymap" {
-  type = map
+  type = map(any)
 }
 
 //resource "null" "resource" {}

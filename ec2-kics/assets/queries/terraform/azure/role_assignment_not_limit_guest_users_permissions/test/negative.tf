@@ -9,14 +9,14 @@ resource "azurerm_role_definition" "example2" {
   }
 
   assignable_scopes = [
-    data.azurerm_subscription.primary.id, 
+    data.azurerm_subscription.primary.id,
   ]
 }
 
 resource "azurerm_role_assignment" "example2" {
-  name               = "00000000-0000-0000-0000-000000000000"
-  scope              = data.azurerm_subscription.primary.id
+  name                 = "00000000-0000-0000-0000-000000000000"
+  scope                = data.azurerm_subscription.primary.id
   role_definition_name = "Guest"
-  role_definition_id = azurerm_role_definition.example2.role_definition_resource_id
-  principal_id       = data.azurerm_client_config.example.object_id
+  role_definition_id   = azurerm_role_definition.example2.role_definition_resource_id
+  principal_id         = data.azurerm_client_config.example.object_id
 }

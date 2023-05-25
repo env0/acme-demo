@@ -7,5 +7,5 @@ resource "google_project_iam_member" "positive1" {
 resource "google_project_iam_member" "positive2" {
   project = "your-project-id"
   role    = "roles/iam.serviceAccountUser"
-  members  = ["user:jane@example.com", "serviceAccount:my-other-app@appspot.gserviceacccount.com"]
+  members = ["user:jane@example.com", "serviceAccount:my-other-app@appspot.gserviceacccount.com"]
 }

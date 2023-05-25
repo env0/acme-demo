@@ -6,7 +6,7 @@ resource "aws_elb" "negative2" {
     bucket        = "foo"
     bucket_prefix = "bar"
     interval      = 60
-    enabled = true
+    enabled       = true
   }
 
   listener {

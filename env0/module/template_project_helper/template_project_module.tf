@@ -8,17 +8,17 @@ terraform {
 }
 
 resource "env0_template_project_assignment" "assignment" {
-  for_each = toset(var.project_ids)
+  for_each    = toset(var.project_ids)
   template_id = var.template_id
   project_id  = each.value
 }
 
 variable "project_ids" {
-    type = list(string)
+  type = list(string)
 }
 
 variable "template_id" {
-    type = string
+  type = string
 }
 
 output "id" {

@@ -33,7 +33,7 @@ resource "azurerm_storage_account" "positive2" {
 resource "azurerm_storage_account_network_rules" "positive2" {
   resource_group_name  = azurerm_resource_group.example.name
   storage_account_name = azurerm_storage_account.positive2.name
-  storage_account_id = azurerm_storage_account.positive2.id
+  storage_account_id   = azurerm_storage_account.positive2.id
 
   default_action             = "Allow"
   ip_rules                   = ["127.0.0.1"]

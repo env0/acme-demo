@@ -14,7 +14,7 @@ resource "aws_iam_access_key" "positive1_2" {
 }
 
 resource "aws_iam_policy_attachment" "positive1_3" {
-  name = "excess_policy"
+  name  = "excess_policy"
   users = [aws_iam_user.user.name]
 
   policy = <<EOF

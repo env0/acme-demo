@@ -18,7 +18,7 @@ resource "kubernetes_pod" "positive1" {
       }
 
       liveness_probe = {
-        http_get  = {
+        http_get = {
           path = "/nginx_status"
           port = 80
 
@@ -58,7 +58,7 @@ resource "kubernetes_pod" "positive2" {
 
   spec {
     container {
-      name  = "example"
+      name = "example"
 
       env {
         name  = "environment"

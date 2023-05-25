@@ -5,7 +5,7 @@ resource "azurerm_storage_container" "negative1" {
 }
 
 resource "azurerm_storage_container" "negative2" {
-  name                  = "vhds2"
-  storage_account_name  = azurerm_storage_account.example.name
+  name                 = "vhds2"
+  storage_account_name = azurerm_storage_account.example.name
   // default is "private"
 }

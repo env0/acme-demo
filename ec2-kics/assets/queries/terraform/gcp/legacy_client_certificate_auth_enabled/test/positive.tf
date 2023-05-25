@@ -5,7 +5,7 @@ resource "google_container_cluster" "positive1" {
   initial_node_count = 3
 
   master_auth {
-    
+
   }
 
   timeouts {

@@ -12,7 +12,7 @@ resource "kubernetes_network_policy" "example" {
         values   = ["webfront", "api"]
       }
       match_labels = {
-            app = "ngnix"
+        app = "ngnix"
       }
 
     }

@@ -40,7 +40,7 @@ resource "aws_cloudfront_distribution" "negative1" {
 
   viewer_certificate {
     cloudfront_default_certificate = false
-    minimum_protocol_version = "TLSv1.2_2018"
+    minimum_protocol_version       = "TLSv1.2_2018"
   }
 }
 
@@ -86,6 +86,6 @@ resource "aws_cloudfront_distribution" "negative2" {
 
   viewer_certificate {
     cloudfront_default_certificate = false
-    minimum_protocol_version = "TLSv1.2_2019"
+    minimum_protocol_version       = "TLSv1.2_2019"
   }
 }

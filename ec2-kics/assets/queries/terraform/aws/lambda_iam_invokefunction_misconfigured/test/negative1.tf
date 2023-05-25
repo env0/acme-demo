@@ -12,10 +12,10 @@ resource "aws_iam_policy" "negative1policy" {
         Action = [
           "lambda:InvokeFunction",
         ]
-        Effect   = "Allow"
+        Effect = "Allow"
         Resource = [
-            "arn:aws:lambda:*:*:function:negative1",
-            "arn:aws:lambda:*:*:function:negative1:*"
+          "arn:aws:lambda:*:*:function:negative1",
+          "arn:aws:lambda:*:*:function:negative1:*"
         ]
       },
     ]

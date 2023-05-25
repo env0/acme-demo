@@ -4,9 +4,9 @@ resource "kubernetes_service" "example-4" {
   }
   spec {
     port {
-      port = 80
+      port        = 80
       target_port = 80
-      protocol = "TCP"
+      protocol    = "TCP"
     }
     type = "NodePort"
   }

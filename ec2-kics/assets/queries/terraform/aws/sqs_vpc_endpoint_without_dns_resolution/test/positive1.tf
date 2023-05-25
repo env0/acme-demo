@@ -1,8 +1,8 @@
 locals {
-  region = "us-east-1"
-  cidr_block = "172.16.0.0/16"
+  region                   = "us-east-1"
+  cidr_block               = "172.16.0.0/16"
   public_subnet_cidr_block = "172.16.100.0/24"
-  quad_zero_cidr_block = "0.0.0.0/0"
+  quad_zero_cidr_block     = "0.0.0.0/0"
 }
 
 provider "aws" {
@@ -10,8 +10,8 @@ provider "aws" {
 }
 
 resource "aws_vpc" "main" {
-  cidr_block = local.cidr_block
-  enable_dns_support = false
+  cidr_block           = local.cidr_block
+  enable_dns_support   = false
   enable_dns_hostnames = false
 }
 
@@ -28,7 +28,7 @@ resource "aws_route_table" "public-rtb" {
   vpc_id = aws_vpc.main.id
 
   route {
-    cidr_block = local.cidr_block
+    cidr_block      = local.cidr_block
     vpc_endpoint_id = aws_vpc_endpoint.sqs-vpc-endpoint.id
   }
 
@@ -85,19 +85,19 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "test-ec2-instance" {
-  ami = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
-  subnet_id = aws_subnet.public-subnet.id
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.public-subnet.id
   vpc_security_group_ids = [aws_security_group.public-internet-sg.id]
 }
 
 resource "aws_vpc_endpoint" "sqs-vpc-endpoint" {
-  vpc_id            = aws_vpc.main.id
-  service_name      = "com.amazonaws.${local.region}.sqs"
-  vpc_endpoint_type = "Interface"
+  vpc_id              = aws_vpc.main.id
+  service_name        = "com.amazonaws.${local.region}.sqs"
+  vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
-  subnet_ids = [aws_subnet.public-subnet.id]
-  security_group_ids = [aws_security_group.public-internet-sg.id]
+  subnet_ids          = [aws_subnet.public-subnet.id]
+  security_group_ids  = [aws_security_group.public-internet-sg.id]
 }
 
 resource "aws_sqs_queue" "test-queue" {

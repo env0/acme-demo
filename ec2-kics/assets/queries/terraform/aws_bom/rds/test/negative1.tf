@@ -1,5 +1,5 @@
 module "kafka" {
-  source = "cloudposse/msk-apache-kafka-cluster/aws"
+  source  = "cloudposse/msk-apache-kafka-cluster/aws"
   version = "0.7.2"
 
   namespace              = "eg"

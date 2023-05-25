@@ -5,14 +5,14 @@ resource "kubernetes_pod" "test1" {
 
   spec {
 
-    container =  [
+    container = [
       {
         image = "nginx:1.7.9"
         name  = "example"
 
         security_context = {
           capabilities = {
-             add = ["NET_BIND_SERVICE"]
+            add = ["NET_BIND_SERVICE"]
           }
         }
 

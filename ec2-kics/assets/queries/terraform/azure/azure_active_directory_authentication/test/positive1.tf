@@ -18,6 +18,6 @@ resource "azurerm_service_fabric_cluster" "positive1" {
 
   azure_active_directory {
     cluster_application_id = "id"
-    client_application_id = "id"
+    client_application_id  = "id"
   }
 }

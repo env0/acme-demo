@@ -1,4 +1,4 @@
-﻿resource "aws_api_gateway_rest_api" "example" {
+resource "aws_api_gateway_rest_api" "example" {
   body = jsonencode({
     openapi = "3.0.1"
     info = {
@@ -41,7 +41,7 @@ resource "aws_api_gateway_stage" "negative2" {
 }
 
 resource "aws_wafv2_web_acl" "foo" {
-  name = "foo"
+  name  = "foo"
   scope = "REGIONAL"
 
   default_action {
@@ -50,12 +50,12 @@ resource "aws_wafv2_web_acl" "foo" {
 
   visibility_config {
     cloudwatch_metrics_enabled = false
-    metric_name = "foo"
-    sampled_requests_enabled = false
+    metric_name                = "foo"
+    sampled_requests_enabled   = false
   }
 }
 
 resource "aws_wafv2_web_acl_association" "association" {
   resource_arn = aws_api_gateway_stage.negative2.arn
-  web_acl_arn   = aws_wafv2_web_acl.foo.arn
+  web_acl_arn  = aws_wafv2_web_acl.foo.arn
 }

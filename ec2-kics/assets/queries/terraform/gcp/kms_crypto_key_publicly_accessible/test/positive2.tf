@@ -21,5 +21,5 @@ data "google_iam_policy" "positive2" {
 
 resource "google_kms_crypto_key_iam_policy" "positive2" {
   crypto_key_id = google_kms_crypto_key.keyyy.id
-  policy_data = data.google_iam_policy.positive2.policy_data
+  policy_data   = data.google_iam_policy.positive2.policy_data
 }

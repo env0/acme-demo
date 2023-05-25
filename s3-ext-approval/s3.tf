@@ -40,5 +40,5 @@ module "s3-bucket_object" {
   file_source  = "index.html"
   bucket       = module.acme-s3.s3_bucket_id
   key          = "index.html"
-  etag         = "${filemd5("index.html")}"
+  etag         = filemd5("index.html")
 }

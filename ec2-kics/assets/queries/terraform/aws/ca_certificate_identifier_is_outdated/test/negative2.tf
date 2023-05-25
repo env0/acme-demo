@@ -4,10 +4,10 @@ module "db" {
 
   identifier = "demodb"
 
-  engine            = "mysql"
-  engine_version    = "5.7.19"
-  instance_class    = "db.t2.large"
-  allocated_storage = 5
+  engine             = "mysql"
+  engine_version     = "5.7.19"
+  instance_class     = "db.t2.large"
+  allocated_storage  = 5
   ca_cert_identifier = "rds-ca-2019"
 
   name     = "demodb"
@@ -24,8 +24,8 @@ module "db" {
 
   # Enhanced Monitoring - see example for details on how to create the role
   # by yourself, in case you don't want to create it automatically
-  monitoring_interval = "30"
-  monitoring_role_name = "MyRDSMonitoringRole"
+  monitoring_interval    = "30"
+  monitoring_role_name   = "MyRDSMonitoringRole"
   create_monitoring_role = true
 
   tags = {
@@ -47,11 +47,11 @@ module "db" {
 
   parameters = [
     {
-      name = "character_set_client"
+      name  = "character_set_client"
       value = "utf8mb4"
     },
     {
-      name = "character_set_server"
+      name  = "character_set_server"
       value = "utf8mb4"
     }
   ]

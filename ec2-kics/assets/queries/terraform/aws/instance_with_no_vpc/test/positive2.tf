@@ -4,11 +4,11 @@ module "ec2_instance" {
 
   name = "single-instance"
 
-  ami                    = "ami-ebd02392"
-  instance_type          = "t2.micro"
-  key_name               = "user1"
-  monitoring             = true
-  subnet_id              = "subnet-eddcdzz4"
+  ami           = "ami-ebd02392"
+  instance_type = "t2.micro"
+  key_name      = "user1"
+  monitoring    = true
+  subnet_id     = "subnet-eddcdzz4"
 
   tags = {
     Terraform   = "true"

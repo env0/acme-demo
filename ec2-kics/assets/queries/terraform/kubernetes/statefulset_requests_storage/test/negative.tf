@@ -174,7 +174,7 @@ resource "kubernetes_stateful_set" "prometheus" {
 
         resources {
           requests = {
-            cpu    = "10m"
+            cpu = "10m"
           }
         }
       }

@@ -28,17 +28,17 @@ resource "google_redis_instance" "cache2" {
   authorized_network = data.google_compute_network.redis-network.id
   connect_mode       = "PRIVATE_SERVICE_ACCESS"
 
-  redis_version     = "REDIS_4_0"
-  display_name      = "Terraform Test Instance"
+  redis_version = "REDIS_4_0"
+  display_name  = "Terraform Test Instance"
 
   depends_on = [google_service_networking_connection.private_service_connection]
 
 }
 
 resource "google_compute_firewall" "positive1" {
-  name    = "test-firewall"
-  network = google_compute_network.redis-network.name
-  direction = "INGRESS"
+  name          = "test-firewall"
+  network       = google_compute_network.redis-network.name
+  direction     = "INGRESS"
   source_ranges = ["0.0.0.0/0"]
 
   allow {

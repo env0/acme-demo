@@ -1,7 +1,7 @@
 module "foo" {
-  source = "terraform-aws-modules/s3-bucket/aws"
-  version = "0.0.1"
-  acl    = "private"
+  source        = "terraform-aws-modules/s3-bucket/aws"
+  version       = "0.0.1"
+  acl           = "private"
   bucket        = "foo"
   force_destroy = true
 
@@ -38,7 +38,7 @@ POLICY
 
   versioning_inputs = [
     {
-      enabled = true
+      enabled    = true
       mfa_delete = null
     },
   ]

@@ -9,7 +9,7 @@ resource "azurerm_function_app" "positive3" {
   site_config {
     dotnet_framework_version = "v4.0"
     scm_type                 = "LocalGit"
-    min_tls_version = 1.2
-    http2_enabled = false
+    min_tls_version          = 1.2
+    http2_enabled            = false
   }
 }

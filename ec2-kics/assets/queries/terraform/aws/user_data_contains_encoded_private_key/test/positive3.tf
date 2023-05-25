@@ -1,13 +1,13 @@
 module "positive3" {
-  source = "terraform-aws-modules/autoscaling/aws"
+  source  = "terraform-aws-modules/autoscaling/aws"
   version = "1.0.4"
 
   # Launch configuration
   lc_name = "example-lc"
 
-  image_id        = "ami-ebd02392"
-  instance_type   = "t2.micro"
-  security_groups = ["sg-12345678"]
+  image_id         = "ami-ebd02392"
+  instance_type    = "t2.micro"
+  security_groups  = ["sg-12345678"]
   user_data_base64 = "LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZIEJMT0NLLS0tLS0="
 
   ebs_block_device = [

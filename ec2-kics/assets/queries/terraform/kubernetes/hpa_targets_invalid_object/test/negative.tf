@@ -19,9 +19,9 @@ resource "kubernetes_horizontal_pod_autoscaler" "example5" {
           name = "latency"
         }
         described_object {
-          name = "main-route"
+          name        = "main-route"
           api_version = "networking.k8s.io/v1beta1"
-          kind = "Ingress"
+          kind        = "Ingress"
         }
         target {
           type  = "Value"

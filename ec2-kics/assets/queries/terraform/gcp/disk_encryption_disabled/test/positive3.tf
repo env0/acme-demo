@@ -10,6 +10,6 @@ resource "google_compute_disk" "positive4" {
 
   disk_encryption_key {
     kms_key_self_link = ""
-    sha256 = "A"
+    sha256            = "A"
   }
 }

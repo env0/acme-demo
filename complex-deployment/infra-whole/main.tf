@@ -24,7 +24,7 @@ variable "name" {
 }
 
 variable "force_destroy" {
-  type = bool
+  type    = bool
   default = false
 }
 

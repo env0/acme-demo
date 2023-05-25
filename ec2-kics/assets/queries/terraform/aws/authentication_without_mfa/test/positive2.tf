@@ -1,5 +1,5 @@
 provider "aws" {
-  region  = "us-east-1"
+  region = "us-east-1"
 }
 
 resource "aws_iam_user" "positive1" {
@@ -8,7 +8,7 @@ resource "aws_iam_user" "positive1" {
 }
 
 resource "aws_iam_user_login_profile" "positive2" {
-  user = aws_iam_user.positive2.name
+  user    = aws_iam_user.positive2.name
   pgp_key = "gpgkeybase64gpgkeybase64gpgkeybase64gpgkeybase64"
 }
 

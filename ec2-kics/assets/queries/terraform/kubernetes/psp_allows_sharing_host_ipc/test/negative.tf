@@ -5,7 +5,7 @@ resource "kubernetes_pod_security_policy" "example2" {
   spec {
     privileged                 = false
     allow_privilege_escalation = false
-    host_ipc = false
+    host_ipc                   = false
 
     volumes = [
       "configMap",

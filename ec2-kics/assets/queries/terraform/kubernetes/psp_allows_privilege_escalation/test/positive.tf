@@ -48,7 +48,7 @@ resource "kubernetes_pod_security_policy" "example2" {
     name = "terraform-example"
   }
   spec {
-    privileged                 = false
+    privileged = false
 
     volumes = [
       "configMap",

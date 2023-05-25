@@ -17,7 +17,7 @@ resource "azurerm_kubernetes_cluster" "positive1" {
   tags = {
     Environment = "Production"
   }
-  
+
   addon_profile {
     kube_dashboard {
       enabled = true

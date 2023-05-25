@@ -9,7 +9,7 @@
 terraform {
   required_providers {
     env0 = {
-      source = "env0/env0"
+      source  = "env0/env0"
       version = ">= 1.0.5"
     }
   }
@@ -20,7 +20,7 @@ data "env0_project" "myproject" {
 }
 
 variable "project_name" {
-  type = string
+  type    = string
   default = "Arnold's Developers"
 }
 
@@ -29,12 +29,12 @@ data "env0_template" "mytemplate" {
 }
 
 variable "template_name" {
-  type = string
+  type    = string
   default = "frontend layer"
 }
 
 variable "environment_name" {
-  type = string
+  type    = string
   default = "Frontend Layer - DevTest"
 }
 

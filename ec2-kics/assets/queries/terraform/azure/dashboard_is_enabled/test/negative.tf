@@ -41,7 +41,7 @@ resource "azurerm_kubernetes_cluster" "negative2" {
 
   addon_profile {
     kube_dashboard {
-        enabled = false
+      enabled = false
     }
   }
 }

@@ -4,11 +4,11 @@ resource "google_container_cluster" "negative1" {
   location           = "us-central1-a"
   initial_node_count = 3
   network_policy {
-      enabled = true
+    enabled = true
   }
   addons_config {
     network_policy_config {
-        disabled = false
+      disabled = false
     }
   }
   networking_mode = "VPC_NATIVE"

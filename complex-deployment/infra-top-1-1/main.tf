@@ -4,8 +4,8 @@ variable "length" {
 }
 
 module "infra" {
-  source        = "../../modules/random"
-  length        = var.length
+  source = "../../modules/random"
+  length = var.length
 }
 
 output "infra_name" {

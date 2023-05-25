@@ -12,8 +12,8 @@ resource "kubernetes_pod" "test" {
         name  = "environment"
         value = "test"
 
-        value_from =  {
-            secret_key_ref = "hjjhjh"
+        value_from = {
+          secret_key_ref = "hjjhjh"
         }
       }
 

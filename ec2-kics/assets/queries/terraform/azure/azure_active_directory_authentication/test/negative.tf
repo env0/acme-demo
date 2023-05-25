@@ -17,8 +17,8 @@ resource "azurerm_service_fabric_cluster" "negative" {
   }
 
   azure_active_directory {
-    tenant_id = "id"
+    tenant_id              = "id"
     cluster_application_id = "id"
-    client_application_id = "id"
+    client_application_id  = "id"
   }
 }

@@ -1,13 +1,13 @@
 variable "name" {
-  type    = string
+  type = string
 }
 
 variable "instance_count" {
-  type    = number
+  type = number
 }
 
 variable "instance_type" {
-  type    = string
+  type = string
 }
 
 variable "vpc_id" {
@@ -15,7 +15,7 @@ variable "vpc_id" {
 }
 
 variable "tags" {
-  type = map
+  type = map(any)
 }
 
 variable "ebs_size" {

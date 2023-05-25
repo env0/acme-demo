@@ -22,6 +22,6 @@ resource "aws_cloudfront_distribution" "positive2" {
 
   viewer_certificate {
     cloudfront_default_certificate = false
-    minimum_protocol_version = "TLSv1_2016"
+    minimum_protocol_version       = "TLSv1_2016"
   }
 }

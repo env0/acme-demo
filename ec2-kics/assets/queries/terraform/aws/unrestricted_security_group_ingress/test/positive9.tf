@@ -6,5 +6,5 @@ module "web_server_sg" {
   description = "Security group for web-server with HTTP ports open within VPC"
   vpc_id      = "vpc-12345678"
 
-  ingress_ipv6_cidr_blocks  = ["::/0"]
+  ingress_ipv6_cidr_blocks = ["::/0"]
 }

@@ -3,7 +3,7 @@ resource "aws_eks_cluster" "negative1" {
   role_arn = aws_iam_role.example.arn
 
   vpc_config {
-    subnet_ids = [aws_subnet.example1.id, aws_subnet.example2.id]
+    subnet_ids             = [aws_subnet.example1.id, aws_subnet.example2.id]
     endpoint_public_access = false
   }
 

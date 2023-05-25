@@ -9,7 +9,7 @@ resource "google_compute_disk" "negative1" {
   physical_block_size_bytes = 4096
 
   disk_encryption_key {
-      kms_key_self_link = "disk-crypto-key"
-      sha256 = "A"
+    kms_key_self_link = "disk-crypto-key"
+    sha256            = "A"
   }
 }

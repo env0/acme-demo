@@ -41,6 +41,6 @@ variable "projects" {
 
 output "project" {
   value = {
-    for k,v in var.projects : k => [v.name, v.description, v.credential ]
+    for k, v in var.projects : k => [v.name, v.description, v.credential]
   }
 }

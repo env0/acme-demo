@@ -70,7 +70,7 @@ resource "google_compute_instance" "positive3" {
   }
 
   service_account {
-    email = ""
+    email  = ""
     scopes = ["userinfo-email", "compute-ro", "storage-ro"]
   }
 }
@@ -97,7 +97,7 @@ resource "google_compute_instance" "positive4" {
   }
 
   service_account {
-    email = "a"
+    email  = "a"
     scopes = ["userinfo-email", "compute-ro", "storage-ro"]
   }
 }
@@ -124,7 +124,7 @@ resource "google_compute_instance" "positive5" {
   }
 
   service_account {
-    email = "email@developer.gserviceaccount.com"
+    email  = "email@developer.gserviceaccount.com"
     scopes = ["userinfo-email", "compute-ro", "storage-ro"]
   }
 }

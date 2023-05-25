@@ -1,6 +1,6 @@
 module "efs" {
-  source = "cloudposse/efs/aws"
-  version = "0.31.1"
+  source          = "cloudposse/efs/aws"
+  version         = "0.31.1"
   namespace       = "eg"
   stage           = "test"
   name            = "app"

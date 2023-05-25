@@ -1,10 +1,10 @@
 resource "google_sql_database_instance" "negative1" {
 
-  name   = "private-instance-1"
+  name             = "private-instance-1"
   database_version = "POSTGRES_11"
   settings {
     ip_configuration {
-      ipv4_enabled = false
+      ipv4_enabled    = false
       private_network = "some_private_network"
     }
   }

@@ -9,5 +9,5 @@ resource "aws_athena_database" "hoge" {
   encryption_configuration {
     encryption_option = "SSE_KMS"
     kms_key           = "SSE_KMS"
- }
+  }
 }

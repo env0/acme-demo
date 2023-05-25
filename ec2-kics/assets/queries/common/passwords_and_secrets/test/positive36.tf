@@ -1,7 +1,7 @@
 resource "aws_transfer_ssh_key" "example2" {
-	server_id = aws_transfer_server.example.id
-	user_name = aws_transfer_user.example.user_name
-	body      = <<EOF
+  server_id = aws_transfer_server.example.id
+  user_name = aws_transfer_user.example.user_name
+  body      = <<EOF
 "PuTTY-User-Key-File-2: ssh-rsa
 Encryption: none
 Comment: rsa-key-20200108

@@ -16,9 +16,9 @@ resource "aws_default_security_group" "default" {
 
   egress = [
     {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
+      from_port = 0
+      to_port   = 0
+      protocol  = "-1"
     }
   ]
 }

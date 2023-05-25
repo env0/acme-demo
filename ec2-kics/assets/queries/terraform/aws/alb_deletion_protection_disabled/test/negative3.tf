@@ -8,9 +8,9 @@ module "alb" {
 
   enable_deletion_protection = true
 
-  vpc_id             = "vpc-abcde012"
-  subnets            = ["subnet-abcde012", "subnet-bcde012a"]
-  security_groups    = ["sg-edcd9784", "sg-edcd9785"]
+  vpc_id          = "vpc-abcde012"
+  subnets         = ["subnet-abcde012", "subnet-bcde012a"]
+  security_groups = ["sg-edcd9784", "sg-edcd9785"]
 
   access_logs = {
     bucket = "my-alb-logs"
@@ -25,11 +25,11 @@ module "alb" {
       targets = [
         {
           target_id = "i-0123456789abcdefg"
-          port = 80
+          port      = 80
         },
         {
           target_id = "i-a1b2c3d4e5f6g7h8i"
-          port = 8080
+          port      = 8080
         }
       ]
     }

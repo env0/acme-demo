@@ -4,7 +4,7 @@ resource "azurerm_storage_account" "negative1" {
   location                 = azurerm_resource_group.example.location
   account_tier             = "Standard"
   account_replication_type = "GRS"
-  min_tls_version = "TLS1_2"
+  min_tls_version          = "TLS1_2"
 
   tags = {
     environment = "staging"

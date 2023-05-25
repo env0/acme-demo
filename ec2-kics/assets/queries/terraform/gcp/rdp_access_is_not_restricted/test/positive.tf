@@ -1,6 +1,6 @@
 resource "google_compute_firewall" "positive1" {
-  name    = "test-firewall"
-  network = google_compute_network.default.name
+  name      = "test-firewall"
+  network   = google_compute_network.default.name
   direction = "INGRESS"
 
   allow {
@@ -9,10 +9,10 @@ resource "google_compute_firewall" "positive1" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80", "8080", "1000-2000","3389"]
+    ports    = ["80", "8080", "1000-2000", "3389"]
   }
 
-  source_tags = ["web"]
+  source_tags   = ["web"]
   source_ranges = ["0.0.0.0/0"]
 }
 
@@ -22,10 +22,10 @@ resource "google_compute_firewall" "positive2" {
 
   allow {
     protocol = "udp"
-    ports    = ["80", "8080", "1000-2000","21-3390"]
+    ports    = ["80", "8080", "1000-2000", "21-3390"]
   }
 
-  source_tags = ["web"]
+  source_tags   = ["web"]
   source_ranges = ["::/0"]
 }
 
@@ -37,6 +37,6 @@ resource "google_compute_firewall" "positive3" {
     protocol = "all"
   }
 
-  source_tags = ["web"]
+  source_tags   = ["web"]
   source_ranges = ["::/0"]
 }

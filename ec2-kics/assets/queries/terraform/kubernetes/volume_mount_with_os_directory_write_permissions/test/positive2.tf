@@ -8,7 +8,7 @@ resource "kubernetes_pod" "test2" {
       volume_mount {
         name       = "config-volume"
         mount_path = "/bin"
-        read_only = false
+        read_only  = false
       }
 
       image = "nginx:1.7.9"
