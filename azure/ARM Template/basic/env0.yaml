@@ -1,0 +1,25 @@
+### https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli#4-sign-in-using-a-service-principal
+
+version: 2
+
+deploy:
+  steps:
+    terraformPlan:
+      before:
+        - name: ARM Deployment What-If
+          run: |
+            echo ENV0_REQUIRES_APPROVAL=true >> $ENV0_ENV
+            az deployment group what-if --name $ENV0_ENVIRONMENT_NAME --resource-group $AZURE_DEFAULTS_GROUP --template-file azuredeploy.json --parameters $ARM_PARAMETERS
+    terraformApply:
+      after:
+        - name: ARM Deployment Create
+          run: |
+            az deployment group create --name $ENV0_ENVIRONMENT_NAME --resource-group $AZURE_DEFAULTS_GROUP --template-file azuredeploy.json --parameters $ARM_PARAMETERS
+            az deployment group wait --name $ENV0_ENVIRONMENT_NAME --resource-group $AZURE_DEFAULTS_GROUP --created
+destroy:
+  steps:
+    terraformDestroy:
+      after:
+        - name: ARM Deplyoment Destroy
+          run: |
+            az deployment group delete --name $ENV0_ENVIRONMENT_NAME --resource-group $AZ_RESOURCE_GROUP
