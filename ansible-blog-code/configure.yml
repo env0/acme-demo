@@ -1,0 +1,53 @@
+---
+- hosts: all
+  become: yes
+  become_method: su
+  gather_facts: no
+  # hackery to cater for different python on host where ansible is running versus target (inventory) host
+  vars:
+    - ansible_play_python: "{{ '/usr/bin/env python3' }}"
+  
+  tasks:
+    - name: Wait for SSH access
+      ansible.builtin.wait_for:
+        host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
+        search_regex: OpenSSH
+        port: 22
+      vars:
+        ansible_connection: local
+        ansible_python_interpreter: "{{ ansible_play_python }}"
+      become: no
+  
+    - name: Gather facts
+      setup:
+  
+    - name: Ensure packages installed
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - sudo
+        - vim
+        - zsh
+  
+    - name: Set shell for default user
+      user:
+        name: ec2-user
+        shell: '/usr/local/bin/zsh'
+
+    - name: Some useful shell aliases
+      copy:
+        src: files/aliases.zsh
+        dest: /usr/local/etc/zshrc
+        owner: root
+        group: wheel
+        mode: 0644
+  
+    - name: Configure sudo
+      copy:
+        dest: '/usr/local/etc/sudoers.d/wheel'
+        content: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        owner: root
+        group: wheel
+        mode: 0600
+  
