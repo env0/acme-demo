@@ -13,7 +13,6 @@ deploy:
       before:
         - name: ARM Deployment What-If
           run: |
-            echo ENV0_REQUIRES_APPROVAL=true >> $ENV0_ENV
             az deployment group what-if --name $ENV0_ENVIRONMENT_ID --resource-group $AZURE_DEFAULTS_GROUP --template-file azuredeploy.json --parameters $ARM_PARAMETERS --no-pretty-print > azuredeploy.plan.json
             jq -C . azuredeploy.plan.json
     terraformApply:
