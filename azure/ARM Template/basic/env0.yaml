@@ -19,6 +19,7 @@ deploy:
       before:
         - name: ARM Deployment Create
           run: |
+            export
             az deployment group create --name $ENV0_ENVIRONMENT_ID --resource-group $AZURE_DEFAULTS_GROUP --template-file azuredeploy.json --parameters $ARM_PARAMETERS
       after:
         - name: ARM Deployment Wait
