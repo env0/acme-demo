@@ -14,12 +14,15 @@ deploy:
         - name: ARM Deployment What-If
           run: |
             echo ENV0_REQUIRES_APPROVAL=true >> $ENV0_ENV
-            az deployment group what-if --name $ENV0_ENVIRONMENT_ID --resource-group $AZURE_DEFAULTS_GROUP --template-file azuredeploy.json --parameters $ARM_PARAMETERS
+            az deployment group what-if --name $ENV0_ENVIRONMENT_ID --resource-group $AZURE_DEFAULTS_GROUP --template-file azuredeploy.json --parameters $ARM_PARAMETERS --no-pretty-print > azuredeploy.plan.json
+            jq -C . azuredeploy.plan.json
     terraformApply:
-      after:
+      before:
         - name: ARM Deployment Create
           run: |
             az deployment group create --name $ENV0_ENVIRONMENT_ID --resource-group $AZURE_DEFAULTS_GROUP --template-file azuredeploy.json --parameters $ARM_PARAMETERS
+      after:
+        - name: ARM Deployment Wait
             az deployment group wait --name $ENV0_ENVIRONMENT_ID --resource-group $AZURE_DEFAULTS_GROUP --created
 destroy:
   steps:
