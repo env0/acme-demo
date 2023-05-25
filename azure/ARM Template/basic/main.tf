@@ -1,5 +1,5 @@
 locals {
-  arm_plan = file(azuredeploy.plan.json)
+  arm_plan = file("azuredeploy.plan.json")
 }
 
 resource "null_resource" "arm_plan" {
