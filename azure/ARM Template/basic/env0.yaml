@@ -32,4 +32,4 @@ destroy:
       after:
         - name: ARM Deplyoment Destroy
           run: |
-            az deployment group delete --name $ENV0_ENVIRONMENT_ID --resource-group $AZ_RESOURCE_GROUP
+            az deployment group delete --name $ENV0_ENVIRONMENT_ID --resource-group $AZURE_DEFAULTS_GROUP
