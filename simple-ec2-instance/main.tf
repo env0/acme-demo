@@ -90,12 +90,12 @@ resource "aws_instance" "this" {
   cpu_core_count                       = var.cpu_core_count
   cpu_threads_per_core                 = var.cpu_threads_per_core
 
-  tags = merge(merge(merge(
+  tags = merge(merge(
     {
       "Name" = var.instance_count > 1 || var.use_num_suffix ? format("%s${var.num_suffix_format}", var.name, count.index + 1) : var.name
     },
     var.tags,
-  ), local.terratag_added_main), local.terratag_added_main)
+  ), local.terratag_added_main)
 
   volume_tags = var.enable_volume_tags ? merge(
     {
@@ -109,6 +109,6 @@ resource "aws_instance" "this" {
   }
 }
 locals {
-  terratag_added_main = { "demo2" = "may 10", "environment" = "prod" }
+  terratag_added_main = {"environment"="prod"}
 }
 
