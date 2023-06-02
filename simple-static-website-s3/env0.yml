@@ -1,12 +1,37 @@
-version: 1
+version: 2
 
 deploy:
   steps:
-    # setupVariables:
-    #   after:
-    #     - curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
-    #     - chmod 755 ./opa
-    #     - ./opa version
+    setupVariables:
+      after:
+        - name: ServiceNow Update - Clone Finished
+          run: |
+            https://devopsenv0.service-now.com/api/sn_devops/devops/tool/orchestration?toolId=env0
+            {
+            "taskExecution": {
+                  "toolId": "{tool_id}",
+                  "buildNumber": "{deployment_id}",
+                  "nativeId": "{environment_name}#{step_name}/{deployment_id}",
+                  "name": "{environment_name}#{step_name}/{deployment_id}",
+                  "id": "{environment_name}#{step_name}/{deployment_id}",
+                  "url": "{base_env0_url}/p/{project_id}/environments/{environment_id}/deployments/{deployment_id}#{step_name}",
+                  "isMultiBranch": "false",
+                  "branchName": "",
+                  "pipelineExecutionUrl": "{env0_api_url}/p/{project_id}/environments/{environment_id}/deployments/{deployment_id}",
+                  "orchestrationTaskUrl": "{env0_api_url}/p/{project_id}/environments/{environment_id}/{step_name}",
+                  "orchestrationTaskName": "{environment_name}#{step_name}",
+                  "result": "building",
+                  "startDateTime": "YYYY-MM-DD hh:mm:ss",
+                  "upstreamTaskUrl": "{env0_api_url}/p/{project_id}/environments/{environment_id}/deployments/{deployment_id}#{upstream_step_name}",
+                  "upstreamId": "{environment_name}#{upstream_step_name}"
+                },
+                "orchestrationTask": {
+                  "orchestrationTaskURL": "{env0_api_url}/p/{project_id}/environments/{environment_id}/{step_name}",
+                  "orchestrationTaskName": "{environment_name}#{step_name}",
+                  "branchName": "",
+                  "toolId": "{tool_id}"
+                }
+
     terraformInit:
       before:
         - pwd
