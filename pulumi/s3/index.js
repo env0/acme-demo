@@ -16,7 +16,6 @@ const bucket = new aws.s3.Bucket("my-bucket", {
 });
 
 const bucketObject = new aws.s3.BucketObject("index.html", {
-  acl: "public-read",
   contentType: "text/html",
   bucket: bucket,
   source: new pulumi.asset.FileAsset("index.html"),
