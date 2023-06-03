@@ -5,12 +5,12 @@
     "S3Bucket": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
-        "AccessControl": "PublicRead",
         "WebsiteConfiguration": {
           "IndexDocument": "index.html"
         },
         "Tags": [
           { "Key" : "Owner", "Value" : "Andrew Way" },
+          { "Key" : "Date", "Value" : "Jun 2, 2023" },
           { "Key" : "Comment", "Value" : { "Ref": "Comment" }}
         ]
       }
