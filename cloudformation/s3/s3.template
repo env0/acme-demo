@@ -10,6 +10,7 @@
         },
         "Tags": [
           { "Key" : "Owner", "Value" : "Andrew Way" },
+          { "Key" : "Date", "Value" : "Jun 2, 2023" },
           { "Key" : "Comment", "Value" : { "Ref": "Comment" }}
         ]
       }
