@@ -10,10 +10,12 @@ module "acme-s3" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "3.11.0"
 
-  bucket        = "${var.bucketname}-${random_string.random.id}"
-  acl           = "public-read"
-  force_destroy = true
-  policy        = <<-EOT
+  bucket                   = "${var.bucketname}-${random_string.random.id}"
+  acl                      = "public-read"
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
+  force_destroy            = true
+  policy                   = <<-EOT
   "Version":"2012-10-17",
   "Statement":[
     {
