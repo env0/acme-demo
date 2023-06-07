@@ -40,12 +40,12 @@ module "acme-s3" {
 }
 
 resource "aws_s3_object" "this" {
-  bucket       = module.acme-s3.s3_bucket_id
-  key          = "index.html"
-  
-  acl          = "public-read"
-  source  = "index.html" 
-  etag         = filemd5("index.html")
+  bucket = module.acme-s3.s3_bucket_id
+  key    = "index.html"
+
+  acl    = "public-read"
+  source = "index.html"
+  etag   = filemd5("index.html")
 
   content_type = "text/html"
 
