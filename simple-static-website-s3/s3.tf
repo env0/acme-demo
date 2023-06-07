@@ -3,19 +3,25 @@ resource "random_string" "random" {
   special = false
   lower   = true
   upper   = false
-  number  = true
+  numeric = true
 }
 
 module "acme-s3" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "3.11.0"
 
-  bucket                   = "${var.bucketname}-${random_string.random.id}"
+  bucket = "${var.bucketname}-${random_string.random.id}"
+
   acl                      = "public-read"
   control_object_ownership = true
   object_ownership         = "ObjectWriter"
-  force_destroy            = true
-  policy                   = <<-EOT
+  block_public_acls        = false
+  block_public_policy      = false
+  ignore_public_acls       = false
+  restrict_public_buckets  = false
+
+  force_destroy = true
+  policy        = <<-EOT
   "Version":"2012-10-17",
   "Statement":[
     {
