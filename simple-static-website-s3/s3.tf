@@ -29,7 +29,7 @@ module "acme-s3" {
       "Effect":"Allow",
       "Principal": "*",
       "Action":["s3:GetObject","s3:GetObjectVersion"],
-      "Resource":["${module.acme-s3.s3_bucket_arn}"]
+      "Resource":["${module.acme-s3.s3_bucket_arn}/*","${module.acme-s3.s3_bucket_arn}"]
     }
   ]
   EOT
@@ -39,14 +39,15 @@ module "acme-s3" {
   }
 }
 
-module "s3-bucket_object" {
-  source  = "terraform-aws-modules/s3-bucket/aws//modules/object"
-  version = "3.11.0"
+resource "aws_s3_object" "this" {
+  bucket = module.acme-s3.s3_bucket_id
+  key    = "index.html"
 
-  acl          = "public-read"
+  acl    = "public-read"
+  source = "index.html"
+  etag   = filemd5("index.html")
+
   content_type = "text/html"
-  file_source  = "index.html"
-  bucket       = module.acme-s3.s3_bucket_id
-  key          = "index.html"
-  etag         = filemd5("index.html")
+
+  depends_on = [module.acme-s3]
 }
