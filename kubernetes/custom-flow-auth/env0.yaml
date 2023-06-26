@@ -16,7 +16,11 @@ deploy:
             aws --version
             aws eks update-kubeconfig --name $CLUSTER_NAME --region $REGION 
             cat ~/.kube/config
-
+    helmDiff:
+      before:
+        - name: Update Repo
+          run: |
+            helm repo update
 destroy:
   steps:
     setupVariables: *login-k8s
