@@ -8,8 +8,11 @@ deploy:
           run: |
             mkdir -p ~/.kube
             echo $PATH
+            echo "/opt:$PATH" >> $ENV0_ENV
             which awsv2
-            ln -s /usr/bin/awsv2 /usr/bin/aws
+            which aws
+            ln -s /usr/local/bin/awsv2 /opt/aws
+            which aws
             aws --version
             aws eks update-kubeconfig --name $CLUSTER_NAME --region $REGION 
             cat ~/.kube/config
