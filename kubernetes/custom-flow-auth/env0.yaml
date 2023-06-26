@@ -5,8 +5,9 @@ deploy:
     setupVariables:
       after: &login-k8s
         - mkdir -p ~/.kube
-        - ln -s /opt/awsv2 /opt/aws
-        - which aws
+        - echo $PATH
+        - which awsv2
+        - ln -s /usr/bin/awsv2 /usr/bin/aws
         - aws --version
         - aws eks update-kubeconfig --name $CLUSTER_NAME --region $REGION 
         - cat ~/.kube/config
