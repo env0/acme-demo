@@ -1,9 +1,9 @@
-version: 1
+version: 2
 
 deploy:
   steps:
-    setupVariables:
-      after: &login-k8s
+    setupVariables: &login-k8s
+      after: 
         - name: Retrieve K8s Config
           run: |
             mkdir -p ~/.kube
@@ -16,5 +16,4 @@ deploy:
 
 destroy:
   steps:
-    setupVariables:
-      after: *login-k8s
+    setupVariables: *login-k8s
