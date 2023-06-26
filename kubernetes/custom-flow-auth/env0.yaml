@@ -5,7 +5,10 @@ deploy:
     setupVariables:
       after: &login-k8s
         - mkdir -p ~/.kube
-        - awsv2 eks update-kubeconfig --name $CLUSTER_NAME --region $REGION 
+        - ln -s /opt/awsv2 /opt/aws
+        - which aws
+        - aws version
+        - aws eks update-kubeconfig --name $CLUSTER_NAME --region $REGION 
         - cat ~/.kube/config
 
 destroy:
