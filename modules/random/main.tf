@@ -7,18 +7,15 @@ terraform {
   }
 }
 
-resource "random_id" "random" {
+resource "random_string" "random" {
   keepers = {
     refresh_token = var.refresh_token
   }
-  byte_length = var.length
-  prefix = var.prefix
+  length           = var.length
+  numeric          = var.numeric
+  special          = var.special
+  lower            = var.lower
+  upper            = var.upper
+  override_special = var.override_special
 }
 
-output "random_id_url" {
-  value = random_id.random.b64_url
-}
-
-output "random_id" {
-  value = random_id.random.b64_std
-}

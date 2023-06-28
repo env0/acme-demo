@@ -1,4 +1,4 @@
-Random ID Module
+Random String Module
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -21,20 +21,24 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [random_id.random](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/id) | resource |
+| [random_string.random](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/string) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_byte_length"></a> [byte\_length](#input\_byte\_length) | n/a | `number` | `2` | no |
-| <a name="input_prefix"></a> [prefix](#input\_prefix) | n/a | `string` | `""` | no |
+| <a name="input_length"></a> [length](#input\_length) | n/a | `number` | `5` | no |
+| <a name="input_lower"></a> [lower](#input\_lower) | n/a | `bool` | `true` | no |
+| <a name="input_numeric"></a> [numeric](#input\_numeric) | n/a | `bool` | `true` | no |
+| <a name="input_override_special"></a> [override\_special](#input\_override\_special) | n/a | `string` | `"-._~"` | no |
 | <a name="input_refresh_token"></a> [refresh\_token](#input\_refresh\_token) | n/a | `string` | `"0"` | no |
+| <a name="input_special"></a> [special](#input\_special) | n/a | `bool` | `false` | no |
+| <a name="input_upper"></a> [upper](#input\_upper) | n/a | `bool` | `false` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_random_id"></a> [random\_id](#output\_random\_id) | n/a |
-| <a name="output_random_id_url"></a> [random\_id\_url](#output\_random\_id\_url) | n/a |
+| <a name="output_random_result"></a> [random\_result](#output\_random\_result) | n/a |
 <!-- END_TF_DOCS -->
