@@ -6,8 +6,8 @@ deploy:
       after: &kubeconfig
         - name: Configure kube/config
           run: |
-            awsv2 eks --region=${ENV0_CLUSTER_REGION:-us-west-2} update-kubeconfig --name ${ENV0_CLUSTER_NAME:-acme-fitness-cluster}
-            "sed -i 's/command: aws/command: awsv2/g' ~/.kube/config"
+            ln -s /usr/local/bin/awsv2 /opt/aws
+            aws eks --region=${ENV0_CLUSTER_REGION:-us-west-2} update-kubeconfig --name ${ENV0_CLUSTER_NAME:-acme-fitness-cluster}
             cat /home/node/.kube/config
 destroy:
   steps:
