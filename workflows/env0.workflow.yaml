@@ -4,7 +4,7 @@ environments:
     templateName: 'wf-a-network'
   db:
     name: DB
-    templateName: 'Pulumi s3'
+    templateName: 'wf-b2-database'
   compute:
     name: Compute
     templateName: 'wf-b1-compute'
@@ -17,3 +17,17 @@ environments:
     needs:
       - compute
       - db
+  metrics_service:
+    name: Matrix Service
+    templateName: 'wf-c-service'
+    disabled: ${DISABLE_METRICS_SERVICE}
+    needs:
+      - compute
+  db_monitoring_service:
+    name: DB Monitoring Service
+    templateName: 'wf-c-service'
+    disabled: ${DISABLE_DB_MON_SERVICE}
+    needs:
+      - db
+settings:
+  environmentRemovalStrategy: destroy
