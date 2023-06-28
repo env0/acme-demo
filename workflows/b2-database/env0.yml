@@ -1,0 +1,16 @@
+version: 2
+
+deploy: &pulumi
+  steps:
+    setupVariables:
+      after:
+        - name: Initialize NPM
+          run: npm i
+    pulumiPreview:
+      before:
+        - name: Configure Auth
+          run: | 
+            pulumi config set aws:region us-west-2
+            pulumi config set --path aws:assumeRole.roleArn $ENV0_AWS_ROLE_ARN
+            pulumi config set --path aws:assumeRole.externalId $ENV0_AWS_ROLE_EXTERNAL_ID
+destroy: *pulumi
