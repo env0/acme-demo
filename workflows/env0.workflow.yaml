@@ -5,12 +5,11 @@ environments:
   db:
     name: DB
     templateName: 'Pulumi s3'
-    needs:
-      - network
   compute:
     name: Compute
     templateName: 'wf-b1-compute'
     needs:
+      - network
   billing_service:
     name: Billing Service
     templateName: 'wf-c-services'
