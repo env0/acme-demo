@@ -2,30 +2,20 @@ terraform {
   required_providers {
     random = {
       source  = "hashicorp/random"
-      version = "3.1.0"
+      version = "3.5.1"
     }
   }
-}
-
-variable "refresh_token" {
-  type    = string
-  default = "0"
-}
-
-variable "length" {
-  type    = number
-  default = 5
 }
 
 resource "random_string" "random" {
   keepers = {
     refresh_token = var.refresh_token
   }
-  length  = var.length
-  upper   = true
-  special = false
+  length           = var.length
+  numeric          = var.numeric
+  special          = var.special
+  lower            = var.lower
+  upper            = var.upper
+  override_special = var.override_special
 }
 
-output "random_string" {
-  value = random_string.random.result
-}
