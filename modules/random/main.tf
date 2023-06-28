@@ -2,30 +2,23 @@ terraform {
   required_providers {
     random = {
       source  = "hashicorp/random"
-      version = "3.1.0"
+      version = "3.5.1"
     }
   }
 }
 
-variable "refresh_token" {
-  type    = string
-  default = "0"
-}
-
-variable "length" {
-  type    = number
-  default = 5
-}
-
-resource "random_string" "random" {
+resource "random_id" "random" {
   keepers = {
     refresh_token = var.refresh_token
   }
-  length  = var.length
-  upper   = true
-  special = false
+  byte_length = var.length
+  prefix = var.prefix
 }
 
-output "random_string" {
-  value = random_string.random.result
+output "random_id_url" {
+  value = random_id.random.b64_url
+}
+
+output "random_id" {
+  value = random_id.random.b64_std
 }
