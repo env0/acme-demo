@@ -1,0 +1,21 @@
+environments:
+  network:
+    name: Network
+    templateName: 'wf-a-network'
+  db:
+    name: DB
+    templateName: 'Pulumi s3'
+    needs:
+      - network
+  compute:
+    name: Compute
+    templateName: 'wf-b1-compute'
+    needs:
+      - network
+  billing_service:
+    name: Billing Service
+    templateName: 'Billing Service'
+    disabled: ${DISABLE_BILLING_SERVICE}
+    needs:
+      - compute
+      - db
