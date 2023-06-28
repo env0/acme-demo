@@ -39,6 +39,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_random_id"></a> [random\_id](#output\_random\_id) | n/a |
-| <a name="output_random_result"></a> [random\_result](#output\_random\_result) | n/a |
+| <a name="output_id"></a> [id](#output\_id) | n/a |
+| <a name="output_result"></a> [result](#output\_result) | n/a |
 <!-- END_TF_DOCS -->
