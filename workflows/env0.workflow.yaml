@@ -12,7 +12,7 @@ environments:
       - network
   billing_service:
     name: Billing Service
-    templateName: 'wf-c-services'
+    templateName: 'wf-c-service'
     disabled: ${DISABLE_BILLING_SERVICE}
     needs:
       - compute
