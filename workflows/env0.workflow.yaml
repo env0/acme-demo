@@ -18,7 +18,7 @@ environments:
       - compute
       - db
   metrics_service:
-    name: Metrics Service
+    name: Matrix Service
     templateName: 'wf-c-service'
     disabled: ${DISABLE_METRICS_SERVICE}
     needs:
