@@ -7,7 +7,7 @@ deploy:
         - name: Retrieve K8s Config
           run: |
             mkdir -p ~/.kube
-            ln -s /usr/local/bin/awsv2 /opt/aws
+            #ln -s /usr/local/bin/awsv2 /opt/aws
             aws eks update-kubeconfig --name $CLUSTER_NAME --region $REGION 
             cat ~/.kube/config
     # helmDiff:
