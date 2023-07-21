@@ -4,7 +4,7 @@ deploy:
   steps:
     terraformPlan:
       after:
-        _ name: OPA Scan
+        - name: OPA Scan
           use: https://github.com/env0/env0-opa-plugin
           inputs:
             path: ./rego
@@ -19,4 +19,3 @@ deploy:
     #       run: |
     #       echo $ENV0_TF_PLAN_JSON > tf-plan.json
     #       - ./opa eval --fail-defined "data.terraform.validation.violations[msg]" --input tf-plan.json --data ./rego/tf-lib.rego --data ./rego/validation.rego --format values 1>&2
-        - name: My Step Name # The name that will be presented in the UI for this step      
