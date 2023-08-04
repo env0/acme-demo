@@ -8,7 +8,7 @@ has_key(x, k) {
 # title: require approval on cost estimation
 # description: require approval if cost estimation is returning any value greater than $10/month on the plan
 pending[format(rego.metadata.rule())] {
-  input.costEstimation.totalMonthlyCost > 10
+  input.costEstimation.totalMonthlyCost > 30
   input.approvers[_].name == input.deployerUser.name
 }
 
