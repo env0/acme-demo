@@ -19,4 +19,5 @@ deploy:
       after:
         - terraform show -json .tf-plan > tf-plan.json
         - echo "OPA Check"
-        - ./opa eval --fail-defined "data.terraform.validation.violations[msg]" --input tf-plan.json --data ./rego/tf-lib.rego --data ./rego/validation.rego --format values 1>&2
+        - ./opa eval --fail-defined "data.terraform.validation.violations[msg]" --format pretty --input tf-plan.json --data ./rego/tf-lib.rego --data ./rego/validation.rego --format values 1>&2
+#        - ./opa eval --format pretty -i tfplan.json -d ./external-repo/custom-flows/opa-polices/null-resource.rego --fail "data.resource.limit.allow = true"
