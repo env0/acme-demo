@@ -14,9 +14,13 @@ pending[format(rego.metadata.rule())] {
 
 # METADATA
 # title: allow if approved by anyone else other than deployer
-# description: allow after approval is given by anyone else
+# description: approve automatically if the estimated costs are less than $30/month
 allow[format(rego.metadata.rule())] {
   input.approvers[_].name != input.deployerUser.name
+}
+
+pending[format(rego.metadata.rule())] {
+  input.costEstimation.totalMonthlyCost <= 30
 }
 
 # METADATA
