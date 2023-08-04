@@ -19,7 +19,7 @@ allow[format(rego.metadata.rule())] {
   input.approvers[_].name != input.deployerUser.name
 }
 
-pending[format(rego.metadata.rule())] {
+allow[format(rego.metadata.rule())] {
   input.costEstimation.totalMonthlyCost <= 30
 }
 
