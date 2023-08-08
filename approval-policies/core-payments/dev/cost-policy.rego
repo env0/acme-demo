@@ -25,7 +25,7 @@ pending[format(rego.metadata.rule())] {
 # title: allow if approved by anyone else other than deployer
 # description: deployment can be approved by someone other than deployer
 allow[format(rego.metadata.rule())] {
-  input.approvers[_].email != cost_approvers[_]
+  input.approvers[_].email == cost_approvers[_]
 }
 
 # METADATA
