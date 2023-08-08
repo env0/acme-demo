@@ -4,9 +4,9 @@ has_key(x, k) {
 	_ = x[k]
 }
 
-# METADATA
-# title: deny on over spend
-# description: automatically deny when cost estimation is returning any value greater than $30/month on the plan
+## METADATA
+## title: deny on over spend
+## description: automatically deny when cost estimation is returning any value greater than $30/month on the plan
 #deny[format(rego.metadata.rule())] {
 #  input.costEstimation.totalMonthlyCost > 30
 #}
