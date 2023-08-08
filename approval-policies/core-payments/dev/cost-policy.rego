@@ -27,9 +27,16 @@ pending[format(rego.metadata.rule())] {
 
 # METADATA
 # title: require secondary approver
-# description: require approval from someone other than deployer
+# description: wait for approval if deployer is a member of the approver list and no other approver is present
 pending[format(rego.metadata.rule())] {
-  input.approvers[_].email == input.deployerUser.email
+  some i
+  input.deployerUser.email == approvers[i].email
+  not any_other_approver[i]
+}
+
+any_other_approver[i] {
+  input.approvers[j].email == approvers[i].email
+  i != j
 }
 
 # METADATA
