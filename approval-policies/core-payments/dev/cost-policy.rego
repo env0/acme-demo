@@ -7,7 +7,6 @@ has_key(x, k) {
 }
 
 ## STATIC VARIABLES
-
 # Cost Approvers
 cost_approvers = ["kevin.damaso@env0.com", "andrew.way@env0.com", "chris.noon@env0.com"]
 
@@ -30,21 +29,6 @@ any_approver_present {
   input.approvers[_].email == cost_approvers[_]
 }
 
-
-# METADATA
-# title: require secondary approver
-# description: wait for approval if deployer is a member of the approver list and no other approver is present
-pending[format(rego.metadata.rule())] {
-  some i
-  input.deployerUser.email == input.approvers[i].email
-  not any_other_approver[i]
-}
-
-any_other_approver[i] {
-  input.approvers[j].email != input.approvers[i].email
-  i != j
-}
-
 # METADATA
 # title: allow if approved by anyone else other than deployer
 # description: approve automatically if the estimated costs are less than $30/month
@@ -58,15 +42,3 @@ allow[format(rego.metadata.rule())] {
 allow[format(rego.metadata.rule())] {
   not has_key(input, "costEstimation")
 }
-
-# METADATA
-# title: allow if no monthly cost
-# description: approve automatically if the plan has no changes
-allow[format(rego.metadata.rule())] {
-  not any_resources_with_change
-}
-
-any_resources_with_change {
-  input.plan.resource_changes[_].change.actions[_] != "no-op"
-}
-
