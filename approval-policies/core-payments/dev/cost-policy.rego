@@ -15,10 +15,10 @@ cost_approvers = ["kevin.damaso@env0.com", "andrew.way@env0.com", "chris.noon@en
 
 # METADATA
 # title: require approval on cost estimation
-# description: require approval if cost estimation is returning any value greater than $10/month on the plan
+# description: require approval from cost_approvers if cost estimation is returning any value greater than $30/month on the plan
 pending[format(rego.metadata.rule())] {
-  input.costEstimation.totalMonthlyCost > 30
   input.approvers[_].email != cost_approvers[_]
+  input.costEstimation.totalMonthlyCost > 30
 }
 
 # METADATA
