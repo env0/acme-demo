@@ -60,6 +60,13 @@ allow[format(rego.metadata.rule())] {
 	not has_key(input, "costEstimation")
 }
 
+# METADATA
+# title: allow if no monthly cost
+# description: approve automatically if the plan has no changes
+allow[format(rego.metadata.rule())] {
+	input.plan.resource_changes[_].change[_] == "no-op"
+}
+
 format(meta) := meta.description
 
 review_plan = input.plan
