@@ -1,21 +1,15 @@
 package env0
 
+format(meta) := meta.description
+
 has_key(x, k) {
 	_ = x[k]
 }
 
-## METADATA
-## title: deny on over spend
-## description: automatically deny when cost estimation is returning any value greater than $30/month on the plan
-#deny[format(rego.metadata.rule())] {
-#  input.costEstimation.totalMonthlyCost > 30
-#}
+## STATIC VARIABLES
 
+# Cost Approvers
 cost_approvers = ["kevin.damaso@env0.com", "andrew.way@env0.com", "chris.noon@env0.com"]
-
-any_approver_present {
-  input.approvers[_].email == cost_approvers[_]
-}
 
 # METADATA
 # title: require approval on cost estimation
@@ -26,25 +20,32 @@ pending[format(rego.metadata.rule())] {
 }
 
 # METADATA
-# title: require secondary approver
-# description: wait for approval if deployer is a member of the approver list and no other approver is present
-pending[format(rego.metadata.rule())] {
-  some i
-  input.deployerUser.email == approvers[i].email
-  not any_other_approver[i]
-}
-
-any_other_approver[i] {
-  input.approvers[j].email == approvers[i].email
-  i != j
-}
-
-# METADATA
 # title: allow if approved by anyone else other than deployer
 # description: deployment can be approved by someone other than deployer
 allow[format(rego.metadata.rule())] {
   any_approver_present
 }
+
+any_approver_present {
+  input.approvers[_].email == cost_approvers[_]
+}
+
+
+# METADATA
+# title: require secondary approver
+# description: wait for approval if deployer is a member of the approver list and no other approver is present
+pending[format(rego.metadata.rule())] {
+  some i
+  input.deployerUser.email == input.approvers[i].email
+  not any_other_approver[i]
+}
+
+any_other_approver[i] {
+  input.approvers[j].email != input.approvers[i].email
+  i != j
+}
+
+
 
 # METADATA
 # title: allow if approved by anyone else other than deployer
@@ -57,16 +58,17 @@ allow[format(rego.metadata.rule())] {
 # title: allow if no monthly cost
 # description: approve automatically if the plan no cost estimation
 allow[format(rego.metadata.rule())] {
-	not has_key(input, "costEstimation")
+  not has_key(input, "costEstimation")
 }
 
 # METADATA
 # title: allow if no monthly cost
 # description: approve automatically if the plan has no changes
 allow[format(rego.metadata.rule())] {
-	input.plan.resource_changes[_].change[_] == "no-op"
+	not any_resources_with_change
 }
 
-format(meta) := meta.description
+any_resources_with_change {
+	input.plan.resource_changes[_].change.actions[_] != "no-op"
+}
 
-review_plan = input.plan
