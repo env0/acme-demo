@@ -5,11 +5,18 @@ has_key(x, k) {
 }
 
 # METADATA
-# title: require approval on cost estimation
-# description: require approval if cost estimation is returning any value greater than $10/month on the plan
-pending[format(rego.metadata.rule())] {
+# title: deny on over spend
+# description: automatically deny when cost estimation is returning any value greater than $30/month on the plan
+deny[format(rego.metadata.rule())] {
   input.costEstimation.totalMonthlyCost > 30
 }
+
+## METADATA
+## title: require approval on cost estimation
+## description: require approval if cost estimation is returning any value greater than $10/month on the plan
+#pending[format(rego.metadata.rule())] {
+#  input.costEstimation.totalMonthlyCost > 30
+#}
 
 # METADATA
 # title: allow if approved by anyone else other than deployer
