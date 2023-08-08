@@ -45,8 +45,6 @@ any_other_approver[i] {
   i != j
 }
 
-
-
 # METADATA
 # title: allow if approved by anyone else other than deployer
 # description: approve automatically if the estimated costs are less than $30/month
@@ -65,10 +63,10 @@ allow[format(rego.metadata.rule())] {
 # title: allow if no monthly cost
 # description: approve automatically if the plan has no changes
 allow[format(rego.metadata.rule())] {
-	not any_resources_with_change
+  not any_resources_with_change
 }
 
 any_resources_with_change {
-	input.plan.resource_changes[_].change.actions[_] != "no-op"
+  input.plan.resource_changes[_].change.actions[_] != "no-op"
 }
 
