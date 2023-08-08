@@ -26,6 +26,13 @@ pending[format(rego.metadata.rule())] {
 }
 
 # METADATA
+# title: require secondary approver
+# description: require approval from someone other than deployer
+pending[format(rego.metadata.rule())] {
+  input.approvers[_].email == input.deployerUser.email
+}
+
+# METADATA
 # title: allow if approved by anyone else other than deployer
 # description: deployment can be approved by someone other than deployer
 allow[format(rego.metadata.rule())] {
@@ -47,3 +54,5 @@ allow[format(rego.metadata.rule())] {
 }
 
 format(meta) := meta.description
+
+review_plan = input.plan
