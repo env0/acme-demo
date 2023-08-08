@@ -11,19 +11,21 @@ has_key(x, k) {
 #  input.costEstimation.totalMonthlyCost > 30
 #}
 
+cost_approvers = ["kevin.damaso@env0.com", "andrew.way@env0.com", "chris.noon@env0.com"]
+
 # METADATA
 # title: require approval on cost estimation
 # description: require approval if cost estimation is returning any value greater than $10/month on the plan
 pending[format(rego.metadata.rule())] {
   input.costEstimation.totalMonthlyCost > 30
-  input.approvers[_].name == input.deployerUser.name
+  input.approvers[_].email != cost_approvers[_]
 }
 
 # METADATA
 # title: allow if approved by anyone else other than deployer
 # description: deployment can be approved by someone other than deployer
 allow[format(rego.metadata.rule())] {
-  input.approvers[_].name != input.deployerUser.name
+  input.approvers[_].email != cost_approvers[_]
 }
 
 # METADATA
