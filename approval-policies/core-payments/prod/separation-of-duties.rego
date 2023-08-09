@@ -1,6 +1,7 @@
 package env0
 
 format(meta) := meta.description
+format(meta, context) := meta.description + " " + context
 
 # Helper
 any_other_approver[i] {
@@ -20,8 +21,7 @@ pending[format(rego.metadata.rule())] {
 # METADATA
 # title: separation of duties
 # description: approver is not deployer 
-allow[reason] {
+allow[format(rego.metadata.rule(), input.approvers[i].email)] {
   some i
   input.deployerUser.email != input.approvers[i].email
-  reason = fmt.Printf("approver (%s)", input.approvers[i].email)
 }
