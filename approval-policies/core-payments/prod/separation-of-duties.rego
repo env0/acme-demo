@@ -19,7 +19,9 @@ pending[format(rego.metadata.rule())] {
 
 # METADATA
 # title: separation of duties
-# description: secondary approval (deployer cannot be approver)
-allow[format(rego.metadata.rule())] {
-  input.deployerUser.email != input.approvers[_].email
+# description: approver is not deployer 
+allow[reason] {
+  some i
+  input.deployerUser.email != input.approvers[i].email
+  reason = fmt.Printf("approver (%s)", input.approvers[i].email)
 }
