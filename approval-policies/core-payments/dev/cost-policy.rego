@@ -15,7 +15,7 @@ has_key(x, k) {
 ## STATIC VARIABLES
 # Cost Approvers
 cost_approvers := ["kevin.damaso@env0.com", "andrew.way@env0.com", "chris.noon@env0.com"]
-cost_limit := 5 # USD per month
+cost_limit := 10 # USD per month
 
 # METADATA
 # title: require approval on cost estimation
