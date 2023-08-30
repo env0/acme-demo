@@ -23,7 +23,7 @@ cost_limit := 30 # USD per month
 pending[message] {
   input.costEstimation.totalMonthlyCost > cost_limit
   not any_approver_present
-  message := sprintf ("require approval from cost_approvers if cost estimation is greater than $%v/month", cost_limit)
+  message := sprintf("require approval from cost_approvers if cost estimation is greater than $%v/month", [cost_limit])
 }
 
 # METADATA
