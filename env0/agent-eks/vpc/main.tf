@@ -4,7 +4,7 @@ module "vpc" {
 
   name                 = "vpc-${var.cluster_name}"
   cidr                 = var.cidr
-  azs                  = data.aws_ec2_instance_type_offerings.supported_azs.locations
+  azs                  = sort(data.aws_ec2_instance_type_offerings.supported_azs.locations)
   private_subnets      = var.private_subnets
   public_subnets       = var.public_subnets
   enable_nat_gateway   = true
