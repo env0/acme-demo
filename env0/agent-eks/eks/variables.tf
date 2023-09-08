@@ -1,10 +1,11 @@
 variable "region" {
   type    = string
-  default = "us-east-1"
+  default = "us-west-2"
 }
 
 variable "cluster_name" {
-  type = string
+  type    = string
+  default = "acme"
 }
 
 # example usage
@@ -14,7 +15,6 @@ variable "cluster_name" {
 #              {"rolearn" = "arn:aws:sts::326535729404:assumed-role/AWSReservedSSO_AdministratorAccess_6e013e7aceaa4447",
 #               "groups" = ["system:masters"],
 #               "username"= "env0 employee"}]
-# }))
 variable "map_roles" {
   description = "Additional IAM roles to add to the aws-auth configmap."
   type = list(object({
@@ -22,14 +22,25 @@ variable "map_roles" {
     username = string
     groups   = list(string)
   }))
-  default = []
+  default = [
+    {
+      "rolearn"  = "arn:aws:iam::326535729404:role/env0-acme-assume-role",
+      "groups"   = ["system:masters"],
+      "username" = "env0 deployer"
+    },
+    {
+      "rolearn"  = "arn:aws:sts::326535729404:assumed-role/AWSReservedSSO_AdministratorAccess_6e013e7aceaa4447",
+      "groups"   = ["system:masters"],
+      "username" = "env0 employee"
+  }]
 }
 
 variable "min_capacity" {
   description = "Min number of workers"
-  default     = 2
+  default     = 1
 }
 
 variable "instance_type" {
-  default = "t3a.2xlarge" # 8vCPUs 32GB
+  type    = string
+  default = "t4g.large"
 }
