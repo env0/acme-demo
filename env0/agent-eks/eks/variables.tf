@@ -35,6 +35,12 @@ variable "map_roles" {
   }]
 }
 
+variable "kms_key_administrators" {
+  type = list(string)
+  default = ["arn:aws:iam::326535729404:role/env0-acme-assume-role",
+  "arn:aws:sts::326535729404:assumed-role/AWSReservedSSO_AdministratorAccess_6e013e7aceaa4447"]
+}
+
 variable "min_capacity" {
   description = "Min number of workers"
   default     = 1

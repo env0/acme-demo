@@ -29,9 +29,9 @@ module "eks_managed_node_group_blue" {
     module.eks.cluster_security_group_id,
   ]
 
-  min_size     = 1
-  max_size     = 3
-  desired_size = 1
+  min_size     = var.min_capacity
+  max_size     = var.min_capacity + 2
+  desired_size = var.min_capacity
 
   ami_type       = "BOTTLEROCKET_x86_64"
   platform       = "bottlerocket"

@@ -6,8 +6,8 @@ data "aws_vpc" "this" {
 
 data "aws_subnets" "private" {
   filter {
-      name = "vpc-id"
-      values = [data.aws_vpc.this.id]
+    name   = "vpc-id"
+    values = [data.aws_vpc.this.id]
   }
 
   tags = {
@@ -80,6 +80,7 @@ module "eks" {
 
   # aws-auth configmap
   manage_aws_auth_configmap = true
+  aws_auth_roles            = var.map_roles
 
-  aws_auth_roles = var.map_roles
+  kms_key_administrators = var.kms_key_administrators
 }
