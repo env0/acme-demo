@@ -58,16 +58,16 @@ module "eks" {
       # so we need to disable it to use the default template provided by the AWS EKS managed node group service
       use_custom_launch_template = false
 
-      ami_type = "BOTTLEROCKET_x86_64"
+      ami_type = "BOTTLEROCKET_ARM_64"
       platform = "bottlerocket"
     }
 
-    bottlerocket_green = {
-      use_custom_launch_template = false
+    # bottlerocket_green = {
+    #   use_custom_launch_template = false
 
-      ami_type = "BOTTLEROCKET_x86_64"
-      platform = "bottlerocket"
-    }
+    #   ami_type = "BOTTLEROCKET_ARM_64"
+    #   platform = "bottlerocket"
+    # }
   }
 
   # # Extend cluster security group rules
