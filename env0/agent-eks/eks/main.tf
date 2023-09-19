@@ -61,19 +61,6 @@ module "eks" {
       ami_type = "BOTTLEROCKET_x86_64"
       platform = "bottlerocket"
     }
-
-    # Adds to the AWS provided user data
-    bottlerocket_add = {
-      ami_type = "BOTTLEROCKET_x86_64"
-      platform = "bottlerocket"
-
-      # This will get added to what AWS provides
-      bootstrap_extra_args = <<-EOT
-        # extra args added
-        [settings.kernel]
-        lockdown = "integrity"
-      EOT
-    }
   }
 
   # # Extend cluster security group rules
