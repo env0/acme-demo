@@ -46,7 +46,7 @@ variable "min_capacity" {
   default     = 1
 }
 
-variable "instance_type" {
-  type    = string
-  default = "t4g.large"
+variable "instance_types" {
+  type    = list(string)
+  default = ["t4g.large"]
 }

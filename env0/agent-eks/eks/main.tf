@@ -25,13 +25,13 @@ module "eks" {
 
   cluster_addons = {
     coredns = {
-      preserve    = true
+      # preserve    = true
       most_recent = true
 
-      timeouts = {
-        create = "25m"
-        delete = "10m"
-      }
+      # timeouts = {
+      #   create = "25m"
+      #   delete = "10m"
+      # }
     }
     kube-proxy = {
       most_recent = true
@@ -45,29 +45,60 @@ module "eks" {
   subnet_ids               = data.aws_subnets.private.ids
   control_plane_subnet_ids = data.aws_subnets.private.ids
 
-  # Extend cluster security group rules
-  cluster_security_group_additional_rules = {
-    ingress_nodes_ephemeral_ports_tcp = {
-      description                = "Nodes on ephemeral ports"
-      protocol                   = "tcp"
-      from_port                  = 1025
-      to_port                    = 65535
-      type                       = "ingress"
-      source_node_security_group = true
+  eks_managed_node_group_defaults = {
+    ami_type       = "AL2_x86_64"
+    instance_types = var.instance_types
+  }
+
+
+  eks_managed_node_groups = {
+    # Default node group - as provided by AWS EKS using Bottlerocket
+    bottlerocket_default = {
+      # By default, the module creates a launch template to ensure tags are propagated to instances, etc.,
+      # so we need to disable it to use the default template provided by the AWS EKS managed node group service
+      use_custom_launch_template = false
+
+      ami_type = "BOTTLEROCKET_x86_64"
+      platform = "bottlerocket"
+    }
+
+    # Adds to the AWS provided user data
+    bottlerocket_add = {
+      ami_type = "BOTTLEROCKET_x86_64"
+      platform = "bottlerocket"
+
+      # This will get added to what AWS provides
+      bootstrap_extra_args = <<-EOT
+        # extra args added
+        [settings.kernel]
+        lockdown = "integrity"
+      EOT
     }
   }
 
-  # Extend node-to-node security group rules
-  node_security_group_additional_rules = {
-    ingress_self_all = {
-      description = "Node to node all ports/protocols"
-      protocol    = "-1"
-      from_port   = 0
-      to_port     = 0
-      type        = "ingress"
-      self        = true
-    }
-  }
+  # # Extend cluster security group rules
+  # cluster_security_group_additional_rules = {
+  #   ingress_nodes_ephemeral_ports_tcp = {
+  #     description                = "Nodes on ephemeral ports"
+  #     protocol                   = "tcp"
+  #     from_port                  = 1025
+  #     to_port                    = 65535
+  #     type                       = "ingress"
+  #     source_node_security_group = true
+  #   }
+  # }
+
+  # # Extend node-to-node security group rules
+  # node_security_group_additional_rules = {
+  #   ingress_self_all = {
+  #     description = "Node to node all ports/protocols"
+  #     protocol    = "-1"
+  #     from_port   = 0
+  #     to_port     = 0
+  #     type        = "ingress"
+  #     self        = true
+  #   }
+  # }
 
   # Create a new cluster where both an identity provider and Fargate profile is created
   # will result in conflicts since only one can take place at a time
