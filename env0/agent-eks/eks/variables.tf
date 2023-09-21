@@ -12,7 +12,7 @@ variable "cluster_name" {
 # map_roles = [{"rolearn" = "arn:aws:iam::326535729404:role/env0-acme-assume-role",
 #               "groups" = ["system:masters"],
 #               "username"= "env0 deployer"},
-#              {"rolearn" = "arn:aws:sts::326535729404:assumed-role/AWSReservedSSO_AdministratorAccess_6e013e7aceaa4447",
+#              {"rolearn" = "arn:aws:iam::326535729404:role/AWSReservedSSO_AdministratorAccess_6e013e7aceaa4447",
 #               "groups" = ["system:masters"],
 #               "username"= "env0 employee"}]
 variable "map_roles" {
@@ -29,10 +29,11 @@ variable "map_roles" {
       "username" = "env0 deployer"
     },
     {
-      "rolearn"  = "arn:aws:sts::326535729404:assumed-role/AWSReservedSSO_AdministratorAccess_6e013e7aceaa4447",
+      "rolearn"  = "arn:aws:iam::326535729404:role/AWSReservedSSO_AdministratorAccess_6e013e7aceaa4447",
       "groups"   = ["system:masters"],
       "username" = "env0 employee"
-  }]
+    }
+  ]
 }
 
 variable "kms_key_administrators" {
