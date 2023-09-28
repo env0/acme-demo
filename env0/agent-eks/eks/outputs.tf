@@ -1,6 +1,6 @@
-output "kubernetes_host" {
-  value       = module.eks.kubernetes_host
-  description = "EKS cluster host endpoint"
+output "cluster_name" {
+  value       = module.eks.cluster_name
+  description = "EKS Cluster Name"
 }
 
 output "cluster_id" {
