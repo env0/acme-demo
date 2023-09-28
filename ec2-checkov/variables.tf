@@ -10,7 +10,7 @@ variable "instance_count" {
 
 variable "instance_type" {
   type    = string
-  default = "t3a.micro"
+  default = "t3a.nano"
 }
 
 variable "ssh_cidr_block" {
