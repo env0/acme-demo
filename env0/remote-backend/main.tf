@@ -1,5 +1,5 @@
 locals {
-  myMap = {"a" = {name="a"}, "b" = {name="b"}, "c" = {name="c"}}
+  myMap = {"a" = {name="a"}, "b" = {name="b"}, "c" = {name="c"}, "d" = {name="d"}, "e" = {name="e"}, "f" = {name="f"}}
 }
 
 module randomStrings {
