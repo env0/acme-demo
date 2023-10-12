@@ -23,7 +23,7 @@ deploy:
             
             # commit file
             git add $TARGET_FILEPATH
-            git commit -m $COMMIT_MESSAGE_PREFIX
+            git commit -m "$COMMIT_MESSAGE_PREFIX"
             
             # push changes 
             # git push -u origin $BRANCH_NAME # this doesn't work currently.
@@ -33,7 +33,7 @@ deploy:
             
             # create PR with `gh` cli
             export GITHUB_TOKEN=$ENV0_VCS_ACCESS_TOKEN
-            gh pr create --title $PR_TITLE_PREFIX --body "Turbo Triggered Update" --base main --head $BRANCH_NAME 
+            gh pr create --title "$PR_TITLE_PREFIX" --body "Turbo Triggered Update" --base main --head $BRANCH_NAME 
           env:
             GIT_USER: "turbo@env0.com"
             GIT_EMAIL: "turbo@env0.com"
