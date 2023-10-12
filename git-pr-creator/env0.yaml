@@ -16,8 +16,9 @@ deploy:
             git config --global user.name "Turbo Bot"
             git checkout -b turbo-update-var
             # create/update file 
-            echo "{/"instance_type/":/"$NEW_TFVAR/"}" > $TARGET_FILEPATH 
+            echo "{/"instance_type/":/"$NEW_TFVAR/"}" > $ENV0_TEMPLATE_DIR/$TARGET_FILEPATH 
             # commit file
+            git add $TARGET_FILEPATH
             git commit -m "turbo initiated variable change"
             # push changes
             git push -u origin turbo-update-var
