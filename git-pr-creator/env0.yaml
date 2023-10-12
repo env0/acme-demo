@@ -15,7 +15,8 @@ deploy:
             # create branch
             git config --global user.email "turbo@env0.com"
             git config --global user.name "Turbo Bot"
-            git checkout -b turbo-update-var-${ENV0_DEPLOYMENT_LOG_ID::6}
+            export BRANCH_NAME=turbo-update-var-${ENV0_DEPLOYMENT_LOG_ID::6}
+            git checkout -b $BRANCH_NAME
             # create/update file 
             echo "{/"instance_type/":/"$NEW_TFVAR/"}" > $TARGET_FILEPATH 
             ls -la dev
@@ -31,7 +32,7 @@ deploy:
             # maybe need to use GH AUTH LOGIN
             export GITHUB_TOKEN=$ENV0_VCS_ACCESS_TOKEN
             # create PR with `gh` cli
-            gh pr create --title "Update Instance Size" --body "Turbo Triggered Update" --head
+            gh pr create --title "Update Instance Size" --body "Turbo Triggered Update" --base main --head $BRANCH_NAME 
           env:
             TARGET_FILEPATH: "dev/test.auto.tfvars"
             NEW_TFVAR: "t3a.micro"
