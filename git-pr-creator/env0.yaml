@@ -1,0 +1,44 @@
+version: 2
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - name: Install GH CLI
+          run: |
+            # this step can be embedded into custom image for self-hosted agents
+            sudo apk add github-cli
+        - name: Process Turbo Webhook
+          run: |
+            git config --global user.email $GIT_EMAIL
+            git config --global user.name $GIT_USER
+            export BRANCH_NAME=$BRANCH_PREFIX-${ENV0_DEPLOYMENT_LOG_ID::6}
+            set -ex
+            
+            # create branch
+            git checkout -b $BRANCH_NAME
+            
+            # create/update file 
+            echo "{\"instance_type\":\"$NEW_TFVAR\"}" > $TARGET_FILEPATH 
+            
+            # commit file
+            git add $TARGET_FILEPATH
+            git commit -m "$COMMIT_MESSAGE_PREFIX"
+            
+            # push changes 
+            # git push -u origin $BRANCH_NAME # this doesn't work currently.
+            git push git@github.com:env0/acme-demo.git --all
+            # we have to use git@github.com format because the $ENV0_VCS_ACCESS_TOKEN doesn't have branch write permissions
+            # instead we must use an SSH Key (or change the App Permissions)
+            
+            # create PR with `gh` cli
+            export GITHUB_TOKEN=$ENV0_VCS_ACCESS_TOKEN
+            gh pr create --title "$PR_TITLE_PREFIX" --body "Turbo Triggered Update" --base main --head $BRANCH_NAME 
+          env:
+            GIT_USER: "turbo@env0.com"
+            GIT_EMAIL: "turbo@env0.com"
+            TARGET_FILEPATH: "dev/test.auto.tfvars"
+            NEW_TFVAR: "t3a.micro"
+            BRANCH_PREFIX: "turbo-update-"
+            COMMIT_MESSAGE_PREFIX: "turbo initiated changes"
+            PR_TITLE_PREFIX: "Update Instance Size"
