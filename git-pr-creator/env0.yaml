@@ -10,30 +10,35 @@ deploy:
             sudo apk add github-cli
         - name: Process Turbo Webhook
           run: |
+            git config --global user.email $GIT_EMAIL
+            git config --global user.name $GIT_USER
+            export BRANCH_NAME=$BRANCH_PREFIX-${ENV0_DEPLOYMENT_LOG_ID::6}
             set -ex
-            # assume $TARGET_FILEPATH, $ENV_DIR, $NEW_TFVAR
+            
             # create branch
-            git config --global user.email "turbo@env0.com"
-            git config --global user.name "Turbo Bot"
-            # export BRANCH_NAME=turbo-update-var-${ENV0_DEPLOYMENT_LOG_ID::6}
             git checkout -b $BRANCH_NAME
+            
             # create/update file 
             echo "{\"instance_type\":\"$NEW_TFVAR\"}" > $TARGET_FILEPATH 
-            ls -la dev
-            cat $TARGET_FILEPATH 
+            
             # commit file
-            echo "commit file"
             git add $TARGET_FILEPATH
-            git commit -am "turbo initiated variable change"
-            # push changes
-            echo "push changes"
+            git commit -m $COMMIT_MESSAGE_PREFIX
+            
+            # push changes 
+            # git push -u origin $BRANCH_NAME # this doesn't work currently.
             git push git@github.com:env0/acme-demo.git --all
-            git status
-            # maybe need to use GH AUTH LOGIN
-            export GITHUB_TOKEN=$ENV0_VCS_ACCESS_TOKEN
+            # we have to use git@github.com format because the $ENV0_VCS_ACCESS_TOKEN doesn't have branch write permissions
+            # instead we must use an SSH Key (or change the App Permissions)
+            
             # create PR with `gh` cli
-            gh pr create --title "Update Instance Size" --body "Turbo Triggered Update" --base main --head $BRANCH_NAME 
+            export GITHUB_TOKEN=$ENV0_VCS_ACCESS_TOKEN
+            gh pr create --title $PR_TITLE_PREFIX --body "Turbo Triggered Update" --base main --head $BRANCH_NAME 
           env:
+            GIT_USER: "turbo@env0.com"
+            GIT_EMAIL: "turbo@env0.com"
             TARGET_FILEPATH: "dev/test.auto.tfvars"
             NEW_TFVAR: "t3a.micro"
-            BRANCH_NAME: "turbo-update-${ENV0_DEPLOYMENT_LOG_ID::6}"
+            BRANCH_PREFIX: "turbo-update-"
+            COMMIT_MESSAGE_PREFIX: "turbo initiated changes"
+            PR_TITLE_PREFIX: "Update Instance Size"
