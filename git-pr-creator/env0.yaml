@@ -10,6 +10,7 @@ deploy:
             sudo apk add github-cli
         - name: Process Turbo Webhook
           run: |
+            set -ex
             # assume $TARGET_FILEPATH, $ENV_DIR, $NEW_TFVAR
             # create branch
             git config --global user.email "turbo@env0.com"
@@ -20,9 +21,11 @@ deploy:
             ls -la dev
             cat $TARGET_FILEPATH 
             # commit file
+            echo "commit file"
             git add $TARGET_FILEPATH
             git commit -am "turbo initiated variable change"
             # push changes
+            echo "push changes"
             git push -u origin turbo-update-var
             # maybe need to use GH AUTH LOGIN
             export GITHUB_TOKEN=$ENV0_VCS_ACCESS_TOKEN
