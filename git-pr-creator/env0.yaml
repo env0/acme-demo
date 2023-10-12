@@ -15,10 +15,10 @@ deploy:
             # create branch
             git config --global user.email "turbo@env0.com"
             git config --global user.name "Turbo Bot"
-            export BRANCH_NAME=turbo-update-var-${ENV0_DEPLOYMENT_LOG_ID::6}
+            # export BRANCH_NAME=turbo-update-var-${ENV0_DEPLOYMENT_LOG_ID::6}
             git checkout -b $BRANCH_NAME
             # create/update file 
-            echo "{/"instance_type/":/"$NEW_TFVAR/"}" > $TARGET_FILEPATH 
+            echo "{\"instance_type\":\"$NEW_TFVAR\"}" > $TARGET_FILEPATH 
             ls -la dev
             cat $TARGET_FILEPATH 
             # commit file
@@ -36,3 +36,4 @@ deploy:
           env:
             TARGET_FILEPATH: "dev/test.auto.tfvars"
             NEW_TFVAR: "t3a.micro"
+            BRANCH_NAME: "turbo-update-${ENV0_DEPLOYMENT_LOG_ID::6}"
