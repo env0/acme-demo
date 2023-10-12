@@ -31,7 +31,7 @@ deploy:
             # maybe need to use GH AUTH LOGIN
             export GITHUB_TOKEN=$ENV0_VCS_ACCESS_TOKEN
             # create PR with `gh` cli
-            gh pr create --title "Update Instance Size" --body "Turbo Triggered Update"
+            gh pr create --title "Update Instance Size" --body "Turbo Triggered Update" --head
           env:
             TARGET_FILEPATH: "dev/test.auto.tfvars"
             NEW_TFVAR: "t3a.micro"
