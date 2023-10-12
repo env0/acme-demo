@@ -7,7 +7,7 @@ deploy:
         - name: Install GH CLI
           run: |
             # this step can be embedded into custom image for self-hosted agents
-            apk add github-cli
+            sudo apk add github-cli
         - name: Process Turbo Webhook
           run: |
             # assume $TARGET_FILEPATH, $ENV_DIR, $NEW_TFVAR
@@ -25,3 +25,4 @@ deploy:
             gh pr create --title "Update Instance Size" --body "Turbo Triggered Update" --base main
           env:
             TARGET_FILEPATH: "git-pr-creator/dev"
+            NEW_TFVAR: "t3a.micro"
