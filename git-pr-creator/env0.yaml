@@ -26,6 +26,7 @@ deploy:
             git commit -am "turbo initiated variable change"
             # push changes
             echo "push changes"
+            git config --global url.https://user:$ENV0_VCS_ACCESS_TOKEN@github.com/env0.insteadOf https://github.com/env0
             git push -u origin turbo-update-var
             # maybe need to use GH AUTH LOGIN
             export GITHUB_TOKEN=$ENV0_VCS_ACCESS_TOKEN
