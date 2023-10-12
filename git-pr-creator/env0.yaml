@@ -18,7 +18,7 @@ deploy:
             # create/update file 
             echo "{/"instance_type/":/"$NEW_TFVAR/"}" > $ENV0_TEMPLATE_DIR/$TARGET_FILEPATH 
             ls -la
-            ls -la $ENV0_TEMPLATE_DIR/git-pr-creator/dev 
+            ls -la $ENV0_TEMPLATE_DIR/dev 
             # commit file
             git add $ENV0_TEMPLATE_DIR/$TARGET_FILEPATH
             git commit -am "turbo initiated variable change"
@@ -29,5 +29,5 @@ deploy:
             # create PR with `gh` cli
             gh pr create --title "Update Instance Size" --body "Turbo Triggered Update" --base main
           env:
-            TARGET_FILEPATH: "git-pr-creator/dev/test.auto.tfvars"
+            TARGET_FILEPATH: "dev/test.auto.tfvars"
             NEW_TFVAR: "t3a.micro"
