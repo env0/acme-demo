@@ -15,7 +15,7 @@ deploy:
             # create branch
             git config --global user.email "turbo@env0.com"
             git config --global user.name "Turbo Bot"
-            git checkout -b turbo-update-var
+            git checkout -b turbo-update-var-${ENV0_DEPLOYMENT_LOG_ID::6}
             # create/update file 
             echo "{/"instance_type/":/"$NEW_TFVAR/"}" > $TARGET_FILEPATH 
             ls -la dev
