@@ -1,5 +1,5 @@
 module "random" {
-  source = "../../moduloes/random"
+  source = "../../modules/random"
   refresh_token = var.instance_type
 }
 
