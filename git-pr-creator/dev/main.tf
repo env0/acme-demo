@@ -1,9 +1,8 @@
 terraform {
-  required_version = ">= 0.15.4"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 3.41.0"
+      version = "3.41.0"
     }
   }
 }
@@ -11,18 +10,48 @@ terraform {
 provider "aws" {
   region = "us-west-2"
 }
+provider "aws" {
+  region = "us-west-2"
+}
 
-module "ec2" {
-  source         = "../../modules/ec2"
-  instance_type  = var.instance_type
-  vpc_id         = "vpc-0d806cc612e6cf9e3"
-  instance_count = "1"
-  name           = "Turbo Managed ec2"
+module "acme-ec2" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "~> 2.0"
+
+  name = "Turbo Managed ec2"
+
+
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+
+  subnet_ids = data.aws_subnet_ids.selected.ids
+
+  associate_public_ip_address = false
+
   tags = {
     Terraform = "true"
     Owner     = "acme demo org"
     Demo      = "Turbo"
   }
+}
+
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
+
+  owners = ["099720109477"]
+}
+
+data "aws_vpc" "selected" {
+  id = "vpc-0d806cc612e6cf9e3"
+}
+
+data "aws_subnet_ids" "selected" {
+  vpc_id = data.aws_vpc.selected.id
 }
 
 variable "instance_type" {
