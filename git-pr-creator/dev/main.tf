@@ -10,9 +10,6 @@ terraform {
 provider "aws" {
   region = "us-west-2"
 }
-provider "aws" {
-  region = "us-west-2"
-}
 
 module "acme-ec2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
