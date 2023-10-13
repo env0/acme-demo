@@ -1,3 +1,17 @@
+terraform {
+  required_version = ">= 0.15.4"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 3.41.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "us-west-2"
+}
+
 module "ec2" {
   source         = "../../modules/ec2"
   instance_type  = var.instance_type
@@ -12,7 +26,7 @@ module "ec2" {
 }
 
 variable "instance_type" {
-  default = "t2.micro"
+  default = "t3a.micro"
   type    = string
 }
 
