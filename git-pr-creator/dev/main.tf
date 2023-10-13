@@ -1,11 +1,19 @@
-module "random" {
-  source = "../../modules/random"
-  refresh_token = var.instance_type
+module "ec2" {
+  source         = "../../modules/ec2"
+  instance_type  = var.instance_type
+  vpc_id         = "vpc-0d806cc612e6cf9e3"
+  instance_count = "1"
+  name           = "Turbo Managed ec2"
+  tags = {
+    Terraform = "true"
+    Owner     = "acme demo org"
+    Demo      = "Turbo"
+  }
 }
 
 variable "instance_type" {
   default = "t2.micro"
-  type = string
+  type    = string
 }
 
 output "instance_type" {
