@@ -3,6 +3,7 @@ package env0
 
 allow[msg] {
   count(input.approvers) >= 1
+  msg := "approved"
 }
 # METADATA
 # title: allow if no monthly cost
