@@ -1,5 +1,9 @@
 package env0
 
+
+allow[msg] {
+  count(input.approvers) >= 1
+}
 # METADATA
 # title: allow if no monthly cost
 # description: approve automatically if the plan has no changes
