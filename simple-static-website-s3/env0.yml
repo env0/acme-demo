@@ -11,3 +11,8 @@ deploy:
     terraformPlan:
       after:
         - cat $ENV0_TF_PLAN_JSON
+destroy:
+  steps:
+    terraformPlan:
+      after:
+        - cat $ENV0_TF_PLAN_JSON 
