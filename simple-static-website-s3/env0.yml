@@ -11,6 +11,9 @@ deploy:
     terraformPlan:
       after:
         - cat $ENV0_TF_PLAN_JSON
+    terraformOutput:
+      after:
+        -  aws s3api delete-bucket-tagging --bucket $(terraform output -raw bucketname)
 destroy:
   steps:
     terraformPlan:
