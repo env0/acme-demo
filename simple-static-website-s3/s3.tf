@@ -37,6 +37,12 @@ module "acme-s3" {
   website = {
     index_document = "index.html"
   }
+
+  tags = { 
+    name    = "andrew way"
+    purpose = "demo drift"
+    date    = "20231019"
+  }
 }
 
 resource "aws_s3_object" "this" {
