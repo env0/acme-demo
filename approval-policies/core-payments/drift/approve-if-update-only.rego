@@ -19,7 +19,7 @@ any_resources_with_updates {
 }
 
 any_resources_with_deletion {
-  input.plan.resource_changes[_].change.actions[_] == "destroy"
+  input.plan.resource_changes[_].change.actions[_] == "delete"
 }
 
 any_resources_with_creation {
