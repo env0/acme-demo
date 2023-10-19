@@ -12,4 +12,4 @@ deploy:
       before:
         - /opt/terratag -tags="{\"env0_workspace_name\":\"$ENV0_WORKSPACE_NAME\",\"org_name\":\"$ORG_NAME\"}" -rename=false
       after:
-        - echo $ENV_TF_PLAN_JSON
+        - echo $ENV0_TF_PLAN_JSON
