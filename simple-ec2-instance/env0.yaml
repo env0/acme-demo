@@ -10,3 +10,9 @@ deploy:
             echo "$MY_STRING"
           env:
             MY_STRING: "Hello V2 Custom Flow"
+    terraformApply:
+      after:
+        - name: Ansible Demo
+          run: |
+            echo "Run Ansible Playbook"
+            
