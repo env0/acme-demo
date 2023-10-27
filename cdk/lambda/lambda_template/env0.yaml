@@ -1,0 +1,12 @@
+version: 2
+
+deploy:
+  steps:
+    setupVariables: &cf
+      after:
+        - name: Hello World 
+          run: |
+            echo "Hello World"
+destroy:
+  steps:
+    setupVariables: *cf
