@@ -1,3 +1,4 @@
+.vscode
 # Local .terraform directories
 **/.terraform/*
 **/.terragrunt-cache/*
@@ -36,3 +37,7 @@ override.tf.json
 
 # Special setup code for local testing
 .setup.sh
+
+cdk.out
+
+node_modules
