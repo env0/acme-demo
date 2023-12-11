@@ -9,4 +9,4 @@ deploy:
     terraformPlan:
       after:
         - name: Checkov Scan
-          run: checkov -f $ENV0_TF_PLAN_JSON --quiet
+          run: checkov -f $ENV0_TF_PLAN_JSON --quiet 1>&2
