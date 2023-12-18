@@ -4,12 +4,12 @@ deploy:
   steps:
     setupVariables:
       after:
-       - name: "Install Checkov"
+       - name: "Custom Flow Step: Install Checkov"
          run: |
            pip3 install checkov
     terraformPlan:
       after:
-       - name: "Checkov Security Scan"
+       - name: "Custom Flow Step: Checkov Security Scan"
          run: |
            terraform show -json .tf-plan | jq '.' > tf-plan.json
            checkov -f tf-plan.json --quiet
