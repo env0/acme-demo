@@ -6,7 +6,7 @@ deploy:
         - name: "VMW Skip Test: Before Apply"
           run: |
             echo "I'm running before the apply"
-            env
+            echo Generating "elb.tf" for "$STAGE"
       after:
         - name: "VMW Skip Test: After Apply"
           run: |
