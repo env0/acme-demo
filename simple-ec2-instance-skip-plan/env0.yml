@@ -1,6 +1,11 @@
 version: 2
 deploy:
   steps:
+    terraformPlan:
+      after:
+        - name: "VMware Skip Test: Check Skip"
+          run: |
+            terraform show -json .tf-plan | grep "No changes"
     terraformApply:
       before:
         - name: "VMW Skip Test: Before Apply"
