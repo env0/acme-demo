@@ -6,6 +6,7 @@ variable "name" {
 variable "instance_type" {
   type    = string
   default = "t3a.small"
+  description = "The ec2 instance size"
 }
 
 variable "vpc_id" {
