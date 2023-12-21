@@ -1,0 +1,12 @@
+version: 2
+deploy:
+  steps:
+    terraformApply:
+      after:
+        - name: "VMW Skip Test: Before Apply"
+          run: |
+            echo "I'm running before the apply"  
+      after:
+        - name: "VMW Skip Test: After Apply"
+          run: |
+            echo "I'm running after the apply"
