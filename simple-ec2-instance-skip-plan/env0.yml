@@ -5,7 +5,8 @@ deploy:
       after:
         - name: "VMware Skip Test: Check Skip"
           run: |
-            ls
+            terraform show -json .tf-plan | jq '.' > tf-plan.json
+            cat tf-plan.json
     terraformApply:
       before:
         - name: "VMW Skip Test: Before Apply"
