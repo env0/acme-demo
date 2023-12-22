@@ -6,7 +6,7 @@ deploy:
         - name: "VMware Skip Test: Check Skip"
           run: |
             terraform show .tf-plan | grep -i "no changes."
-            if [ '$(terraform show .tf-plan | grep -i "no changes.")' ]; then echo TF_PLAN_EXIT_CODE=0 >> $ENV0_ENV ; else echo TF_PLAN_EXIT_CODE=2 >> $ENV0_ENV; fi
+            if [ '$(terraform show .tf-plan | grep -i "no changes.")' != '' ]; then echo TF_PLAN_EXIT_CODE=0 >> $ENV0_ENV ; else echo TF_PLAN_EXIT_CODE=2 >> $ENV0_ENV; fi
     terraformApply:
       before:
         - name: "VMW Skip Test: Before Apply"
@@ -17,4 +17,4 @@ deploy:
         - name: "VMW Skip Test: After Apply"
           run: |
             echo "TF_PLAN_EXIT_CODE value is $TF_PLAN_EXIT_CODE"
-            if [ "$(cat tf_plan.log)" == "0" ]; then echo "No changes, not runnung post apply" ; else echo "I'm running after the apply"; fi
+            if [ "$TF_PLAN_EXIT_CODE" == "0" ]; then echo "No changes, not running post-apply flow" ; else echo "I'm running after the apply"; fi
