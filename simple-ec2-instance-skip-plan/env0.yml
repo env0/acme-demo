@@ -7,6 +7,7 @@ deploy:
           run: |
             TF_PLAN_EXIT_CODE=2
             if [ '$(terraform show .tf-plan | grep -i "no changes.")' ]; then TF_PLAN_EXIT_CODE=0 ; fi
+            echo $TF_PLAN_EXIT_CODE
     terraformApply:
       before:
         - name: "VMW Skip Test: Before Apply"
