@@ -5,8 +5,8 @@ deploy:
       after:
         - name: "VMware Skip Test: Check Skip"
           run: |
-            echo 'terraform show .tf-plan | grep -i "no changes"'
-            if [ $('terraform show .tf-plan | grep -i "no changes"') ]; then echo "condition accepted" ; fi
+            terraform show .tf-plan | grep -i "no changes"
+            if [ $(terraform show .tf-plan | grep -i "no changes") ]; then echo "condition accepted" ; fi
     terraformApply:
       before:
         - name: "VMW Skip Test: Before Apply"
