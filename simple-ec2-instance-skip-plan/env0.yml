@@ -5,12 +5,8 @@ deploy:
       after:
         - name: "VMware Skip Test: Check Skip"
           run: |
-            PLAN_EXIT_CODE=2
-            echo "exit code before if is $PLAN_EXIT_CODE"
             echo $(terraform show .tf-plan | grep -i "no changes.")
-            if [[ $(terraform show .tf-plan | grep -ic "no changes.") -gt 0 ]]; then PLAN_EXIT_CODE=0; fi
-            echo "exit code id $PLAN_EXIT_CODE"
-            echo TF_PLAN_EXIT_CODE=$PLAN_EXIT_CODE >> $ENV0_ENV
+            if [[ $(terraform show .tf-plan | grep -ic "no changes.") -gt 0 ]]; then echo TF_PLAN_EXIT_CODE=0 >> $ENV0_ENV; else echo TF_PLAN_EXIT_CODE=2 >> $ENV0_ENV; fi
     terraformApply:
       before:
         - name: "VMW Skip Test: Before Apply"
