@@ -6,7 +6,7 @@ deploy:
         - name: "VMware Skip Test: Check Skip"
           run: |
             echo $? > tf_plan.log
-            echo "value is $(cat tf_plan.log)"
+            terraform show .tf-plan
     terraformApply:
       before:
         - name: "VMW Skip Test: Before Apply"
