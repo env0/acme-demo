@@ -6,7 +6,7 @@ deploy:
         - name: "VMware Skip Test: Check Skip"
           run: |
             echo $?
-            MY_VAR = $?
+            MY_VAR=$?
             echo value is $MY_VAR
     terraformApply:
       before:
