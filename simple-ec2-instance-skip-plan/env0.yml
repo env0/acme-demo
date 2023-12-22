@@ -7,13 +7,13 @@ deploy:
           run: |
             echo $?
             MY_VAR=$?
-            echo value is $MY_VAR
+            echo "value is $MY_VAR"
     terraformApply:
       before:
         - name: "VMW Skip Test: Before Apply"
           run: |
-            if [ $MY_VAR -eq 0 ]; then echo "No changes, not applying" ; elif [ $MY_VAR -eq 2 ] ; then echo "I'm running before the apply"; fi
+            if [ $MY_VAR == 0 ]; then echo "No changes, not applying" ; elif [ $MY_VAR == 2 ] ; then echo "I'm running before the apply"; fi
       after:
         - name: "VMW Skip Test: After Apply"
           run: |
-            if [ $MY_VAR -eq 0 ]; then echo "No changes, not applying" ; elif [ $MY_VAR -eq 2 ] ; then echo "I'm running after the apply"; fi
+            if [ $MY_VAR == 0 ]; then echo "No changes, not applying" ; elif [ $MY_VAR == 2 ] ; then echo "I'm running after the apply"; fi
