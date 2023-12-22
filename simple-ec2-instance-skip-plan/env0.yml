@@ -5,8 +5,8 @@ deploy:
       after:
         - name: "VMware Skip Test: Check Skip"
           run: |
-            echo $? > tf_plan.log
-            terraform show .tf-plan
+            terraform show .tf-plan -detailed-exitcode
+            echo $?
     terraformApply:
       before:
         - name: "VMW Skip Test: Before Apply"
