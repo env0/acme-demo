@@ -7,8 +7,8 @@ deploy:
           run: |
             PLAN_EXIT_CODE=2
             echo "exit code before if is $PLAN_EXIT_CODE"
-            echo 'terraform show .tf-plan | grep -i "no changes."'
-            if [ 'terraform show .tf-plan | grep -i "no changes."' != '' ]; then PLAN_EXIT_CODE=0; fi
+            echo $(terraform show .tf-plan | grep -i "no changes.")
+            if [[ ! -z '$(terraform show .tf-plan | grep -i "no changes.")' ]]; then PLAN_EXIT_CODE=0; fi
             echo "exit code id $PLAN_EXIT_CODE"
             echo TF_PLAN_EXIT_CODE=$PLAN_EXIT_CODE >> $ENV0_ENV
     terraformApply:
