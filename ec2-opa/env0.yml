@@ -1,12 +1,14 @@
-version: 1
+version: 2
 
 deploy:
   steps:
     setupVariables:
       after:
-        - curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64_static
-        - chmod 755 ./opa
-        - ./opa version
+        - name: Install OPA
+          run: | 
+            curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64_static
+            chmod 755 ./opa
+            ./opa version
     # terraformInit:
     #   before:
     #     - echo "Replacing !!!USER!!! with $USER in index.html"
@@ -17,7 +19,9 @@ deploy:
     #     - infracost diff -p .tf-plan --usage-file infracost-usage.yml
     terraformPlan:
       after:
-        - terraform show -json .tf-plan > tf-plan.json
-        - echo "OPA Check"
-        - ./opa eval --fail-defined "data.terraform.validation.violations[msg]" --format pretty --input tf-plan.json --data ./rego/tf-lib.rego --data ./rego/validation.rego --format values 1>&2
-#        - ./opa eval --format pretty -i tfplan.json -d ./external-repo/custom-flows/opa-polices/null-resource.rego --fail "data.resource.limit.allow = true"
+        - name: OPA Check
+          run: |
+            terraform show -json .tf-plan > tf-plan.json
+            echo "OPA Check"
+            ./opa eval --fail-defined "data.terraform.validation.violations[msg]" --format pretty --input tf-plan.json --data ./rego/tf-lib.rego --data ./rego/validation.rego --format values 1>&2
+#           ./opa eval --format pretty -i tfplan.json -d ./external-repo/custom-flows/opa-polices/null-resource.rego --fail "data.resource.limit.allow = true"
