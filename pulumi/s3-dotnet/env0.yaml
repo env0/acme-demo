@@ -1,0 +1,14 @@
+version: 2
+
+deploy: &pulumi
+  steps:
+    setupVariables:
+      after:
+        - wget https://download.visualstudio.microsoft.com/download/pr/f75f8192-785e-4199-8643-6ee8a87dca34/6bd0c5e0da66cc807be5b76e18092750/dotnet-sdk-8.0.101-linux-musl-x64.tar.gz
+        - tar -zxf dotnet-sdk-8.0.101-linux-musl-x64.tar.gz -C /opt
+    pulumiPreview:
+      before:
+        - pulumi config set aws:region us-west-2
+        - pulumi config set --path aws:assumeRole.roleArn $ENV0_AWS_ROLE_ARN
+        - pulumi config set --path aws:assumeRole.externalId $ENV0_AWS_ROLE_EXTERNAL_ID
+destroy: *pulumi
