@@ -6,8 +6,10 @@ deploy: &pulumi
       after:
         - name: Setup dotnet
           run: |
-            wget https://download.visualstudio.microsoft.com/download/pr/f75f8192-785e-4199-8643-6ee8a87dca34/6bd0c5e0da66cc807be5b76e18092750/dotnet-sdk-8.0.101-linux-musl-x64.tar.gz
-            tar -zxf dotnet-sdk-8.0.101-linux-musl-x64.tar.gz -C /opt
+            if [[ ! -e /opt/dotnet ]]; then
+              wget -nc https://download.visualstudio.microsoft.com/download/pr/f75f8192-785e-4199-8643-6ee8a87dca34/6bd0c5e0da66cc807be5b76e18092750/dotnet-sdk-8.0.101-linux-musl-x64.tar.gz
+              tar -zxf dotnet-sdk-8.0.101-linux-musl-x64.tar.gz -C /opt
+            fi
             dotnet --info
     pulumiPreview:
       before:
