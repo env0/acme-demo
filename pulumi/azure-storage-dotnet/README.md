@@ -1,6 +1,6 @@
-# AWS S3 Bucket using Pulumi and C# DotNet
+# Azure Storage using Pulumi and C# DotNet
 
-A simple demo of using .net 8 SDK and pulumi to create an AWS S3 bucket
+A simple demo of using .net 8 SDK and pulumi to create an Azure Storage Account
 
 ## Relevant Links
 * [Pulumi Getting Started for C# .NET](https://www.pulumi.com/docs/languages-sdks/dotnet/)
@@ -14,7 +14,7 @@ A simple demo of using .net 8 SDK and pulumi to create an AWS S3 bucket
 ## Misc notes for setting up pulumi | HowTo Setup Pulumi for .net the first time
 1. Create an empty folder (e.g. s3-dotnet)
 2. `cd s3-dotnet`
-3. `pulumi new aws-csharp`
+3. `pulumi new azure-csharp`
 3b. update the csproj "<TargetFramework>net8.0</TargetFramework>"
 4. test it with `pulumi up` (this will also trigger the pulumi token configuration if you haven't done it yet)
 5. Add an `env0.yaml` for env0 to setup and install dotnet ** NOTE: if you're using env0 self-hosted agent, you could extend the image to include the dotnet sdk.
