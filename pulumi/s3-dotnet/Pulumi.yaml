@@ -1,0 +1,5 @@
+name: s3-dotnet
+runtime: dotnet
+description: A minimal AWS C# Pulumi program
+config:
+  aws:region: us-west-2
