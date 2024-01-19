@@ -11,11 +11,4 @@ deploy: &pulumi
               tar -zxf dotnet-sdk-8.0.101-linux-musl-x64.tar.gz -C /opt
             fi
             dotnet --info
-    pulumiPreview:
-      before:
-        - name: Pulumi Config 
-          run: | 
-            pulumi config set aws:region us-west-2
-            #pulumi config set --path aws:assumeRole.roleArn $ENV0_AWS_ROLE_ARN
-            #pulumi config set --path aws:assumeRole.externalId $ENV0_AWS_ROLE_EXTERNAL_ID
 destroy: *pulumi
