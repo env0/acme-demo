@@ -32,3 +32,11 @@ allow[msg] {
 	input.deployerUser.email != input.approvers[i].email
 	msg := sprintf("Approved by: %v", [input.approvers[i].name])
 }
+
+# METADATA
+# title: CD Triggers
+# description: if CD trigger, allow 
+allow[msg] {
+	input.deployerUser.name == "env0"
+	msg := sprintf("Automated Deployment")
+}
