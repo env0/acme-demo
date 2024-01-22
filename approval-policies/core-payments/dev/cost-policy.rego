@@ -14,7 +14,7 @@ has_key(x, k) {
 
 ## STATIC VARIABLES
 # Cost Approvers
-cost_approvers := ["kevin.damaso@env0.com", "andrew.way@env0.com", "chris.noon@env0.com"]
+cost_approvers := ["andrew.way@env0.com"]
 cost_limit := 10 # USD per month
 
 # METADATA
@@ -23,7 +23,7 @@ cost_limit := 10 # USD per month
 pending[message] {
   input.costEstimation.totalMonthlyCost > cost_limit
   not any_approver_present
-  message := sprintf("require approval from cost_approvers if cost estimation is greater than $%v/month", [cost_limit])
+  message := sprintf("FINOPS RULE 2: require approval from cost_approvers if cost estimation is greater than $%v/month", [cost_limit])
 }
 
 # METADATA
@@ -39,7 +39,7 @@ any_approver_present {
 
 # METADATA
 # title: allow if approved by anyone else other than deployer
-# description: approve automatically if the estimated costs are less than $30/month
+# description: approve automatically if the estimated costs are less than $10/month
 allow[format(rego.metadata.rule())] {
   input.costEstimation.totalMonthlyCost <= cost_limit 
 }
