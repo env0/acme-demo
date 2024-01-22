@@ -15,11 +15,11 @@ has_key(x, k) {
 ## STATIC VARIABLES
 # Cost Approvers
 cost_approvers := "539edd93-be20-46e8-91f4-3c020d15e9d9"  # Cost Approvers
-cost_limit := 10 # USD per month
+cost_limit := 15 # USD per month
 
 # METADATA
 # title: require approval on cost estimation
-# description: require approval from cost_approvers if cost estimation is returning any value greater than $30/month on the plan
+# description: require approval from cost_approvers if cost estimation is returning any value greater than $15/month on the plan
 pending[message] {
   input.costEstimation.monthlyCostDiff != 0
   input.costEstimation.totalMonthlyCost > cost_limit
@@ -40,7 +40,7 @@ any_approver_present {
 
 # METADATA
 # title: allow if approved by anyone else other than deployer
-# description: approve automatically if the estimated costs are less than $10/month
+# description: approve automatically if the estimated costs are less than $15/month
 allow[format(rego.metadata.rule())] {
   input.costEstimation.totalMonthlyCost <= cost_limit 
 }
