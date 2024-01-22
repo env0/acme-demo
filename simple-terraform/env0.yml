@@ -1,7 +1,15 @@
-version: 1
+version: 2
 
 deploy:
   steps:
+    setupVariables:
+      after:
+        - name: Check Deployment Type
+          run: | 
+            echo $ENV0_DEPLOYMENT_TYPE
+            if [[ $ENV0_DEPLOYMENT_TYPE == "PR Plan" ]]; then
+              echo "new PR created!" 
+            fi  
     terraformInit:
       before:
         - ssh -V
