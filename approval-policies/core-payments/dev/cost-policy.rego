@@ -14,7 +14,7 @@ has_key(x, k) {
 
 ## STATIC VARIABLES
 # Cost Approvers
-cost_approvers := ["andrew.way@env0.com", "asaf.blubshtein@env0.com"]
+cost_approvers := "539edd93-be20-46e8-91f4-3c020d15e9d9"  # Cost Approvers
 cost_limit := 10 # USD per month
 
 # METADATA
@@ -35,7 +35,7 @@ allow[format(rego.metadata.rule())] {
 }
 
 any_approver_present {
-  input.approvers[_].email == cost_approvers[_]
+  input.approvers[_].teams[_].id == cost_approvers
 }
 
 # METADATA
