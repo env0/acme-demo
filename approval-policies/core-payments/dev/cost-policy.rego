@@ -9,7 +9,7 @@ package env0
 format(meta) := meta.description
 
 has_key(x, k) {
-	_ = x[k]
+  _ = x[k]
 }
 
 ## STATIC VARIABLES
@@ -21,6 +21,7 @@ cost_limit := 10 # USD per month
 # title: require approval on cost estimation
 # description: require approval from cost_approvers if cost estimation is returning any value greater than $30/month on the plan
 pending[message] {
+  input.costEstimation.monthlyCostDiff != 0
   input.costEstimation.totalMonthlyCost > cost_limit
   not any_approver_present
   message := sprintf("FINOPS RULE 2: require approval from cost_approvers if cost estimation is greater than $%v/month", [cost_limit])
