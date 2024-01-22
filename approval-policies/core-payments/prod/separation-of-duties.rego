@@ -20,5 +20,6 @@ allow[msg] {
 # description: if CD trigger, wait for approval. 
 pending[msg] {
 	input.deployerUser.name == "env0"
+  count(input.approvers) == 0
 	msg := "RULE 88: Wait for Approval on Automated Deployment"
 }
