@@ -15,7 +15,7 @@ module "acme-ec2" {
     Terraform = "true"
     Owner     = "acme demo org"
     Test      = "new tag"
-    Demo      = "Jan 25"
+    Demo      = "Jan 25 5:50PM"
   }
 }
 
