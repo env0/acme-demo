@@ -2,10 +2,6 @@ variable "name" {
   type    = string
 }
 
-variable "instance_count" {
-  type    = number
-}
-
 variable "instance_type" {
   type    = string
 }
