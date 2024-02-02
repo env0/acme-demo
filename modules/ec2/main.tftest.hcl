@@ -8,6 +8,6 @@ run "test" {
 
   assert {
     condition     = module.acme-ec2.public_ip != ""
-    error_message = "Public IP exists"
+    error_message = "Public IP does not exist!"
   }
 }
