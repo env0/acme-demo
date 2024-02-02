@@ -10,7 +10,7 @@ module "acme-ec2" {
   #key_name               = "AWay"
   #vpc_security_group_ids = [data.aws_security_group.web_server.id]
   subnet_id = data.aws_subnets.selected.ids[0]
-  associate_public_ip_address = false
+  associate_public_ip_address = true
 
   #   user_data = <<EOF
   # #!/bin/bash
