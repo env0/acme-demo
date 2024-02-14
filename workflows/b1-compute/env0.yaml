@@ -5,4 +5,4 @@ deploy:
     setupVariables:
       after:
         - name: Import Variables
-          use: https://github.com/env0/env0-import-variable-plugin@0.4.0
+          use: https://github.com/env0/env0-import-variable-plugin
