@@ -8,6 +8,12 @@
         "WebsiteConfiguration": {
           "IndexDocument": "index.html"
         },
+        "PublicAccessBlockConfiguration" : {
+          "BlockPublicAcls" : FALSE,
+          "BlockPublicPolicy" : FALSE,
+          "IgnorePublicAcls" : FALSE,
+          "RestrictPublicBuckets" : FALSE
+        },
         "Tags": [
           { "Key" : "Owner", "Value" : "Andrew Way" },
           { "Key" : "Date", "Value" : "Jun 2 2023" },
