@@ -16,3 +16,7 @@ resource "env0_project" "project" {
   description = "project created by TF"
   parent_project_id = var.parent_project_id
 }
+
+output "project_id" {
+  value = env0_project.project.id
+}
