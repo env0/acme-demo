@@ -1,10 +1,3 @@
-resource "env0_project" "project" {
-  name        = var.project_name
-  description = "project created by TF"
-  parent_project_id = var.parent_project_id
-}
-
-
 variable "env0_api_key" {
   type = string
 }
