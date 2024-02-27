@@ -7,3 +7,8 @@ deploy:
         - name: Download Agent yaml
           run: |
             curl -u $ENV0_API_KEY:$ENV0_API_SECRET https://api.env0.com/agents/$ENV0_AGENT_KEY/values > agent_values.yaml
+        - name: kubectl check
+          run: | 
+            kubectl get pod
+            kubectl get ns
+
