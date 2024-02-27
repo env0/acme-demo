@@ -15,7 +15,7 @@ module "acme-ec2" {
     Terraform = "true"
     Owner     = "acme demo org"
     Test      = "new tag"
-    Demo      = "Feb 20"
+    Demo      = "Feb 26"
   }
 }
 
@@ -28,10 +28,6 @@ data "aws_ami" "ubuntu" {
   }
 
   owners = ["099720109477"]
-}
-
-data "aws_vpc" "selected" {
-  id = var.vpc_id
 }
 
 data "aws_subnet_ids" "selected" {
