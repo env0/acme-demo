@@ -1,6 +1,6 @@
 module "acme-ec2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "~> 2.0"
+  version = "~> 5.6.0"
 
   name           = var.name
   instance_count = var.instance_count
