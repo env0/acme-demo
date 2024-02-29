@@ -1,69 +1,32 @@
-module "acme-ec2" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "~> 5.6.0"
+# module "acme-ec2" {
+#   source = "api.env0.com/bde19c6d-d0dc-4b11-a951-8f43fe49db92/ec2-instance/env0"
+#   version = "~> 1.0.1"
 
-  name           = var.name
+#   name           = "ec2-checkov-demo-instance"
 
-  ami                    = data.aws_ami.ubuntu.id
-  instance_type          = var.instance_type
-  key_name               = "AWay"
-  vpc_security_group_ids = [module.web_server_sg.security_group_id, aws_security_group.allow_ssh.id]
-  subnet_id              = data.aws_subnet_ids.default.ids[0]
+#   associate_public_ip_address = true
 
-  associate_public_ip_address = true
+#   user_data = <<EOF
+# #!/bin/bash
+# sudo apt-get -y update
+# sudo apt-get -y install nginx
+# export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
+# sudo echo "Welcome to env0, this is: $PUBLIC_IPV4" > /usr/share/nginx/html/index.html
+# EOF
 
-  user_data = <<EOF
-#!/bin/bash
-sudo apt-get -y update
-sudo apt-get -y install nginx
-export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
-sudo echo "Welcome to env0, this is: $PUBLIC_IPV4" > /usr/share/nginx/html/index.html
-EOF
+#   tags = {
+#     Terraform   = "true"
+#     Environment = "dev"
+#     Owner       = "env0 Acme Demo"
+#   }
+# }
 
-  tags = {
-    Terraform   = "true"
-    Environment = "dev"
-  }
-}
+module "ssh_sg" {
+  source = "terraform-aws-modules/security-group/aws//modules/ssh"
 
-module "web_server_sg" {
-  source = "terraform-aws-modules/security-group/aws//modules/http-80"
+  name        = "ssh-server"
+  description = "Allow SSH"
+  vpc_id      = var.vpc_id
 
-  name        = "web-server"
-  description = "Security group for web-server with HTTP ports open within VPC"
-  vpc_id      = data.aws_vpc.default.id
-
-  ingress_cidr_blocks = ["0.0.0.0/0"]
-}
-
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
-
-  owners = ["099720109477"]
-}
-
-data "aws_vpc" "default" {
-  default = true
-}
-
-data "aws_subnet_ids" "default" {
-  vpc_id = data.aws_vpc.default.id
-}
-
-resource "aws_security_group" "allow_ssh" {
-  name        = "my_security_group"
-  description = "Allow SSH Trafic"
-
-  ingress {
-    description = "Incoming ssh"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [var.ssh_cidr_block]
-  }
+  ingress_cidr_blocks = [var.ssh_cidr_block]
 }
