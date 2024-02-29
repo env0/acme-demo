@@ -12,6 +12,8 @@ module "acme-ec2" {
   subnet_id = data.aws_subnets.selected.ids[0]
   associate_public_ip_address = true
 
+  vpc_security_group_ids = var.security_group_ids
+
   #   user_data = <<EOF
   # #!/bin/bash
   # sudo apt-get -y update

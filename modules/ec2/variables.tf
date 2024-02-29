@@ -18,3 +18,8 @@ variable "ebs_size" {
   type    = number
   default = 10
 }
+
+variable "security_group_ids" {
+  type = list(string)
+  default = null
+}
