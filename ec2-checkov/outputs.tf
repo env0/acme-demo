@@ -1,3 +1,3 @@
-output "ip" {
-  value = module.acme-ec2.public_ip
-}
+# output "ip" {
+#   value = module.acme-ec2.public_ip
+# }
