@@ -12,6 +12,7 @@ variable "vpc_id" {
 
 variable "tags" {
   type = map
+  default = {}
 }
 
 variable "ebs_size" {

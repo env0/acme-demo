@@ -4,6 +4,7 @@ module "acme-ec2" {
 
   name           = "ec2-checkov-demo-instance"
   instance_type  = "t3a.nano"
+  vpc_id = var.vpc_id
 
   tags = {
     Terraform   = "true"
