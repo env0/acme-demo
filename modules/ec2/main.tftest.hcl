@@ -1,4 +1,4 @@
-run "test" {
+run "test-variable-inputs" {
   variables {
     name = "module-test-ec2"
     instance_count = 1
