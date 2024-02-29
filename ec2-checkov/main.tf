@@ -6,7 +6,7 @@ module "acme-ec2" {
   instance_type  = "t3a.nano"
   vpc_id = var.vpc_id
 
-  security_group_ids = [module.ssh_sg.id]
+  security_group_ids = [module.ssh_sg.security_group_id]
 
   tags = {
     Terraform   = "true"
