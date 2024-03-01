@@ -4,22 +4,10 @@ deploy:
   steps:
     terraformPlan:
       after:
-       - name: "Custom Flow Step: Checkov Security Scan"
-         run: |
-           pip3 install checkov
-           checkov -f $ENV0_TF_PLAN_JSON --quiet
+      - name: "Checkov Install"
+        run: |
+          pip3 install checkov==${CHECKOV_VERSION:-3.1.70} 1>&2 # supress with 2>&-
+      - name: "Checkov Security Scan"
+        run: |
+          checkov -f $ENV0_TF_PLAN_JSON --quiet ${SOFT_FAIL} 2>&1 
 
-
-# VERSION 1 Template
-#
-#version: 1
-#
-#deploy:
-#  steps:
-#    setupVariables:
-#      after:
-#        - pip3 install checkov
-#    terraformPlan:
-#      after:
-#        - terraform show -json .tf-plan | jq '.' > tf-plan.json
-#        - checkov -f tf-plan.json --quiet
