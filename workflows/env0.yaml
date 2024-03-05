@@ -1,0 +1,16 @@
+version: 2
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - name: Import Variables
+          use: https://github.com/env0/env0-import-variable-plugin
+        - name: Initialize NPM
+          run: npm i
+destroy:
+  steps:
+    setupVariables:
+      after:
+        - name: Setup npm
+          run: npm i
