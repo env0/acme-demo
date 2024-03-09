@@ -3,7 +3,7 @@ module "acme-ec2" {
   version = "~> 1.0.0"
 
   name           = "ec2-checkov-demo-instance"
-  instance_type  = "t3a.nano"
+  instance_type  = "t3a.micro"
   vpc_id = var.vpc_id
 
   security_group_ids = [module.ssh_sg.security_group_id]
