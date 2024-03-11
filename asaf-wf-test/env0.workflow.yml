@@ -1,0 +1,9 @@
+environments:
+  TopProject:
+    name: ParentProject
+    templateName: 'project creation'
+  SubProject1:
+    name: SubProject
+    templateName: 'project creation'
+    needs:
+      - ParentProject
