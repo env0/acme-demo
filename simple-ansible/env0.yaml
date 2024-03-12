@@ -1,0 +1,11 @@
+version: 2
+
+deploy:
+  steps:
+    terraformApply:
+      after:
+        - name: Install Ansible 
+          run: pip3 install --user ansible
+        
+        - name: Run Ansible Hello World
+          run: ansible-playbook helloworld_playbook.yaml
