@@ -8,12 +8,12 @@ run "test-variable-inputs" {
   }
 
   assert {
-    condition     = module.acme-ec2.public_ip != ""
+    condition     = module.ec2.public_ip != ""
     error_message = "Public IP exists"
   }
 
   assert {
-    condition     = module.acme-ec2.id != ""
+    condition     = module.ec2.id != ""
     error_message = "Instance does not have an ID"
   }
 }
