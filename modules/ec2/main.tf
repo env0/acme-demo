@@ -1,4 +1,4 @@
-module "acme-ec2" {
+module "ec2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 5.6"
 
@@ -32,11 +32,11 @@ module "acme-ec2" {
 resource "aws_volume_attachment" "volume_attachment" {
   device_name = "/dev/sdh"
   volume_id   = aws_ebs_volume.ebs.id
-  instance_id = module.acme-ec2.id
+  instance_id = module.ec2.id
 }
 
 resource "aws_ebs_volume" "ebs" {
-  availability_zone = module.acme-ec2.availability_zone
+  availability_zone = module.ec2.availability_zone
   size              = var.ebs_size
 }
 
