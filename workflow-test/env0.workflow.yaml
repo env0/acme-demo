@@ -2,13 +2,16 @@ environments:
   topproject:
     name: Top Project
     templateName: 'project creation'
+    workspace: topproject-${WORKSPACE_VAR}
   subproject:
     name: Sub Project
     templateName: 'project creation'
+    workspace: subproject-${WORKSPACE_VAR}
     needs:
       - topproject
   subproject2:
     name: Sub Project 2
     templateName: 'project creation'
+    workspace: subproject2-${WORKSPACE_VAR}
     needs:
       - subproject
