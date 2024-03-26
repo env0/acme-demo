@@ -29,7 +29,7 @@ pending[message] {
 
 warn[message] {
   input.costEstimation.totalMonthlyCost > (2 * cost_limit)
-  message := sprintf("FINOPS RULE 2b: warning: cost estimation exceeded by 200% of cost limit $%v/month", [cost_limit]) 
+  message := sprintf("FINOPS RULE 2b: warning: cost estimation exceeded by 200%% of cost limit $%v/month", [cost_limit]) 
 }
 
 # METADATA
