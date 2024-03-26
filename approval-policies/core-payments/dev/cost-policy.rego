@@ -20,7 +20,7 @@ cost_limit := 15 # USD per month
 # METADATA
 # title: require approval on cost estimation
 # description: require approval from cost_approvers if cost estimation is returning any value greater than $15/month on the plan
-warn[message] {
+pending[message] {
   input.costEstimation.monthlyCostDiff != 0
   input.costEstimation.totalMonthlyCost > cost_limit
   not any_approver_present
