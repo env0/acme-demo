@@ -27,6 +27,11 @@ pending[message] {
   message := sprintf("FINOPS RULE 2: require approval from cost_approvers if cost estimation is greater than $%v/month", [cost_limit])
 }
 
+warn[message] {
+  input.costEstimation.totalMonthlyCost > (2 * cost_limit)
+  message := sprintf("FINOPS RULE 2b: warning: cost estimation exceeded by 200% of cost limit $%v/month", [cost_limit]) 
+}
+
 # METADATA
 # title: allow if approved by anyone else other than deployer
 # description: deployment can be approved by someone other than deployer
