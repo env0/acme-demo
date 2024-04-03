@@ -49,5 +49,5 @@ variable "min_capacity" {
 
 variable "instance_types" {
   type    = list(string)
-  default = ["t4g.large"]
+  default = ["t3a.large"]
 }
