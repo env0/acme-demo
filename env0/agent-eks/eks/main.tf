@@ -46,7 +46,7 @@ module "eks" {
   control_plane_subnet_ids = data.aws_subnets.private.ids
 
   eks_managed_node_group_defaults = {
-    ami_type       = "AL2_ARM_64"
+    ami_type       = "AL2_x86_64"
     instance_types = var.instance_types
   }
 
@@ -58,7 +58,7 @@ module "eks" {
       # so we need to disable it to use the default template provided by the AWS EKS managed node group service
       use_custom_launch_template = false
 
-      ami_type = "BOTTLEROCKET_ARM_64"
+      ami_type = "BOTTLEROCKET_x86_64"
       platform = "bottlerocket"
     }
 
