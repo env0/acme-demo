@@ -60,12 +60,7 @@ module "eks" {
 
       ami_type = "BOTTLEROCKET_x86_64"
       platform = "bottlerocket"
-
-      scaling_config {
-        min_size     = 1
-        max_size     = 3
-        desired_size = 2
-      }
+      desired_size = 2
     }
 
     # bottlerocket_green = {
