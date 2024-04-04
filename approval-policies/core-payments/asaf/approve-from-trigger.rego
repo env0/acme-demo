@@ -12,8 +12,12 @@ pending[format(rego.metadata.rule())] {
 # description: approved
 
 allow[format(rego.metadata.rule())] {
-	input.deployerUser.name == "env0"
+  input.deployerUser.name == "env0"
   input.deploymentRequest.triggerName == "workflow"
+}
+
+allow[format(rego.metadata.rule())] {
+	count(input.approvers) >= 1
 }
 
 format(meta) := meta.description
