@@ -4,6 +4,9 @@ package env0
 # title: Require Approval
 # description: require 1 approval
 
+allow[format(rego.metadata.rule())] {
+	count(input.approvers) >= 1
+}
 
 # METADATA
 # title: Allow if got approved
@@ -12,10 +15,6 @@ package env0
 allow[format(rego.metadata.rule())] {
   input.deployerUser.name == "env0"
   input.deploymentRequest.triggerName == "workflow"
-}
-
-allow[format(rego.metadata.rule())] {
-	count(input.approvers) >= 1
 }
 
 format(meta) := meta.description
