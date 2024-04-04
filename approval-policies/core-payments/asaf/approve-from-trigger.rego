@@ -5,6 +5,7 @@ package env0
 # description: require 1 approval
 pending[format(rego.metadata.rule())] {
 	not input.deploymentRequest.triggerName == "workflow"
+	count(input.approvers) == 0
 }
 
 # METADATA
