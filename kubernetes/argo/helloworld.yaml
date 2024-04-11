@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: hello-world
   # You'll usually want to add your resources to the argocd namespace.
-  namespace: argocd
+  namespace: default
   # Add this finalizer ONLY if you want these to cascade delete.
   finalizers:
     # The default behaviour is foreground cascading deletion
@@ -12,7 +12,7 @@ metadata:
     # - resources-finalizer.argocd.argoproj.io/background
   # Add labels to your application object.
   labels:
-    name: metrics-server
+    name: hello-world
 spec:
   # The project the application belongs to.
   project: default
