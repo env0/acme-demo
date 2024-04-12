@@ -1,0 +1,15 @@
+version: 2
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - name: Download Agent Values.yaml
+          run: |
+            if [[ -z $ENV0_AGENT_KEY ]]; then
+              echo "ENV0_AGENT_KEY missing, please define which agent key to download"
+              exit 1
+            elif 
+              curl -u $ENV0_API_KEY:$ENV0_API_SECRET https://api.env0.com/agents/$ENV0_AGENT_KEY/values > agent_values.yaml
+              echo "$ENV0_AGENT_KEY agent values: set your helm values file to use agent_values.yaml"
+            fi
