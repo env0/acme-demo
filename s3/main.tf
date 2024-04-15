@@ -26,7 +26,7 @@ resource "random_string" "random" {
   special = false
   lower   = true
   upper   = false
-  number  = true
+  numeric  = true
 }
 
 module "s3" {
@@ -34,7 +34,6 @@ module "s3" {
   version = "3.0.0"
 
   bucket = "${var.bucketname}-${random_string.random.id}"
-  acl    = "private"
 
   tags = {
     App = var.app_tag
