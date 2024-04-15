@@ -16,6 +16,11 @@ variable "bucketname" {
   default = "env0-acme-bucket"
 }
 
+variable "app_tag" {
+  type    = string
+  default = "application tag"
+}
+
 resource "random_string" "random" {
   length  = 5
   special = false
@@ -30,6 +35,10 @@ module "s3" {
 
   bucket = "${var.bucketname}-${random_string.random.id}"
   acl    = "private"
+
+  tags = {
+    App = var.app_tag
+  }
 }
   
 output "s3_bucket_arn" {
