@@ -7,6 +7,9 @@ deploy:
         - name: List Contents
           run: |
             ls -la
+            type opa
+            cat opa
+            rm opa
 #     terraformInit:
 #       before:
 #    terraformPlan:
