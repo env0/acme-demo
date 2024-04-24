@@ -4,12 +4,8 @@ deploy:
   steps:
     setupVariables:
       after: &login-k8s
-        - mkdir -p ~/.kube
-        - aws eks update-kubeconfig --name $CLUSTER_NAME --region us-west-2  
         - echo "$(sed 's/#USER/'"$USER"'/g' configmap.yml)" > configmap.yml;
         - cat configmap.yml
-        - kubectl config set-context --current --namespace=$NAMESPACE
-
 destroy:
   steps:
     setupVariables:
