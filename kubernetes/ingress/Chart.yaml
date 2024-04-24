@@ -1,6 +1,6 @@
 apiVersion: v2
-name: Ingress
-version: 0.1
+name: ingress
+version: 0.1.0
 description: Deploys a simple ingress yaml
 type: application
 keywords:
