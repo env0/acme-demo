@@ -1,0 +1,3 @@
+clusterIssuer: "letsencrypt-prod"
+path: "/"
+pathType: "Prefix"
