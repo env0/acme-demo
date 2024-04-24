@@ -8,7 +8,6 @@ deploy:
           run: |
             ls -la
             type opa
-            cat opa
             rm opa
 #     terraformInit:
 #       before:
