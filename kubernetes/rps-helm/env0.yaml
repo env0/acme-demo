@@ -1,0 +1,19 @@
+version: 2
+
+deploy:
+  steps:
+    helmUpgrade:
+      before:
+        - name: List Contents
+          run: |
+            rm opa
+#     terraformInit:
+#       before:
+#    terraformPlan:
+#      after:
+#  onCompletion:
+#    - type: string
+#  onSuccess:
+#    - type: string
+#  onFailure:
+#    - type: string

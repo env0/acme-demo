@@ -1,0 +1,4 @@
+clusterIssuer: "letsencrypt-prod"
+path: "/"
+pathType: "Prefix"
+playerName: "Batman"
