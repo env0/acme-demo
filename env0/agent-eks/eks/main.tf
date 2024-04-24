@@ -23,6 +23,7 @@ module "eks" {
   cluster_name                   = var.cluster_name
   cluster_endpoint_public_access = true
 
+  # to get a list of addons run `aws eks describe-addon-versions`
   cluster_addons = {
     coredns = {
       # preserve    = true
@@ -37,6 +38,9 @@ module "eks" {
       most_recent = true
     }
     vpc-cni = {
+      most_recent = true
+    }
+    aws-ebs-csi-driver = {
       most_recent = true
     }
   }
