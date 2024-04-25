@@ -23,6 +23,8 @@ module "eks" {
   cluster_name                   = var.cluster_name
   cluster_endpoint_public_access = true
 
+  enable_irsa = true  # setup oidc provider
+
   # to get a list of addons run `aws eks describe-addon-versions`
   cluster_addons = {
     coredns = {
