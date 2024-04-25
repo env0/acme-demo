@@ -1,7 +1,8 @@
 # https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html
 
 locals {
-  oidc_provider = module.eks.oidc_provider
+  oidc_provider  = module.eks.oidc_provider
+  aws_account_id = "326535729404"
 }
 
 output "oidc_provider" {
@@ -20,7 +21,7 @@ resource "aws_iam_role" "ebs-csi" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::111122223333:oidc-provider/${local.oidc_provider}"
+        "Federated": "arn:aws:iam::${local.aws_account_id}:oidc-provider/${local.oidc_provider}"
       },
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
