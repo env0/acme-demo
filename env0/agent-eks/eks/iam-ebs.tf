@@ -1,4 +1,5 @@
 # https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html
+# https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html
 
 locals {
   oidc_provider  = module.eks.oidc_provider
