@@ -1,12 +1,12 @@
 run "test-variable-inputs" {
   variables {
     prefix = "foo"
-    location = "us-east"
+    location = "eastus"
     last_updated = "2024-04-29"
   }
 
   assert {
-    condition     = azurerm_resource_group.example.location == "us-east"
+    condition     = azurerm_resource_group.example.location == "eastus"
     error_message = "rg location not us-east"
   }
 

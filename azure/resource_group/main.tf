@@ -24,7 +24,7 @@ variable "prefix" {
 
 variable "location" {
   type = string
-  default = "us-east"
+  default = "eastus"
 }
 
 output "name" {
