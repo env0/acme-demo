@@ -24,9 +24,13 @@ variable "prefix" {
 
 variable "location" {
   type = string
-  default = "us-east"
+  default = "eastus"
 }
 
 output "name" {
   value = azurerm_resource_group.example.name
+}
+
+output "location" {
+  value = azurerm_resource_group.example.location
 }
