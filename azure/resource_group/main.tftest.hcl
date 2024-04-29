@@ -2,6 +2,7 @@ run "test-variable-inputs" {
   variables {
     prefix = "foo"
     location = "us-east"
+    last_updated = "2024-04-29"
   }
 
   assert {
