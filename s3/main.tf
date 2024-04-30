@@ -8,7 +8,12 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region = var.region
+}
+
+variable "region" {
+  type    = string
+  default = "us-west-2"
 }
 
 variable "bucketname" {
