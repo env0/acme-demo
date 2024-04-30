@@ -34,7 +34,8 @@ module "s3" {
   version = "3.0.0"
 
   bucket = "${var.bucketname}-${random_string.random.id}"
-  acl    = "private"
+  control_object_ownership = true
+  object_ownership         = "BucketOwnerPreferred"
 }
   
 output "s3_bucket_arn" {
