@@ -7,10 +7,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = var.region
-}
-
 variable "region" {
   type    = string
   default = "us-west-2"
@@ -19,6 +15,10 @@ variable "region" {
 variable "bucketname" {
   type    = string
   default = "env0-acme-bucket"
+}
+
+provider "aws" {
+  region = var.region
 }
 
 resource "random_string" "random" {
