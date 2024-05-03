@@ -10,7 +10,7 @@ run "vpc-tests" {
   }
 
   assert {
-    condition     = module.vpc.region == "us-east-2"
-    error_message = "VPC Region did not match"
+    condition     = count(module.vpc.azs) >= "2"
+    error_message = "Number of AZs need to be >= 2"
   }
 }
