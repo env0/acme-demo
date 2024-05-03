@@ -10,7 +10,7 @@ run "vpc-tests" {
   }
 
   assert {
-    condition     = count(module.vpc.azs) >= "2"
+    condition     = count(module.vpc.azs) >= 2
     error_message = "Number of AZs need to be >= 2"
   }
 }
