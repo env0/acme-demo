@@ -33,8 +33,8 @@ warn[message] {
 }
 
 # METADATA
-# title: allow if approved by anyone else other than deployer
-# description: deployment can be approved by someone other than deployer
+# title: allow if approved by anyone from cost_approveres team
+# description: deployment can be approved by someone from cost_approvers team (id)
 allow[format(rego.metadata.rule())] {
   any_approver_present
 }
@@ -44,7 +44,7 @@ any_approver_present {
 }
 
 # METADATA
-# title: allow if approved by anyone else other than deployer
+# title: auto approve if <= cost limit
 # description: approve automatically if the estimated costs are less than $15/month
 allow[format(rego.metadata.rule())] {
   input.costEstimation.totalMonthlyCost <= cost_limit 
