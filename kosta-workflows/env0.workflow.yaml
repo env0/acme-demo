@@ -1,6 +1,6 @@
 environments:
   randomize_name:
-    name: Randomize Name
+    name: Set Global Configs
     vcs:
       type: 'terraform'
       terraformVersion: '1.5.7'
@@ -17,4 +17,4 @@ environments:
       path: 'kosta-workflows/s3-bucket'
 
 settings:
-  environmentRemovalStrategy: destroy
+  environmentRemovalStrategy: destroy 
