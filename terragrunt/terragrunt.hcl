@@ -45,7 +45,7 @@ remote_state {
     // dynamodb_table = "acme-dev-tfstate-lockdb"
     bucket         = "env0-acme-tfstate"
     dynamodb_table = "env0-acme-tfstate-lock"
-    key            = "${join("/", [get_env("ENV0_ENVIRONMENT_ID"), path_relative_to_include()])}/terraform.tfstate"
+    key            = "${path_relative_to_include()}/terraform.tfstate"
     region         = "us-west-2"
     role_arn       = "arn:aws:iam::326535729404:role/env0-acme-assume-role"
   }
