@@ -4,17 +4,12 @@ deploy:
   steps:
     setupVariables:
       after:
-        - name: Download Agent yaml
+        - name: Download Agent Values.yaml
           run: |
-            if [[ -z $ENV0_AGENT_KEY || -z $ENV0_API_KEY || -z $ENV0_API_SECRET]]; then
-              echo "ENV0_AGENT_KEY or ENV0_API_KEY or ENV0_API_SECRET is missing"
+            if [[ -z $ENV0_AGENT_KEY ]]; then
+              echo "ENV0_AGENT_KEY missing, please define which agent key to download"
               exit 1
-            elif 
+            else 
               curl -u $ENV0_API_KEY:$ENV0_API_SECRET https://api.env0.com/agents/$ENV0_AGENT_KEY/values > agent_values.yaml
               echo "$ENV0_AGENT_KEY agent values: set your helm values file to use agent_values.yaml"
             fi
-        - name: kubectl check
-          run: | 
-            kubectl get pod
-            kubectl get ns
-
