@@ -67,7 +67,7 @@ module "eks" {
 
       ami_type     = "BOTTLEROCKET_x86_64"
       platform     = "bottlerocket"
-      desired_size = 2
+      desired_size = var.desired_size
     }
 
     # bottlerocket_green = {
