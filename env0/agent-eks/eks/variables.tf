@@ -51,3 +51,8 @@ variable "instance_types" {
   type    = list(string)
   default = ["t3a.large"]
 }
+
+variable "desired_size" {
+  type    = number
+  default = 2
+}

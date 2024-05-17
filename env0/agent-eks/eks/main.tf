@@ -23,7 +23,7 @@ module "eks" {
   cluster_name                   = var.cluster_name
   cluster_endpoint_public_access = true
 
-  enable_irsa = true  # setup oidc provider
+  enable_irsa = true # setup oidc provider
 
   # to get a list of addons run `aws eks describe-addon-versions`
   cluster_addons = {
@@ -43,7 +43,7 @@ module "eks" {
       most_recent = true
     }
     aws-ebs-csi-driver = {
-      most_recent = true
+      most_recent              = true
       service_account_role_arn = aws_iam_role.ebs-csi.arn
     }
   }
@@ -65,8 +65,8 @@ module "eks" {
       # so we need to disable it to use the default template provided by the AWS EKS managed node group service
       use_custom_launch_template = false
 
-      ami_type = "BOTTLEROCKET_x86_64"
-      platform = "bottlerocket"
+      ami_type     = "BOTTLEROCKET_x86_64"
+      platform     = "bottlerocket"
       desired_size = 2
     }
 
