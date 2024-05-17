@@ -53,6 +53,6 @@ variable "instance_types" {
 }
 
 variable "desired_size" {
-  type = int
+  type    = number
   default = 2
 }
