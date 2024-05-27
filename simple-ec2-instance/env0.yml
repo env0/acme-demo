@@ -1,0 +1,8 @@
+version: 2
+deploy:
+  steps:
+    opentofuInit:
+      before:
+        - name: Print Tofu Version (Custom Step)
+          run: | 
+            tofu --version
