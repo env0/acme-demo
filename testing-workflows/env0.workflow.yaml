@@ -1,0 +1,21 @@
+environments:
+  randomize_name:
+    name: Randomize Name
+    vcs:
+      type: 'terraform'
+      terraformVersion: '1.5.7'
+      repository: 'https://github.com/env0/acme-demo'
+      path: 'testing-workflows/randomize-name'
+  # s3_bucket:
+  #   name: S3 Bucket
+  #   needs: 
+  #     - randomize_name
+  #   vcs:
+  #     type: 'terraform'
+  #     terraformVersion: '1.5.7'
+  #     repository: 'https://github.com/env0/acme-demo'
+  #     path: 'kosta-workflows/s3-bucket'
+
+settings:
+  environmentRemovalStrategy: destroy 
+
