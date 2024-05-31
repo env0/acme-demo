@@ -16,3 +16,19 @@ https://docs.env0.com/docs/self-hosted-kubernetes-agent
 * The agent-chart is cloned using git sub-module and then symbolic linked to this folder.
 This gives us the ability to add an env0.yaml and our own files along with the chart.
 So that we can deploy the chart with some files all source-controlled.
+
+## Updating the sub-module
+from root of repo:
+```
+cd env0/agent-chart
+git checkout main
+git pull
+cd ..
+git commit -am "updating submodule"
+```
+
+alternatively
+```
+git submodule foreach git pull origin main
+git commit -am "updating submodule"
+```
