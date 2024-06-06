@@ -21,14 +21,10 @@ So that we can deploy the chart with some files all source-controlled.
 from root of repo:
 ```
 cd env0/agent-chart
-git checkout main
-git pull
+git pull origin main
+# maybe need 
+# git fetch origin tag v3.0.757
+git checkout v3.0.757
 cd ..
-git commit -am "updating submodule"
-```
-
-alternatively
-```
-git submodule foreach git pull origin main
 git commit -am "updating submodule"
 ```
