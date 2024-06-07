@@ -1,0 +1,11 @@
+version: 2
+
+deploy:
+  steps:
+    terraformApply:
+      after:
+        - name: Powershell Version 
+          run: pwsh --version
+        
+        - name: Infracost Version
+          run: infracost --version
