@@ -5,6 +5,9 @@ deploy:
     terraformPlan:
       after:
         - name: Install Spectral CLI
-          run: curl -L "https://get.spectralops.io/latest/x/sh?key=$SPECTRAL_KEY" | sh
+          run: | 
+            apk add libstdc++
+            apk add libgcc
+            curl -L "https://get.spectralops.io/latest/x/sh?key=$SPECTRAL_KEY" | sh
         - name: Execute Spectral Scan
           run: SPECTRAL_DSN=https://$SPECTRAL_KEY@get.spectralops.io $HOME/.spectral/spectral scan  --include-tags iac --exclude-tags $EXCLUDE_TAGS
