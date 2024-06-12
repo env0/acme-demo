@@ -8,6 +8,6 @@ deploy:
           run: | 
             sudo apk add libstdc++
             sudo apk add libgcc
-            curl -L "https://get.spectralops.io/latest/x/sh?key=$SPECTRAL_KEY" | sh
+            curl -L "https://get.spectralops.io/latest/x/sh?key=$SPECTRAL_KEY&v=1.10.33" | sh
         - name: Execute Spectral Scan
           run: SPECTRAL_DSN=https://$SPECTRAL_KEY@get.spectralops.io $HOME/.spectral/spectral scan  --include-tags iac --exclude-tags $EXCLUDE_TAGS
