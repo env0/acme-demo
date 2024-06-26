@@ -1,0 +1,13 @@
+version: 2
+
+deploy:
+  steps:
+    terraformInit:
+      before:
+      - name: "Kosta test 1"
+        run: |
+          echo "Kosta test 1"
+      - name: "Kosta test 2"
+        run: |
+          echo "Kosta test 2"
+
