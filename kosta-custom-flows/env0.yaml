@@ -7,7 +7,7 @@ deploy:
       - name: "Kosta test 1"
         run: |
           echo "Kosta test 1"
-      - name: "Kosta test 2"
-        run: |
-          echo "Kosta test 2"
+      # - name: "Kosta test 2"
+      #   run: |
+      #     echo "Kosta test 2"
 
