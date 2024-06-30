@@ -17,23 +17,14 @@ variable "team_name" {
 variable "team_environments" {
   description = "List of team environments"
   type        = list(string)
-  default     = [ "Dev", "Stage", "Prod" ]
+  default     = [ "Non-Prod", "Prod" ]
 }
 
 variable "policies" {
   description = "Policies in JSON format"
   type        = map(any)
   default     = {
-    Dev = {
-      number_of_environments        = 1
-      number_of_environments_total  = 1
-      requires_approval_default     = true
-      include_cost_estimation       = true
-      skip_apply_when_plan_is_empty = true
-      disable_destroy_environments  = true
-      skip_redundant_deployments    = true
-    }
-    Stage = {
+    Non-Prod = {
       number_of_environments        = 2
       number_of_environments_total  = 2
       requires_approval_default     = false
