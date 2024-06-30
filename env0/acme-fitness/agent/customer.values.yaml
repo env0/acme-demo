@@ -1,0 +1,37 @@
+requests:
+  cpu: 200m
+  memory: 1Gi
+limits:
+  cpu: 1000m
+  memory: 1Gi
+dockerImage: ghcr.io/env0/deployment-agent:latest
+agentProxy:
+  install: false
+env0ConfigSecretName: acme-prod-customer-secrets
+strictSecurityContext: true
+deploymentPodWarmPoolSize: 1
+podAdditionalLabels:
+  foo: bar
+initContainer:
+- name: init-container2
+  image: ghcr.io/env0/deployment-agent:latest
+  command: [ "/bin/sh", "-c"]
+  args:
+    - echo 'Hello My initContainer:';
+      cd /foo-mount; touch hello-foo.txt;
+      echo 'Done';
+  volumeMounts:
+    - name: custom-mount-foo
+      mountPath: /foo-mount
+customSecretMounts:
+- volumeName: secret-foo
+  secretName: acme-prod-customer-secrets
+  mountPath: /secretfoo
+customVolumeMounts:
+- name: custom-mount-foo
+  mountPath: /foo-mount
+  readOnly: true
+- name: custom-mount-bar
+  mountPath: /bar-mount
+  readOnly: true
+# deploymentJobServiceAccountName: my-custom-sa

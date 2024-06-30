@@ -13,3 +13,6 @@ deploy:
               curl -u $ENV0_API_KEY:$ENV0_API_SECRET https://api.env0.com/agents/$ENV0_AGENT_KEY/values > agent_values.yaml
               echo "$ENV0_AGENT_KEY agent values: set your helm values file to use agent_values.yaml"
             fi
+        - name: Apply KubeSealed Secrets
+          run: | 
+            kubectl apply -f acme-prod.secret.sealed.yaml
