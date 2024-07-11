@@ -1,0 +1,36 @@
+version: 2
+
+deploy:
+  steps:
+    terraformApply:
+      after:
+        - name: OS Utils 
+          run: |
+            bash --version
+            curl --version
+            file --version
+            grep --version
+            jq --version
+            openssl version
+        - name: Package Managers 
+          run: |
+            npm --version
+            yarn --version
+            pip --version
+            helm version
+        - name: Software 
+          run: |
+            node -v
+            python3 --version
+            infracost --version
+            pwsh --version
+            terratag --version
+        - name: Cloud 
+          run: |
+            aws --version 
+            awsv1 --version
+            gcloud --version
+            az --version
+            kubectl version
+            kustomize version
+            
