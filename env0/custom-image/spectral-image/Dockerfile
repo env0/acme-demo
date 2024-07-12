@@ -1,5 +1,5 @@
 ARG ALPINE_VERSION=3.19
-ARG BASE_TAG=3.0.770
+ARG BASE_TAG=3.0.804
 ARG BASE_IMAGE=ghcr.io/env0/deployment-agent-lean
 FROM python:3.11-alpine${ALPINE_VERSION} as builder
 
@@ -60,6 +60,13 @@ RUN npm -g install "@env0/terratag@$TERRATAG_VERSION" \
     # Verifies terratag installation
 && /opt/terratag -h
 
+# Install tgenv
+ARG TGENV_VERSION=0.0.9
+RUN git clone --branch v${TGENV_VERSION} https://github.com/env0/tgenv.git /opt/tgenv
+ENV PATH="/opt/tgenv/bin:${PATH}"
+RUN chown -R node /opt/tgenv
+
+
 # Install OpenSSL
 RUN apk add --no-cache openssl
 
@@ -73,3 +80,8 @@ RUN apk del -U shadow
 RUN mkdir /home/node/.spectral
 COPY spectral /home/node/.spectral
 RUN chmod 777 /home/node/.spectral/spectral
+
+# Install terragrunt 0.32.0 and 0.60.0, since proxy is blocking download
+USER node
+RUN tgenv install 0.60.0
+RUN tgenv install 0.32.0
