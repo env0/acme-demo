@@ -1,7 +1,7 @@
 ARG ALPINE_VERSION=3.19
 ARG BASE_TAG=3.0.804
 ARG BASE_IMAGE=ghcr.io/env0/deployment-agent-lean
-FROM python:3.11-alpine${ALPINE_VERSION} as builder
+FROM python:3.11-alpine${ALPINE_VERSION} AS builder
 
 ARG AWS_CLI_VERSION=2.16.2
 RUN apk add --no-cache git unzip groff build-base libffi-dev cmake
@@ -22,7 +22,7 @@ RUN find /usr/local/lib/aws-cli/awscli/botocore/data -name examples-1.json -dele
 RUN (cd /usr/local/lib/aws-cli; for a in *.so*; do test -f /lib/$a && rm $a; done)
 
 # copy aws v2 cli to the final image
-FROM ${BASE_IMAGE}:${BASE_TAG} as final-image
+FROM ${BASE_IMAGE}:${BASE_TAG} AS final-image
 COPY --from=builder /usr/local/lib/aws-cli/ /usr/local/lib/aws-cli/v2
 RUN ln -s /usr/local/lib/aws-cli/v2/aws /usr/local/bin/awsv2
 RUN ln -s /usr/local/lib/aws-cli/v2/aws /usr/local/bin/aws
