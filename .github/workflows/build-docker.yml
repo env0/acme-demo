@@ -14,7 +14,11 @@ on:
       folder:
         description: 'Path to the Dockerfile'
         required: true
-        default: 'env0/custom-image/spectral-image'
+        type: choice
+        options:
+        - env0/custom-image/spectral-image
+        - env0/custom-image/alternative
+        - env0/custom-image
 jobs:
   build:
     runs-on: ubuntu-latest
