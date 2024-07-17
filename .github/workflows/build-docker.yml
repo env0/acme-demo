@@ -7,7 +7,20 @@ on:
   pull_request:
     branches:
       - main
-
+  workflow_dispatch:
+    inputs:
+      sourcetag:
+        description: 'Tag for the Docker image'
+        required: true
+        default: 'latest'
+      userid:
+        description: 'UserID for docker image'
+        required: true
+        default: '1000'
+      dockerfile:
+        description: 'Path to the Dockerfile'
+        required: true
+        default: 'env0/custom-image/spectral-image/Dockerfile'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,6 +45,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          file: ${{ github.event.inputs.dockerfile }}
           build-args: 
             - BASE_TAG=${{ github.event.inputs.sourcetag }}
             - USER_ID=${{ github.event.inputs.userid }}
