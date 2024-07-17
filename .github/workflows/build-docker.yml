@@ -1,4 +1,5 @@
 name: Build and Push Docker Image
+run-name: Build & Push - ${{ inputs.sourcetag }}:${{ inputs.userid }} from ${{ inputs.folder }}
 
 on:
   workflow_dispatch:
