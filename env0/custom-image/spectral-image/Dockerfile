@@ -78,7 +78,7 @@ RUN apk del -U shadow
 
 #add spectral
 RUN mkdir /home/node/.spectral
-COPY spectral /home/node/.spectral
+COPY ./spectral /home/node/.spectral
 RUN chmod 777 /home/node/.spectral/spectral
 
 # Install terragrunt 0.32.0 and 0.60.0, since proxy is blocking download
