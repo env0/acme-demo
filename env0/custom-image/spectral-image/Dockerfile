@@ -66,6 +66,15 @@ RUN git clone --branch v${TGENV_VERSION} https://github.com/env0/tgenv.git /opt/
 ENV PATH="/opt/tgenv/bin:${PATH}"
 RUN chown -R node /opt/tgenv
 
+# Install terragrunt 0.32.0 and 0.60.0, since proxy is blocking download
+USER node
+RUN mkdir /home/node/tgenv-temp
+ENV TGENV_CONFIG_DIR=/home/node/tgenv-temp
+RUN tgenv install 0.60.0
+RUN tgenv install 0.32.0
+
+USER root
+
 
 # Install OpenSSL
 RUN apk add --no-cache openssl
@@ -80,8 +89,3 @@ RUN apk del -U shadow
 RUN mkdir /home/node/.spectral
 COPY spectral /home/node/.spectral
 RUN chmod 777 /home/node/.spectral/spectral
-
-# Install terragrunt 0.32.0 and 0.60.0, since proxy is blocking download
-USER node
-RUN tgenv install 0.60.0
-RUN tgenv install 0.32.0
