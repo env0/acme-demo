@@ -40,13 +40,13 @@ jobs:
         with:
           context: .
           file: ${{ github.event.inputs.dockerfile }}
-          build-args: 
-            - BASE_TAG=${{ github.event.inputs.sourcetag }}
-            - USER_ID=${{ github.event.inputs.userid }}
+          build-args: |
+            BASE_TAG=${{ github.event.inputs.sourcetag }}
+            USER_ID=${{ github.event.inputs.userid }}
           push: true
           tags: |
             away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
             away168/deployment-agent:${{ github.sha }}
-      
+
       - name: Log out from Docker Hub
         run: docker logout
