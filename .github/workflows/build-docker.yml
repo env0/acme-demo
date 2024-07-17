@@ -49,6 +49,8 @@ jobs:
           push: true
           tags: |
             away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
+          cache-from: type=registry,ref=away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
+          cache-to: type=inline
 
       - name: Log out from Docker Hub
         run: docker logout
