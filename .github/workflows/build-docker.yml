@@ -41,7 +41,7 @@ jobs:
       #     # username: away168
       #     # password: ${{ secrets.GITHUB_TOKEN_AWAY168 }}
 
-      - name: Build and push to away168
+      - name: Build and push to registry
         uses: docker/build-push-action@v6
         with:
           context: ${{ github.event.inputs.folder }}
@@ -51,7 +51,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/env0/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
-          cache-from: type=registry,ref=away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
+          cache-from: type=registry,ref=ghcr.io/env0/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
           cache-to: type=inline
 
       - name: Log out from Docker Hub
