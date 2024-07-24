@@ -1,0 +1,9 @@
+version: 1
+
+deploy:
+  steps:
+    terraformInit:
+      before:
+        - gcloud version
+        - sudo gcloud components update --version=484.0.0 --quiet
+        - gcloud version
