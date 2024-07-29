@@ -6,6 +6,6 @@ type: application
 version: 0.1.0
 
 dependencies:
-- name: env0
+- name: env0-agent
   version: "v3.0.804"
   repository: "https://env0.github.io/self-hosted"
