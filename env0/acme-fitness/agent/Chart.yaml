@@ -1,1 +1,11 @@
-../../agent-chart/Chart.yaml
+apiVersion: v2
+name: my-agent
+description: A Helm chart pointing to env0 Agent Helm Chart
+
+type: application
+version: 0.1.0
+
+dependencies:
+- name: env0
+  version: "v3.0.804"
+  repository: "https://env0.github.io/self-hosted"
