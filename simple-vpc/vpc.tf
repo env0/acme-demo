@@ -20,10 +20,10 @@ module "acme-vpc" {
   public_subnets  = var.public_subnets
 }
 
-resource "env0_configuration_variable" "vpc_id" {
-  name        = "vpc_id"
-  value       = module.acme-vpc.vpc_id
-  description = "vpc_id for project"
-  project_id  = local.project_id
-}
+# resource "env0_configuration_variable" "vpc_id" {
+#   name        = "vpc_id"
+#   value       = module.acme-vpc.vpc_id
+#   description = "vpc_id for project"
+#   project_id  = local.project_id
+# }
 
