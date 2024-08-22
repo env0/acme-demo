@@ -10,5 +10,6 @@ module "acme-ec2" {
     Terraform   = "true"
     Environment = "dev"
     Owner       = "env0 Acme Demo"
+    Demo        = "aug 22"
   }
 }
