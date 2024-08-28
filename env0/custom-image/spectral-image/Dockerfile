@@ -29,23 +29,13 @@ RUN ln -s /usr/local/lib/aws-cli/v2/aws /usr/local/bin/aws
 RUN aws --version
 
 USER root
- 
-# ARG GLIBC_VER=2.35-r1
-# RUN apk add --no-cache \
-#         binutils \
-#         groff \
-# && curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub \
-# && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk \
-# && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk \
-# && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-i18n-${GLIBC_VER}.apk \
-# && apk add --no-cache --force-overwrite \
-#         glibc-${GLIBC_VER}.apk \
-#         glibc-bin-${GLIBC_VER}.apk \
-#         glibc-i18n-${GLIBC_VER}.apk \
-# && /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8 \
-# && rm -rf \
-#         glibc-*.apk \
-#         /var/cache/apk/*
+
+ARG AZ_CLI_VERSION=2.63.0
+# Install Azure cli
+RUN apk add --virtual=build gcc make openssl-dev libffi-dev musl-dev linux-headers \
+    && pip3 install --no-cache-dir azure-cli==${AZ_CLI_VERSION} \
+    && apk del --purge build \
+    && az --version
 
 ARG INFRACOST_VERSION=0.10.37
 # Install infracost
@@ -65,15 +55,6 @@ ARG TGENV_VERSION=0.0.9
 RUN git clone --branch v${TGENV_VERSION} https://github.com/env0/tgenv.git /opt/tgenv
 ENV PATH="/opt/tgenv/bin:${PATH}"
 RUN chown -R node /opt/tgenv
-
-# # Install terragrunt 0.32.0 and 0.60.0, since proxy is blocking download
-# USER node
-# RUN mkdir /home/node/tgenv-temp
-# ENV TGENV_CONFIG_DIR=/home/node/tgenv-temp
-# RUN tgenv install 0.60.0
-# RUN tgenv install 0.32.0
-
-# USER root
 
 # Install OpenSSL
 RUN apk add --no-cache openssl
