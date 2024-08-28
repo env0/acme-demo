@@ -30,6 +30,12 @@ RUN aws --version
 
 USER root
 
+#Install Python for Azure CLI
+RUN apk add --no-cache \
+        python3 \
+        python3-dev \
+    && python3 -m venv --system-site-packages --upgrade-deps /opt/global_python_venv
+
 ARG AZ_CLI_VERSION=2.63.0
 # Install Azure cli
 RUN apk add --virtual=build gcc make openssl-dev libffi-dev musl-dev linux-headers \
