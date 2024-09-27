@@ -9,3 +9,7 @@ output "instance_id" {
 output "network" {
   value = var.vpc_id
 }
+
+output "network-test" {
+  value = "test-${var.vpc_id}"
+}
