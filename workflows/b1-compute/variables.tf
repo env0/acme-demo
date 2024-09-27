@@ -5,5 +5,5 @@ variable "compute_name" {
 
 variable "vpc_id" {
   type    = string
-  default = ""
+  default = "test"
 }
