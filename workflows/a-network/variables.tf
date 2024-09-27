@@ -1,6 +1,6 @@
 variable "length" {
   type    = number
-  default = 6
+  default = 10
 }
 
 variable "refresh_token" {
