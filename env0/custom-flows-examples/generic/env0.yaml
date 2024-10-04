@@ -1,0 +1,21 @@
+version: 2
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - name: My Customized Step
+          run: |
+            echo "$MY_STRING"
+          env:
+            MY_STRING: "Hello, I'm a custom flow step; you can call any shell script or cloud cli command using this."
+#     terraformInit:
+#       before:
+#    terraformPlan:
+#      after:
+#  onCompletion:
+#    - type: string
+#  onSuccess:
+#    - type: string
+#  onFailure:
+#    - type: string
