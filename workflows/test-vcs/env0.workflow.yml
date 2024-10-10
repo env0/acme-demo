@@ -9,6 +9,7 @@ environments:
       terragruntVersion: '0.67.0'
       terragruntTfBinary: 'opentofu'
       opentofuVersion: '1.8.1'
+      terraformVersion: '1.5.7'
       repository: 'https://github.com/env0/acme-demo'
       path: 'terragrunt'
       githubInstallationId: 27910504
