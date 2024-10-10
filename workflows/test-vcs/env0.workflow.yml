@@ -12,8 +12,7 @@ environments:
       repository: 'https://github.com/env0/acme-demo'
       path: 'terragrunt'
       githubInstallationId: 27910504
-      isTerragruntRunAll: true
-      needs:
-        - network
+    needs:
+     - network
 settings:
   environmentRemovalStrategy: destroy
