@@ -12,6 +12,7 @@ environments:
       terraformVersion: '1.5.7'
       repository: 'https://github.com/env0/acme-demo'
       path: 'terragrunt'
+      isTerragruntRunAll: true
       githubInstallationId: 11551359
     needs:
      - network
