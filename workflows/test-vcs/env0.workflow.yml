@@ -1,0 +1,20 @@
+environments:
+  network:
+    name: Network
+    templateName: 'wf-a-network'
+  service1:
+    name: 'Test TG'
+    vcs:
+      type: 'terragrunt'
+      terragruntVersion: '0.67.0'
+      terragruntTfBinary: 'opentofu'
+      opentofuVersion: '1.8.1'
+      terraformVersion: '1.5.7'
+      repository: 'https://github.com/env0/acme-demo'
+      path: 'terragrunt'
+      isTerragruntRunAll: true
+      githubInstallationId: 11551359
+    needs:
+     - network
+settings:
+  environmentRemovalStrategy: destroy
