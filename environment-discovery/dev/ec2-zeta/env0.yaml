@@ -1,0 +1,24 @@
+version: 2
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - name: Fetch My Secrets
+          run: |
+            echo "$MY_STRING"
+          env:
+            MY_STRING: "Hello V2 Custom Flow"
+#     terraformInit:
+#       before:
+   terraformApply:
+     after:
+      - name: Custom notification to JIRA
+        run: |
+          echo "calling my custom jira script"
+#  onCompletion:
+#    - type: string
+#  onSuccess:
+#    - type: string
+#  onFailure:
+#    - type: string
