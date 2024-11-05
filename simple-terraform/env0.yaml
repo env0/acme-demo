@@ -1,0 +1,26 @@
+version: 2
+
+deploy:
+  steps:
+    setupVariables:
+      after:
+        - name: Sleep 5mins
+          run: |
+            if [[ $SLEEP1 == "true" ]]; then
+              sleep 300
+            fi
+    terraformPlan:
+      after:
+        - name: Sleep 5mins 
+          run: | 
+            if [[ $SLEEP2 == "true" ]]; then
+              sleep 300
+            fi
+#     terraformInit:
+#       before:
+#  onCompletion:
+#    - type: string
+#  onSuccess:
+#    - type: string
+#  onFailure:
+#    - type: string
