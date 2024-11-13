@@ -15,3 +15,8 @@ pending[msg] {
   count(input.approvers) < 2
   msg := "need two approvers"
 }
+
+pending[msg] {
+  count(input.approvers) == 1
+  msg := sprintf("current approver: %v, %v", [input.approvers[0].name, input.approvers[0].email])
+}
