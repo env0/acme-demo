@@ -10,7 +10,7 @@ deploy:
             # attach ^ result to payload 
             curl -kv $MY_SN_ENDPOINT -d 
             "{
-            \"LOG_ID\": \"$ENV0_DEPLOYMENT_LOG_ID\",
+            \"LOG_ID\": \"$ENV0_DEPLOYMENT_LOG_ID\"
             }"
 #     terraformInit:
 #       before:
