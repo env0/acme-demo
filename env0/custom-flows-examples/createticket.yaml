@@ -6,7 +6,13 @@ deploy:
       after:
         - name: Create ServiceNow ticket
           run: |
-            curl -kv https://webhook.site/3d6bf4a9-13e1-40fd-934f-b93d8b476e2d -d "{\"LOG_ID\": \"$ENV0_DEPLOYMENT_LOG_ID\"}"
+            # call infracost
+            # attach ^ result to payload 
+            curl -kv $MY_SN_ENDPOINT -d 
+            "{
+            \"LOG_ID\": \"$ENV0_DEPLOYMENT_LOG_ID\",
+            \"PLAN\": \"$(cat $ENV0_TF_PLAN_JSON))\"
+            }"
 #     terraformInit:
 #       before:
 #    terraformPlan:
