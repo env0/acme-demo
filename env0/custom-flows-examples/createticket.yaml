@@ -11,7 +11,6 @@ deploy:
             curl -kv $MY_SN_ENDPOINT -d 
             "{
             \"LOG_ID\": \"$ENV0_DEPLOYMENT_LOG_ID\",
-            \"PLAN\": \"$(cat $ENV0_TF_PLAN_JSON))\"
             }"
 #     terraformInit:
 #       before:
