@@ -4,7 +4,7 @@ package env0
 # title: separation of duties
 # description: approver is not deployer 
 allow[msg] {
-  count (input.approvers) > 1
+  count(input.approvers) > 1
   msg := "multiple approvers"
 }
 
