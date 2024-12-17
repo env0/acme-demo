@@ -3,7 +3,7 @@ ARG BASE_TAG=3.0.804
 ARG BASE_IMAGE=ghcr.io/env0/deployment-agent-lean
 FROM python:3.11-alpine${ALPINE_VERSION} AS builder
 
-ARG AWS_CLI_VERSION=2.16.2
+ARG AWS_CLI_VERSION=2.22.18
 RUN apk add --no-cache git unzip groff build-base libffi-dev cmake
 RUN git clone --depth 1 -b ${AWS_CLI_VERSION} --single-branch https://github.com/aws/aws-cli.git
 
@@ -38,19 +38,19 @@ RUN apk add --no-cache \
 
 ENV PATH="/opt/global_python_venv/bin:${PATH}"
 
-ARG AZ_CLI_VERSION=2.63.0
+ARG AZ_CLI_VERSION=2.67.0
 # Install Azure cli
 RUN apk add --virtual=build gcc make openssl-dev libffi-dev musl-dev linux-headers \
     && pip3 install --no-cache-dir azure-cli==${AZ_CLI_VERSION} \
     && apk del --purge build \
     && az --version
 
-ARG INFRACOST_VERSION=0.10.37
+ARG INFRACOST_VERSION=0.10.39
 # Install infracost
 RUN curl -sL https://github.com/infracost/infracost/releases/download/v${INFRACOST_VERSION}/infracost-linux-amd64.tar.gz | tar xz  && \
 mv infracost-linux-amd64 /opt/infracost
 
-ARG TERRATAG_VERSION=0.3.4
+ARG TERRATAG_VERSION=0.5.2
 # Install Terratag
 RUN npm -g install "@env0/terratag@$TERRATAG_VERSION" \
 && mv /usr/local/lib/node_modules/@env0/terratag/terratag /opt/terratag \
