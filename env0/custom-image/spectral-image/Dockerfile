@@ -1,5 +1,5 @@
 ARG ALPINE_VERSION=3.19
-ARG BASE_TAG=3.0.804
+ARG BASE_TAG=prod
 ARG BASE_IMAGE=ghcr.io/env0/deployment-agent-lean
 FROM python:3.11-alpine${ALPINE_VERSION} AS builder
 
