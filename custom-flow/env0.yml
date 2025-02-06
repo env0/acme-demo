@@ -1,0 +1,17 @@
+version: 2
+
+deploy:
+  steps:
+    terraformInit:
+      before:
+        - name: Hello World
+          run: echo "Hello, World!"
+        - name: Create a custom file before Terraform init
+          run: echo "This is a custom file created before Terraform init." > /tmp/custom-file.txt
+
+    terraformApply:
+      after:
+        - name: Print the custom file content after apply
+          run: |
+            echo "File content:"
+            cat /tmp/custom-file.txt
