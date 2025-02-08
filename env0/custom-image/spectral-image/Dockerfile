@@ -45,12 +45,12 @@ RUN apk add --virtual=build gcc make openssl-dev libffi-dev musl-dev linux-heade
     && apk del --purge build \
     && az --version
 
-ARG INFRACOST_VERSION=0.10.39
+ARG INFRACOST_VERSION=0.10.40
 # Install infracost
 RUN curl -sL https://github.com/infracost/infracost/releases/download/v${INFRACOST_VERSION}/infracost-linux-amd64.tar.gz | tar xz  && \
 mv infracost-linux-amd64 /opt/infracost
 
-ARG TERRATAG_VERSION=0.5.2
+ARG TERRATAG_VERSION=0.5.3
 # Install Terratag
 RUN npm -g install "@env0/terratag@$TERRATAG_VERSION" \
 && mv /usr/local/lib/node_modules/@env0/terratag/terratag /opt/terratag \
