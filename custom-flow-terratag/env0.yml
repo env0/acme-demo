@@ -2,8 +2,8 @@ version: 2
 
 deploy:
   steps:
-    terraformPlan:
-      before:
+    terraformInit:
+      after:
         - name: Generate Custom Tags JSON
           run: |
             JSON_TAGS=$(jq -n \
