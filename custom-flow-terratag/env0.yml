@@ -1,0 +1,16 @@
+version: 2
+
+deploy:
+  steps:
+    terraformPlan:
+      before:
+        - name: Generate Custom Tags JSON
+          run: |
+            JSON_TAGS=$(jq -n \
+              --arg firstKey "$firstKey" \
+              --arg secondKey "$secondKey" \
+              --arg dropDownValue "$dropDownValue" \
+              '{firstKey: $firstKey, secondKey: $secondKey, dropDownValue: $dropDownValue}')
+            
+            export ENV0_CUSTOM_TAGS="$JSON_TAGS"
+            echo "ENV0_CUSTOM_TAGS: $ENV0_CUSTOM_TAGS"
