@@ -1,0 +1,17 @@
+environments:
+  provision:
+    name: Terraform Environment
+    vcs:
+      type: 'terraform'
+      terraformVersion: '1.5.7'
+      repository: https://github.com/env0/acme-demo
+      path: workflows-terraform-ansible/Terraform
+  configure:
+    name: Configure Infrastructure
+    vcs:
+      type: 'ansible'
+      ansibleVersion: 'latest'
+      repository: https://github.com/env0/acme-demo
+      path: workflows-terraform-ansible/Ansible
+    needs:
+      - provision
