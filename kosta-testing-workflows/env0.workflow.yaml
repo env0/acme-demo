@@ -1,10 +1,10 @@
 environments:
   ec2-1:
     name: EC2
-    template: "FrontEnd Servers EC2"
+    templateName: "FrontEnd Servers EC2"
   ec2-2:
     name: EC2-2
-    template: "FrontEnd Servers EC2"
+    templateName: "FrontEnd Servers EC2"
 
 settings:
   environmentRemovalStrategy: destroy 
