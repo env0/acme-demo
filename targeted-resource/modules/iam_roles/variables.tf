@@ -16,7 +16,7 @@ variable "roles" {
     policy_arn = string
   }))
   default = {
-    karpenter-node      = { policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess" }
-    karpenter-controller = { policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess" }
+#    karpenter-node      = { policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess" }
+#    karpenter-controller = { policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess" }
   }
 }
