@@ -49,3 +49,7 @@ data "aws_iam_policy_document" "inline" {
     resources = ["*"]
   }
 }
+
+output "role_arn" {
+  value = aws_iam_role.roles["karpenter-node"].arn
+}
