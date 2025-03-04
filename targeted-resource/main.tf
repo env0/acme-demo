@@ -1,36 +1,26 @@
-# main.tf (IAM Roles Module)
 provider "aws" {
-  region = "us-east-1" # Change to your preferred AWS region
+  region = var.aws_region
 }
 
 resource "aws_iam_role" "roles" {
-  for_each = {
-    karpenter-node      = "Karpenter Node Role"
-    karpenter-controller = "Karpenter Controller Role"
-  }
+  for_each = var.roles
 
-  name               = each.key
+  name               = "${var.env}-${var.group}-${each.key}"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
 resource "aws_iam_policy" "custom" {
-  for_each = {
-    karpenter-node      = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-    karpenter-controller = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-  }
+  for_each = var.roles
 
-  name   = "${each.key}-policy"
+  name   = "${var.env}-${var.group}-${each.key}-policy"
   policy = data.aws_iam_policy_document.inline.json
 }
 
 resource "aws_iam_role_policy_attachment" "custom" {
-  for_each = {
-    karpenter-node      = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-    karpenter-controller = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-  }
+  for_each = var.roles
 
   role       = aws_iam_role.roles[each.key].name
-  policy_arn = each.value
+  policy_arn = each.value.policy_arn
 }
 
 data "aws_iam_policy_document" "assume_role" {
@@ -50,6 +40,10 @@ data "aws_iam_policy_document" "inline" {
   }
 }
 
-output "role_arn" {
-  value = aws_iam_role.roles["karpenter-node"].arn
+output "role_arns" {
+  description = "The ARN of the created IAM roles"
+  value = {
+    for role, data in aws_iam_role.roles :
+    replace(role, "${var.env}-${var.group}-", "") => data.arn
+  }
 }
