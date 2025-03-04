@@ -1,4 +1,8 @@
 # main.tf (IAM Roles Module)
+provider "aws" {
+  region = "us-east-1" # Change to your preferred AWS region
+}
+
 resource "aws_iam_role" "roles" {
   for_each = {
     karpenter-node      = "Karpenter Node Role"
