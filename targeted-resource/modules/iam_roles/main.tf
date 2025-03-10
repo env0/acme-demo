@@ -3,7 +3,7 @@
 resource "aws_iam_role" "roles" {
   count = length(var.roles)
 
-  name               = "${var.env}-${var.group}-${element(keys(var.roles), count.index)}"
+  name = "${var.env}-${var.group}-${var.roles[count.index].name}"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
