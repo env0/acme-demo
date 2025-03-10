@@ -11,12 +11,14 @@ variable "group" {
 }
 
 variable "roles" {
-  description = "Map of roles and their policy ARNs"
-  type = map(object({
+  description = "List of roles with their policy ARNs"
+  type = list(object({
+    name       = string
     policy_arn = string
   }))
-  default = {
-    karpenter-node      = { policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess" }
-    karpenter-controller = { policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess" }
-  }
+  default = [
+    { name = "karpenter-node", policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess" },
+    { name = "karpenter-controller", policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess" }
+  ]
 }
+
