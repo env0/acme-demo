@@ -18,3 +18,12 @@ output "role_arns" {
     replace(role, "${module.roles.env}-${module.roles.group}-", "") => data
   }
 }
+
+
+output "role_arn2" {
+  description = "The ARN of the created IAM roles"
+  value = {
+    for role, data in module.roles2.arns :
+    replace(role, "${module.roles2.env}-${module.roles2.group}-", "") => data
+  }
+}
