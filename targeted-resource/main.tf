@@ -6,7 +6,7 @@ module "roles" {
   source = "./modules/iam_roles"
 }
 
-module "roles" {
+module "roles2" {
   source = "./modules/iam_roles2"
 }
 
