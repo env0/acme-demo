@@ -1,9 +1,9 @@
 
 # modules/iam_roles/main.tf
 resource "aws_iam_role" "roles" {
-  for_each = var.roles
+  count = length(var.roles)
 
-  name               = "${var.env}-${var.group}-${each.key}"
+  name               = "${var.env}-${var.group}-${element(keys(var.roles), count.index)}"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
