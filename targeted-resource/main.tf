@@ -6,6 +6,11 @@ module "roles" {
   source = "./modules/iam_roles"
 }
 
+module "roles" {
+  source = "./modules/iam_roles2"
+}
+
+
 output "role_arns" {
   description = "The ARN of the created IAM roles"
   value = {
