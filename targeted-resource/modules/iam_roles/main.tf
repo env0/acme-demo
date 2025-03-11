@@ -8,9 +8,9 @@ resource "aws_iam_role" "roles" {
 }
 
 resource "aws_iam_policy" "custom" {
-  for_each = var.roles
+  count = length(var.roles)
 
-  name   = "${var.env}-${var.group}-${each.key}-policy"
+  name   = "${var.env}-${var.group}-${var.roles[count.index].name}-policy"
   policy = data.aws_iam_policy_document.inline.json
 }
 
