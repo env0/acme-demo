@@ -15,10 +15,10 @@ resource "aws_iam_policy" "custom" {
 }
 
 resource "aws_iam_role_policy_attachment" "custom" {
-  for_each = var.roles
+  count = length(var.roles)
 
-  role       = aws_iam_role.roles[each.key].name
-  policy_arn = each.value.policy_arn
+  role       = aws_iam_role.roles[count.index].name
+  policy_arn = var.roles[count.index].policy_arn
 }
 
 data "aws_iam_policy_document" "assume_role" {
