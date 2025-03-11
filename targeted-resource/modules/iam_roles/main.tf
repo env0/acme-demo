@@ -42,7 +42,15 @@ output "arns" {
   description = "The ARN of the created IAM roles"
   value = {
     for role, data in aws_iam_role.roles :
-    replace(role, "${var.env}-${var.group}-", "123") => data.arn
+    replace(role, "${var.env}-${var.group}-", "") => [data.arn]
+  }
+}
+
+output "arns2" {
+  description = "The ARN of the created IAM roles"
+  value = {
+    for role, data in aws_iam_role.roles :
+    replace(role, "${var.env}-${var.group}-", "123") => [data.arn]
   }
 }
 
