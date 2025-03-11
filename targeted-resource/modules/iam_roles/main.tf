@@ -3,14 +3,14 @@
 resource "aws_iam_role" "roles" {
   count = length(var.roles)
 
-  name = "${var.env}-${var.group}-${var.roles[count.index].name}"
+  name = "${var.env}-${var.group}-${var.roles[count.index].name}-new"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
 resource "aws_iam_policy" "custom" {
   count = length(var.roles)
 
-  name   = "${var.env}-${var.group}-${var.roles[count.index].name}-policy"
+  name   = "${var.env}-${var.group}-${var.roles[count.index].name}-new-policy"
   policy = data.aws_iam_policy_document.inline.json
 }
 
