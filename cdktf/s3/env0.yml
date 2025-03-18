@@ -10,7 +10,7 @@ deploy:
           cdktf list
           cdktf synth
           cp cdktf.out/stacks/s3/* .
-          ls -lR cp cdktf.out
+          cat cdk.tf.json
 
 destroy:
   steps:
