@@ -5,8 +5,6 @@ deploy:
     terraformInit: &cf
       before: 
         - |
-          alias terraform='opentofu'
-          alias tfenv='tofuenv'
           sudo npm install -g cdktf-cli@latest
           npm install
           cdktf list
