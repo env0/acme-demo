@@ -36,7 +36,7 @@ module "acme-s3" {
       "Effect":"Allow",
       "Principal": "*",
       "Action":["s3:GetObject","s3:GetObjectVersion"],
-      "Resource":["${module.acme-s3.s3_bucket_arn[count.index]}/*","${module.acme-s3.s3_bucket_arn}"]
+      "Resource":["${module.acme-s3.s3_bucket_arn[count.index]}/*","${module.acme-s3[count.index].s3_bucket_arn}"]
     }
   ]
   EOT
