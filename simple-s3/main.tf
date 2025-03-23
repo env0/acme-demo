@@ -27,6 +27,13 @@ resource "random_string" "bucket_suffix" {
   special = false
 }
 
+resource "random_string" "bucket_suffix2" {
+  count   = var.bucket_count
+  length  = 8
+  upper   = false
+  special = false
+}
+
 resource "aws_s3_bucket" "example" {
   count  = var.bucket_count
   bucket = "opentofu-bucket-${random_string.bucket_suffix[count.index].result}"
