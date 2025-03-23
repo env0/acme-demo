@@ -6,6 +6,11 @@ resource "random_string" "random" {
   numeric = true
 }
 
+variable "bucket_count" {
+  description   = ""
+  type          = number
+}
+
 module "acme-s3" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "3.11.0"
@@ -19,6 +24,8 @@ module "acme-s3" {
   block_public_policy      = false
   ignore_public_acls       = false
   restrict_public_buckets  = false
+
+  count                    = var.bucket_count
 
   force_destroy = true
   policy        = <<-EOT
