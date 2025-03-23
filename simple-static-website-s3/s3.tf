@@ -6,11 +6,6 @@ resource "random_string" "random" {
   numeric = true
 }
 
-variable "bucket_count" {
-  description   = ""
-  type          = number
-}
-
 module "acme-s3" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "3.11.0"
@@ -25,8 +20,6 @@ module "acme-s3" {
   ignore_public_acls       = false
   restrict_public_buckets  = false
 
-  count                    = var.bucket_count
-
   force_destroy = true
   policy        = <<-EOT
   "Version":"2012-10-17",
@@ -36,7 +29,7 @@ module "acme-s3" {
       "Effect":"Allow",
       "Principal": "*",
       "Action":["s3:GetObject","s3:GetObjectVersion"],
-      "Resource":["${module.acme-s3.s3_bucket_arn[count.index]}/*","${module.acme-s3[count.index].s3_bucket_arn}"]
+      "Resource":["${module.acme-s3.s3_bucket_arn}/*","${module.acme-s3.s3_bucket_arn}"]
     }
   ]
   EOT
