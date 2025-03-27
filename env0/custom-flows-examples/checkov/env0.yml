@@ -3,8 +3,8 @@ deploy:
   steps:
     terraformPlan:
       before:
-        - name: Checkov
-          use: https://github.com/env0/env0-checkov-plugin
+        - name: Tflint
+          use: https://github.com/env0/env0-tflint-plugin
           inputs:
+            version: v0.43.0
             directory: .
-            flags: --framework terraform 
