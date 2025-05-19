@@ -7,6 +7,8 @@ environments:
     name: Web
     templateName: 'null resource'
     disabled: ${DISABLE_WEB}
+    needs:
+      - network
   db:
     name: DB
     templateName: 'null resource'
