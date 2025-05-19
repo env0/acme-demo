@@ -1,0 +1,27 @@
+environments:
+  network:
+    name: Network
+    templateName: 'null resource'
+    disabled: ${DISABLE_NETWORK}
+  web:
+    name: Web
+    templateName: 'null resource'
+    disabled: ${DISABLE_WEB}
+  db:
+    name: DB
+    templateName: 'null resource'
+    disabled: ${DISABLE_DB}
+    needs:
+      - network
+  metrics_service:
+    name: Matrix Service
+    templateName: 'null resource'
+    disabled: ${DISABLE_METRICS_SERVICE}
+    needs:
+      - db
+  db_monitoring_service:
+    name: DB Monitoring Service
+    templateName: 'null resource'
+    disabled: ${DISABLE_DB_MONITORING_SERVICE}
+    needs:
+      - db
