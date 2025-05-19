@@ -2,7 +2,6 @@ environments:
   network:
     name: Network
     templateName: 'null resource'
-    disabled: ${DISABLE_NETWORK}
   web:
     name: Web
     templateName: 'null resource'
