@@ -31,3 +31,6 @@ environments:
     disabled: ${DISABLE_DB_MONITORING_SERVICE}
     needs:
       - db
+
+settings:
+  environmentRemovalStrategy: destroy
