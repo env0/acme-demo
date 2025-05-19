@@ -2,32 +2,32 @@ environments:
   network:
     name: Network
     templateName: 'null resource'
-    revision: main
+    revision: master
   web:
     name: Web
     templateName: 'null resource'
-    revision: main
+    revision: master
     disabled: ${DISABLE_WEB}
     needs:
       - network
   db:
     name: DB
     templateName: 'null resource'
-    revision: main
+    revision: master
     disabled: ${DISABLE_DB}
     needs:
       - network
   metrics_service:
     name: Matrix Service
     templateName: 'null resource'
-    revision: main
+    revision: master
     disabled: ${DISABLE_METRICS_SERVICE}
     needs:
       - db
   db_monitoring_service:
     name: DB Monitoring Service
     templateName: 'null resource'
-    revision: main
+    revision: master
     disabled: ${DISABLE_DB_MONITORING_SERVICE}
     needs:
       - db
