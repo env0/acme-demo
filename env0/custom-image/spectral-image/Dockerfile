@@ -45,7 +45,7 @@ RUN apk add --virtual=build gcc make openssl-dev libffi-dev musl-dev linux-heade
     && apk del --purge build \
     && az --version
 
-ARG INFRACOST_VERSION=0.10.40
+ARG INFRACOST_VERSION=0.10.41
 # Install infracost
 RUN curl -sL https://github.com/infracost/infracost/releases/download/v${INFRACOST_VERSION}/infracost-linux-amd64.tar.gz | tar xz  && \
 mv infracost-linux-amd64 /opt/infracost
