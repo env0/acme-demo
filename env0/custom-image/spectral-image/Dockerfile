@@ -1,5 +1,5 @@
 ARG ALPINE_VERSION=3.19
-ARG BASE_TAG=3.0.804
+ARG BASE_TAG=3.0.1093
 ARG BASE_IMAGE=ghcr.io/env0/deployment-agent-lean
 FROM python:3.11-alpine${ALPINE_VERSION} AS builder
 
@@ -37,6 +37,32 @@ RUN apk add --no-cache \
     && python3 -m venv --system-site-packages --upgrade-deps /opt/global_python_venv
 
 ENV PATH="/opt/global_python_venv/bin:${PATH}"
+
+# Define the version/tag for Wiz CLI
+ARG WIZCLI_VERSION=0.46.0
+ARG WIZCLI_ARCH=arm64
+
+# Install dependencies for GPG, SHA256 verification, and potentially wizcli's runtime
+# (libc-utils provides 'ldd' and sometimes helps with musl-libc compatibility for glibc binaries)
+RUN apk add --no-cache gnupg coreutils libc-utils
+
+# Install Wiz CLI with verification steps (optimized for Docker best practices)
+# All steps are chained with '&&' in a single RUN command to reduce image layers.
+RUN curl -sL -o /tmp/wizcli https://downloads.wiz.io/wizcli/${WIZCLI_VERSION}/wizcli-linux-${WIZCLI_ARCH} && \
+    curl -sL -o /tmp/public_key.asc https://downloads.wiz.io/wizcli/public_key.asc && \
+    curl -sL -o /tmp/wizcli-sha256 https://downloads.wiz.io/wizcli/${WIZCLI_VERSION}/wizcli-linux-${WIZCLI_ARCH}-sha256 && \
+    curl -sL -o /tmp/wizcli-sha256.sig https://downloads.wiz.io/wizcli/${WIZCLI_VERSION}/wizcli-linux-${WIZCLI_ARCH}-sha256.sig && \
+    gpg --import /tmp/public_key.asc && \
+    gpg --verify /tmp/wizcli-sha256.sig /tmp/wizcli-sha256 && \
+    echo "$(cat /tmp/wizcli-sha256) /tmp/wizcli" | sha256sum --check && \
+    mv /tmp/wizcli /usr/local/bin/wizcli && \
+    chmod +x /usr/local/bin/wizcli && \
+    rm -f /tmp/public_key.asc /tmp/wizcli-sha256 /tmp/wizcli-sha256.sig && \
+    wizcli version
+
+# Optional: Remove build-time dependencies if they are not needed in the final image
+# This creates another layer, but can reduce the final image size if these packages are large.
+RUN apk del --purge gnupg coreutils libc-utils
 
 ARG AZ_CLI_VERSION=2.67.0
 # Install Azure cli
