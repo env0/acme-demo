@@ -40,7 +40,7 @@ ENV PATH="/opt/global_python_venv/bin:${PATH}"
 
 # Define the version/tag for Wiz CLI
 ARG WIZCLI_VERSION=0.46.0
-ARG WIZCLI_ARCH=arm64
+ARG WIZCLI_ARCH=amd64
 
 # Install dependencies for GPG, SHA256 verification, and potentially wizcli's runtime
 # (libc-utils provides 'ldd' and sometimes helps with musl-libc compatibility for glibc binaries)
