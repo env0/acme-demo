@@ -60,9 +60,6 @@ RUN curl -sL -o /tmp/wizcli https://downloads.wiz.io/wizcli/${WIZCLI_VERSION}/wi
     rm -f /tmp/public_key.asc /tmp/wizcli-sha256 /tmp/wizcli-sha256.sig && \
     wizcli version
 
-# Optional: Remove build-time dependencies if they are not needed in the final image
-# This creates another layer, but can reduce the final image size if these packages are large.
-RUN apk del --purge gnupg coreutils libc-utils
 
 ARG AZ_CLI_VERSION=2.67.0
 # Install Azure cli
