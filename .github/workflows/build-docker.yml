@@ -1,5 +1,5 @@
 name: Build and Push Docker Image
-run-name: Build & Push - ${{ inputs.sourcetag }}:${{ inputs.userid }} from ${{ inputs.folder }} Gili TEST
+run-name: Build & Push - ${{ inputs.sourcetag }}:${{ inputs.userid }} from ${{ inputs.folder }}
 
 on:
   workflow_dispatch:
@@ -47,7 +47,7 @@ jobs:
             USER_ID=${{ github.event.inputs.userid }}
           push: true
           tags: |
-            away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}-TEST-DO-NO-USE
+            away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
           cache-from: type=registry,ref=away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
           cache-to: type=inline
           # Add this line to output the built image tag
@@ -57,7 +57,7 @@ jobs:
       - name: Save Docker Image to Tarball
         run: |
           # The image name and tag pushed
-          IMAGE_NAME_TAG="away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}-TEST-DO-NO-USE"
+          IMAGE_NAME_TAG="away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}"
           # The local path where build-push-action saved the image if outputs: type=docker was used
           LOCAL_IMAGE_PATH="/tmp/image.tar"
 
@@ -69,7 +69,7 @@ jobs:
 
           # Set a sanitized artifact name for the tarball
           # Replace problematic characters like / and : with _ or -
-          SANITIZED_TAG=$(echo "${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}-TEST-DO-NO-USE" | sed 's/[^a-zA-Z0-9._-]/_/g')
+          SANITIZED_TAG=$(echo "${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}" | sed 's/[^a-zA-Z0-9._-]/_/g')
           echo "ARTIFACT_NAME=deployment-agent-${SANITIZED_TAG}.tar" >> $GITHUB_ENV
           echo "ARTIFACT_PATH=${LOCAL_IMAGE_PATH}" >> $GITHUB_ENV
 
