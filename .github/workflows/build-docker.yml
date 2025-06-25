@@ -53,7 +53,6 @@ jobs:
           # Add this line to output the built image tag
           outputs: type=docker,dest=/tmp/image.tar # Save the image to a tarball
 
-      # NEW STEP: Save the Docker image to a tarball
       - name: Save Docker Image to Tarball
         run: |
           # The image name and tag pushed
