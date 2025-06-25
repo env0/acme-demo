@@ -1,5 +1,5 @@
 name: Build and Push Docker Image
-run-name: Build & Push - ${{ inputs.sourcetag }}:${{ inputs.userid }} from ${{ inputs.folder }}
+run-name: Build & Push - ${{ inputs.sourcetag }}:${{ inputs.userid }} from ${{ inputs.folder }} Gili TEST
 
 on:
   workflow_dispatch:
