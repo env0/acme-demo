@@ -17,9 +17,9 @@ on:
         required: true
         type: choice
         options:
-        - env0/custom-image/spectral-image
-        - env0/custom-image/alternative
-        - env0/custom-image
+          - env0/custom-image/spectral-image
+          - env0/custom-image/alternative
+          - env0/custom-image
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,9 +27,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      # - name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -41,6 +38,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push to away168
+        id: docker_build # Add an ID to this step
         uses: docker/build-push-action@v6
         with:
           context: ${{ github.event.inputs.folder }}
@@ -52,6 +50,32 @@ jobs:
             away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
           cache-from: type=registry,ref=away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
           cache-to: type=inline
+          # Add this line to output the built image tag
+          outputs: type=docker,dest=/tmp/image.tar # Save the image to a tarball
+
+      - name: Save Docker Image to Tarball
+        run: |
+          # The image name and tag pushed
+          IMAGE_NAME_TAG="away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}"
+          # The local path where build-push-action saved the image if outputs: type=docker was used
+          LOCAL_IMAGE_PATH="/tmp/image.tar"
+
+          # Verify the tarball exists
+          if [ ! -f "${LOCAL_IMAGE_PATH}" ]; then
+            echo "Error: Docker image tarball not found at ${LOCAL_IMAGE_PATH}"
+            exit 1
+          fi
+
+          # Set a sanitized artifact name for the tarball
+          # Replace problematic characters like / and : with _ or -
+          SANITIZED_TAG=$(echo "${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}" | sed 's/[^a-zA-Z0-9._-]/_/g')
+          echo "ARTIFACT_NAME=deployment-agent-${SANITIZED_TAG}.tar" >> $GITHUB_ENV
+          echo "ARTIFACT_PATH=${LOCAL_IMAGE_PATH}" >> $GITHUB_ENV
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }} # Use the sanitized name
+          path: ${{ env.ARTIFACT_PATH }} # Use the path where the tarball was saved
 
       - name: Log out from Docker Hub
         run: docker logout
