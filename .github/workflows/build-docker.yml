@@ -72,8 +72,6 @@ jobs:
           SANITIZED_TAG=$(echo "${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}" | sed 's/[^a-zA-Z0-9._-]/_/g')
           echo "ARTIFACT_NAME=deployment-agent-${SANITIZED_TAG}.tar" >> $GITHUB_ENV
           echo "ARTIFACT_PATH=${LOCAL_IMAGE_PATH}" >> $GITHUB_ENV
-
-      # MODIFIED STEP: Upload artifact
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:

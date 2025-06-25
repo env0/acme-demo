@@ -60,7 +60,6 @@ RUN curl -sL -o /tmp/wizcli https://downloads.wiz.io/wizcli/${WIZCLI_VERSION}/wi
     rm -f /tmp/public_key.asc /tmp/wizcli-sha256 /tmp/wizcli-sha256.sig && \
     wizcli version
 
-
 ARG AZ_CLI_VERSION=2.67.0
 # Install Azure cli
 RUN apk add --virtual=build gcc make openssl-dev libffi-dev musl-dev linux-headers \
