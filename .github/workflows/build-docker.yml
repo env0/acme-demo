@@ -47,7 +47,7 @@ jobs:
             USER_ID=${{ github.event.inputs.userid }}
           push: true
           tags: |
-            away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}-no-wix
+            away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}-no-wiz
           cache-from: type=registry,ref=away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
           cache-to: type=inline
           # Add this line to output the built image tag
