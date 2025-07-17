@@ -12,6 +12,11 @@ on:
         description: 'UserID for docker image'
         required: true
         default: '1000'
+      test:
+        description: 'Add -test suffix to the tag'
+        required: false
+        type: boolean
+        default: false
       folder:
         description: 'Path to the Dockerfile'
         required: true
@@ -36,6 +41,20 @@ jobs:
         with:
           username: away168
           password: ${{ secrets.DOCKER_PASSWORD }}
+          
+      - name: Set image tag
+        id: set_image_tag
+        run: |
+          BASE_TAG="${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}"
+          if [[ "${{ github.event.inputs.test }}" == "true" ]]; then
+            FULL_TAG="${BASE_TAG}-test"
+          else
+            FULL_TAG="${BASE_TAG}"
+          fi
+          echo "IMAGE_TAG=${FULL_TAG}" >> $GITHUB_ENV
+          # Also create a sanitized version for artifact naming
+          SANITIZED_TAG=$(echo "${FULL_TAG}" | sed 's/[^a-zA-Z0-9._-]/_/g')
+          echo "SANITIZED_TAG=${SANITIZED_TAG}" >> $GITHUB_ENV
 
       - name: Build and push to away168
         id: docker_build # Add an ID to this step
@@ -47,8 +66,8 @@ jobs:
             USER_ID=${{ github.event.inputs.userid }}
           push: true
           tags: |
-            away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
-          cache-from: type=registry,ref=away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}
+            away168/deployment-agent:${{ env.IMAGE_TAG }}
+          cache-from: type=registry,ref=away168/deployment-agent:${{ env.IMAGE_TAG }}
           cache-to: type=inline
           # Add this line to output the built image tag
           outputs: type=docker,dest=/tmp/image.tar # Save the image to a tarball
@@ -56,7 +75,7 @@ jobs:
       - name: Save Docker Image to Tarball
         run: |
           # The image name and tag pushed
-          IMAGE_NAME_TAG="away168/deployment-agent:${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}"
+          IMAGE_NAME_TAG="away168/deployment-agent:${{ env.IMAGE_TAG }}"
           # The local path where build-push-action saved the image if outputs: type=docker was used
           LOCAL_IMAGE_PATH="/tmp/image.tar"
 
@@ -65,11 +84,7 @@ jobs:
             echo "Error: Docker image tarball not found at ${LOCAL_IMAGE_PATH}"
             exit 1
           fi
-
-          # Set a sanitized artifact name for the tarball
-          # Replace problematic characters like / and : with _ or -
-          SANITIZED_TAG=$(echo "${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}" | sed 's/[^a-zA-Z0-9._-]/_/g')
-          echo "ARTIFACT_NAME=deployment-agent-${SANITIZED_TAG}.tar" >> $GITHUB_ENV
+          echo "ARTIFACT_NAME=deployment-agent-${{ env.SANITIZED_TAG }}.tar" >> $GITHUB_ENV
           echo "ARTIFACT_PATH=${LOCAL_IMAGE_PATH}" >> $GITHUB_ENV
       - name: Upload artifact
         uses: actions/upload-artifact@v4
