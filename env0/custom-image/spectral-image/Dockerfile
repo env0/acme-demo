@@ -1,4 +1,4 @@
-FROM 170412844252.dkr.ecr.us-east-1.amazonaws.com/deployment-agent:pr19872
+FROM ghcr.io/env0/deployment-agent:latest
 
 # should be removed
 # RUN node install-package-cli.js aws az infracost terratag
