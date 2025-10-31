@@ -1,19 +1,10 @@
 version: 2
 shell: bash
 
-# --- SAFETY SWITCHES (non-destructive defaults) ---
-# Set VALIDATE_ONLY=true in Env0 variables if you want to *force* validation-only mode.
-# By default, even without this flag, the flow is non-destructive.
-environment_variables:
-  - name: VALIDATE_ONLY
-    value: "true"        # Extra safety: keeps destroy pre-checks in validation-only mode.
-
 deploy:
   steps:
     setupVariables:
       after:
-        # Hint the runner to ensure tools exist if your runner supports this pattern.
-        # Safe: only influences runner setup; does not change cluster state.
         - echo ENV0_INSTALLED_TOOLS="gcloud,kubectl,gke-gcloud-auth-plugin" >> "$ENV0_ENV"
         - echo USE_GKE_GCLOUD_AUTH_PLUGIN="True" >> "$ENV0_ENV"
 
@@ -33,20 +24,15 @@ deploy:
           which kubectl || true
           kubectl version --client --short || true
 
-          # Required for newer GKE auth
           export USE_GKE_GCLOUD_AUTH_PLUGIN="${USE_GKE_GCLOUD_AUTH_PLUGIN:-True}"
 
-          # Authenticate to GCP if SA is provided
           if [[ -n "${GOOGLE_APPLICATION_CREDENTIALS:-}" ]]; then
             gcloud auth activate-service-account --key-file="$GOOGLE_APPLICATION_CREDENTIALS"
           fi
-
-          # Set project if provided
           if [[ -n "${GOOGLE_PROJECT:-}" ]]; then
             gcloud config set project "$GOOGLE_PROJECT"
           fi
 
-          # Establish kubeconfig *only* if target cluster is defined
           if [[ -n "${GKE_CLUSTER:-}" ]]; then
             if [[ -n "${GKE_ZONE:-}" ]]; then
               gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE" --project "${GOOGLE_PROJECT:-}"
@@ -65,7 +51,6 @@ deploy:
           kubectl config current-context || true
 
           echo "== Connectivity smoke checks (read-only) =="
-          # Read-only discovery to prove connectivity; no mutations.
           kubectl get ns --no-headers | head -n 5 || true
           kubectl auth can-i get pods --all-namespaces || true
 
@@ -108,11 +93,7 @@ destroy:
         - |
           set -euo pipefail
           echo "== Validate kubectl connectivity with server-side dry-run =="
-
-          # Absolute safety: This block never mutates cluster state.
-          # 1) It only runs when kubeconfig exists.
-          # 2) It uses --dry-run=server
-          # 3) It's gated by VALIDATE_ONLY=true (default)
+          # Safety: never mutates cluster state.
           if [[ "${VALIDATE_ONLY:-true}" == "true" ]]; then
             if kubectl config current-context >/dev/null 2>&1; then
               kubectl delete all --all-namespaces \
