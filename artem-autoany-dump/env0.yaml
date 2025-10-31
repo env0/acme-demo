@@ -7,37 +7,80 @@ deploy:
       before:
         - |
           set -euo pipefail
-          echo "== GCP Authentication (WIF) =="
+          echo "=== ENV0 GKE DEBUG FLOW v3 (DEPLOY) ==="
+
+          echo "== Dump core env vars =="
+          env | sort | grep -E '^(GOOGLE_|GKE_|ENV0_|KUBECONFIG|CLOUDSDK|HOME)=' || true
+
+          echo "== List workspace files =="
+          ls -la || true
+          [[ -f env0_credential_configuration.json ]] && echo "Found WIF file: env0_credential_configuration.json (size=$(stat -c%s env0_credential_configuration.json 2>/dev/null || wc -c < env0_credential_configuration.json))" || echo "No WIF file present."
+
+          echo "== Discover credentials & authenticate =="
+          CRED_PATH=""
+          SA_EMAIL=""
+
           if [[ -s "env0_credential_configuration.json" ]]; then
-            export GOOGLE_APPLICATION_CREDENTIALS="env0_credential_configuration.json"
-            gcloud auth login --cred-file="${GOOGLE_APPLICATION_CREDENTIALS}"
-            echo "gcloud auth list:"
-            gcloud auth list
+            CRED_PATH="env0_credential_configuration.json"
+            echo "Using WIF credential file: ${CRED_PATH}"
+            gcloud auth login --cred-file="${CRED_PATH}" --quiet
+          elif [[ -n "${GOOGLE_APPLICATION_CREDENTIALS:-}" && -s "${GOOGLE_APPLICATION_CREDENTIALS}" ]]; then
+            CRED_PATH="${GOOGLE_APPLICATION_CREDENTIALS}"
+            echo "Using Service Account key file: ${CRED_PATH}"
+            if command -v jq >/dev/null 2>&1; then
+              SA_EMAIL="$(jq -r '.client_email // empty' "${CRED_PATH}")"
+            else
+              SA_EMAIL="$(grep -oE '"client_email"\s*:\s*"[^"]+"' "${CRED_PATH}" | head -n1 | sed -E 's/.*"client_email"\s*:\s*"([^"]+)".*/\1/')"
+            fi
+            if [[ -z "${SA_EMAIL:-}" ]]; then
+              echo "ERROR: client_email not found in SA key JSON: ${CRED_PATH}" >&2
+              exit 1
+            fi
+            echo "Service Account email: ${SA_EMAIL}"
+            gcloud auth activate-service-account "${SA_EMAIL}" --key-file="${CRED_PATH}" --quiet
+            gcloud config set account "${SA_EMAIL}" --quiet
           else
-            echo "ERROR: env0_credential_configuration.json not found."
-            echo "Attach a WIF credential so this file is present in the workspace,"
-            echo "or switch to a Service Account key JSON via env0's Google Cloud integration."
+            echo "ERROR: No creds found. Either:"
+            echo " - Attach WIF so env0_credential_configuration.json exists in the workspace, OR"
+            echo " - Attach a Service Account key via env0 Google Cloud integration so GOOGLE_APPLICATION_CREDENTIALS points to a file."
             exit 1
           fi
 
-          # --- Optional: set project (safe) ---
-          if [[ -n "${GOOGLE_PROJECT:-}" ]]; then
-            gcloud config set project "${GOOGLE_PROJECT}"
+          echo "== gcloud auth state =="
+          gcloud auth list
+          echo "Active account: $(gcloud config get-value account 2>/dev/null || echo unset)"
+
+          if [[ -z "$(gcloud config get-value account 2>/dev/null)" || "$(gcloud config get-value account 2>/dev/null)" == "(unset)" ]]; then
+            echo "ERROR: No active gcloud account after auth. Aborting before get-credentials." >&2
+            exit 1
           fi
 
-          # --- Optional: fetch kubeconfig (safe, read-only) ---
-          # Requires: GKE auth plugin on runner and correct zone/region.
+          echo "== Set project (if provided) =="
+          echo "Project before: $(gcloud config get-value core/project 2>/dev/null || echo unset)"
+          if [[ -n "${GOOGLE_PROJECT:-}" ]]; then
+            gcloud config set project "${GOOGLE_PROJECT}" --quiet
+          fi
+          echo "Project after : $(gcloud config get-value core/project 2>/dev/null || echo unset)"
+
+          echo "== Optional: get kube credentials =="
           if [[ -n "${GKE_CLUSTER:-}" ]]; then
             export USE_GKE_GCLOUD_AUTH_PLUGIN="${USE_GKE_GCLOUD_AUTH_PLUGIN:-True}"
             if [[ -n "${GKE_ZONE:-}" ]]; then
-              gcloud container clusters get-credentials "${GKE_CLUSTER}" --zone "${GKE_ZONE}" --project "${GOOGLE_PROJECT:-}"
+              gcloud container clusters get-credentials "${GKE_CLUSTER}" --zone "${GKE_ZONE}" --project "${GOOGLE_PROJECT:-}" --quiet
             elif [[ -n "${GKE_REGION:-}" ]]; then
-              gcloud container clusters get-credentials "${GKE_CLUSTER}" --region "${GKE_REGION}" --project "${GOOGLE_PROJECT:-}"
+              gcloud container clusters get-credentials "${GKE_CLUSTER}" --region "${GKE_REGION}" --project "${GOOGLE_PROJECT:-}" --quiet
             else
               echo "ERROR: Neither GKE_ZONE nor GKE_REGION set." >&2
               exit 1
             fi
+            echo "KUBECONFIG=${KUBECONFIG:-$HOME/.kube/config}"
             kubectl config current-context || true
+
+            echo "== Read-only smoke checks =="
+            kubectl get ns --no-headers | head -n 5 || true
+            kubectl auth can-i get pods --all-namespaces || true
+          else
+            echo "INFO: GKE_CLUSTER not set; skipping kubeconfig setup."
           fi
 
 destroy:
@@ -46,32 +89,67 @@ destroy:
       before:
         - |
           set -euo pipefail
-          echo "== GCP Authentication (WIF) =="
+          echo "=== ENV0 GKE DEBUG FLOW v3 (DESTROY) ==="
+
+          echo "== Dump core env vars =="
+          env | sort | grep -E '^(GOOGLE_|GKE_|ENV0_|KUBECONFIG|CLOUDSDK|HOME)=' || true
+          echo "== List workspace files =="
+          ls -la || true
+          [[ -f env0_credential_configuration.json ]] && echo "Found WIF file: env0_credential_configuration.json (size=$(stat -c%s env0_credential_configuration.json 2>/dev/null || wc -c < env0_credential_configuration.json))" || echo "No WIF file present."
+
+          echo "== Discover credentials & authenticate =="
+          CRED_PATH=""
+          SA_EMAIL=""
+
           if [[ -s "env0_credential_configuration.json" ]]; then
-            export GOOGLE_APPLICATION_CREDENTIALS="env0_credential_configuration.json"
-            gcloud auth login --cred-file="${GOOGLE_APPLICATION_CREDENTIALS}"
-            echo "gcloud auth list:"
-            gcloud auth list
+            CRED_PATH="env0_credential_configuration.json"
+            echo "Using WIF credential file: ${CRED_PATH}"
+            gcloud auth login --cred-file="${CRED_PATH}" --quiet
+          elif [[ -n "${GOOGLE_APPLICATION_CREDENTIALS:-}" && -s "${GOOGLE_APPLICATION_CREDENTIALS}" ]]; then
+            CRED_PATH="${GOOGLE_APPLICATION_CREDENTIALS}"
+            echo "Using Service Account key file: ${CRED_PATH}"
+            if command -v jq >/dev/null 2>&1; then
+              SA_EMAIL="$(jq -r '.client_email // empty' "${CRED_PATH}")"
+            else
+              SA_EMAIL="$(grep -oE '"client_email"\s*:\s*"[^"]+"' "${CRED_PATH}" | head -n1 | sed -E 's/.*"client_email"\s*:\s*"([^"]+)".*/\1/')"
+            fi
+            if [[ -z "${SA_EMAIL:-}" ]]; then
+              echo "ERROR: client_email not found in SA key JSON: ${CRED_PATH}" >&2
+              exit 1
+            fi
+            echo "Service Account email: ${SA_EMAIL}"
+            gcloud auth activate-service-account "${SA_EMAIL}" --key-file="${CRED_PATH}" --quiet
+            gcloud config set account "${SA_EMAIL}" --quiet
           else
-            echo "ERROR: env0_credential_configuration.json not found."
+            echo "ERROR: No creds found. Attach WIF (env0_credential_configuration.json) or SA key (GOOGLE_APPLICATION_CREDENTIALS)." >&2
             exit 1
           fi
 
-          # Optional: set project and get kubeconfig (same as deploy)
+          echo "== gcloud auth state =="
+          gcloud auth list
+          echo "Active account: $(gcloud config get-value account 2>/dev/null || echo unset)"
+          if [[ -z "$(gcloud config get-value account 2>/dev/null)" || "$(gcloud config get-value account 2>/dev/null)" == "(unset)" ]]; then
+            echo "ERROR: No active gcloud account after auth. Aborting before get-credentials." >&2
+            exit 1
+          fi
+
+          echo "== Destroy: bootstrap GKE auth =="
+          export USE_GKE_GCLOUD_AUTH_PLUGIN="${USE_GKE_GCLOUD_AUTH_PLUGIN:-True}"
           if [[ -n "${GOOGLE_PROJECT:-}" ]]; then
-            gcloud config set project "${GOOGLE_PROJECT}"
+            gcloud config set project "$GOOGLE_PROJECT" --quiet
           fi
           if [[ -n "${GKE_CLUSTER:-}" ]]; then
-            export USE_GKE_GCLOUD_AUTH_PLUGIN="${USE_GKE_GCLOUD_AUTH_PLUGIN:-True}"
             if [[ -n "${GKE_ZONE:-}" ]]; then
-              gcloud container clusters get-credentials "${GKE_CLUSTER}" --zone "${GKE_ZONE}" --project "${GOOGLE_PROJECT:-}"
+              gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE" --project "${GOOGLE_PROJECT:-}" --quiet
             elif [[ -n "${GKE_REGION:-}" ]]; then
-              gcloud container clusters get-credentials "${GKE_CLUSTER}" --region "${GKE_REGION}" --project "${GOOGLE_PROJECT:-}"
+              gcloud container clusters get-credentials "$GKE_CLUSTER" --region "$GKE_REGION" --project "${GOOGLE_PROJECT:-}" --quiet
             else
               echo "ERROR: Neither GKE_ZONE nor GKE_REGION set." >&2
               exit 1
             fi
             kubectl config current-context || true
+          else
+            echo "INFO: GKE_CLUSTER not set; skipping kubeconfig setup."
           fi
 
     terraformDestroy:
