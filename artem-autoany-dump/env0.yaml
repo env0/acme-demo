@@ -12,11 +12,41 @@ deploy:
       before:
         - |
           set -euo pipefail
+
+          ## BEGIN: GCP credential sanity (INSERTED HERE)
+          echo "== GCP credential sanity =="
+          if [[ -z "${GOOGLE_APPLICATION_CREDENTIALS:-}" ]]; then
+            echo "ERROR: GOOGLE_APPLICATION_CREDENTIALS is not set."
+            echo "Attach a Google Cloud Service Account JSON key to this Environment in env0 → Integrations."
+            exit 1
+          fi
+          if [[ ! -s "${GOOGLE_APPLICATION_CREDENTIALS}" ]]; then
+            echo "ERROR: GOOGLE_APPLICATION_CREDENTIALS points to a missing/empty file: ${GOOGLE_APPLICATION_CREDENTIALS}"
+            echo "Re-attach the Service Account JSON in env0."
+            exit 1
+          fi
+          echo "GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}"
+
+          if command -v jq >/dev/null 2>&1; then
+            SA_EMAIL="$(jq -r '.client_email // empty' "${GOOGLE_APPLICATION_CREDENTIALS}")"
+          else
+            SA_EMAIL="$(grep -oE '"client_email"\s*:\s*"[^"]+"' "${GOOGLE_APPLICATION_CREDENTIALS}" | head -n1 | sed -E 's/.*"client_email"\s*:\s*"([^"]+)".*/\1/')"
+          fi
+          if [[ -z "${SA_EMAIL:-}" ]]; then
+            echo "ERROR: Could not read client_email from the Service Account key."
+            exit 1
+          fi
+          echo "Service Account: ${SA_EMAIL}"
+
+          gcloud auth activate-service-account "${SA_EMAIL}" --key-file="${GOOGLE_APPLICATION_CREDENTIALS}"
+          gcloud auth list
+          gcloud config set account "${SA_EMAIL}"
+          ## END: GCP credential sanity
+
           echo "== Debug: env and versions =="
           echo "GOOGLE_PROJECT=${GOOGLE_PROJECT:-unset}"
           echo "GKE_CLUSTER=${GKE_CLUSTER:-unset}"
           echo "GKE_ZONE=${GKE_ZONE:-unset}  GKE_REGION=${GKE_REGION:-unset}"
-          echo "GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS:-unset}"
           echo "VALIDATE_ONLY=${VALIDATE_ONLY:-unset}"
 
           which gcloud || true
@@ -24,15 +54,17 @@ deploy:
           which kubectl || true
           kubectl version --client --short || true
 
+          # Required for newer GKE auth
           export USE_GKE_GCLOUD_AUTH_PLUGIN="${USE_GKE_GCLOUD_AUTH_PLUGIN:-True}"
 
-          if [[ -n "${GOOGLE_APPLICATION_CREDENTIALS:-}" ]]; then
-            gcloud auth activate-service-account --key-file="$GOOGLE_APPLICATION_CREDENTIALS"
-          fi
+          # Set project if provided
+          echo "gcloud project (before set): $(gcloud config get-value core/project 2>/dev/null || echo unset)"
           if [[ -n "${GOOGLE_PROJECT:-}" ]]; then
-            gcloud config set project "$GOOGLE_PROJECT"
+            gcloud config set project "${GOOGLE_PROJECT}"
           fi
+          echo "gcloud project (after set):  $(gcloud config get-value core/project 2>/dev/null || echo unset)"
 
+          # Establish kubeconfig *only* if target cluster is defined
           if [[ -n "${GKE_CLUSTER:-}" ]]; then
             if [[ -n "${GKE_ZONE:-}" ]]; then
               gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE" --project "${GOOGLE_PROJECT:-}"
@@ -65,12 +97,40 @@ destroy:
       before:
         - |
           set -euo pipefail
+
+          ## BEGIN: GCP credential sanity (INSERTED HERE)
+          echo "== GCP credential sanity =="
+          if [[ -z "${GOOGLE_APPLICATION_CREDENTIALS:-}" ]]; then
+            echo "ERROR: GOOGLE_APPLICATION_CREDENTIALS is not set."
+            echo "Attach a Google Cloud Service Account JSON key to this Environment in env0 → Integrations."
+            exit 1
+          fi
+          if [[ ! -s "${GOOGLE_APPLICATION_CREDENTIALS}" ]]; then
+            echo "ERROR: GOOGLE_APPLICATION_CREDENTIALS points to a missing/empty file: ${GOOGLE_APPLICATION_CREDENTIALS}"
+            echo "Re-attach the Service Account JSON in env0."
+            exit 1
+          fi
+          echo "GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}"
+
+          if command -v jq >/dev/null 2>&1; then
+            SA_EMAIL="$(jq -r '.client_email // empty' "${GOOGLE_APPLICATION_CREDENTIALS}")"
+          else
+            SA_EMAIL="$(grep -oE '"client_email"\s*:\s*"[^"]+"' "${GOOGLE_APPLICATION_CREDENTIALS}" | head -n1 | sed -E 's/.*"client_email"\s*:\s*"([^"]+)".*/\1/')"
+          fi
+          if [[ -z "${SA_EMAIL:-}" ]]; then
+            echo "ERROR: Could not read client_email from the Service Account key."
+            exit 1
+          fi
+          echo "Service Account: ${SA_EMAIL}"
+
+          gcloud auth activate-service-account "${SA_EMAIL}" --key-file="${GOOGLE_APPLICATION_CREDENTIALS}"
+          gcloud auth list
+          gcloud config set account "${SA_EMAIL}"
+          ## END: GCP credential sanity
+
           echo "== Destroy: bootstrap GKE auth =="
           export USE_GKE_GCLOUD_AUTH_PLUGIN="${USE_GKE_GCLOUD_AUTH_PLUGIN:-True}"
 
-          if [[ -n "${GOOGLE_APPLICATION_CREDENTIALS:-}" ]]; then
-            gcloud auth activate-service-account --key-file="$GOOGLE_APPLICATION_CREDENTIALS"
-          fi
           if [[ -n "${GOOGLE_PROJECT:-}" ]]; then
             gcloud config set project "$GOOGLE_PROJECT"
           fi
