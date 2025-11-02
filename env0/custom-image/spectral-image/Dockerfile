@@ -1,6 +1,6 @@
 ARG BASE_TAG=latest
 
-FROM ghcr.io/env0/deployment-agent:{BASE_TAG}
+FROM ghcr.io/env0/deployment-agent:${BASE_TAG}
 
 # should be removed
 # RUN node install-package-cli.js aws az infracost terratag
