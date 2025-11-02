@@ -63,8 +63,7 @@ jobs:
             BASE_TAG=${{ github.event.inputs.sourcetag }}
             USER_ID=${{ github.event.inputs.userid }}
           push: true
-          tags: |
-            away168/deployment-agent:${{ env.IMAGE_TAG }}
+          tags: ${{ env.IMAGE_URL }}
           cache-to: type=inline
           # Add this line to output the built image tag
           outputs: type=docker,dest=/tmp/image.tar # Save the image to a tarball
