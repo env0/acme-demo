@@ -11,7 +11,7 @@ on:
       userid:
         description: 'UserID for docker image'
         required: true
-        default: '1000'
+        default: '1003050001'
       folder:
         description: 'Path to the Dockerfile'
         required: true
@@ -31,6 +31,7 @@ jobs:
           IMAGE_TAG=visa-$(date +'%Y%m%d')
           echo "IMAGE_TAG=visa-${IMAGE_TAG}" >> $GITHUB_ENV
           echo "IMAGE_URL=away168/deployment-agent:${IMAGE_TAG}" >> $GITHUB_ENV
+          echo "IMAGE_URL_BUNDLE=away168/deployment-agent:${IMAGE_TAG}-bundle" >> $GITHUB_ENV
 
       - name: Print Inputs to Summary
         run: |
@@ -65,6 +66,17 @@ jobs:
             USER_ID=${{ github.event.inputs.userid }}
           push: true
           tags: ${{ env.IMAGE_URL }}
+          cache-to: type=inline
+
+      - name: Build and push to away168 - Bundle
+        id: docker_build # Add an ID to this step
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ github.event.inputs.folder }}
+          build-args: |
+            BASE_IMAGE=${{ env.IMAGE_URL }}
+          push: true
+          tags: ${{ env.IMAGE_URL_BUNDLE }}
           cache-to: type=inline
           # Add this line to output the built image tag
           outputs: type=docker,dest=/tmp/image.tar # Save the image to a tarball

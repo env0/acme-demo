@@ -2,14 +2,12 @@ ARG BASE_TAG=latest
 
 FROM ghcr.io/env0/deployment-agent:${BASE_TAG}
 
-ARG ENV0_AWS_VERSION=2.31.27
-ARG ENV0_AZ_VERSION=2.78.0
-
-RUN node install-package-cli.js aws az infracost terratag
-
-# Define the version/tag for Wiz CLI
-ARG WIZCLI_VERSION=0.100.0
 ARG TARGETARCH
+ARG WIZCLI_VERSION=0.100.0
+ARG USER_ID=1001210001
+ENV USER_UID=${USER_ID}
+ENV ENV0_AWS_VERSION=2.31.27
+ENV ENV0_AZ_VERSION=2.78.0
 
 RUN echo "Building for architecture: ${TARGETARCH}"
 
@@ -25,11 +23,10 @@ RUN curl -sL -o /tmp/wizcli https://downloads.wiz.io/wizcli/${WIZCLI_VERSION}/wi
     rm -f /tmp/public_key.asc /tmp/wizcli-sha256 /tmp/wizcli-sha256.sig && \
     wizcli version
 
-ARG USER_ID=1001210001
-# Modify user ID User
-RUN apk add --no-cache -U shadow
-RUN usermod -u ${USER_ID} node
-RUN apk del -U shadow
+# Modify IDS
+RUN apk add -U shadow \
+    && usermod -u ${USER_ID} node \
+    && apk del -U shadow
 
 #add spectral
 RUN mkdir /home/node/.spectral
