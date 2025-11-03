@@ -2,8 +2,10 @@ ARG BASE_TAG=latest
 
 FROM ghcr.io/env0/deployment-agent:${BASE_TAG}
 
-# should be removed
-# RUN node install-package-cli.js aws az infracost terratag
+ARG ENV0_AWS_VERSION=2.31.27
+ARG ENV0_AZ_VERSION=2.78.0
+
+RUN node install-package-cli.js aws az infracost terratag
 
 # Define the version/tag for Wiz CLI
 ARG WIZCLI_VERSION=0.100.0
