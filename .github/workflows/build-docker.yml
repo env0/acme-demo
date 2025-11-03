@@ -65,6 +65,7 @@ jobs:
             BASE_TAG=${{ github.event.inputs.sourcetag }}
             USER_ID=${{ github.event.inputs.userid }}
           push: true
+          file: env0/custom-image/spectral-image/bundle.Dockerfile
           tags: ${{ env.IMAGE_URL }}
           cache-to: type=inline
 
