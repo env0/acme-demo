@@ -65,7 +65,6 @@ jobs:
             BASE_TAG=${{ github.event.inputs.sourcetag }}
             USER_ID=${{ github.event.inputs.userid }}
           push: true
-          file: env0/custom-image/spectral-image/bundle.Dockerfile
           tags: ${{ env.IMAGE_URL }}
           cache-to: type=inline
 
@@ -78,6 +77,7 @@ jobs:
             BASE_IMAGE=${{ env.IMAGE_URL }}
           push: true
           tags: ${{ env.IMAGE_URL_BUNDLE }}
+          file: env0/custom-image/spectral-image/bundle.Dockerfile
           cache-to: type=inline
           # Add this line to output the built image tag
           outputs: type=docker,dest=/tmp/image.tar # Save the image to a tarball
