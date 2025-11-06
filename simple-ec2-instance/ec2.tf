@@ -11,8 +11,11 @@ module "acme-ec2" {
 
   associate_public_ip_address = true
 
+  # Parameter to add disk
+
   tags = {
     Terraform = "true"
+    DiskCount = "three"
     Owner     = "acme demo org"
     Test      = "new taga"
     Demo      = "May 20"
