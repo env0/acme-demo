@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-export USER_ID=2001210001
+export USER_ID=1003050001
 
 docker build --build-arg USER_ID=${USER_ID} --tag local-image --progress plain -f Dockerfile .
 docker build --tag local-image-bundle --progress plain -f bundle.Dockerfile .
