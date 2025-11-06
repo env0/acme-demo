@@ -6,6 +6,7 @@ ARG TARGETARCH
 ARG WIZCLI_VERSION=0.100.0
 ARG USER_ID=1001210001
 ENV USER_UID=${USER_ID}
+ENV USER_GID=${USER_ID}
 ENV ENV0_AWS_VERSION=2.31.27
 ENV ENV0_AZ_VERSION=2.78.0
 
@@ -26,6 +27,7 @@ RUN curl -sL -o /tmp/wizcli https://downloads.wiz.io/wizcli/${WIZCLI_VERSION}/wi
 # Modify IDS
 RUN apk add -U shadow \
     && usermod -u ${USER_ID} node \
+    && groupmod -g ${USER_ID} node \
     && apk del -U shadow
 
 #add spectral
