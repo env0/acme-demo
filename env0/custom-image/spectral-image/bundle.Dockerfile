@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=visa-image
+ARG BASE_IMAGE=image-image
 
 FROM $BASE_IMAGE
 

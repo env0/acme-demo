@@ -28,8 +28,8 @@ jobs:
       - name: Set image tag
         id: set_image_tag
         run: |
-          IMAGE_TAG=visa-$(date +'%Y%m%d')
-          echo "IMAGE_TAG=visa-${IMAGE_TAG}" >> $GITHUB_ENV
+          IMAGE_TAG=image-$(date +'%Y%m%d')
+          echo "IMAGE_TAG=image-${IMAGE_TAG}" >> $GITHUB_ENV
           echo "IMAGE_URL=away168/deployment-agent:${IMAGE_TAG}" >> $GITHUB_ENV
           echo "IMAGE_URL_BUNDLE=away168/deployment-agent:${IMAGE_TAG}-bundle" >> $GITHUB_ENV
 
