@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=image-image
+ARG BASE_IMAGE=local-image
 
 FROM $BASE_IMAGE
 
