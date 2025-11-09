@@ -40,7 +40,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push for user 1003050001
-        id: docker_build # Add an ID to this step
+        id: docker_build_1003050001
         uses: docker/build-push-action@v6
         with:
           context: env0/custom-image/spectral-image
@@ -52,7 +52,7 @@ jobs:
           cache-to: type=inline
 
       - name: Build and push for user 1001000001
-        id: docker_build # Add an ID to this step
+        id: docker_build_1001000001
         uses: docker/build-push-action@v6
         with:
           context: env0/custom-image/spectral-image
@@ -64,7 +64,7 @@ jobs:
           cache-to: type=inline
 
       - name: Build and push for user 1001210001
-        id: docker_build # Add an ID to this step
+        id: docker_build_1001210001
         uses: docker/build-push-action@v6
         with:
           context: env0/custom-image/spectral-image
