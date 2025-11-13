@@ -1,5 +1,5 @@
 name: Build and Push Docker Image
-run-name: Build & Push - ${{ inputs.sourcetag }}:${{ inputs.userid }} from ${{ inputs.folder }}
+run-name: Build & Push
 
 on:
   workflow_dispatch:
@@ -8,28 +8,25 @@ on:
         description: 'Tag for the Docker image'
         required: true
         default: 'latest'
-      userid:
-        description: 'UserID for docker image'
-        required: true
-        default: '1000'
-      test:
-        description: 'Add test suffix to the tag'
-        required: false
-        type: boolean
-        default: false
-      folder:
-        description: 'Path to the Dockerfile'
-        required: true
-        type: choice
-        options:
-          - env0/custom-image/spectral-image
-          - env0/custom-image/alternative
-          - env0/custom-image
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set image prefix
+        id: set_image_prefix
+        run: |
+          echo "IMAGE_URL_PREFIX=away168/deployment-agent:${{ github.event.inputs.sourcetag }}" >> $GITHUB_ENV
+
+      - name: Print Inputs to Summary
+        run: |
+          echo '### Workflow Inputs' >> $GITHUB_STEP_SUMMARY
+          echo '| Input | Value |' >> $GITHUB_STEP_SUMMARY
+          echo '|---|---|' >> $GITHUB_STEP_SUMMARY
+          echo '| **sourcetag** | `${{ github.event.inputs.sourcetag }}` |' >> $GITHUB_STEP_SUMMARY
+          echo '| **image url prefix** | `${{ env.IMAGE_URL_PREFIX }}` |' >> $GITHUB_STEP_SUMMARY
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -41,56 +38,42 @@ jobs:
         with:
           username: away168
           password: ${{ secrets.DOCKER_PASSWORD }}
-          
-      - name: Set image tag
-        id: set_image_tag
-        run: |
-          BASE_TAG="${{ github.event.inputs.sourcetag }}-${{github.event.inputs.userid}}"
-          if [[ "${{ github.event.inputs.test }}" == "true" ]]; then
-            FULL_TAG="${BASE_TAG}-test"
-          else
-            FULL_TAG="${BASE_TAG}"
-          fi
-          echo "IMAGE_TAG=${FULL_TAG}" >> $GITHUB_ENV
-          # Also create a sanitized version for artifact naming
-          SANITIZED_TAG=$(echo "${FULL_TAG}" | sed 's/[^a-zA-Z0-9._-]/_/g')
-          echo "SANITIZED_TAG=${SANITIZED_TAG}" >> $GITHUB_ENV
 
-      - name: Build and push to away168
-        id: docker_build # Add an ID to this step
+      - name: Build and push for user 1003050001
+        id: docker_build_1003050001
         uses: docker/build-push-action@v6
         with:
-          context: ${{ github.event.inputs.folder }}
+          context: env0/custom-image/spectral-image
           build-args: |
             BASE_TAG=${{ github.event.inputs.sourcetag }}
-            USER_ID=${{ github.event.inputs.userid }}
+            USER_ID=1003050001
           push: true
-          tags: |
-            away168/deployment-agent:${{ env.IMAGE_TAG }}
-          cache-from: type=registry,ref=away168/deployment-agent:${{ env.IMAGE_TAG }}
+          tags: ${{ env.IMAGE_URL_PREFIX }}-1003050001
           cache-to: type=inline
-          # Add this line to output the built image tag
-          outputs: type=docker,dest=/tmp/image.tar # Save the image to a tarball
 
-      - name: Save Docker Image to Tarball
-        run: |
-          # The image name and tag pushed
-          IMAGE_NAME_TAG="away168/deployment-agent:${{ env.IMAGE_TAG }}"
-          # The local path where build-push-action saved the image if outputs: type=docker was used
-          LOCAL_IMAGE_PATH="/tmp/image.tar"
-
-          # Verify the tarball exists
-          if [ ! -f "${LOCAL_IMAGE_PATH}" ]; then
-            echo "Error: Docker image tarball not found at ${LOCAL_IMAGE_PATH}"
-            exit 1
-          fi
-          echo "ARTIFACT_NAME=deployment-agent-${{ env.SANITIZED_TAG }}.tar" >> $GITHUB_ENV
-          echo "ARTIFACT_PATH=${LOCAL_IMAGE_PATH}" >> $GITHUB_ENV
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Build and push for user 1001000001
+        id: docker_build_1001000001
+        uses: docker/build-push-action@v6
         with:
-          name: ${{ env.ARTIFACT_NAME }} # Use the sanitized name
-          path: ${{ env.ARTIFACT_PATH }} # Use the path where the tarball was saved
+          context: env0/custom-image/spectral-image
+          build-args: |
+            BASE_TAG=${{ github.event.inputs.sourcetag }}
+            USER_ID=1001000001
+          push: true
+          tags: ${{ env.IMAGE_URL_PREFIX }}-1001000001
+          cache-to: type=inline
+
+      - name: Build and push for user 1001210001
+        id: docker_build_1001210001
+        uses: docker/build-push-action@v6
+        with:
+          context: env0/custom-image/spectral-image
+          build-args: |
+            BASE_TAG=${{ github.event.inputs.sourcetag }}
+            USER_ID=1001210001
+          push: true
+          tags: ${{ env.IMAGE_URL_PREFIX }}-1001210001
+          cache-to: type=inline
 
       - name: Log out from Docker Hub
         run: docker logout

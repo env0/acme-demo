@@ -41,3 +41,5 @@ override.tf.json
 cdk.out
 
 node_modules
+
+.idea
