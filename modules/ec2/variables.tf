@@ -17,6 +17,7 @@ variable "tags" {
 
 variable "ebs_size" {
   type    = number
+  #default = 10
   default = 10
 }
 
