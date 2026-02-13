@@ -1,9 +1,9 @@
 environments:
   network:
-    name: Network
+    name: Network - Okay it Works
     templateName: 'wf-a-network'
   db:
-    name: DB
+    name: DB - Okay it Works
     templateName: 'wf-b2-database'
   compute:
     name: Compute
@@ -11,20 +11,20 @@ environments:
     needs:
       - network
   billing_service:
-    name: Billing Service
+    name: Billing Service - Okay it Works
     templateName: 'wf-c-service'
     disabled: ${DISABLE_BILLING_SERVICE}
     needs:
       - compute
       - db
   metrics_service:
-    name: Matrix Service
+    name: Matrix Service - Okay it Works
     templateName: 'wf-c-service'
     disabled: ${DISABLE_METRICS_SERVICE}
     needs:
       - compute
   db_monitoring_service:
-    name: DB Monitoring Service
+    name: DB Monitoring Service - Okay it Works - But its the wrong branch
     templateName: 'wf-c-service'
     disabled: ${DISABLE_DB_MON_SERVICE}
     needs:
