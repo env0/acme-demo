@@ -21,7 +21,7 @@ jobs:
 
       - name: Print Inputs to Summary
         run: |
-          echo '### Workflow Inputs' >> $GITHUB_STEP_SUMMARY
+          echo '### Workflow Inputsss' >> $GITHUB_STEP_SUMMARY
           echo '| Input | Value |' >> $GITHUB_STEP_SUMMARY
           echo '|---|---|' >> $GITHUB_STEP_SUMMARY
           echo '| **sourcetag** | `${{ github.event.inputs.sourcetag }}` |' >> $GITHUB_STEP_SUMMARY
