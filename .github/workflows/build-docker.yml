@@ -19,7 +19,7 @@ jobs:
         run: |
           echo "IMAGE_URL_PREFIX=away168/deployment-agent:${{ github.event.inputs.sourcetag }}" >> $GITHUB_ENV
 
-      - name: Print Inputs to Summary
+      - name: Print Inputs to Summarys
         run: |
           echo '### Workflow Inputsss' >> $GITHUB_STEP_SUMMARY
           echo '| Input | Value |' >> $GITHUB_STEP_SUMMARY
