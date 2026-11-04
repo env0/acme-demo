@@ -5,5 +5,8 @@
         "@pulumi/pulumi": "^3.273.0",
         "@pulumi/aws": "^6.83.4",
         "@pulumi/awsx": "^2.22.0"
+    },
+    "overrides": {
+        "glob": "^14.0.2"
     }
 }
