@@ -14,10 +14,11 @@ module "acme-ec2" {
   tags = {
     Terraform = "true"
     Owner     = "acme demo org"
-    Test      = "new taga"
     Demo      = "May 20"
   }
 }
+
+
 
 data "aws_ami" "ubuntu" {
   most_recent = true
